@@ -56,6 +56,7 @@ bdproduction-site/
 │  │  ├─ admin.php
 │  │  ├─ admin_guard.php
 │  │  ├─ admin_rate_limit.php
+│  │  ├─ cors.php
 │  │  ├─ db.php
 │  │  ├─ env.php
 │  │  ├─ mailer.php
@@ -69,11 +70,14 @@ bdproduction-site/
 ├─ database/
 │  └─ schema.sql
 ├─ frontend/
+│  ├─ .env.example
 │  ├─ package.json
 │  ├─ vite.config.js
 │  ├─ public/
 │  └─ src/
 │     ├─ App.jsx
+│     ├─ config/
+│     │  └─ api.js
 │     ├─ components/
 │     └─ styles/
 └─ .gitignore
@@ -133,6 +137,36 @@ http://localhost:5173
 
 ```txt
 http://localhost:5173/admin
+```
+
+### 5-1. Frontend 환경변수 설정
+
+프론트엔드는 API 서버 주소를 `frontend/.env`에서 읽습니다.
+
+처음 받은 뒤 아래 명령어로 예시 파일을 복사합니다.
+
+```powershell
+copy .env.example .env
+```
+
+`frontend/.env` 기본값:
+
+```env
+VITE_API_BASE_URL=http://localhost:8080
+```
+
+로컬 개발에서는 위 값을 그대로 사용하면 됩니다.
+
+운영 배포 시에는 실제 API 주소로 바꿉니다.
+
+```env
+VITE_API_BASE_URL=https://bdproduction.co.kr
+```
+
+프론트 환경변수를 수정한 뒤에는 React 개발 서버를 재시작해야 합니다.
+
+```powershell
+npm run dev
 ```
 
 ---
@@ -243,6 +277,8 @@ DB_NAME=bdproduction
 DB_USER=bdproduction_user
 DB_PASS=your_database_password
 
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+
 ADMIN_PASSWORD_HASH=change_this_admin_password_hash
 ADMIN_SESSION_LIFETIME_SECONDS=7200
 
@@ -266,6 +302,30 @@ YOUTUBE_PLAYLIST_ID=your_youtube_playlist_id
 YOUTUBE_MAX_RESULTS=6
 YOUTUBE_NEW_DAYS=7
 YOUTUBE_SYNC_TOKEN=change_this_sync_token
+```
+
+### 8-1. Backend CORS 설정
+
+백엔드는 허용할 프론트 주소를 `CORS_ALLOWED_ORIGINS`에서 읽습니다.
+
+로컬 개발 기본값:
+
+```env
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+```
+
+운영 배포 시 예시:
+
+```env
+CORS_ALLOWED_ORIGINS=https://bdproduction.co.kr,https://www.bdproduction.co.kr
+```
+
+관리자 API는 로그인 세션 쿠키를 사용하므로 CORS 설정이 올바르지 않으면 관리자 로그인이나 문의 목록 조회가 막힐 수 있습니다.
+
+CORS 값을 수정한 뒤에는 PHP 서버를 재시작해야 합니다.
+
+```powershell
+php -S localhost:8080 -t backend\public
 ```
 
 ---
@@ -520,7 +580,54 @@ npm install
 
 ---
 
-## 17. Git 사용법
+## 17. API 주소 / CORS 확인
+
+프론트에서 백엔드 API가 호출되지 않으면 아래 값을 먼저 확인합니다.
+
+### Frontend
+
+```txt
+frontend/.env
+```
+
+```env
+VITE_API_BASE_URL=http://localhost:8080
+```
+
+### Backend
+
+```txt
+backend/.env
+```
+
+```env
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+```
+
+두 값을 수정한 뒤에는 서버를 모두 재시작합니다.
+
+```powershell
+# Backend
+cd C:\dev\projects\bdproduction-site
+php -S localhost:8080 -t backend\public
+
+# Frontend
+cd C:\dev\projects\bdproduction-site\frontend
+npm run dev
+```
+
+확인할 API:
+
+```txt
+http://localhost:8080
+http://localhost:8080/api/youtube/videos.php
+```
+
+관리자 로그인은 쿠키 세션을 사용하므로 프론트 주소가 `CORS_ALLOWED_ORIGINS`에 포함되어 있어야 합니다.
+
+---
+
+## 18. Git 사용법
 
 ### 최신 코드 받기
 
@@ -549,7 +656,7 @@ git push
 
 ---
 
-## 18. GitHub에 올리면 안 되는 파일
+## 19. GitHub에 올리면 안 되는 파일
 
 아래 파일은 절대 GitHub에 올리지 않습니다.
 
@@ -567,7 +674,7 @@ frontend/dist/
 
 ---
 
-## 19. 개발자 온보딩 요약
+## 20. 개발자 온보딩 요약
 
 새 개발자는 아래 순서대로 실행하면 됩니다.
 
@@ -577,12 +684,13 @@ cd bdproduction-site
 
 copy backend\.env.example backend\.env
 
-cd backend
-composer install
-
-cd ..\frontend
+cd frontend
+copy .env.example .env
 npm install
 npm run dev
+
+cd ..\backend
+composer install
 ```
 
 다른 PowerShell에서:
@@ -596,7 +704,7 @@ DB는 MariaDB에서 `database/schema.sql`을 실행해야 합니다.
 
 ---
 
-## 20. 현재 개발 상태
+## 21. 현재 개발 상태
 
 ```txt
 완료:
