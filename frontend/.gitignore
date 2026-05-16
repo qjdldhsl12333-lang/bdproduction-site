@@ -1,0 +1,23 @@
+# Environment
+backend/.env
+
+# Backend runtime storage
+backend/storage/*.json
+
+# Composer
+backend/vendor
+
+# Node
+frontend/node_modules
+frontend/dist
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
