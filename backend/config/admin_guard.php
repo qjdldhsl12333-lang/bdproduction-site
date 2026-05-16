@@ -2,24 +2,12 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/cors.php';
 require_once __DIR__ . '/admin.php';
 
 function applyAdminCorsHeaders(): void
 {
-    $allowedOrigins = [
-        'http://localhost:5173',
-        'http://127.0.0.1:5173',
-    ];
-
-    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-
-    if (in_array($origin, $allowedOrigins, true)) {
-        header("Access-Control-Allow-Origin: {$origin}");
-        header('Access-Control-Allow-Credentials: true');
-    }
-
-    header('Access-Control-Allow-Headers: Content-Type, Accept');
-    header('Content-Type: application/json; charset=utf-8');
+    applyCorsHeaders(['GET', 'POST', 'OPTIONS'], true);
 }
 
 function startAdminSession(): void

@@ -1,3 +1,4 @@
+import { apiUrl } from '../config/api.js';
 import { motion } from 'framer-motion';
 import { CheckCircle2, PhoneCall, Send } from 'lucide-react';
 import { useRef, useState } from 'react';
@@ -47,7 +48,7 @@ function ContactForm() {
     setReceiptId(null);
 
     try {
-      const response = await fetch('http://localhost:8080/api/contact.php', {
+      const response = await fetch(apiUrl('/api/contact.php'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

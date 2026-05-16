@@ -2,23 +2,11 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../../config/cors.php';
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../config/mailer.php';
 
-$allowedOrigins = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-];
-
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-
-if (in_array($origin, $allowedOrigins, true)) {
-    header("Access-Control-Allow-Origin: {$origin}");
-}
-
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Accept');
-header('Content-Type: application/json; charset=utf-8');
+applyCorsHeaders(['POST', 'OPTIONS'], false);
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);

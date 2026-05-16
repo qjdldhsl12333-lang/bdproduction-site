@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ExternalLink, Loader2, Play, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
+import { apiUrl } from '../config/api.js';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
 
 function Portfolio() {
   const [videos, setVideos] = useState([]);
@@ -19,7 +19,7 @@ function Portfolio() {
       setErrorMessage('');
 
       try {
-        const response = await fetch(`${API_BASE_URL}/api/youtube/videos.php`, {
+        const response = await fetch(apiUrl('/api/youtube/videos.php'), {
           method: 'GET',
           headers: {
             Accept: 'application/json',

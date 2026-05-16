@@ -1,3 +1,4 @@
+import { apiUrl } from '../config/api.js';
 import { Archive, ArrowLeft, Inbox, Mail, Phone, RefreshCw, Search, Undo2, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -65,7 +66,7 @@ function AdminContacts() {
     setCheckingAuth(true);
 
     try {
-      const response = await fetch('http://localhost:8080/api/admin/me.php', {
+      const response = await fetch(apiUrl('/api/admin/me.php'), {
         method: 'GET',
         credentials: 'include',
         headers: {
