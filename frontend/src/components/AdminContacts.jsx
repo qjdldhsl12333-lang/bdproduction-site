@@ -24,6 +24,9 @@ function AdminContacts() {
 
   const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
+  const [selectedContactLogs, setSelectedContactLogs] = useState([]);
+  const [loadingContactLogs, setLoadingContactLogs] = useState(false);
+  const [contactLogsErrorMessage, setContactLogsErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [updatingContactId, setUpdatingContactId] = useState(null);
@@ -85,6 +88,50 @@ function AdminContacts() {
     }
   }, []);
 
+  const loadContactActivityLogs = useCallback(async (contactId) => {
+    if (!contactId) {
+      setSelectedContactLogs([]);
+      return;
+    }
+
+    setLoadingContactLogs(true);
+    setContactLogsErrorMessage('');
+
+    try {
+      const response = await fetch(apiUrl(`/api/admin/contact-activity-logs.php?contactId=${contactId}`), {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+        setAdminLoggedIn(false);
+        setContacts([]);
+        setSelectedContact(null);
+        setSelectedContactLogs([]);
+        return;
+      }
+
+      if (!response.ok || !result.success) {
+        setContactLogsErrorMessage(result.message || '처리 이력을 불러오지 못했습니다.');
+        setSelectedContactLogs([]);
+        return;
+      }
+
+      setSelectedContactLogs(Array.isArray(result.logs) ? result.logs : []);
+    } catch (error) {
+      console.error('Contact activity logs API error:', error);
+      setContactLogsErrorMessage('처리 이력 API와 연결할 수 없습니다.');
+      setSelectedContactLogs([]);
+    } finally {
+      setLoadingContactLogs(false);
+    }
+  }, []);
+
   const loadContacts = useCallback(async () => {
     if (!adminLoggedIn) {
       return;
@@ -112,6 +159,7 @@ function AdminContacts() {
         setAdminLoggedIn(false);
         setContacts([]);
         setSelectedContact(null);
+        setSelectedContactLogs([]);
         setErrorMessage('');
         return;
       }
@@ -312,6 +360,7 @@ function AdminContacts() {
         setAdminLoggedIn(false);
         setContacts([]);
         setSelectedContact(null);
+        setSelectedContactLogs([]);
         alert(result.message || '관리자 로그인이 필요합니다.');
         return false;
       }
@@ -342,6 +391,10 @@ function AdminContacts() {
           status,
         };
       });
+
+      if (selectedContact && Number(selectedContact.id) === Number(contactId)) {
+        loadContactActivityLogs(contactId);
+      }
 
       return true;
     } catch (error) {
@@ -404,11 +457,17 @@ function AdminContacts() {
 
   const closeContactDetail = () => {
     setSelectedContact(null);
+    setSelectedContactLogs([]);
+    setContactLogsErrorMessage('');
+    setLoadingContactLogs(false);
   };
 
   const toggleArchiveMode = () => {
     setArchiveMode((current) => !current);
     setSelectedContact(null);
+    setSelectedContactLogs([]);
+    setContactLogsErrorMessage('');
+    setLoadingContactLogs(false);
     setStatusFilter('all');
     setSearchTerm('');
   };
@@ -497,12 +556,26 @@ function AdminContacts() {
 
   useEffect(() => {
     if (!selectedContact) {
+      setSelectedContactLogs([]);
+      setContactLogsErrorMessage('');
+      setLoadingContactLogs(false);
+      return;
+    }
+
+    loadContactActivityLogs(selectedContact.id);
+  }, [selectedContact, loadContactActivityLogs]);
+
+  useEffect(() => {
+    if (!selectedContact) {
       return undefined;
     }
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setSelectedContact(null);
+        setSelectedContactLogs([]);
+        setContactLogsErrorMessage('');
+        setLoadingContactLogs(false);
       }
     };
 
@@ -882,6 +955,9 @@ function AdminContacts() {
       {selectedContact && (
         <ContactDetailModal
           contact={selectedContact}
+          logs={selectedContactLogs}
+          loadingLogs={loadingContactLogs}
+          logsErrorMessage={contactLogsErrorMessage}
           archiveMode={archiveMode}
           updatingContactId={updatingContactId}
           onClose={closeContactDetail}
@@ -897,13 +973,17 @@ function AdminContacts() {
 
 function ContactDetailModal({
   contact,
-  archiveMode,
-  updatingContactId,
+  logs = [],
+  loadingLogs = false,
+  logsErrorMessage = '',
+  archiveMode = false,
+  updatingContactId = null,
   onClose,
   onUpdateStatus,
   onArchive,
   onRestore,
 }) {
+  const safeLogs = Array.isArray(logs) ? logs : [];
   const isUpdating = Number(updatingContactId) === Number(contact.id);
 
   return (
@@ -943,6 +1023,46 @@ function ContactDetailModal({
         <div className="admin-detail-message">
           <span>문의 내용</span>
           <p>{contact.message}</p>
+        </div>
+
+        <div className="admin-detail-history">
+          <div className="admin-detail-history-header">
+            <span>처리 이력</span>
+            <strong>{safeLogs.length}건</strong>
+          </div>
+
+          {loadingLogs && (
+            <p className="admin-detail-history-state">
+              처리 이력을 불러오는 중입니다.
+            </p>
+          )}
+
+          {logsErrorMessage && (
+            <p className="admin-detail-history-error">
+              {logsErrorMessage}
+            </p>
+          )}
+
+          {!loadingLogs && !logsErrorMessage && safeLogs.length === 0 && (
+            <p className="admin-detail-history-state">
+              아직 처리 이력이 없습니다.
+            </p>
+          )}
+
+          {!loadingLogs && !logsErrorMessage && safeLogs.length > 0 && (
+            <ul className="admin-detail-history-list">
+              {safeLogs.map((log) => (
+                <li key={log.id}>
+                  <div>
+                    <strong>{formatActivityLogTitle(log)}</strong>
+                    <span>{formatDateTime(log.created_at)}</span>
+                  </div>
+
+                  {log.note && <p>{log.note}</p>}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="admin-detail-actions">
@@ -1019,7 +1139,30 @@ function renderStatusLabel(status) {
     return '보관됨';
   }
 
-  return '신규 문의';
+  if (status === 'new') {
+    return '신규 문의';
+  }
+
+  return '-';
+}
+
+function formatActivityLogTitle(log) {
+  const previousStatus = renderStatusLabel(log.previous_status);
+  const nextStatus = renderStatusLabel(log.next_status);
+
+  if (log.action === 'archive') {
+    return `${previousStatus} → 보관됨`;
+  }
+
+  if (log.action === 'restore') {
+    return `${previousStatus} → 신규 문의`;
+  }
+
+  if (log.action === 'status_change') {
+    return `${previousStatus} → ${nextStatus}`;
+  }
+
+  return '처리 이력';
 }
 
 function formatRemainingTime(seconds) {
