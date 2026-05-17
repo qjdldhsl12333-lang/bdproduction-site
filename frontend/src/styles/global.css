@@ -2065,3 +2065,201 @@ a {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Admin contact detail modal */
+
+.admin-contact-card {
+  cursor: pointer;
+}
+
+.admin-detail-backdrop {
+  position: fixed;
+  z-index: 300;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.admin-detail-modal {
+  width: min(100%, 860px);
+  max-height: min(760px, calc(100vh - 48px));
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: #121212;
+  box-shadow: var(--shadow);
+}
+
+.admin-detail-header {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 26px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-detail-header span {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.admin-detail-header h2 {
+  margin: 8px 0 0;
+  color: var(--text);
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+  line-height: 1.25;
+}
+
+.admin-detail-close {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.admin-detail-close:hover {
+  border-color: rgba(216, 183, 106, 0.45);
+  color: var(--gold);
+}
+
+.admin-detail-status-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 26px 0;
+}
+
+.admin-detail-date {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.admin-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 18px 26px 0;
+}
+
+.admin-detail-item {
+  display: grid;
+  gap: 7px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.admin-detail-item span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+}
+
+.admin-detail-item strong {
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.admin-detail-message {
+  display: grid;
+  gap: 10px;
+  margin: 18px 26px 0;
+  padding: 18px;
+  border: 1px solid rgba(216, 183, 106, 0.26);
+  border-radius: 20px;
+  background: rgba(216, 183, 106, 0.08);
+}
+
+.admin-detail-message span {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.admin-detail-message p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.admin-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding: 20px 26px 26px;
+}
+
+.admin-detail-actions button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.admin-detail-actions button:hover {
+  border-color: rgba(216, 183, 106, 0.45);
+  color: var(--gold);
+}
+
+.admin-detail-actions button.danger {
+  border-color: rgba(255, 107, 107, 0.32);
+  color: #ffb3b3;
+}
+
+.admin-detail-actions button.danger:hover {
+  background: rgba(255, 107, 107, 0.12);
+}
+
+@media (max-width: 720px) {
+  .admin-detail-backdrop {
+    padding: 14px;
+  }
+
+  .admin-detail-modal {
+    border-radius: 22px;
+  }
+
+  .admin-detail-header {
+    padding: 20px 18px 16px;
+  }
+
+  .admin-detail-status-row,
+  .admin-detail-grid,
+  .admin-detail-actions {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .admin-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-detail-message {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+}

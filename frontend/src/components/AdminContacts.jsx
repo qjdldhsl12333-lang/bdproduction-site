@@ -23,6 +23,7 @@ function AdminContacts() {
   const [unlockCodeRemainingSeconds, setUnlockCodeRemainingSeconds] = useState(0);
 
   const [contacts, setContacts] = useState([]);
+  const [selectedContact, setSelectedContact] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [updatingContactId, setUpdatingContactId] = useState(null);
@@ -92,12 +93,12 @@ function AdminContacts() {
     setLoading(true);
     setErrorMessage('');
 
-    const apiUrl = archiveMode
-      ? 'http://localhost:8080/api/admin/archived-contacts.php'
-      : 'http://localhost:8080/api/admin/contacts.php';
+    const contactsEndpoint = archiveMode
+      ? apiUrl('/api/admin/archived-contacts.php')
+      : apiUrl('/api/admin/contacts.php');
 
     try {
-      const response = await fetch(apiUrl, {
+      const response = await fetch(contactsEndpoint, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -110,6 +111,7 @@ function AdminContacts() {
       if (response.status === 401) {
         setAdminLoggedIn(false);
         setContacts([]);
+        setSelectedContact(null);
         setErrorMessage('');
         return;
       }
@@ -119,7 +121,15 @@ function AdminContacts() {
         return;
       }
 
-      setContacts(result.contacts || []);
+      const nextContacts = result.contacts || [];
+      setContacts(nextContacts);
+      setSelectedContact((currentContact) => {
+        if (!currentContact) {
+          return currentContact;
+        }
+
+        return nextContacts.find((contact) => Number(contact.id) === Number(currentContact.id)) || null;
+      });
     } catch (error) {
       console.error('Admin contacts API error:', error);
       setErrorMessage('서버와 연결할 수 없습니다. PHP 백엔드 서버가 실행 중인지 확인해주세요.');
@@ -136,7 +146,7 @@ function AdminContacts() {
     setLoggingIn(true);
 
     try {
-      const response = await fetch('http://localhost:8080/api/admin/login.php', {
+      const response = await fetch(apiUrl('/api/admin/login.php'), {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -188,7 +198,7 @@ function AdminContacts() {
     setLoginErrorMessage('');
 
     try {
-      const response = await fetch('http://localhost:8080/api/admin/unlock-login.php', {
+      const response = await fetch(apiUrl('/api/admin/unlock-login.php'), {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -226,7 +236,7 @@ function AdminContacts() {
     setLoginErrorMessage('');
 
     try {
-      const response = await fetch('http://localhost:8080/api/admin/resend-unlock-code.php', {
+      const response = await fetch(apiUrl('/api/admin/resend-unlock-code.php'), {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -254,7 +264,7 @@ function AdminContacts() {
 
   const logoutAdmin = async () => {
     try {
-      await fetch('http://localhost:8080/api/admin/logout.php', {
+      await fetch(apiUrl('/api/admin/logout.php'), {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -266,6 +276,7 @@ function AdminContacts() {
     } finally {
       setAdminLoggedIn(false);
       setContacts([]);
+      setSelectedContact(null);
       setArchiveMode(false);
       setStatusFilter('all');
       setSearchTerm('');
@@ -282,7 +293,7 @@ function AdminContacts() {
     setUpdatingContactId(contactId);
 
     try {
-      const response = await fetch('http://localhost:8080/api/admin/update-contact-status.php', {
+      const response = await fetch(apiUrl('/api/admin/update-contact-status.php'), {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -300,6 +311,7 @@ function AdminContacts() {
       if (response.status === 401) {
         setAdminLoggedIn(false);
         setContacts([]);
+        setSelectedContact(null);
         alert(result.message || '관리자 로그인이 필요합니다.');
         return false;
       }
@@ -319,6 +331,17 @@ function AdminContacts() {
             : contact
         )
       );
+
+      setSelectedContact((currentContact) => {
+        if (!currentContact || Number(currentContact.id) !== Number(contactId)) {
+          return currentContact;
+        }
+
+        return {
+          ...currentContact,
+          status,
+        };
+      });
 
       return true;
     } catch (error) {
@@ -348,6 +371,7 @@ function AdminContacts() {
     setContacts((currentContacts) =>
       currentContacts.filter((contact) => Number(contact.id) !== Number(contactId))
     );
+    setSelectedContact(null);
   };
 
   const restoreContact = async (contactId, contactName) => {
@@ -366,6 +390,7 @@ function AdminContacts() {
     setContacts((currentContacts) =>
       currentContacts.filter((contact) => Number(contact.id) !== Number(contactId))
     );
+    setSelectedContact(null);
   };
 
   const resetFilters = () => {
@@ -373,8 +398,17 @@ function AdminContacts() {
     setSearchTerm('');
   };
 
+  const openContactDetail = (contact) => {
+    setSelectedContact(contact);
+  };
+
+  const closeContactDetail = () => {
+    setSelectedContact(null);
+  };
+
   const toggleArchiveMode = () => {
     setArchiveMode((current) => !current);
+    setSelectedContact(null);
     setStatusFilter('all');
     setSearchTerm('');
   };
@@ -402,6 +436,24 @@ function AdminContacts() {
       window.clearInterval(timerId);
     };
   }, [loginLocked, unlockCodeRemainingSeconds]);
+
+  useEffect(() => {
+    if (!selectedContact) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedContact(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedContact]);
 
   if (checkingAuth) {
     return (
@@ -619,7 +671,19 @@ function AdminContacts() {
         {!loading && !errorMessage && filteredContacts.length > 0 && (
           <div className="admin-contact-list">
             {filteredContacts.map((contact) => (
-              <article className="admin-contact-card" key={contact.id}>
+              <article
+                className="admin-contact-card"
+                key={contact.id}
+                role="button"
+                tabIndex={0}
+                onClick={() => openContactDetail(contact)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openContactDetail(contact);
+                  }
+                }}
+              >
                 <div className="admin-contact-header">
                   <div>
                     <span className="admin-contact-id">#{contact.id}</span>
@@ -637,7 +701,10 @@ function AdminContacts() {
                           type="button"
                           className={contact.status === 'new' ? 'is-active' : ''}
                           disabled={updatingContactId === contact.id}
-                          onClick={() => updateContactStatus(contact.id, 'new')}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            updateContactStatus(contact.id, 'new');
+                          }}
                         >
                           신규
                         </button>
@@ -646,7 +713,10 @@ function AdminContacts() {
                           type="button"
                           className={contact.status === 'checked' ? 'is-active' : ''}
                           disabled={updatingContactId === contact.id}
-                          onClick={() => updateContactStatus(contact.id, 'checked')}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            updateContactStatus(contact.id, 'checked');
+                          }}
                         >
                           확인
                         </button>
@@ -655,7 +725,10 @@ function AdminContacts() {
                           type="button"
                           className={contact.status === 'done' ? 'is-active' : ''}
                           disabled={updatingContactId === contact.id}
-                          onClick={() => updateContactStatus(contact.id, 'done')}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            updateContactStatus(contact.id, 'done');
+                          }}
                         >
                           완료
                         </button>
@@ -664,7 +737,10 @@ function AdminContacts() {
                           type="button"
                           className="is-danger"
                           disabled={updatingContactId === contact.id}
-                          onClick={() => archiveContact(contact.id, contact.name)}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            archiveContact(contact.id, contact.name);
+                          }}
                         >
                           <Archive size={13} />
                           보관
@@ -676,7 +752,10 @@ function AdminContacts() {
                           type="button"
                           className="is-restore"
                           disabled={updatingContactId === contact.id}
-                          onClick={() => restoreContact(contact.id, contact.name)}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            restoreContact(contact.id, contact.name);
+                          }}
                         >
                           <Undo2 size={13} />
                           복구
@@ -731,10 +810,134 @@ function AdminContacts() {
         )}
 
         <div className="admin-warning">
-          현재 관리자 화면은 로컬 개발용입니다. 실제 배포 전에는 관리자 로그인과 접근 제한을 반드시 추가해야 합니다.
+          현재 관리자 화면은 로컬 개발용입니다. 실제 배포 전에는 HTTPS, 운영 도메인 CORS, 관리자 계정 정책을 점검해야 합니다.
         </div>
       </section>
+
+      {selectedContact && (
+        <ContactDetailModal
+          contact={selectedContact}
+          archiveMode={archiveMode}
+          updatingContactId={updatingContactId}
+          onClose={closeContactDetail}
+          onUpdateStatus={updateContactStatus}
+          onArchive={archiveContact}
+          onRestore={restoreContact}
+        />
+      )}
     </main>
+  );
+}
+
+
+function ContactDetailModal({
+  contact,
+  archiveMode,
+  updatingContactId,
+  onClose,
+  onUpdateStatus,
+  onArchive,
+  onRestore,
+}) {
+  const isUpdating = Number(updatingContactId) === Number(contact.id);
+
+  return (
+    <div className="admin-detail-backdrop" onClick={onClose}>
+      <section className="admin-detail-modal" onClick={(event) => event.stopPropagation()}>
+        <div className="admin-detail-header">
+          <div>
+            <span>접수번호 #{contact.id}</span>
+            <h2>{contact.name}</h2>
+          </div>
+
+          <button type="button" className="admin-detail-close" onClick={onClose} aria-label="상세 모달 닫기">
+            <X size={18} />
+            닫기
+          </button>
+        </div>
+
+        <div className="admin-detail-status-row">
+          <span className={`admin-status-badge status-${contact.status}`}>
+            {renderStatusLabel(contact.status)}
+          </span>
+
+          <span className="admin-detail-date">
+            {formatDateTime(archiveMode ? contact.updated_at : contact.created_at)}
+          </span>
+        </div>
+
+        <div className="admin-detail-grid">
+          <DetailItem label="이름 / 회사명" value={contact.name} />
+          <DetailItem label="연락처" value={contact.phone} />
+          <DetailItem label="이메일" value={contact.email || '-'} />
+          <DetailItem label="제작 유형" value={contact.production_type || '-'} />
+          <DetailItem label="예산 범위" value={contact.budget_range || '-'} />
+          <DetailItem label="접수 경로" value={contact.source || 'website'} />
+        </div>
+
+        <div className="admin-detail-message">
+          <span>문의 내용</span>
+          <p>{contact.message}</p>
+        </div>
+
+        <div className="admin-detail-actions">
+          {!archiveMode ? (
+            <>
+              <button
+                type="button"
+                className={contact.status === 'new' ? 'is-active' : ''}
+                disabled={isUpdating || contact.status === 'new'}
+                onClick={() => onUpdateStatus(contact.id, 'new')}
+              >
+                신규
+              </button>
+
+              <button
+                type="button"
+                className={contact.status === 'checked' ? 'is-active' : ''}
+                disabled={isUpdating || contact.status === 'checked'}
+                onClick={() => onUpdateStatus(contact.id, 'checked')}
+              >
+                확인 완료
+              </button>
+
+              <button
+                type="button"
+                className={contact.status === 'done' ? 'is-active' : ''}
+                disabled={isUpdating || contact.status === 'done'}
+                onClick={() => onUpdateStatus(contact.id, 'done')}
+              >
+                처리 완료
+              </button>
+
+              <button
+                type="button"
+                className="danger"
+                disabled={isUpdating}
+                onClick={() => onArchive(contact.id, contact.name)}
+              >
+                <Archive size={14} />
+                보관
+              </button>
+            </>
+          ) : (
+            <button type="button" disabled={isUpdating} onClick={() => onRestore(contact.id, contact.name)}>
+              <Undo2 size={14} />
+              신규로 복구
+            </button>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function DetailItem({ label, value }) {
+  return (
+    <div className="admin-detail-item">
+      <span>{label}</span>
+      <strong>{value || '-'}</strong>
+    </div>
   );
 }
 
