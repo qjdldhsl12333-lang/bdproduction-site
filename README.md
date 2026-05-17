@@ -2,9 +2,12 @@
 
 BDPRODUCTION 공식 웹사이트 + 프로덕션 플랫폼 MVP입니다.
 
-현재 구현 범위는 **브랜드 홈페이지 / 문의 접수 / MariaDB 저장 / 관리자 문의 관리 / SMTP 이메일 알림 / 문의 스팸 방지 / 관리자 상세 모달 / YouTube 포트폴리오 연동 틀 / Notion API 연동 틀**까지입니다.
+현재 구현 범위는 **브랜드 홈페이지 / 문의 접수 / MariaDB 저장 / SMTP 이메일 알림 / 관리자 문의 관리 / 문의 스팸 방지 / 관리자 상세 모달 / YouTube 포트폴리오 연동 틀 / Notion API 연동 틀 / SEO 기술 세팅 1차 / OG 메타 구조 준비**까지입니다.
 
 제안서 기준으로는 현재 **Phase 1 브랜드 홈페이지 구간의 중후반**입니다. 실제 YouTube API, Notion API 정보가 들어오면 Phase 1 자동화 기능을 바로 실연동할 수 있도록 구조를 먼저 만들어둔 상태입니다.
+
+> 현재 홈페이지 디자인, 문구, 브랜드 카피, OG 이미지 등 브랜드 표현 요소는 개발용 MVP 기준입니다.  
+> 최종 디자인과 문구는 BDPRODUCTION 디자인팀 및 관계자 협의 후 변경될 수 있습니다.
 
 ---
 
@@ -34,33 +37,36 @@ BDPRODUCTION 공식 웹사이트 + 프로덕션 플랫폼 MVP입니다.
 - Notion API 준비
 - Google Drive API 예정
 
-### 주요 기능
+---
 
-- BDPRODUCTION 브랜드 홈페이지
-- 3D Studio Showroom 섹션
-- Contact Form 문의 접수
-- 문의 폼 스팸 방지 1차
-  - Honeypot 필드
-  - 메시지 최소/최대 길이 제한
-  - IP 기반 반복 제출 제한
-- MariaDB 문의 저장
-- SMTP 이메일 알림
-- Notion 문의 저장 연동 틀
-- 관리자 로그인 / 로그아웃
-- 관리자 로그인 실패 제한
-- 이메일 잠금 해제 코드 구조
-- 관리자 문의 목록
-- 관리자 문의 상세 모달
-- 검색 / 필터
-- 상태 변경: 신규 / 확인 완료 / 처리 완료
-- 보관 / 보관함 / 복구
-- YouTube 포트폴리오 API 연동 준비
-- YouTube 캐시 테이블 구조 준비
-- YouTube 동기화 API 틀
+## 2. 주요 기능
+
+```txt
+브랜드 홈페이지
+3D Studio Showroom
+Contact Form 문의 접수
+MariaDB 문의 저장
+SMTP 이메일 알림
+문의 폼 스팸 방지 1차
+관리자 로그인 / 로그아웃
+관리자 로그인 실패 제한
+이메일 잠금 해제 코드 구조
+관리자 문의 목록
+관리자 문의 상세 모달
+검색 / 필터
+상태 변경: 신규 / 확인 완료 / 처리 완료
+보관 / 보관함 / 복구
+YouTube 포트폴리오 API 연동 틀
+YouTube 캐시 테이블 구조
+YouTube 동기화 API 틀
+Notion 문의 저장 연동 틀
+SEO 기술 세팅 1차
+OG / Twitter Card 메타 구조 준비
+```
 
 ---
 
-## 2. 프로젝트 구조
+## 3. 프로젝트 구조
 
 ```txt
 bdproduction-site/
@@ -99,9 +105,14 @@ bdproduction-site/
 │  └─ schema.sql
 ├─ frontend/
 │  ├─ .env.example
+│  ├─ index.html
 │  ├─ package.json
 │  ├─ vite.config.js
 │  ├─ public/
+│  │  ├─ favicon.svg
+│  │  ├─ robots.txt
+│  │  ├─ sitemap.xml
+│  │  └─ og-image.jpg  # 디자인팀 협의 후 추가 예정
 │  └─ src/
 │     ├─ App.jsx
 │     ├─ config/
@@ -122,7 +133,7 @@ bdproduction-site/
 
 ---
 
-## 3. GitHub에서 프로젝트 받기
+## 4. GitHub에서 프로젝트 받기
 
 ```powershell
 git clone https://github.com/qjdldhsl12333-lang/bdproduction-site.git
@@ -131,7 +142,7 @@ cd bdproduction-site
 
 ---
 
-## 4. 필수 설치 프로그램
+## 5. 필수 설치 프로그램
 
 개발 PC에 아래 프로그램이 필요합니다.
 
@@ -144,7 +155,7 @@ MariaDB
 Git
 ```
 
-설치 확인 명령어:
+설치 확인:
 
 ```powershell
 node -v
@@ -172,7 +183,7 @@ zip
 
 ---
 
-## 5. Frontend 설치 및 실행
+## 6. Frontend 설치 및 실행
 
 ```powershell
 cd frontend
@@ -193,15 +204,13 @@ http://localhost:5173
 http://localhost:5173/admin
 ```
 
-### 5-1. Frontend 환경변수 설정
+### 6-1. Frontend 환경변수 설정
 
 프론트엔드는 API 서버 주소를 `frontend/.env`에서 읽습니다.
 
 ```env
 VITE_API_BASE_URL=http://localhost:8080
 ```
-
-로컬 개발에서는 위 값을 그대로 사용하면 됩니다.
 
 운영 배포 시에는 실제 API 주소로 바꿉니다.
 
@@ -217,7 +226,7 @@ npm run dev
 
 ---
 
-## 6. Backend 설치 및 실행
+## 7. Backend 설치 및 실행
 
 처음 받은 뒤 Composer 패키지를 설치합니다.
 
@@ -251,17 +260,15 @@ http://localhost:8080
 
 ---
 
-## 7. MariaDB 설정
+## 8. MariaDB 설정
 
-### 7-1. MariaDB 접속
-
-예시:
+### 8-1. MariaDB 접속
 
 ```powershell
 & "C:\Program Files\MariaDB 11.4\bin\mariadb.exe" -u root -p
 ```
 
-### 7-2. DB와 계정 생성
+### 8-2. DB와 계정 생성
 
 ```sql
 CREATE DATABASE IF NOT EXISTS bdproduction
@@ -277,9 +284,7 @@ GRANT ALL PRIVILEGES ON bdproduction.*
 FLUSH PRIVILEGES;
 ```
 
-### 7-3. 테이블 생성
-
-프로젝트에 포함된 SQL 파일을 실행합니다.
+### 8-3. 테이블 생성
 
 ```sql
 SOURCE C:/dev/projects/bdproduction-site/database/schema.sql;
@@ -287,7 +292,7 @@ SOURCE C:/dev/projects/bdproduction-site/database/schema.sql;
 
 또는 DBeaver에서 `database/schema.sql` 파일을 열고 실행해도 됩니다.
 
-### 7-4. 테이블 확인
+### 8-4. 테이블 확인
 
 ```sql
 USE bdproduction;
@@ -307,17 +312,15 @@ youtube_videos
 
 ---
 
-## 8. backend/.env 만들기
+## 9. backend/.env 만들기
 
 실제 환경변수 파일은 GitHub에 올리지 않습니다.
-
-`backend/.env.example`을 복사해서 `backend/.env`를 만듭니다.
 
 ```powershell
 copy backend\.env.example backend\.env
 ```
 
-또는 직접 파일을 만들고 아래 형태로 작성합니다.
+기본 형태:
 
 ```env
 APP_ENV=local
@@ -366,11 +369,9 @@ CONTACT_MESSAGE_MIN_LENGTH=5
 CONTACT_MESSAGE_MAX_LENGTH=2000
 ```
 
-### 8-1. Backend CORS 설정
+### 9-1. Backend CORS 설정
 
 백엔드는 허용할 프론트 주소를 `CORS_ALLOWED_ORIGINS`에서 읽습니다.
-
-로컬 개발 기본값:
 
 ```env
 CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
@@ -384,19 +385,11 @@ CORS_ALLOWED_ORIGINS=https://bdproduction.co.kr,https://www.bdproduction.co.kr
 
 관리자 API는 로그인 세션 쿠키를 사용하므로 CORS 설정이 올바르지 않으면 관리자 로그인이나 문의 목록 조회가 막힐 수 있습니다.
 
-CORS 값을 수정한 뒤에는 PHP 서버를 재시작해야 합니다.
-
-```powershell
-php -S localhost:8080 -t backend\public
-```
-
 ---
 
-## 9. 관리자 비밀번호 해시 만들기
+## 10. 관리자 비밀번호 해시 만들기
 
 관리자 비밀번호는 평문으로 저장하지 않고 해시로 저장합니다.
-
-원하는 관리자 비밀번호로 아래 명령어를 실행합니다.
 
 ```powershell
 php -r "echo password_hash('원하는관리자비밀번호', PASSWORD_DEFAULT), PHP_EOL;"
@@ -410,13 +403,9 @@ ADMIN_PASSWORD_HASH="$2y$10$..."
 
 PHP 서버를 재시작해야 반영됩니다.
 
-```powershell
-php -S localhost:8080 -t backend\public
-```
-
 ---
 
-## 10. SMTP 이메일 알림 설정
+## 11. SMTP 이메일 알림 설정
 
 문의가 접수되면 관리자 이메일로 알림을 보낼 수 있습니다.
 
@@ -438,7 +427,7 @@ MAIL_FROM_NAME=BDPRODUCTION
 MAIL_TO_ADDRESS=admin@example.com,another-admin@example.com
 ```
 
-보안 알림 전용 수신자는 별도로 설정합니다.
+보안 알림 전용 수신자:
 
 ```env
 ADMIN_SECURITY_ALERT_TO_ADDRESS=security-admin@example.com
@@ -450,11 +439,9 @@ ADMIN_SECURITY_ALERT_TO_ADDRESS=security-admin@example.com
 MAIL_TO_ADDRESS=admin1@example.com,admin2@example.com
 ```
 
-SMTP 설정을 바꾼 뒤에는 PHP 서버를 재시작해야 합니다.
-
 ---
 
-## 11. 문의 API 테스트
+## 12. 문의 API 테스트
 
 PHP 서버가 실행 중인 상태에서 PowerShell로 테스트합니다.
 
@@ -485,11 +472,10 @@ mailStatus: sent 또는 skipped
 notionStatus: skipped 또는 sent
 ```
 
-`MAIL_ENABLED=false`이면 `mailStatus`는 `skipped`가 정상입니다.
-
+`MAIL_ENABLED=false`이면 `mailStatus`는 `skipped`가 정상입니다.  
 `NOTION_ENABLED=false`이면 `notionStatus`는 `skipped`가 정상입니다.
 
-### 11-1. 문의 스팸 방지 테스트
+### 12-1. 문의 스팸 방지 테스트
 
 짧은 메시지 차단:
 
@@ -560,7 +546,7 @@ Remove-Item backend\storage\contact_submissions.json -Force
 
 ---
 
-## 12. 관리자 기능
+## 13. 관리자 기능
 
 관리자 화면:
 
@@ -592,15 +578,11 @@ http://localhost:5173/admin
 닫기 버튼 / 바깥 클릭 / ESC 닫기
 ```
 
-관리자 API는 로그인 세션이 없으면 접근이 제한됩니다.
-
 ---
 
-## 13. 관리자 로그인 잠금 / 해제 코드
+## 14. 관리자 로그인 잠금 / 해제 코드
 
 관리자 비밀번호를 여러 번 틀리면 로그인이 잠깁니다.
-
-관련 환경변수:
 
 ```env
 ADMIN_LOGIN_MAX_ATTEMPTS=5
@@ -619,7 +601,7 @@ ADMIN_SECURITY_ALERT_TO_ADDRESS=admin-security@example.com
 → 다시 관리자 비밀번호로 로그인
 ```
 
-테스트 중 잠금 상태를 초기화하려면 아래 파일을 삭제합니다.
+테스트 중 잠금 상태 초기화:
 
 ```powershell
 Remove-Item backend\storage\admin_login_attempts.json -Force
@@ -627,7 +609,7 @@ Remove-Item backend\storage\admin_login_attempts.json -Force
 
 ---
 
-## 14. Notion 문의 연동 준비
+## 15. Notion 문의 연동 준비
 
 현재 Notion API Token과 DB/Data Source ID가 없어도 문의 접수는 정상 작동합니다.
 
@@ -656,16 +638,14 @@ NOTION_CONTACTS_PARENT_TYPE=data_source_id
 NOTION_CONTACTS_PARENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-만약 Database ID만 전달받았다면 아래처럼 바꿉니다.
+Database ID만 전달받았다면 아래처럼 바꿉니다.
 
 ```env
 NOTION_CONTACTS_PARENT_TYPE=database_id
 NOTION_CONTACTS_PARENT_ID=받은_DATABASE_ID
 ```
 
-### 14-1. Notion 문의 DB 속성명
-
-현재 코드 기준 Notion 문의 DB는 아래 속성명을 사용하는 것을 권장합니다.
+### 15-1. Notion 문의 DB 속성명
 
 | 속성명 | 타입 |
 |---|---|
@@ -682,11 +662,9 @@ NOTION_CONTACTS_PARENT_ID=받은_DATABASE_ID
 
 ---
 
-## 15. YouTube 포트폴리오 연동 준비
+## 16. YouTube 포트폴리오 연동 준비
 
 현재는 YouTube 채널/재생목록을 받기 전에도 임시 포트폴리오가 표시됩니다.
-
-YouTube 연동용 환경변수:
 
 ```env
 YOUTUBE_ENABLED=false
@@ -721,7 +699,7 @@ http://localhost:8080/api/youtube/videos.php
 
 ---
 
-## 16. 3D Studio Showroom 영상 연결
+## 17. 3D Studio Showroom 영상 연결
 
 현재 3D 쇼룸은 영상 파일이 없어도 대체 화면이 표시됩니다.
 
@@ -748,7 +726,66 @@ showreel.mp4
 
 ---
 
-## 17. 자주 쓰는 실행 명령어
+## 18. SEO / OG 태그 상태
+
+현재 SEO 관련 기술 구조는 1차 세팅 상태입니다.
+
+### 18-1. SEO 기술 세팅
+
+아래 항목은 개발용 1차 기준으로 준비되어 있습니다.
+
+```txt
+frontend/index.html
+frontend/public/robots.txt
+frontend/public/sitemap.xml
+```
+
+적용 범위:
+
+```txt
+title
+description
+keywords
+canonical
+robots
+theme-color
+Open Graph 기본 메타
+Twitter Card 기본 메타
+JSON-LD 구조화 데이터
+robots.txt
+sitemap.xml
+```
+
+주의:
+
+```txt
+현재 SEO 문구는 개발용 MVP 기준입니다.
+최종 문구, 브랜드 카피, 노출 키워드는 대표님/디자인팀/관계자 검토 후 수정될 수 있습니다.
+```
+
+### 18-2. OG 이미지 상태
+
+OG 이미지는 링크 공유 시 카카오톡, 네이버, 디스코드, 페이스북 등에 표시되는 대표 이미지입니다.
+
+현재 코드는 아래 파일을 참조할 수 있도록 구조만 준비되어 있습니다.
+
+```txt
+frontend/public/og-image.jpg
+```
+
+다만 OG 이미지는 브랜드 표현 요소이므로 개발자가 임의로 확정하지 않습니다.
+
+```txt
+상태: 디자인팀 및 관계자 협의 대기
+작업 방식: 디자인 확정 후 frontend/public/og-image.jpg로 반영
+권장 규격: 1200 x 630px
+```
+
+현재 홈페이지 디자인과 문구 역시 개발용 MVP 기준이며, 추후 디자인팀 결정에 따라 전면 수정될 수 있습니다.
+
+---
+
+## 19. 자주 쓰는 실행 명령어
 
 ### 프론트 실행
 
@@ -786,7 +823,7 @@ npm install
 
 ---
 
-## 18. API 주소 / CORS 확인
+## 20. API 주소 / CORS 확인
 
 프론트에서 백엔드 API가 호출되지 않으면 아래 값을 먼저 확인합니다.
 
@@ -833,7 +870,7 @@ http://localhost:8080/api/youtube/videos.php
 
 ---
 
-## 19. Git 사용법
+## 21. Git 사용법
 
 ### 최신 코드 받기
 
@@ -869,7 +906,7 @@ git pull origin main
 
 ---
 
-## 20. GitHub에 올리면 안 되는 파일
+## 22. GitHub에 올리면 안 되는 파일
 
 아래 파일은 절대 GitHub에 올리지 않습니다.
 
@@ -896,7 +933,7 @@ git status --short
 
 ---
 
-## 21. 개발자 온보딩 요약
+## 23. 개발자 온보딩 요약
 
 새 개발자는 아래 순서대로 실행하면 됩니다.
 
@@ -926,7 +963,7 @@ DB는 MariaDB에서 `database/schema.sql`을 실행해야 합니다.
 
 ---
 
-## 22. 제안서 기준 현재 진행 상태
+## 24. 제안서 기준 현재 진행 상태
 
 제안서 전체 목표는 **포트폴리오 · 영상 의뢰 · 상담 · 결제 · 납품 원스톱 플랫폼**입니다.
 
@@ -946,9 +983,12 @@ Portfolio 썸네일 그리드 + 모달 구조
 PHP Contact Form + MariaDB 저장 + 이메일 발송
 관리자 로그인 / 문의 관리
 관리자 상세 모달
+관리자 목록 카드 간소화
 문의 스팸 방지 1차
 YouTube API 연동 틀
 Notion API 연동 틀
+SEO 기술 세팅 1차
+OG 메타 구조 준비
 GitHub 협업 구조
 ```
 
@@ -958,6 +998,7 @@ GitHub 협업 구조
 YouTube API Key / Playlist ID
 Notion Integration Token / Data Source ID 또는 Database ID
 쇼릴 영상 파일
+OG 이미지 디자인 확정본
 ```
 
 ### 미시작 또는 Phase 2 이후
@@ -971,13 +1012,14 @@ Naver / Google 소셜 로그인
 Google Drive API 연동
 포트폴리오 CMS
 YouTube Cron Job
-SEO / OG 태그
+SEO 문구 최종 확정
+OG 이미지 제작 및 frontend/public/og-image.jpg 반영
 Cloudways 배포
 ```
 
 ---
 
-## 23. 현재 개발 상태
+## 25. 현재 개발 상태
 
 ```txt
 완료:
@@ -990,20 +1032,24 @@ Cloudways 배포
 - 관리자 로그인
 - 관리자 문의 관리
 - 관리자 상세 모달
+- 관리자 목록 카드 간소화
 - 보관 / 복구
 - 관리자 보안 잠금 구조
 - YouTube 포트폴리오 연동 틀
 - Notion API 연동 틀
+- SEO 기술 세팅 1차
+- OG 메타 구조 준비
 - GitHub 공유 / README / 노트북 개발환경 세팅
 
 대기:
 - 실제 YouTube API Key / Playlist ID 연결
 - 실제 Notion Integration Token / DB ID 연결
 - 쇼릴 영상 파일 연결
+- OG 이미지 디자인팀 협의 및 파일 반영
+- SEO 문구 최종 확정
 - Google Drive API 연동
 - 포트폴리오 CMS
 - 결제 시스템
 - 마이페이지
-- SEO / OG 태그
 - 배포 환경 구성
 ```
