@@ -325,9 +325,9 @@ function AdminContacts() {
         currentContacts.map((contact) =>
           Number(contact.id) === Number(contactId)
             ? {
-                ...contact,
-                status,
-              }
+              ...contact,
+              status,
+            }
             : contact
         )
       );
@@ -779,19 +779,12 @@ function AdminContacts() {
                   )}
                 </div>
 
-                <div className="admin-contact-grid">
+                <div className="admin-contact-preview">
                   <div>
                     <span>제작 유형</span>
                     <strong>{contact.production_type || '-'}</strong>
                   </div>
-                  <div>
-                    <span>예산 범위</span>
-                    <strong>{contact.budget_range || '-'}</strong>
-                  </div>
-                  <div>
-                    <span>접수 경로</span>
-                    <strong>{contact.source || '-'}</strong>
-                  </div>
+
                   <div>
                     <span>{archiveMode ? '보관일' : '접수일'}</span>
                     <strong>
@@ -800,9 +793,13 @@ function AdminContacts() {
                   </div>
                 </div>
 
-                <div className="admin-message-box">
-                  <span>문의 내용</span>
+                <div className="admin-message-preview">
+                  <span>문의 미리보기</span>
                   <p>{contact.message}</p>
+                </div>
+                
+                <div className="admin-card-hint">
+                  클릭해서 상세 내용을 확인하세요.
                 </div>
               </article>
             ))}
