@@ -1,5 +1,5 @@
 import { apiUrl } from '../config/api.js';
-import { Archive, ArrowLeft, Inbox, Mail, Phone, RefreshCw, Search, Undo2, X } from 'lucide-react';
+import { Archive, ArrowLeft, Download, Inbox, Mail, Phone, RefreshCw, Search, Undo2, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const statusFilters = [
@@ -413,6 +413,64 @@ function AdminContacts() {
     setSearchTerm('');
   };
 
+  const downloadFilteredContactsCsv = () => {
+    if (filteredContacts.length === 0) {
+      alert('다운로드할 문의가 없습니다.');
+      return;
+    }
+
+    const headers = [
+      '접수번호',
+      '상태',
+      '이름/회사명',
+      '연락처',
+      '이메일',
+      '제작 유형',
+      '예산 범위',
+      '문의 내용',
+      '접수 경로',
+      '접수일',
+      '수정일',
+    ];
+
+    const rows = filteredContacts.map((contact) => [
+      contact.id,
+      renderStatusLabel(contact.status),
+      contact.name,
+      toExcelText(contact.phone),
+      toExcelText(contact.email || ''),
+      contact.production_type || '',
+      toExcelText(contact.budget_range || ''),
+      normalizeCsvText(contact.message || ''),
+      contact.source || '',
+      toExcelText(formatDateTime(contact.created_at)),
+      toExcelText(formatDateTime(contact.updated_at)),
+    ]);
+
+    const csvContent = [headers, ...rows]
+      .map((row) => row.map(escapeCsvField).join(','))
+      .join('\r\n');
+
+    const bom = '\uFEFF';
+    const blob = new Blob([bom + csvContent], {
+      type: 'text/csv;charset=utf-8;',
+    });
+
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const dateString = new Date().toISOString().slice(0, 10);
+    const modeName = archiveMode ? 'archived-contacts' : 'contacts';
+
+    link.href = url;
+    link.download = `bdproduction-${modeName}-${dateString}.csv`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    window.URL.revokeObjectURL(url);
+  };
+
   useEffect(() => {
     checkAdminAuth();
   }, [checkAdminAuth]);
@@ -569,6 +627,16 @@ function AdminContacts() {
             >
               <Archive size={17} />
               {archiveMode ? '기본 목록 보기' : '보관함 보기'}
+            </button>
+
+            <button
+              className="admin-refresh-button"
+              type="button"
+              onClick={downloadFilteredContactsCsv}
+              disabled={filteredContacts.length === 0}
+            >
+              <Download size={17} />
+              CSV 다운로드
             </button>
 
             <button className="admin-refresh-button" type="button" onClick={loadContacts}>
@@ -797,7 +865,7 @@ function AdminContacts() {
                   <span>문의 미리보기</span>
                   <p>{contact.message}</p>
                 </div>
-                
+
                 <div className="admin-card-hint">
                   클릭해서 상세 내용을 확인하세요.
                 </div>
@@ -972,6 +1040,55 @@ function formatDateTime(value) {
   }
 
   return String(value).replace('T', ' ').slice(0, 19);
+}
+
+function normalizeCsvText(value) {
+  if (value === null || value === undefined) {
+    return '';
+  }
+
+  return String(value)
+    .replace(/\r?\n|\r/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function toExcelText(value) {
+  const normalizedValue = normalizeCsvText(value);
+
+  if (normalizedValue === '') {
+    return '';
+  }
+
+  return `\t${normalizedValue}`;
+}
+
+function escapeCsvField(value) {
+  const normalizedValue = value === null || value === undefined
+    ? ''
+    : String(value);
+
+  const protectedValue = protectCsvFormula(normalizedValue);
+
+  if (/[",\n\r]/.test(protectedValue)) {
+    return `"${protectedValue.replace(/"/g, '""')}"`;
+  }
+
+  return protectedValue;
+}
+
+function protectCsvFormula(value) {
+  if (value === '') {
+    return '';
+  }
+
+  const trimmedValue = String(value).trimStart();
+
+  if (/^[=+\-@]/.test(trimmedValue)) {
+    return `'${value}`;
+  }
+
+  return value;
 }
 
 export default AdminContacts;
