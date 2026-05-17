@@ -10,6 +10,7 @@ const initialForm = {
   productionType: '광고 / CF',
   budget: '',
   message: '',
+  website: '',
 };
 
 function ContactForm() {
@@ -143,6 +144,17 @@ function ContactForm() {
               {errorMessage}
             </div>
           )}
+
+          <input
+            className="contact-hp-field"
+            type="text"
+            name="website"
+            value={form.website}
+            onChange={updateField}
+            tabIndex="-1"
+            autoComplete="off"
+            aria-hidden="true"
+          />
 
           <label>
             이름 / 회사명

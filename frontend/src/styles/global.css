@@ -744,7 +744,7 @@ a {
   letter-spacing: -0.065em;
 }
 
-.contact-copy > p:not(.eyebrow) {
+.contact-copy>p:not(.eyebrow) {
   color: var(--muted);
   line-height: 1.8;
 }
@@ -971,6 +971,7 @@ a {
 /* Responsive */
 
 @media (max-width: 980px) {
+
   .desktop-nav,
   .header-cta {
     display: none;
@@ -1690,7 +1691,7 @@ a {
   letter-spacing: -0.06em;
 }
 
-.studio-showroom-heading > p {
+.studio-showroom-heading>p {
   margin: 0;
   color: var(--muted-strong);
   font-size: 1rem;
@@ -1792,6 +1793,7 @@ a {
     font-size: 0.64rem;
   }
 }
+
 /* YouTube Portfolio */
 
 .portfolio-notice,
@@ -1932,6 +1934,7 @@ a {
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.6;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
@@ -2052,4 +2055,13 @@ a {
   .youtube-modal {
     border-radius: 22px;
   }
+}
+
+.contact-hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
