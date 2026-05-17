@@ -2,9 +2,9 @@
 
 BDPRODUCTION 공식 웹사이트 + 프로덕션 플랫폼 MVP입니다.
 
-현재 구현 범위는 **브랜드 홈페이지 / 문의 접수 / MariaDB 저장 / SMTP 이메일 알림 / 관리자 문의 관리 / 문의 스팸 방지 / 관리자 상세 모달 / YouTube 포트폴리오 연동 틀 / Notion API 연동 틀 / SEO 기술 세팅 1차 / OG 메타 구조 준비**까지입니다.
+현재 구현 범위는 **브랜드 홈페이지 / 문의 접수 / MariaDB 저장 / SMTP 이메일 알림 / 관리자 문의 관리 / 문의 스팸 방지 / 관리자 상세 모달 / 관리자 활동 로그 / CSV 다운로드 / YouTube 포트폴리오 연동 틀 / Notion API 연동 틀 / SEO 기술 세팅 1차 / OG 메타 구조 준비 / 모바일 반응형 QA 1차**까지입니다.
 
-제안서 기준으로는 현재 **Phase 1 브랜드 홈페이지 구간의 중후반**입니다. 실제 YouTube API, Notion API 정보가 들어오면 Phase 1 자동화 기능을 바로 실연동할 수 있도록 구조를 먼저 만들어둔 상태입니다.
+제안서 기준으로는 현재 **Phase 1 브랜드 홈페이지 개발용 MVP 마무리 단계**입니다. 실제 YouTube API, Notion API, 쇼릴 영상, 디자인팀/대표님 피드백이 들어오면 Phase 1 자동화·브랜드 표현 요소를 최종 반영할 수 있도록 구조를 먼저 만들어둔 상태입니다.
 
 > 현재 홈페이지 디자인, 문구, 브랜드 카피, OG 이미지 등 브랜드 표현 요소는 개발용 MVP 기준입니다.  
 > 최종 디자인과 문구는 BDPRODUCTION 디자인팀 및 관계자 협의 후 변경될 수 있습니다.
@@ -53,15 +53,18 @@ SMTP 이메일 알림
 이메일 잠금 해제 코드 구조
 관리자 문의 목록
 관리자 문의 상세 모달
+관리자 처리 이력 표시
 검색 / 필터
 상태 변경: 신규 / 확인 완료 / 처리 완료
 보관 / 보관함 / 복구
+CSV 다운로드
 YouTube 포트폴리오 API 연동 틀
 YouTube 캐시 테이블 구조
 YouTube 동기화 API 틀
 Notion 문의 저장 연동 틀
 SEO 기술 세팅 1차
 OG / Twitter Card 메타 구조 준비
+모바일 반응형 QA 1차 완료
 ```
 
 ---
@@ -78,6 +81,7 @@ bdproduction-site/
 │  │  ├─ admin.php
 │  │  ├─ admin_guard.php
 │  │  ├─ admin_rate_limit.php
+│  │  ├─ admin_activity_log.php
 │  │  ├─ contact_rate_limit.php
 │  │  ├─ cors.php
 │  │  ├─ db.php
@@ -91,6 +95,7 @@ bdproduction-site/
 │        ├─ contact.php
 │        ├─ admin/
 │        │  ├─ archived-contacts.php
+│        │  ├─ contact-activity-logs.php
 │        │  ├─ contacts.php
 │        │  ├─ login.php
 │        │  ├─ logout.php
@@ -308,6 +313,7 @@ DESCRIBE youtube_videos;
 ```txt
 contacts
 youtube_videos
+contact_activity_logs
 ```
 
 ---
@@ -559,12 +565,14 @@ http://localhost:5173/admin
 ```txt
 문의 목록 조회
 문의 상세 모달
+처리 이력 확인
 검색
 상태별 필터
 신규 / 확인 / 완료 상태 변경
 보관
 보관함 보기
 복구
+CSV 다운로드
 로그아웃
 ```
 
@@ -575,7 +583,47 @@ http://localhost:5173/admin
 접수번호 / 이름 / 연락처 / 이메일 / 제작 유형 / 예산 / 문의 내용 확인
 모달 안에서 상태 변경
 모달 안에서 보관 / 복구
+처리 이력 표시
+기술 정보는 필요 시 펼쳐보기
 닫기 버튼 / 바깥 클릭 / ESC 닫기
+```
+
+### 13-1. 관리자 활동 로그 / CSV 다운로드
+
+관리자가 문의 상태를 변경하거나 보관/복구할 때 `contact_activity_logs` 테이블에 처리 이력이 기록됩니다.
+
+기록 항목:
+
+```txt
+문의 ID
+액션: status_change / archive / restore
+이전 상태
+변경 상태
+메모
+IP
+User-Agent
+기록 시간
+```
+
+상세 모달 하단에서 처리 이력을 확인할 수 있습니다. IP/User-Agent 같은 기술 정보는 기본적으로 숨기고, 필요할 때만 펼쳐볼 수 있습니다.
+
+관리자 목록에서는 현재 표시 중인 문의 목록을 CSV로 다운로드할 수 있습니다. CSV는 엑셀에서 한글과 연락처/예산/날짜가 최대한 안정적으로 보이도록 텍스트 보존 처리를 포함합니다.
+
+활동 로그 확인 SQL:
+
+```sql
+USE bdproduction;
+
+SELECT
+  id,
+  contact_id,
+  action,
+  previous_status,
+  next_status,
+  note,
+  created_at
+FROM contact_activity_logs
+ORDER BY id DESC;
 ```
 
 ---
@@ -963,15 +1011,45 @@ DB는 MariaDB에서 `database/schema.sql`을 실행해야 합니다.
 
 ---
 
-## 24. 제안서 기준 현재 진행 상태
+
+## 24. 모바일 반응형 QA 1차
+
+모바일 반응형 QA 1차를 완료했습니다.
+
+확인 범위:
+
+```txt
+홈페이지 주요 섹션
+Header / Navigation
+Hero
+3D Studio Showroom
+Portfolio
+Contact Form
+Footer
+관리자 로그인 화면
+관리자 문의 목록
+관리자 상세 모달
+처리 이력 영역
+CSV 버튼 포함 상단 버튼 영역
+보관함 화면
+```
+
+현재 기준으로 치명적인 깨짐, 가로 스크롤, 버튼 겹침, 모달 표시 문제는 발견되지 않았습니다.
+
+단, 현재 디자인은 개발용 MVP 기준입니다. 최종 디자인이 디자인팀/대표님 피드백에 따라 바뀌면 모바일 QA는 다시 진행해야 합니다.
+
+---
+
+## 25. 제안서 기준 현재 진행 상태
 
 제안서 전체 목표는 **포트폴리오 · 영상 의뢰 · 상담 · 결제 · 납품 원스톱 플랫폼**입니다.
 
 현재 구현은 Phase 1 브랜드 홈페이지와 문의 자동화 기반 작업에 집중되어 있습니다.
 
 ```txt
-Phase 1 브랜드 홈페이지: 약 70~80% 완료
-제안서 전체 기준: 약 30~40% 완료
+Phase 1 개발용 MVP: 완료급
+Phase 1 최종 완료: 실제 정보/디자인 피드백/대표님 컨펌 대기
+제안서 전체 기준: 약 35~40% 완료
 ```
 
 ### 완료 또는 거의 완료
@@ -984,11 +1062,14 @@ PHP Contact Form + MariaDB 저장 + 이메일 발송
 관리자 로그인 / 문의 관리
 관리자 상세 모달
 관리자 목록 카드 간소화
+관리자 활동 로그 / 처리 이력 표시
+CSV 다운로드
 문의 스팸 방지 1차
 YouTube API 연동 틀
 Notion API 연동 틀
 SEO 기술 세팅 1차
 OG 메타 구조 준비
+모바일 반응형 QA 1차
 GitHub 협업 구조
 ```
 
@@ -998,6 +1079,7 @@ GitHub 협업 구조
 YouTube API Key / Playlist ID
 Notion Integration Token / Data Source ID 또는 Database ID
 쇼릴 영상 파일
+디자인팀/대표님 피드백
 OG 이미지 디자인 확정본
 ```
 
@@ -1019,7 +1101,7 @@ Cloudways 배포
 
 ---
 
-## 25. 현재 개발 상태
+## 26. 현재 개발 상태
 
 ```txt
 완료:
@@ -1033,18 +1115,22 @@ Cloudways 배포
 - 관리자 문의 관리
 - 관리자 상세 모달
 - 관리자 목록 카드 간소화
+- 관리자 활동 로그 / 처리 이력 표시
+- CSV 다운로드
 - 보관 / 복구
 - 관리자 보안 잠금 구조
 - YouTube 포트폴리오 연동 틀
 - Notion API 연동 틀
 - SEO 기술 세팅 1차
 - OG 메타 구조 준비
+- 모바일 반응형 QA 1차 완료
 - GitHub 공유 / README / 노트북 개발환경 세팅
 
 대기:
 - 실제 YouTube API Key / Playlist ID 연결
 - 실제 Notion Integration Token / DB ID 연결
 - 쇼릴 영상 파일 연결
+- 디자인팀/대표님 피드백 반영
 - OG 이미지 디자인팀 협의 및 파일 반영
 - SEO 문구 최종 확정
 - Google Drive API 연동
