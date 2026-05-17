@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../../config/cors.php';
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../config/mailer.php';
+require_once __DIR__ . '/../../config/notion.php';
 
 applyCorsHeaders(['POST', 'OPTIONS'], false);
 
@@ -133,25 +134,29 @@ try {
         'created_at' => date('Y-m-d H:i:s'),
     ];
 
-    $mailResult = sendContactNotificationEmail([
-        'id' => $contactId,
-        'name' => $name,
-        'phone' => $phone,
-        'email' => $email !== '' ? $email : null,
-        'production_type' => $productionType !== '' ? $productionType : null,
-        'budget_range' => $budgetRange !== '' ? $budgetRange : null,
-        'message' => $message,
-        'status' => 'new',
-        'source' => 'website',
-        'created_at' => date('Y-m-d H:i:s'),
-    ]);
+    $contactPayload = [
+    'id' => $contactId,
+    'name' => $name,
+    'phone' => $phone,
+    'email' => $email !== '' ? $email : null,
+    'production_type' => $productionType !== '' ? $productionType : null,
+    'budget_range' => $budgetRange !== '' ? $budgetRange : null,
+    'message' => $message,
+    'status' => 'new',
+    'source' => 'website',
+    'created_at' => date('Y-m-d H:i:s'),
+];
 
-    sendJsonResponse(201, [
-        'success' => true,
-        'message' => '문의가 정상적으로 접수되었습니다.',
-        'contactId' => $contactId,
-        'mailStatus' => $mailResult['status'] ?? 'unknown',
-    ]);
+$mailResult = sendContactNotificationEmail($contactPayload);
+$notionResult = sendContactToNotion($contactPayload);
+
+sendJsonResponse(201, [
+    'success' => true,
+    'message' => '문의가 정상적으로 접수되었습니다.',
+    'contactId' => $contactId,
+    'mailStatus' => $mailResult['status'] ?? 'unknown',
+    'notionStatus' => $notionResult['status'] ?? 'unknown',
+]);
 
 } catch (PDOException $error) {
     error_log('[BDPRODUCTION Contact API DB Error] ' . $error->getMessage());
