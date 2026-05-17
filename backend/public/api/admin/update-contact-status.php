@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../../config/db.php';
 require_once __DIR__ . '/../../../config/admin_guard.php';
+require_once __DIR__ . '/../../../config/admin_activity_log.php';
 
 applyAdminCorsHeaders();
 header('Access-Control-Allow-Methods: POST, OPTIONS');
@@ -14,26 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 requireAdminLogin();
-
-$allowedOrigins = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-];
-
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-
-if (in_array($origin, $allowedOrigins, true)) {
-    header("Access-Control-Allow-Origin: {$origin}");
-}
-
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Accept');
-header('Content-Type: application/json; charset=utf-8');
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
-    exit;
-}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendJsonResponse(405, [
@@ -74,31 +55,84 @@ if (!in_array($status, $allowedStatuses, true)) {
 try {
     $pdo = getDatabaseConnection();
 
-    $statement = $pdo->prepare(
+    $selectStatement = $pdo->prepare(
+        'SELECT id, status
+         FROM contacts
+         WHERE id = :id
+         LIMIT 1'
+    );
+
+    $selectStatement->execute([
+        ':id' => $contactId,
+    ]);
+
+    $contact = $selectStatement->fetch(PDO::FETCH_ASSOC);
+
+    if (!$contact) {
+        sendJsonResponse(404, [
+            'success' => false,
+            'message' => '해당 문의를 찾을 수 없습니다.',
+        ]);
+    }
+
+    $previousStatus = (string)($contact['status'] ?? '');
+
+    if ($previousStatus === $status) {
+        sendJsonResponse(200, [
+            'success' => true,
+            'message' => '이미 같은 상태입니다.',
+            'contactId' => $contactId,
+            'status' => $status,
+            'previousStatus' => $previousStatus,
+            'activityLogged' => false,
+        ]);
+    }
+
+    $pdo->beginTransaction();
+
+    $updateStatement = $pdo->prepare(
         'UPDATE contacts
          SET status = :status
          WHERE id = :id'
     );
 
-    $statement->execute([
+    $updateStatement->execute([
         ':status' => $status,
         ':id' => $contactId,
     ]);
 
-    if ($statement->rowCount() === 0) {
-        sendJsonResponse(404, [
-            'success' => false,
-            'message' => '해당 문의를 찾을 수 없거나 이미 같은 상태입니다.',
-        ]);
+    if ($updateStatement->rowCount() === 0) {
+        throw new RuntimeException('문의 상태가 변경되지 않았습니다.');
     }
+
+    $action = resolveContactActivityAction($previousStatus, $status);
+    $note = resolveContactActivityNote($previousStatus, $status);
+
+    createAdminContactActivityLog(
+        $pdo,
+        $contactId,
+        $action,
+        $previousStatus,
+        $status,
+        $note
+    );
+
+    $pdo->commit();
 
     sendJsonResponse(200, [
         'success' => true,
         'message' => '문의 상태가 변경되었습니다.',
         'contactId' => $contactId,
+        'previousStatus' => $previousStatus,
         'status' => $status,
+        'activityAction' => $action,
+        'activityLogged' => true,
     ]);
 } catch (PDOException $error) {
+    if (isset($pdo) && $pdo instanceof PDO && $pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+
     error_log('[BDPRODUCTION Update Contact Status DB Error] ' . $error->getMessage());
 
     sendJsonResponse(500, [
@@ -106,6 +140,10 @@ try {
         'message' => '문의 상태를 변경하지 못했습니다.',
     ]);
 } catch (Throwable $error) {
+    if (isset($pdo) && $pdo instanceof PDO && $pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+
     error_log('[BDPRODUCTION Update Contact Status Error] ' . $error->getMessage());
 
     sendJsonResponse(500, [
