@@ -2445,3 +2445,82 @@ a {
     flex-direction: column;
   }
 }
+
+/* Admin activity log UX */
+
+.admin-detail-history-main {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.admin-detail-history-main > div {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-detail-history-main time {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.admin-detail-history-toggle {
+  justify-self: flex-start;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.admin-detail-history-toggle:hover {
+  border-color: rgba(216, 183, 106, 0.45);
+  color: var(--gold);
+}
+
+.admin-detail-history-technical {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.admin-detail-history-technical div {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-detail-history-technical dt {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.admin-detail-history-technical dd {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+@media (max-width: 720px) {
+  .admin-detail-history-main {
+    flex-direction: column;
+  }
+
+  .admin-detail-history-main time {
+    text-align: left;
+  }
+}
