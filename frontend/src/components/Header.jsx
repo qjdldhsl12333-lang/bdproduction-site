@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
-  { label: 'BD기획', href: '#hero' },
-  { label: 'BDPRODUCTION', href: '#insight' },
-  { label: 'PORTFOLIO', href: '#portfolio' },
-  { label: 'CONTACT', href: '#contact' },
+  { label: 'BD기획', href: '/#hero' },
+  { label: 'BDPRODUCTION', href: '/#insight' },
+  { label: '대표작', href: '/#portfolio' },
+  { label: '전체 포트폴리오', href: '/portfolio' },
+  { label: '마이페이지', href: '/mypage' },
+  { label: 'CONTACT', href: '/#contact' },
 ];
 
 function Header() {
@@ -31,7 +33,7 @@ function Header() {
 
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
-      <a className="brand" href="#hero" onClick={closeMenu}>
+      <a className="brand" href="/#hero" onClick={closeMenu}>
         <span className="brand-mark">BD</span>
         <span className="brand-text">BDPRODUCTION</span>
       </a>
@@ -44,7 +46,7 @@ function Header() {
         ))}
       </nav>
 
-      <a className="header-cta" href="#contact">
+      <a className="header-cta" href="/#contact">
         제작 문의
       </a>
 
@@ -64,7 +66,7 @@ function Header() {
               {item.label}
             </a>
           ))}
-          <a className="mobile-nav-cta" href="#contact" onClick={closeMenu}>
+          <a className="mobile-nav-cta" href="/#contact" onClick={closeMenu}>
             제작 문의하기
           </a>
         </nav>

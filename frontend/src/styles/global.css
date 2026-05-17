@@ -2524,3 +2524,318 @@ a {
     text-align: left;
   }
 }
+
+/* Portfolio page / customer mypage scaffold */
+
+.portfolio-section-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.portfolio-section-actions {
+  display: grid;
+  gap: 12px;
+  justify-items: end;
+}
+
+.portfolio-section-actions span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  text-align: right;
+}
+
+.portfolio-page-section,
+.mypage-placeholder-section {
+  width: min(100% - 40px, var(--max-width));
+  margin: 0 auto;
+  padding: 140px 0 96px;
+}
+
+.portfolio-page-hero,
+.mypage-placeholder-hero {
+  display: grid;
+  gap: 18px;
+  max-width: 860px;
+  margin-bottom: 34px;
+}
+
+.portfolio-page-hero h1,
+.mypage-placeholder-hero h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 8vw, 6.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.075em;
+}
+
+.portfolio-page-hero p:not(.eyebrow),
+.mypage-placeholder-hero p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
+.portfolio-page-actions,
+.mypage-placeholder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.portfolio-page-toolbar {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin: 0 0 24px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.portfolio-page-toolbar > div:first-child {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid rgba(216, 183, 106, 0.22);
+  border-radius: 18px;
+  background: rgba(216, 183, 106, 0.08);
+}
+
+.portfolio-page-toolbar span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+}
+
+.portfolio-page-toolbar strong {
+  color: var(--gold);
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.portfolio-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.portfolio-filter-tabs button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--muted-strong);
+  font-size: 0.84rem;
+  font-weight: 850;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.portfolio-filter-tabs button:hover,
+.portfolio-filter-tabs button.is-active {
+  border-color: var(--line-strong);
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+
+/* My page scaffold */
+
+.mypage-status-card {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 22px;
+  border: 1px solid rgba(216, 183, 106, 0.28);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(216, 183, 106, 0.16), transparent 38%),
+    rgba(255, 255, 255, 0.045);
+}
+
+.mypage-status-card span {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.mypage-status-card strong {
+  color: var(--text);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.2;
+}
+
+.mypage-status-card p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.project-progress-preview {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+.project-progress-preview div {
+  display: grid;
+  gap: 8px;
+  min-height: 94px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.project-progress-preview div.is-current {
+  border-color: var(--line-strong);
+  background: var(--gold-soft);
+}
+
+.project-progress-preview span {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.project-progress-preview strong {
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.mypage-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mypage-feature-card {
+  display: grid;
+  gap: 12px;
+  min-height: 210px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mypage-feature-card > div {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+
+.mypage-feature-card h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.18rem;
+  line-height: 1.35;
+}
+
+.mypage-feature-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.mypage-requirements-note {
+  margin-top: 28px;
+  padding: 26px;
+  border: 1px solid rgba(255, 190, 90, 0.3);
+  border-radius: 26px;
+  background: rgba(255, 190, 90, 0.09);
+}
+
+.mypage-requirements-note h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  line-height: 1.25;
+}
+
+.mypage-requirements-note ul {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 20px;
+  color: var(--muted-strong);
+  line-height: 1.7;
+}
+
+@media (max-width: 980px) {
+  .portfolio-section-header,
+  .portfolio-page-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-section-actions {
+    justify-items: start;
+  }
+
+  .portfolio-section-actions span {
+    text-align: left;
+  }
+
+  .portfolio-filter-tabs {
+    justify-content: flex-start;
+  }
+
+  .project-progress-preview {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mypage-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .portfolio-page-section,
+  .mypage-placeholder-section {
+    width: min(100% - 28px, var(--max-width));
+    padding: 112px 0 76px;
+  }
+
+  .portfolio-page-actions,
+  .mypage-placeholder-actions {
+    flex-direction: column;
+  }
+
+  .portfolio-filter-tabs button {
+    flex: 1 1 auto;
+  }
+
+  .project-progress-preview,
+  .mypage-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-progress-preview div,
+  .mypage-feature-card,
+  .mypage-status-card,
+  .mypage-requirements-note {
+    border-radius: 20px;
+  }
+}
