@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ExternalLink, Loader2, Play, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { apiUrl } from '../config/api.js';
+import { portfolioItems } from '../data/portfolio.js';
 
 function normalizeBoolean(value, fallback = false) {
   if (value === true || value === 1 || value === '1' || value === 'true') {
@@ -15,65 +16,98 @@ function normalizeBoolean(value, fallback = false) {
   return fallback;
 }
 
-function normalizeVideo(video) {
+function normalizeFallbackItem(item) {
+  const youtubeVideoId = item.youtubeVideoId || item.youtube_video_id || item.video_id || '';
+  const thumbnailUrl = item.thumbnailUrl || item.thumbnail_url || '';
+
   return {
-    ...video,
-    id: video.id ?? video.video_id,
-    video_id: video.video_id ?? video.youtubeVideoId ?? video.youtube_id ?? video.id,
-    title: video.title || 'BDPRODUCTION Portfolio',
-    description: video.description || 'BDPRODUCTION 포트폴리오 영상입니다.',
-    thumbnail_url: video.thumbnail_url || video.thumbnailUrl || '',
-    embed_url: video.embed_url || video.embedUrl || '',
-    watch_url: video.watch_url || video.watchUrl || '',
-    channel_title: video.channel_title || video.channelTitle || 'BDPRODUCTION',
-    category: video.category || video.channel_title || video.channelTitle || 'BDPRODUCTION',
-    is_new: normalizeBoolean(video.is_new, false),
-    is_featured: normalizeBoolean(video.is_featured ?? video.isFeatured, false),
-    is_active: normalizeBoolean(video.is_active ?? video.isActive, true),
-    featured_order: Number(video.featured_order ?? video.featuredOrder ?? 9999),
-    display_order: Number(video.display_order ?? video.displayOrder ?? 9999),
+    id: item.id,
+    title: item.title || 'BDPRODUCTION Portfolio',
+    client: item.client || 'BDPRODUCTION',
+    category: item.category || 'BDPRODUCTION',
+    description: item.description || 'BDPRODUCTION 포트폴리오 영상입니다.',
+    thumbnail_url: thumbnailUrl,
+    thumbnailUrl,
+    youtube_video_id: youtubeVideoId,
+    youtubeVideoId,
+    video_id: youtubeVideoId || `fallback-${item.id}`,
+    badge: item.badge || '',
+    is_featured: normalizeBoolean(item.isFeatured ?? item.is_featured, true),
+    isFeatured: normalizeBoolean(item.isFeatured ?? item.is_featured, true),
+    featured_order: Number(item.featuredOrder ?? item.featured_order ?? 0),
+    featuredOrder: Number(item.featuredOrder ?? item.featured_order ?? 0),
+    is_active: normalizeBoolean(item.isActive ?? item.is_active, true),
+    isActive: normalizeBoolean(item.isActive ?? item.is_active, true),
+    display_order: Number(item.displayOrder ?? item.display_order ?? 0),
+    displayOrder: Number(item.displayOrder ?? item.display_order ?? 0),
+    embed_url: youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : '',
+    embedUrl: youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : '',
+    watch_url: youtubeVideoId ? `https://www.youtube.com/watch?v=${youtubeVideoId}` : '',
+    watchUrl: youtubeVideoId ? `https://www.youtube.com/watch?v=${youtubeVideoId}` : '',
+    channel_title: item.client || 'BDPRODUCTION',
+    is_new: false,
   };
 }
 
-function sortPortfolioVideos(videos) {
-  return [...videos].sort((first, second) => {
-    const firstOrder = Number.isFinite(first.display_order) ? first.display_order : 9999;
-    const secondOrder = Number.isFinite(second.display_order) ? second.display_order : 9999;
+export function normalizePortfolioVideo(video) {
+  const youtubeVideoId = video.youtube_video_id || video.youtubeVideoId || video.video_id || '';
+  const thumbnailUrl = video.thumbnail_url || video.thumbnailUrl || '';
 
-    if (firstOrder !== secondOrder) {
-      return firstOrder - secondOrder;
-    }
-
-    return String(first.title).localeCompare(String(second.title), 'ko');
-  });
+  return {
+    ...video,
+    id: video.id ?? video.video_id,
+    title: video.title || 'BDPRODUCTION Portfolio',
+    client: video.client || video.channel_title || 'BDPRODUCTION',
+    category: video.category || video.channel_title || 'BDPRODUCTION',
+    description: video.description || 'BDPRODUCTION 포트폴리오 영상입니다.',
+    thumbnail_url: thumbnailUrl,
+    thumbnailUrl,
+    youtube_video_id: youtubeVideoId,
+    youtubeVideoId,
+    video_id: youtubeVideoId || video.video_id || `portfolio-${video.id ?? video.title}`,
+    badge: video.badge || '',
+    is_featured: normalizeBoolean(video.is_featured ?? video.isFeatured, false),
+    isFeatured: normalizeBoolean(video.is_featured ?? video.isFeatured, false),
+    featured_order: Number(video.featured_order ?? video.featuredOrder ?? 0),
+    featuredOrder: Number(video.featured_order ?? video.featuredOrder ?? 0),
+    is_active: normalizeBoolean(video.is_active ?? video.isActive, true),
+    isActive: normalizeBoolean(video.is_active ?? video.isActive, true),
+    display_order: Number(video.display_order ?? video.displayOrder ?? 0),
+    displayOrder: Number(video.display_order ?? video.displayOrder ?? 0),
+    embed_url: video.embed_url || video.embedUrl || (youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : ''),
+    embedUrl: video.embed_url || video.embedUrl || (youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : ''),
+    watch_url: video.watch_url || video.watchUrl || (youtubeVideoId ? `https://www.youtube.com/watch?v=${youtubeVideoId}` : ''),
+    watchUrl: video.watch_url || video.watchUrl || (youtubeVideoId ? `https://www.youtube.com/watch?v=${youtubeVideoId}` : ''),
+    channel_title: video.channel_title || video.client || 'BDPRODUCTION',
+    is_new: Boolean(video.is_new),
+  };
 }
 
-function selectFeaturedVideos(videos) {
-  const activeVideos = videos.filter((video) => video.is_active !== false);
-  const featuredVideos = activeVideos
-    .filter((video) => video.is_featured)
-    .sort((first, second) => first.featured_order - second.featured_order);
+const fallbackVideos = portfolioItems
+  .map(normalizeFallbackItem)
+  .filter((item) => item.is_active)
+  .sort((a, b) => a.display_order - b.display_order);
 
-  if (featuredVideos.length > 0) {
-    return featuredVideos.slice(0, 6);
-  }
-
-  return sortPortfolioVideos(activeVideos).slice(0, 6);
-}
-
-export function usePortfolioVideos() {
-  const [videos, setVideos] = useState([]);
+export function usePortfolioVideos(options = {}) {
+  const { featuredOnly = false } = options;
+  const [videos, setVideos] = useState(featuredOnly ? fallbackVideos.filter((video) => video.is_featured) : fallbackVideos);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
-  const [source, setSource] = useState('');
+  const [source, setSource] = useState('fallback');
 
   useEffect(() => {
+    let ignore = false;
+
     const loadVideos = async () => {
       setLoading(true);
       setErrorMessage('');
 
       try {
-        const response = await fetch(apiUrl('/api/youtube/videos.php'), {
+        const endpoint = featuredOnly
+          ? apiUrl('/api/portfolio-items.php?featured=1')
+          : apiUrl('/api/portfolio-items.php');
+
+        const response = await fetch(endpoint, {
           method: 'GET',
           headers: {
             Accept: 'application/json',
@@ -83,26 +117,49 @@ export function usePortfolioVideos() {
         const result = await response.json();
 
         if (!response.ok || !result.success) {
-          setErrorMessage(result.message || '포트폴리오 영상을 불러오지 못했습니다.');
-          return;
+          throw new Error(result.message || '포트폴리오를 불러오지 못했습니다.');
         }
 
-        const normalizedVideos = (result.videos || [])
-          .map(normalizeVideo)
-          .filter((video) => video.is_active !== false);
+        const normalizedVideos = (result.videos || result.items || [])
+          .map(normalizePortfolioVideo)
+          .filter((video) => video.is_active !== false)
+          .sort((a, b) => {
+            if (featuredOnly) {
+              return a.featured_order - b.featured_order;
+            }
 
-        setVideos(sortPortfolioVideos(normalizedVideos));
-        setSource(result.source || '');
+            return a.display_order - b.display_order;
+          });
+
+        if (!ignore) {
+          setVideos(normalizedVideos);
+          setSource(result.source || 'database');
+        }
       } catch (error) {
-        console.error('Portfolio videos API error:', error);
-        setErrorMessage('포트폴리오 API와 연결할 수 없습니다.');
+        console.error('Portfolio API error:', error);
+
+        if (!ignore) {
+          const nextFallbackVideos = featuredOnly
+            ? fallbackVideos.filter((video) => video.is_featured).sort((a, b) => a.featured_order - b.featured_order)
+            : fallbackVideos;
+
+          setVideos(nextFallbackVideos);
+          setSource('fallback');
+          setErrorMessage('');
+        }
       } finally {
-        setLoading(false);
+        if (!ignore) {
+          setLoading(false);
+        }
       }
     };
 
     loadVideos();
-  }, []);
+
+    return () => {
+      ignore = true;
+    };
+  }, [featuredOnly]);
 
   return {
     videos,
@@ -113,16 +170,12 @@ export function usePortfolioVideos() {
 }
 
 export function PortfolioVideoGrid({ videos, onSelectVideo }) {
-  if (!videos || videos.length === 0) {
-    return null;
-  }
-
   return (
     <div className="portfolio-youtube-grid">
       {videos.map((video, index) => (
         <motion.article
           className="portfolio-youtube-card"
-          key={video.video_id || video.id}
+          key={video.id || video.video_id || video.title}
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
@@ -182,7 +235,7 @@ export function PortfolioVideoModal({ selectedVideo, onClose }) {
                 <h3>{selectedVideo.title}</h3>
               </div>
 
-              <button type="button" onClick={onClose} aria-label="영상 모달 닫기">
+              <button type="button" onClick={onClose}>
                 <X size={20} />
               </button>
             </div>
@@ -198,7 +251,7 @@ export function PortfolioVideoModal({ selectedVideo, onClose }) {
               ) : (
                 <div className="youtube-modal-placeholder">
                   <p>아직 실제 YouTube 영상이 연결되지 않았습니다.</p>
-                  <span>API Key와 Playlist ID를 등록하면 이 영역에서 영상이 재생됩니다.</span>
+                  <span>관리자 포트폴리오 CMS에서 YouTube ID를 입력하면 이 영역에서 재생됩니다.</span>
                 </div>
               )}
             </div>
@@ -223,9 +276,9 @@ export function PortfolioVideoModal({ selectedVideo, onClose }) {
 
 function Portfolio() {
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const { videos, loading, errorMessage, source } = usePortfolioVideos();
+  const { videos, loading, errorMessage, source } = usePortfolioVideos({ featuredOnly: true });
 
-  const featuredVideos = useMemo(() => selectFeaturedVideos(videos), [videos]);
+  const featuredVideos = useMemo(() => videos.slice(0, 6), [videos]);
 
   return (
     <section id="portfolio" className="section portfolio-section">
@@ -234,8 +287,8 @@ function Portfolio() {
           <p className="eyebrow">PORTFOLIO</p>
           <h2>FEATURED PROJECT</h2>
           <p>
-            메인 페이지에는 대표 포트폴리오만 가볍게 노출합니다.
-            전체 포트폴리오는 별도 페이지에서 확인할 수 있도록 확장 구조를 준비했습니다.
+            메인에는 대표 포트폴리오만 가볍게 노출하고,
+            전체 작품은 별도 페이지에서 폴더형으로 탐색할 수 있도록 분리했습니다.
           </p>
         </div>
 
@@ -243,22 +296,20 @@ function Portfolio() {
           <a className="secondary-button" href="/portfolio">
             전체 포트폴리오 보기
           </a>
-          <span>
-            목록에서는 썸네일만 표시하고, 영상은 클릭 시 모달에서만 불러옵니다.
-          </span>
+          <span>관리자 CMS에서 대표작 여부와 노출 순서를 조정할 수 있는 구조입니다.</span>
         </div>
       </div>
 
-      {source === 'mock' && (
+      {source === 'fallback' && (
         <div className="portfolio-notice">
-          현재는 YouTube 연결 전 임시 포트폴리오입니다. API Key와 Playlist ID를 등록하면 실제 영상으로 자동 전환됩니다.
+          현재는 기본 포트폴리오 데이터 또는 관리자 CMS 초기 데이터 기준입니다.
         </div>
       )}
 
       {loading && (
         <div className="portfolio-state">
           <Loader2 size={22} />
-          포트폴리오 영상을 불러오는 중입니다.
+          포트폴리오를 불러오는 중입니다.
         </div>
       )}
 
@@ -274,7 +325,7 @@ function Portfolio() {
 
       {!loading && !errorMessage && featuredVideos.length === 0 && (
         <div className="portfolio-state">
-          현재 표시할 대표 포트폴리오가 없습니다.
+          대표 포트폴리오가 아직 설정되지 않았습니다.
         </div>
       )}
 

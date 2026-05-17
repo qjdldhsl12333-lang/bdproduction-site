@@ -7,6 +7,7 @@ import MyPagePlaceholder from './components/MyPagePlaceholder.jsx';
 import ContactForm from './components/ContactForm.jsx';
 import Footer from './components/Footer.jsx';
 import AdminContacts from './components/AdminContacts.jsx';
+import AdminPortfolioManager from './components/AdminPortfolioManager.jsx';
 
 function HomePage() {
   return (
@@ -34,10 +35,14 @@ function resolvePage(pathname) {
 }
 
 function App() {
-  const pathname = window.location.pathname;
+  const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
 
   if (pathname === '/admin') {
     return <AdminContacts />;
+  }
+
+  if (pathname === '/admin/portfolio') {
+    return <AdminPortfolioManager />;
   }
 
   return (
