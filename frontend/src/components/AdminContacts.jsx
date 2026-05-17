@@ -110,9 +110,9 @@ function AdminContacts() {
 
       if (response.status === 401) {
         setAdminLoggedIn(false);
-        setContacts([]);
         setSelectedContact(null);
         setSelectedContactLogs([]);
+        setContacts([]);
         return;
       }
 
@@ -122,7 +122,7 @@ function AdminContacts() {
         return;
       }
 
-      setSelectedContactLogs(Array.isArray(result.logs) ? result.logs : []);
+      setSelectedContactLogs(result.logs || []);
     } catch (error) {
       console.error('Contact activity logs API error:', error);
       setContactLogsErrorMessage('처리 이력 API와 연결할 수 없습니다.');
@@ -131,6 +131,17 @@ function AdminContacts() {
       setLoadingContactLogs(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (!selectedContact) {
+      setSelectedContactLogs([]);
+      setContactLogsErrorMessage('');
+      setLoadingContactLogs(false);
+      return;
+    }
+
+    loadContactActivityLogs(selectedContact.id);
+  }, [selectedContact, loadContactActivityLogs]);
 
   const loadContacts = useCallback(async () => {
     if (!adminLoggedIn) {
@@ -159,7 +170,6 @@ function AdminContacts() {
         setAdminLoggedIn(false);
         setContacts([]);
         setSelectedContact(null);
-        setSelectedContactLogs([]);
         setErrorMessage('');
         return;
       }
@@ -360,7 +370,6 @@ function AdminContacts() {
         setAdminLoggedIn(false);
         setContacts([]);
         setSelectedContact(null);
-        setSelectedContactLogs([]);
         alert(result.message || '관리자 로그인이 필요합니다.');
         return false;
       }
@@ -465,9 +474,6 @@ function AdminContacts() {
   const toggleArchiveMode = () => {
     setArchiveMode((current) => !current);
     setSelectedContact(null);
-    setSelectedContactLogs([]);
-    setContactLogsErrorMessage('');
-    setLoadingContactLogs(false);
     setStatusFilter('all');
     setSearchTerm('');
   };
@@ -556,26 +562,12 @@ function AdminContacts() {
 
   useEffect(() => {
     if (!selectedContact) {
-      setSelectedContactLogs([]);
-      setContactLogsErrorMessage('');
-      setLoadingContactLogs(false);
-      return;
-    }
-
-    loadContactActivityLogs(selectedContact.id);
-  }, [selectedContact, loadContactActivityLogs]);
-
-  useEffect(() => {
-    if (!selectedContact) {
       return undefined;
     }
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setSelectedContact(null);
-        setSelectedContactLogs([]);
-        setContactLogsErrorMessage('');
-        setLoadingContactLogs(false);
       }
     };
 
@@ -958,12 +950,12 @@ function AdminContacts() {
           logs={selectedContactLogs}
           loadingLogs={loadingContactLogs}
           logsErrorMessage={contactLogsErrorMessage}
-          archiveMode={archiveMode}
           updatingContactId={updatingContactId}
           onClose={closeContactDetail}
           onUpdateStatus={updateContactStatus}
           onArchive={archiveContact}
           onRestore={restoreContact}
+          showingArchived={archiveMode}
         />
       )}
     </main>
@@ -976,14 +968,16 @@ function ContactDetailModal({
   logs = [],
   loadingLogs = false,
   logsErrorMessage = '',
-  archiveMode = false,
   updatingContactId = null,
   onClose,
   onUpdateStatus,
   onArchive,
   onRestore,
+  showingArchived,
 }) {
+  
   const safeLogs = Array.isArray(logs) ? logs : [];
+
   const isUpdating = Number(updatingContactId) === Number(contact.id);
 
   return (
@@ -1007,7 +1001,7 @@ function ContactDetailModal({
           </span>
 
           <span className="admin-detail-date">
-            {formatDateTime(archiveMode ? contact.updated_at : contact.created_at)}
+            {formatDateTime(showingArchived ? contact.updated_at : contact.created_at)}
           </span>
         </div>
 
@@ -1053,9 +1047,13 @@ function ContactDetailModal({
             <ul className="admin-detail-history-list">
               {safeLogs.map((log) => (
                 <li key={log.id}>
-                  <div>
-                    <strong>{formatActivityLogTitle(log)}</strong>
-                    <span>{formatDateTime(log.created_at)}</span>
+                  <div className="admin-detail-history-main">
+                    <div>
+                      <strong>{formatActivityLogTitle(log)}</strong>
+                      <span>{formatActivityLogSummary(log)}</span>
+                    </div>
+
+                    <time>{formatActivityDateTime(log.created_at)}</time>
                   </div>
 
                   {log.note && <p>{log.note}</p>}
@@ -1066,7 +1064,7 @@ function ContactDetailModal({
         </div>
 
         <div className="admin-detail-actions">
-          {!archiveMode ? (
+          {!showingArchived ? (
             <>
               <button
                 type="button"
@@ -1146,25 +1144,6 @@ function renderStatusLabel(status) {
   return '-';
 }
 
-function formatActivityLogTitle(log) {
-  const previousStatus = renderStatusLabel(log.previous_status);
-  const nextStatus = renderStatusLabel(log.next_status);
-
-  if (log.action === 'archive') {
-    return `${previousStatus} → 보관됨`;
-  }
-
-  if (log.action === 'restore') {
-    return `${previousStatus} → 신규 문의`;
-  }
-
-  if (log.action === 'status_change') {
-    return `${previousStatus} → ${nextStatus}`;
-  }
-
-  return '처리 이력';
-}
-
 function formatRemainingTime(seconds) {
   const safeSeconds = Math.max(0, Number(seconds) || 0);
   const minutes = Math.floor(safeSeconds / 60);
@@ -1183,6 +1162,62 @@ function formatDateTime(value) {
   }
 
   return String(value).replace('T', ' ').slice(0, 19);
+}
+
+function formatActivityLogTitle(log) {
+  const previousStatus = renderStatusLabel(log?.previous_status);
+  const nextStatus = renderStatusLabel(log?.next_status);
+
+  if (log?.action === 'archive') {
+    return `${previousStatus} → 보관됨`;
+  }
+
+  if (log?.action === 'restore') {
+    return `${previousStatus} → 신규 문의`;
+  }
+
+  if (log?.action === 'status_change') {
+    return `${previousStatus} → ${nextStatus}`;
+  }
+
+  return '처리 이력';
+}
+
+function formatActivityLogSummary(log) {
+  if (log?.action === 'archive') {
+    return '문의가 보관함으로 이동되었습니다.';
+  }
+
+  if (log?.action === 'restore') {
+    return '보관된 문의가 신규 문의로 복구되었습니다.';
+  }
+
+  if (log?.action === 'status_change') {
+    return '관리자가 문의 상태를 변경했습니다.';
+  }
+
+  return '관리자 처리 이력이 기록되었습니다.';
+}
+
+function formatActivityDateTime(value) {
+  if (!value) {
+    return '-';
+  }
+
+  const normalizedValue = String(value).replace(' ', 'T');
+  const date = new Date(normalizedValue);
+
+  if (Number.isNaN(date.getTime())) {
+    return String(value).slice(0, 16);
+  }
+
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(date);
 }
 
 function normalizeCsvText(value) {
