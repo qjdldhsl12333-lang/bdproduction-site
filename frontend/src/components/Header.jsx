@@ -1,29 +1,43 @@
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import {
+  ChevronLeft,
+  Clapperboard,
+  FolderOpen,
+  Home,
+  Layers3,
+  LogIn,
+  Mail,
+  Menu,
+  MessageCircle,
+  Sparkles,
+  UserPlus,
+  X,
+} from 'lucide-react';
 
 const navItems = [
-  { label: 'BD기획', href: '/#hero' },
-  { label: 'BDPRODUCTION', href: '/#insight' },
-  { label: '대표작', href: '/#portfolio' },
-  { label: '전체 포트폴리오', href: '/portfolio' },
-  { label: '마이페이지', href: '/mypage' },
-  { label: 'CONTACT', href: '/#contact' },
+  { label: '홈', href: '/#hero', icon: Home },
+  { label: 'BD기획', href: '/#hero', icon: Sparkles },
+  { label: 'BDPRODUCTION', href: '/#insight', icon: Layers3 },
+  { label: '대표작', href: '/#portfolio', icon: Clapperboard },
+  { label: '전체 포트폴리오', href: '/portfolio', icon: FolderOpen },
+  { label: '마이페이지', href: '/mypage', icon: LogIn },
+  { label: 'CONTACT', href: '/#contact', icon: Mail },
 ];
 
 function Header({ onOpenContact, onOpenAuth }) {
-  const [scrolled, setScrolled] = useState(false);
   const [opened, setOpened] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 16);
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setOpened(false);
+      }
     };
 
-    onScroll();
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('keydown', onKeyDown);
 
     return () => {
-      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('keydown', onKeyDown);
     };
   }, []);
 
@@ -36,60 +50,80 @@ function Header({ onOpenContact, onOpenAuth }) {
     onOpenContact?.();
   };
 
+  const openLogin = () => {
+    closeMenu();
+    onOpenAuth?.('login');
+  };
+
   const openRegister = () => {
     closeMenu();
     onOpenAuth?.('register');
   };
 
   return (
-    <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
-      <a className="brand" href="/#hero" onClick={closeMenu}>
-        <span className="brand-mark">BD</span>
-        <span className="brand-text">BDPRODUCTION</span>
-      </a>
-
-      <nav className="desktop-nav" aria-label="주요 메뉴">
-        {navItems.map((item) => (
-          <a key={item.href} href={item.href}>
-            {item.label}
-          </a>
-        ))}
-      </nav>
-
-      <div className="header-action-group">
-        <button className="header-cta header-cta-secondary" type="button" onClick={openRegister}>
-          회원가입
-        </button>
-        <button className="header-cta" type="button" onClick={openContact}>
-          제작 문의
-        </button>
-      </div>
-
+    <>
       <button
-        className="mobile-menu-button"
+        className="side-nav-mobile-toggle"
         type="button"
-        aria-label="메뉴 열기"
+        aria-label={opened ? '메뉴 닫기' : '메뉴 열기'}
         onClick={() => setOpened((value) => !value)}
       >
         {opened ? <X size={22} /> : <Menu size={22} />}
       </button>
 
-      {opened && (
-        <nav className="mobile-nav" aria-label="모바일 메뉴">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} onClick={closeMenu}>
-              {item.label}
-            </a>
-          ))}
-          <button className="mobile-nav-button" type="button" onClick={openRegister}>
-            로그인 / 회원가입
-          </button>
-          <button className="mobile-nav-cta mobile-nav-button" type="button" onClick={openContact}>
-            제작 문의하기
-          </button>
+      {opened && <button className="side-nav-scrim" type="button" aria-label="메뉴 닫기" onClick={closeMenu} />}
+
+      <aside className={`side-nav-shell ${opened ? 'is-open' : ''}`} aria-label="사이트 메뉴">
+        <nav className="side-nav-panel">
+          <a className="side-nav-brand" href="/#hero" onClick={closeMenu} aria-label="홈으로 이동">
+            <span className="side-nav-brand-mark">BD</span>
+            <span className="side-nav-brand-text">
+              <strong>BDPRODUCTION</strong>
+              <em>Creative Platform</em>
+            </span>
+            <ChevronLeft className="side-nav-expand-icon" size={18} />
+          </a>
+
+          <div className="side-nav-list">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <a key={item.href} className="side-nav-link" href={item.href} onClick={closeMenu}>
+                  <span className="side-nav-icon">
+                    <Icon size={19} />
+                  </span>
+                  <span className="side-nav-label">{item.label}</span>
+                </a>
+              );
+            })}
+          </div>
+
+          <div className="side-nav-actions">
+            <button className="side-nav-action" type="button" onClick={openLogin}>
+              <span className="side-nav-icon">
+                <LogIn size={19} />
+              </span>
+              <span className="side-nav-label">로그인</span>
+            </button>
+
+            <button className="side-nav-action" type="button" onClick={openRegister}>
+              <span className="side-nav-icon">
+                <UserPlus size={19} />
+              </span>
+              <span className="side-nav-label">회원가입</span>
+            </button>
+
+            <button className="side-nav-action is-primary" type="button" onClick={openContact}>
+              <span className="side-nav-icon">
+                <MessageCircle size={19} />
+              </span>
+              <span className="side-nav-label">제작 문의</span>
+            </button>
+          </div>
         </nav>
-      )}
-    </header>
+      </aside>
+    </>
   );
 }
 
