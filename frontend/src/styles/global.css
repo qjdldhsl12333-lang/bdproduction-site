@@ -4519,3 +4519,474 @@ button.contact-cta-card:hover {
     min-height: 54px;
   }
 }
+
+ /* BD Neon Production */
+:root[data-theme='bd-neon'] {
+  --bg: #050505;
+  --bg-soft: #111315;
+  --bg-card: rgba(255, 255, 255, 0.055);
+  --bg-card-strong: rgba(255, 255, 255, 0.09);
+  --line: rgba(149, 255, 0, 0.18);
+  --line-strong: rgba(149, 255, 0, 0.48);
+  --text: #f4f7ef;
+  --muted: rgba(244, 247, 239, 0.66);
+  --muted-strong: rgba(244, 247, 239, 0.84);
+  --gold: #95ff00;
+  --gold-soft: rgba(149, 255, 0, 0.16);
+}
+
+/* Lime Platform Navy */
+:root[data-theme='bd-navy'] {
+  --bg: #050a12;
+  --bg-soft: #101722;
+  --bg-card: rgba(255, 255, 255, 0.06);
+  --bg-card-strong: rgba(255, 255, 255, 0.1);
+  --line: rgba(149, 255, 0, 0.16);
+  --line-strong: rgba(0, 217, 255, 0.46);
+  --text: #f2f8ff;
+  --muted: rgba(242, 248, 255, 0.64);
+  --muted-strong: rgba(242, 248, 255, 0.84);
+  --gold: #95ff00;
+  --gold-soft: rgba(149, 255, 0, 0.14);
+}
+/* Lime Creative Violet */
+:root[data-theme='bd-violet'] {
+  --bg: #050505;
+  --bg-soft: #13101c;
+  --bg-card: rgba(139, 92, 255, 0.09);
+  --bg-card-strong: rgba(139, 92, 255, 0.14);
+  --line: rgba(149, 255, 0, 0.16);
+  --line-strong: rgba(139, 92, 255, 0.52);
+  --text: #f7f3ff;
+  --muted: rgba(247, 243, 255, 0.66);
+  --muted-strong: rgba(247, 243, 255, 0.84);
+  --gold: #95ff00;
+  --gold-soft: rgba(149, 255, 0, 0.15);
+}/* =========================================================
+   BDPRODUCTION Teal Renewal v1
+   Palette: #09637E / #088395 / #7AB2B2 / #EBF4F6
+   ê¸°ì¡´ ë¸”ëž™/?„ëŸ° ê³¨ë“œ ?¤ì„ ë°ì? ??ê³„ì—´ ë¸Œëžœ???¤ìœ¼ë¡???–´?ë‹ˆ??
+   ========================================================= */
+
+:root,
+:root[data-theme='bd-neon'],
+:root[data-theme='bd-navy'],
+:root[data-theme='bd-violet'] {
+  --bg: #EBF4F6;
+  --bg-soft: #D8ECEF;
+  --bg-card: rgba(255, 255, 255, 0.74);
+  --bg-card-strong: rgba(255, 255, 255, 0.92);
+  --line: rgba(9, 99, 126, 0.16);
+  --line-strong: rgba(8, 131, 149, 0.42);
+  --text: #09637E;
+  --muted: rgba(9, 99, 126, 0.62);
+  --muted-strong: rgba(9, 99, 126, 0.82);
+  --accent: #088395;
+  --accent-soft: rgba(8, 131, 149, 0.13);
+  --sub-accent: #7AB2B2;
+  --sub-accent-soft: rgba(122, 178, 178, 0.2);
+  --surface: rgba(255, 255, 255, 0.76);
+  --surface-strong: rgba(255, 255, 255, 0.94);
+  --surface-tint: rgba(122, 178, 178, 0.18);
+  --danger: #D94B4B;
+  --danger-soft: rgba(217, 75, 75, 0.12);
+  --success: #088395;
+  --success-soft: rgba(8, 131, 149, 0.12);
+
+  /* ê¸°ì¡´ CSS ?¸í™˜?? ?˜ì¤‘??--accentë¡?ë¦¬íŒ©?°ë§?˜ë©´ ??*/
+  --gold: #088395;
+  --gold-soft: rgba(8, 131, 149, 0.13);
+
+  --shadow: 0 24px 70px rgba(9, 99, 126, 0.14);
+  color: var(--text);
+  background: var(--bg);
+}
+
+html,
+body,
+.app-shell,
+.admin-page {
+  background:
+    radial-gradient(circle at 16% 0%, rgba(122, 178, 178, 0.34), transparent 34%),
+    radial-gradient(circle at 86% 12%, rgba(8, 131, 149, 0.18), transparent 30%),
+    linear-gradient(180deg, #EBF4F6 0%, #DDEFF2 48%, #EBF4F6 100%) !important;
+  color: var(--text);
+}
+
+/* Header / navigation */
+
+.site-header.is-scrolled {
+  border-color: rgba(9, 99, 126, 0.14);
+  background: rgba(235, 244, 246, 0.86);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 16px 50px rgba(9, 99, 126, 0.12);
+}
+
+.mobile-nav {
+  border-color: rgba(9, 99, 126, 0.14);
+  background: rgba(235, 244, 246, 0.96);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+}
+
+.brand-mark {
+  border-color: rgba(8, 131, 149, 0.34);
+  background: rgba(8, 131, 149, 0.11);
+  color: var(--accent);
+}
+
+.desktop-nav,
+.mobile-nav a,
+.mobile-nav-button {
+  color: var(--muted-strong);
+}
+
+.desktop-nav a:hover,
+.mobile-nav a:hover,
+.mobile-nav-button:hover {
+  color: var(--accent);
+}
+
+/* Buttons */
+
+.primary-button,
+.form-submit,
+.floating-contact-button.is-primary,
+.portfolio-new-badge {
+  background: var(--accent);
+  color: #EBF4F6;
+}
+
+.primary-button:hover,
+.form-submit:hover,
+.floating-contact-button.is-primary:hover {
+  background: #09637E;
+  color: #EBF4F6;
+}
+
+.ghost-button,
+.secondary-button,
+.header-cta,
+.header-cta-secondary,
+.mobile-menu-button,
+.mobile-nav a,
+.mobile-nav-button,
+.admin-back-link,
+.admin-refresh-button,
+.admin-archive-toggle,
+.admin-reset-filter-button,
+.contact-auth-inline,
+.lead-modal-close,
+.lead-modal-footer button,
+.auth-tabs button,
+.portfolio-filter-tabs button,
+.category-tabs button,
+.portfolio-folder-button,
+.portfolio-compact-footer button,
+.admin-status-actions button,
+.admin-detail-close,
+.admin-detail-actions button,
+.admin-portfolio-editor-heading button,
+.admin-portfolio-card-actions button {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--text);
+}
+
+.ghost-button:hover,
+.secondary-button:hover,
+.header-cta:hover,
+.header-cta-secondary:hover,
+.mobile-nav a:hover,
+.mobile-nav-button:hover,
+.admin-back-link:hover,
+.admin-refresh-button:hover,
+.admin-archive-toggle:hover,
+.contact-auth-inline:hover,
+.lead-modal-close:hover,
+.lead-modal-footer button:hover,
+.auth-tabs button.is-active,
+.portfolio-filter-tabs button:hover,
+.portfolio-filter-tabs button.is-active,
+.category-tabs button:hover,
+.category-tabs button.is-active,
+.portfolio-folder-button:hover,
+.portfolio-folder-button.is-active,
+.portfolio-compact-footer button:hover,
+.admin-status-actions button:hover,
+.admin-status-actions button.is-active,
+.admin-detail-close:hover,
+.admin-detail-actions button:hover,
+.admin-portfolio-editor-heading button:hover,
+.admin-portfolio-card-actions button:hover {
+  border-color: var(--line-strong);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Main surfaces */
+
+.site-header.is-scrolled,
+.contact-copy,
+.contact-cta-copy,
+.lead-modal,
+.auth-modal,
+.contact-inquiry-modal,
+.portfolio-modal,
+.youtube-modal,
+.admin-login-panel,
+.admin-contact-card,
+.admin-detail-modal,
+.admin-portfolio-editor,
+.admin-portfolio-list-section,
+.admin-portfolio-card,
+.portfolio-card,
+.portfolio-youtube-card,
+.feature-card,
+.contact-panel,
+.contact-cta-panel,
+.contact-cta-card,
+.portfolio-page-toolbar,
+.portfolio-folder-panel,
+.portfolio-library-header,
+.portfolio-compact-item,
+.mypage-status-card,
+.mypage-feature-card,
+.mypage-requirements-note {
+  border-color: var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.7));
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+/* Hero / visual blocks */
+
+.hero-video-fallback,
+.hero-overlay,
+.insight-visual,
+.portfolio-thumb,
+.portfolio-compact-thumb,
+.portfolio-compact-thumb-fallback,
+.admin-portfolio-thumb,
+.modal-placeholder,
+.youtube-modal-placeholder {
+  background:
+    radial-gradient(circle at 72% 24%, rgba(8, 131, 149, 0.16), transparent 30%),
+    radial-gradient(circle at 18% 0%, rgba(122, 178, 178, 0.26), transparent 36%),
+    linear-gradient(135deg, #EBF4F6, #D8ECEF) !important;
+  color: var(--accent);
+}
+
+.hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(235, 244, 246, 0.2), rgba(235, 244, 246, 0.92)),
+    radial-gradient(circle at 50% 55%, transparent 0%, rgba(235, 244, 246, 0.76) 76%) !important;
+}
+
+.hero-video {
+  opacity: 0.24;
+}
+
+.hero-stats div,
+.admin-summary-grid div,
+.admin-contact-grid div,
+.admin-contact-preview > div,
+.admin-message-preview,
+.admin-detail-item,
+.admin-detail-message,
+.admin-detail-history,
+.admin-detail-history-list li,
+.admin-detail-history-technical,
+.portfolio-page-toolbar > div:first-child,
+.project-progress-preview div,
+.contact-note,
+.form-receipt-card,
+.auth-message,
+.auth-check {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--text);
+}
+
+/* Accent text / badges */
+
+.eyebrow,
+.footer-logo,
+.footer-info span,
+.hero-stats strong,
+.feature-icon,
+.portfolio-card-body p,
+.portfolio-play,
+.portfolio-badge,
+.modal-placeholder,
+.contact-phone-card,
+.form-receipt-card strong,
+.admin-refresh-button,
+.admin-contact-id,
+.admin-detail-header span,
+.admin-detail-message span,
+.admin-detail-history-header span,
+.admin-detail-history-technical dt,
+.portfolio-folder-heading,
+.portfolio-page-toolbar strong,
+.mypage-status-card span,
+.project-progress-preview span,
+.contact-cta-card span,
+.contact-cta-card em,
+.youtube-modal-header span,
+.youtube-modal-link {
+  color: var(--accent);
+}
+
+.feature-icon,
+.contact-cta-card > div,
+.mypage-feature-card > div,
+.portfolio-play,
+.portfolio-play-badge,
+.portfolio-compact-play-icon,
+.portfolio-badge,
+.admin-status-badge,
+.portfolio-compact-meta span,
+.portfolio-compact-meta strong,
+.admin-portfolio-card-meta span,
+.admin-portfolio-card-meta strong,
+.admin-portfolio-card-meta em,
+.form-receipt-card,
+.contact-phone-card,
+.auth-check {
+  border-color: var(--line-strong);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Forms */
+
+.contact-form,
+.contact-form-compact {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea,
+.admin-login-form input,
+.admin-search-box,
+.auth-form input,
+.admin-portfolio-form input,
+.admin-portfolio-form textarea {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--text);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus,
+.admin-login-form input:focus,
+.auth-form input:focus,
+.admin-portfolio-form input:focus,
+.admin-portfolio-form textarea:focus {
+  border-color: var(--line-strong);
+  background: #FFFFFF;
+}
+
+.contact-form select option {
+  background: #FFFFFF;
+  color: var(--text);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder,
+.admin-search-box input::placeholder,
+.auth-form input::placeholder,
+.admin-portfolio-form input::placeholder,
+.admin-portfolio-form textarea::placeholder {
+  color: rgba(9, 99, 126, 0.42);
+}
+
+/* State colors */
+
+.project-progress-preview div.is-current,
+.contact-cta-card.is-main,
+.admin-status-badge.status-new,
+.admin-status-badge.status-checked,
+.admin-status-badge.status-done,
+.admin-status-badge.status-archived,
+.admin-status-actions button.is-restore,
+.auth-message.is-success,
+.portfolio-notice,
+.admin-warning,
+.admin-lock-card {
+  border-color: rgba(8, 131, 149, 0.28);
+  background: rgba(122, 178, 178, 0.2);
+  color: var(--accent);
+}
+
+.form-error,
+.admin-error-card,
+.auth-message.is-error,
+.admin-detail-history-error,
+.admin-status-actions button.is-danger,
+.admin-logout-button,
+.admin-portfolio-card-actions button.danger,
+.admin-detail-actions button.danger {
+  border-color: rgba(217, 75, 75, 0.28);
+  background: rgba(217, 75, 75, 0.1);
+  color: #D94B4B;
+}
+
+/* Modals */
+
+.modal-backdrop,
+.youtube-modal-backdrop,
+.admin-detail-backdrop,
+.lead-modal-backdrop {
+  background: rgba(9, 99, 126, 0.28);
+  backdrop-filter: blur(14px);
+}
+
+.modal-media,
+.modal-media iframe,
+.youtube-modal-player,
+.youtube-modal-player iframe,
+.portfolio-youtube-thumb {
+  background: #D8ECEF;
+}
+
+/* Floating inquiry banner */
+
+.floating-contact-button {
+  border-color: rgba(9, 99, 126, 0.2);
+  background: rgba(235, 244, 246, 0.92);
+  color: var(--text);
+  box-shadow: 0 18px 50px rgba(9, 99, 126, 0.16);
+}
+
+.floating-contact-button:hover {
+  border-color: var(--line-strong);
+  color: var(--accent);
+}
+
+/* Social auth: keep provider labels but avoid yellow/black brand clash for now */
+
+.provider-kakao,
+.provider-naver,
+.provider-google {
+  border: 1px solid var(--line);
+  background: #FFFFFF;
+  color: var(--text);
+}
+
+.provider-kakao:hover,
+.provider-naver:hover,
+.provider-google:hover {
+  border-color: var(--line-strong);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+::-selection {
+  background: rgba(8, 131, 149, 0.2);
+  color: #09637E;
+}
