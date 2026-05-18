@@ -10,7 +10,7 @@ const navItems = [
   { label: 'CONTACT', href: '/#contact' },
 ];
 
-function Header() {
+function Header({ onOpenContact, onOpenAuth }) {
   const [scrolled, setScrolled] = useState(false);
   const [opened, setOpened] = useState(false);
 
@@ -31,6 +31,16 @@ function Header() {
     setOpened(false);
   };
 
+  const openContact = () => {
+    closeMenu();
+    onOpenContact?.();
+  };
+
+  const openRegister = () => {
+    closeMenu();
+    onOpenAuth?.('register');
+  };
+
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
       <a className="brand" href="/#hero" onClick={closeMenu}>
@@ -46,9 +56,14 @@ function Header() {
         ))}
       </nav>
 
-      <a className="header-cta" href="/#contact">
-        제작 문의
-      </a>
+      <div className="header-action-group">
+        <button className="header-cta header-cta-secondary" type="button" onClick={openRegister}>
+          회원가입
+        </button>
+        <button className="header-cta" type="button" onClick={openContact}>
+          제작 문의
+        </button>
+      </div>
 
       <button
         className="mobile-menu-button"
@@ -66,9 +81,12 @@ function Header() {
               {item.label}
             </a>
           ))}
-          <a className="mobile-nav-cta" href="/#contact" onClick={closeMenu}>
+          <button className="mobile-nav-button" type="button" onClick={openRegister}>
+            로그인 / 회원가입
+          </button>
+          <button className="mobile-nav-cta mobile-nav-button" type="button" onClick={openContact}>
             제작 문의하기
-          </a>
+          </button>
         </nav>
       )}
     </header>
