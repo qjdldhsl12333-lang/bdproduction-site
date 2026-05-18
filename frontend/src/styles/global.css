@@ -4047,23 +4047,7 @@ button.contact-cta-card:hover {
   }
 
   .floating-contact-banner {
-    top: auto;
-    right: 14px;
-    bottom: 14px;
-    left: 14px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    width: auto;
-    transform: none;
-  }
-
-  .floating-contact-button {
-    min-height: 58px;
-    border-radius: 16px;
-    font-size: 0.68rem;
-  }
-
-  .floating-contact-button:hover {
-    transform: translateY(-2px);
+    display: none !important;
   }
 }
 
@@ -4117,14 +4101,6 @@ button.contact-cta-card:hover {
 
   .contact-cta-cards {
     grid-template-columns: 1fr;
-  }
-
-  .floating-contact-banner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .floating-contact-button {
-    min-height: 54px;
   }
 }
 
