@@ -5142,7 +5142,7 @@ body,
 }
 
 
-/* Hero film landing v2 */
+/* Hero film mobile youtube ratio v4 */
 .hero-film-section {
   position: relative;
   display: grid;
@@ -5159,7 +5159,7 @@ body,
   inset: 0;
   z-index: 0;
   display: grid;
-  grid-template-columns: clamp(74px, 10.5vw, 188px) minmax(0, 1fr) clamp(74px, 10.5vw, 188px);
+  grid-template-columns: clamp(92px, 11vw, 204px) minmax(0, 1fr) clamp(92px, 11vw, 204px);
   min-height: 100%;
   background: #000;
 }
@@ -5207,6 +5207,7 @@ body,
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   background: #000;
   filter: brightness(0.58) contrast(1.08) saturate(0.82);
   transform: scale(1.015);
@@ -5250,9 +5251,9 @@ body,
   position: relative;
   z-index: 3;
   display: grid;
+  min-height: 100svh;
   place-items: center;
   align-content: center;
-  min-height: 100svh;
   padding: 0 24px;
   color: #ebf4f6;
   text-align: center;
@@ -5280,7 +5281,7 @@ body,
   text-shadow: 0 8px 28px rgba(0, 0, 0, 0.58);
 }
 
-/* Hero에서는 좌우 고정 배너를 숨기고, 스크롤 양에 맞춰 자연스럽게 등장시킵니다. */
+/* Hero 상단에서는 메뉴/상담 배너를 숨기고 스크롤 양에 맞춰 천천히 등장시킵니다. */
 .app-shell.is-home-page {
   --hero-rail-progress: 1;
 }
@@ -5310,20 +5311,8 @@ body,
   }
 }
 
+/* 모바일/태블릿 공통: Hero 최상단에서는 좌측 메뉴 버튼도 PC 배너처럼 숨깁니다. */
 @media (max-width: 980px) {
-  .hero-film-canvas {
-    grid-template-columns: clamp(22px, 8vw, 54px) minmax(0, 1fr) clamp(22px, 8vw, 54px);
-  }
-
-  .hero-film-center-mark span {
-    font-size: clamp(2rem, 11vw, 4.2rem);
-  }
-
-  .hero-film-center-mark strong {
-    max-width: 280px;
-    line-height: 1.5;
-  }
-
   .app-shell.is-home-page .side-nav-mobile-toggle {
     opacity: var(--hero-rail-progress);
     pointer-events: none;
@@ -5336,19 +5325,132 @@ body,
   .app-shell.is-home-page.is-hero-rail-ready .side-nav-mobile-toggle {
     pointer-events: auto;
   }
+
+  .app-shell.is-home-page:not(.is-hero-rail-ready) .side-nav-shell,
+  .app-shell.is-home-page:not(.is-hero-rail-ready) .side-nav-scrim {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 }
 
-@media (max-width: 560px) {
+/* 모바일 세로: 유튜브 일반 영상처럼 16:9 영상 영역으로 잡고, 좌우 영화관 공백은 제거합니다. */
+@media (max-width: 980px) and (orientation: portrait) {
+  .hero-film-section {
+    display: block;
+    min-height: auto;
+    height: auto;
+    padding: 0;
+    background: #000 !important;
+  }
+
   .hero-film-canvas {
-    grid-template-columns: 18px minmax(0, 1fr) 18px;
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .hero-film-side {
+    display: none;
+  }
+
+  .hero-film-screen {
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0;
   }
 
   .hero-film-video {
-    transform: scale(1.04);
+    object-fit: cover;
+    object-position: center center;
+    transform: none;
+  }
+
+  .hero-film-screen::before {
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 0.36) 100%),
+      radial-gradient(circle at 50% 48%, transparent 0%, rgba(0, 0, 0, 0.34) 86%);
+  }
+
+  .hero-film-screen::after {
+    background: transparent;
   }
 
   .hero-film-center-mark {
-    padding: 0 20px;
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    height: 100%;
+    padding: 0 18px;
+  }
+
+  .hero-film-center-mark span {
+    font-size: clamp(1.8rem, 8.8vw, 3rem);
+  }
+
+  .hero-film-center-mark strong {
+    margin-top: 7px;
+    max-width: 280px;
+    font-size: clamp(0.48rem, 2.2vw, 0.7rem);
+    line-height: 1.35;
   }
 }
-/* End hero film landing v2 */
+
+/* 모바일 가로: 화면 전체를 영상 뷰로 사용합니다. 메뉴는 Hero 상단에서 숨김 상태를 유지합니다. */
+@media (max-width: 980px) and (orientation: landscape) {
+  .hero-film-section {
+    min-height: 100svh;
+    height: 100svh;
+  }
+
+  .hero-film-canvas {
+    grid-template-columns: 0 minmax(0, 1fr) 0;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .hero-film-side {
+    display: none;
+  }
+
+  .hero-film-screen {
+    min-height: 100svh;
+    height: 100svh;
+  }
+
+  .hero-film-video {
+    object-fit: cover;
+    object-position: center center;
+    transform: none;
+  }
+
+  .hero-film-center-mark {
+    min-height: 100svh;
+  }
+
+  .hero-film-center-mark span {
+    font-size: clamp(1.65rem, 6vw, 4rem);
+  }
+
+  .hero-film-center-mark strong {
+    margin-top: 8px;
+    font-size: clamp(0.52rem, 1.35vw, 0.82rem);
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero-film-center-mark span {
+    font-size: clamp(1.5rem, 5.2vw, 3.4rem);
+  }
+
+  .hero-film-center-mark strong {
+    margin-top: 6px;
+  }
+}
+/* End hero film mobile youtube ratio v4 */
