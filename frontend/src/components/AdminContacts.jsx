@@ -11,7 +11,8 @@ const statusFilters = [
 
 function AdminContacts() {
   const [checkingAuth, setCheckingAuth] = useState(true);
-  const [adminLoggedIn, setAdminLoggedIn] = useState(false);
+    const [adminActionMenuOpen, setAdminActionMenuOpen] = useState(false);
+const [adminLoggedIn, setAdminLoggedIn] = useState(false);
   const [adminPassword, setAdminPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
   const [loggingIn, setLoggingIn] = useState(false);
@@ -676,9 +677,28 @@ function AdminContacts() {
   }
 
   return (
-    <main className="admin-page">
+    <main className={`admin-page ${adminActionMenuOpen ? 'is-admin-menu-open' : ''}`}>
       <section className="admin-shell">
-        <div className="admin-topbar">
+        <button
+          className="admin-mobile-menu-toggle"
+          type="button"
+          aria-expanded={adminActionMenuOpen}
+          aria-controls="admin-action-menu"
+          onClick={() => setAdminActionMenuOpen((current) => !current)}
+        >
+          관리자 메뉴
+        </button>
+
+        {adminActionMenuOpen && (
+          <button
+            className="admin-menu-scrim"
+            type="button"
+            aria-label="관리자 메뉴 닫기"
+            onClick={() => setAdminActionMenuOpen(false)}
+          />
+        )}
+
+        <div className="admin-topbar" id="admin-action-menu">
           <a className="admin-back-link" href="/">
             <ArrowLeft size={18} />
             홈페이지로 돌아가기
