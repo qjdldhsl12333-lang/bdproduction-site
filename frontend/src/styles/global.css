@@ -5141,3 +5141,214 @@ body,
   }
 }
 
+
+/* Hero film landing v2 */
+.hero-film-section {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  padding: 0;
+  place-items: stretch;
+  overflow: hidden;
+  background: #020405 !important;
+  isolation: isolate;
+}
+
+.hero-film-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: clamp(74px, 10.5vw, 188px) minmax(0, 1fr) clamp(74px, 10.5vw, 188px);
+  min-height: 100%;
+  background: #000;
+}
+
+.hero-film-side {
+  position: relative;
+  min-width: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(8, 131, 149, 0.1), transparent 48%),
+    linear-gradient(180deg, #030607 0%, #000 46%, #030607 100%);
+  box-shadow: inset 0 0 72px rgba(0, 0, 0, 0.88);
+}
+
+.hero-film-side-left::after,
+.hero-film-side-right::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(235, 244, 246, 0.08);
+  content: '';
+}
+
+.hero-film-side-left::after {
+  right: 0;
+}
+
+.hero-film-side-right::before {
+  left: 0;
+}
+
+.hero-film-screen {
+  position: relative;
+  min-width: 0;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-film-video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  filter: brightness(0.58) contrast(1.08) saturate(0.82);
+  transform: scale(1.015);
+}
+
+.hero-film-screen::before,
+.hero-film-screen::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+}
+
+.hero-film-screen::before {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0.12) 22%, rgba(0, 0, 0, 0.2) 72%, rgba(0, 0, 0, 0.58) 100%),
+    radial-gradient(circle at 50% 48%, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.52) 82%);
+}
+
+.hero-film-screen::after {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.28), transparent 16%, transparent 84%, rgba(0, 0, 0, 0.28));
+}
+
+.hero-film-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(8, 131, 149, 0.18), transparent 34%),
+    #030607;
+  color: rgba(235, 244, 246, 0.72);
+  font-size: clamp(2rem, 8vw, 7rem);
+  font-weight: 950;
+  letter-spacing: -0.08em;
+}
+
+.hero-film-center-mark {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100svh;
+  padding: 0 24px;
+  color: #ebf4f6;
+  text-align: center;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.hero-film-center-mark span {
+  display: block;
+  color: rgba(235, 244, 246, 0.86);
+  font-size: clamp(2.4rem, 6vw, 6.6rem);
+  font-weight: 950;
+  letter-spacing: -0.075em;
+  line-height: 0.92;
+  text-shadow: 0 12px 42px rgba(0, 0, 0, 0.62);
+}
+
+.hero-film-center-mark strong {
+  display: block;
+  margin-top: 12px;
+  color: rgba(235, 244, 246, 0.72);
+  font-size: clamp(0.66rem, 1.05vw, 0.92rem);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.58);
+}
+
+/* Hero에서는 좌우 고정 배너를 숨기고, 스크롤 양에 맞춰 자연스럽게 등장시킵니다. */
+.app-shell.is-home-page {
+  --hero-rail-progress: 1;
+}
+
+@media (min-width: 981px) {
+  .app-shell.is-home-page .side-nav-shell {
+    opacity: var(--hero-rail-progress);
+    pointer-events: none;
+    transform: translateY(-50%) translateX(calc(-22px * (1 - var(--hero-rail-progress))));
+    transition:
+      opacity 100ms linear,
+      transform 180ms ease;
+  }
+
+  .app-shell.is-home-page .floating-contact-banner {
+    opacity: var(--hero-rail-progress);
+    pointer-events: none;
+    transform: translateY(-50%) translateX(calc(22px * (1 - var(--hero-rail-progress))));
+    transition:
+      opacity 100ms linear,
+      transform 180ms ease;
+  }
+
+  .app-shell.is-home-page.is-hero-rail-ready .side-nav-shell,
+  .app-shell.is-home-page.is-hero-rail-ready .floating-contact-banner {
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-film-canvas {
+    grid-template-columns: clamp(22px, 8vw, 54px) minmax(0, 1fr) clamp(22px, 8vw, 54px);
+  }
+
+  .hero-film-center-mark span {
+    font-size: clamp(2rem, 11vw, 4.2rem);
+  }
+
+  .hero-film-center-mark strong {
+    max-width: 280px;
+    line-height: 1.5;
+  }
+
+  .app-shell.is-home-page .side-nav-mobile-toggle {
+    opacity: var(--hero-rail-progress);
+    pointer-events: none;
+    transform: translateY(calc(-10px * (1 - var(--hero-rail-progress))));
+    transition:
+      opacity 100ms linear,
+      transform 180ms ease;
+  }
+
+  .app-shell.is-home-page.is-hero-rail-ready .side-nav-mobile-toggle {
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-film-canvas {
+    grid-template-columns: 18px minmax(0, 1fr) 18px;
+  }
+
+  .hero-film-video {
+    transform: scale(1.04);
+  }
+
+  .hero-film-center-mark {
+    padding: 0 20px;
+  }
+}
+/* End hero film landing v2 */
