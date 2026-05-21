@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import BDStudioShowroom from './components/BDStudioShowroom.jsx';
 import Portfolio from './components/Portfolio.jsx';
 import PortfolioPage from './components/PortfolioPage.jsx';
 import MyPagePlaceholder from './components/MyPagePlaceholder.jsx';
-import ContactCta from './components/ContactCta.jsx';
 import ContactModal from './components/ContactModal.jsx';
 import AuthModal from './components/AuthModal.jsx';
 import FloatingContactBanner from './components/FloatingContactBanner.jsx';
@@ -147,3 +146,4 @@ function App() {
 }
 
 export default App;
+
