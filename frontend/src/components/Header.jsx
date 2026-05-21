@@ -23,6 +23,10 @@ const navItems = [
   { label: 'CONTACT', href: '/#contact', icon: Mail },
 ];
 
+const desktopNavItems = navItems.filter(
+  (item) => !['홈', 'BD기획', 'BDPRODUCTION'].includes(item.label)
+);
+
 function Header({ onOpenContact, onOpenAuth }) {
   const [opened, setOpened] = useState(false);
 
@@ -68,7 +72,7 @@ function Header({ onOpenContact, onOpenAuth }) {
         </a>
 
         <nav className="cinematic-desktop-nav" aria-label="주요 메뉴">
-          {navItems.map((item) => (
+          {desktopNavItems.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
             </a>
