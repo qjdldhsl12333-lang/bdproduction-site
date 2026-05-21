@@ -6164,3 +6164,123 @@ main,
 }
 /* YouTube portfolio modal dark fix end */
 
+/* Cinematic drawer neon color fix start */
+.cinematic-drawer {
+  border-left: 1px solid rgba(149, 255, 0, 0.18) !important;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(149, 255, 0, 0.11), transparent 28%),
+    radial-gradient(circle at 100% 34%, rgba(24, 161, 170, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(3, 8, 9, 0.98), rgba(0, 2, 3, 0.99)) !important;
+  color: #f5f7ee !important;
+  box-shadow:
+    -32px 0 110px rgba(0, 0, 0, 0.56),
+    inset 1px 0 0 rgba(149, 255, 0, 0.08) !important;
+}
+
+.cinematic-drawer-head {
+  border-bottom-color: rgba(166, 228, 219, 0.16) !important;
+}
+
+.cinematic-drawer-head span {
+  color: #f5f7ee !important;
+  text-shadow: 0 0 18px rgba(149, 255, 0, 0.14);
+}
+
+.cinematic-drawer-head button {
+  border-color: rgba(166, 228, 219, 0.22) !important;
+  background: rgba(245, 247, 238, 0.08) !important;
+  color: #f5f7ee !important;
+  box-shadow: none !important;
+}
+
+.cinematic-drawer-head button:hover {
+  border-color: rgba(149, 255, 0, 0.48) !important;
+  background: rgba(149, 255, 0, 0.12) !important;
+  color: #95ff00 !important;
+}
+
+.cinematic-drawer-nav a,
+.cinematic-drawer-actions button,
+.cinematic-drawer-actions a {
+  border-color: rgba(166, 228, 219, 0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(245, 247, 238, 0.055), rgba(245, 247, 238, 0.025)) !important;
+  color: rgba(245, 247, 238, 0.9) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.015) !important;
+}
+
+.cinematic-drawer-nav a svg,
+.cinematic-drawer-actions button svg,
+.cinematic-drawer-actions a svg {
+  color: rgba(166, 228, 219, 0.9) !important;
+}
+
+.cinematic-drawer-nav a:hover,
+.cinematic-drawer-actions button:hover,
+.cinematic-drawer-actions a:hover {
+  border-color: rgba(149, 255, 0, 0.48) !important;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(149, 255, 0, 0.16), transparent 46%),
+    rgba(149, 255, 0, 0.08) !important;
+  color: #f5f7ee !important;
+  transform: translateX(-3px);
+}
+
+.cinematic-drawer-nav a:hover svg,
+.cinematic-drawer-actions button:hover svg,
+.cinematic-drawer-actions a:hover svg {
+  color: #95ff00 !important;
+}
+
+.cinematic-drawer-actions {
+  border-top-color: rgba(166, 228, 219, 0.16) !important;
+}
+
+.cinematic-drawer-actions .is-primary,
+.cinematic-drawer-actions button.is-primary,
+.cinematic-drawer-actions a.is-primary {
+  border-color: rgba(149, 255, 0, 0.78) !important;
+  background:
+    linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
+  color: #020407 !important;
+  box-shadow: 0 18px 52px rgba(149, 255, 0, 0.22) !important;
+}
+
+.cinematic-drawer-actions .is-primary svg,
+.cinematic-drawer-actions button.is-primary svg,
+.cinematic-drawer-actions a.is-primary svg {
+  color: #020407 !important;
+}
+
+.cinematic-drawer-actions .is-primary:hover,
+.cinematic-drawer-actions button.is-primary:hover,
+.cinematic-drawer-actions a.is-primary:hover {
+  border-color: #d9ff8a !important;
+  background:
+    linear-gradient(135deg, #b9ff3d 0%, #95ff00 100%) !important;
+  color: #020407 !important;
+  transform: translateX(-3px) translateY(-1px);
+}
+
+.cinematic-drawer-scrim {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(149, 255, 0, 0.08), transparent 36%),
+    rgba(0, 3, 4, 0.72) !important;
+  backdrop-filter: blur(9px) !important;
+}
+
+@media (max-width: 760px) {
+  .cinematic-drawer {
+    width: min(360px, 88vw) !important;
+    padding: 20px !important;
+  }
+
+  .cinematic-drawer-nav a,
+  .cinematic-drawer-actions button,
+  .cinematic-drawer-actions a {
+    min-height: 46px !important;
+    border-radius: 14px !important;
+  }
+}
+/* Cinematic drawer neon color fix end */
+
