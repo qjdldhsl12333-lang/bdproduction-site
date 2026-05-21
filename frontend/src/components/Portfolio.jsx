@@ -202,7 +202,6 @@ export function PortfolioVideoGrid({ videos, onSelectVideo }) {
           <div className="portfolio-youtube-body">
             <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
             <h3>{video.title}</h3>
-            <p>{video.description || 'BDPRODUCTION 포트폴리오 영상입니다.'}</p>
           </div>
         </motion.article>
       ))}
@@ -276,7 +275,7 @@ export function PortfolioVideoModal({ selectedVideo, onClose }) {
 
 function Portfolio() {
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const { videos, loading, errorMessage, source } = usePortfolioVideos({ featuredOnly: true });
+  const { videos, loading, errorMessage } = usePortfolioVideos({ featuredOnly: true });
 
   const featuredVideos = useMemo(() => videos.slice(0, 6), [videos]);
 
@@ -285,26 +284,15 @@ function Portfolio() {
       <div className="portfolio-section-header">
         <div className="section-heading">
           <p className="eyebrow">PORTFOLIO</p>
-          <h2>FEATURED PROJECT</h2>
-          <p>
-            메인에는 대표 포트폴리오만 가볍게 노출하고,
-            전체 작품은 별도 페이지에서 폴더형으로 탐색할 수 있도록 분리했습니다.
-          </p>
+          <h2>FEATURED WORKS</h2>
         </div>
 
         <div className="portfolio-section-actions">
           <a className="secondary-button" href="/portfolio">
             전체 포트폴리오 보기
           </a>
-          <span>관리자 CMS에서 대표작 여부와 노출 순서를 조정할 수 있는 구조입니다.</span>
         </div>
       </div>
-
-      {source === 'fallback' && (
-        <div className="portfolio-notice">
-          현재는 기본 포트폴리오 데이터 또는 관리자 CMS 초기 데이터 기준입니다.
-        </div>
-      )}
 
       {loading && (
         <div className="portfolio-state">
