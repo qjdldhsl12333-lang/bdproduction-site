@@ -13,18 +13,17 @@ import Footer from './components/Footer.jsx';
 import AdminContacts from './components/AdminContacts.jsx';
 import AdminPortfolioManager from './components/AdminPortfolioManager.jsx';
 
-function HomePage({ onOpenContact, onOpenAuth }) {
+function HomePage() {
   return (
     <>
       <Hero />
       <Portfolio />
-      <BDStudioShowroom />
-      <ContactCta onOpenContact={onOpenContact} onOpenAuth={onOpenAuth} />
+      <BDStudioShowroom />
     </>
   );
 }
 
-function resolvePage(pathname, modalActions) {
+function resolvePage(pathname) {
   const normalizedPathname = pathname.replace(/\/+$/, '') || '/';
 
   if (normalizedPathname === '/portfolio') {
@@ -35,7 +34,7 @@ function resolvePage(pathname, modalActions) {
     return <MyPagePlaceholder />;
   }
 
-  return <HomePage {...modalActions} />;
+  return <HomePage />;
 }
 
 function App() {
@@ -122,7 +121,7 @@ function App() {
       <Header onOpenContact={openContactModal} onOpenAuth={openAuthModal} />
 
       <main>
-        {resolvePage(pathname, modalActions)}
+        {resolvePage(pathname)}
       </main>
 
       <FloatingContactBanner

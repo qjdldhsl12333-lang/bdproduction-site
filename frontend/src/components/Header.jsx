@@ -5,7 +5,6 @@ import {
   Home,
   Layers3,
   LogIn,
-  Mail,
   Menu,
   MessageCircle,
   Sparkles,
@@ -20,7 +19,6 @@ const navItems = [
   { label: 'BDPRODUCTION', href: '/#insight', icon: Layers3 },
   { label: '대표작', href: '/#portfolio', icon: Clapperboard },
   { label: '전체 포트폴리오', href: '/portfolio', icon: FolderOpen },
-  { label: 'CONTACT', href: '/#contact', icon: Mail },
 ];
 
 const desktopNavItems = navItems.filter(
