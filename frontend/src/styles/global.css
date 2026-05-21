@@ -5785,3 +5785,200 @@ main,
   }
 }
 /* Contact modal dark fix final end */
+
+/* Auth modal neon dark fix start */
+.auth-modal {
+  overflow: hidden !important;
+  border: 1px solid rgba(149, 255, 0, 0.18) !important;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(149, 255, 0, 0.09), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(24, 161, 170, 0.14), transparent 32%),
+    linear-gradient(180deg, #030607 0%, #020407 100%) !important;
+  color: #f5f7ee !important;
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.72),
+    0 0 0 1px rgba(166, 228, 219, 0.04) inset !important;
+}
+
+.auth-modal .lead-modal-header {
+  border-bottom: 1px solid rgba(166, 228, 219, 0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(4, 26, 33, 0.72), rgba(3, 6, 7, 0.18)) !important;
+}
+
+.auth-modal .lead-modal-header .eyebrow,
+.auth-modal .auth-divider span {
+  color: #95ff00 !important;
+  text-shadow: 0 0 18px rgba(149, 255, 0, 0.2);
+}
+
+.auth-modal .lead-modal-header h2 {
+  color: #f5f7ee !important;
+  text-shadow: 0 0 22px rgba(166, 228, 219, 0.16);
+}
+
+.auth-modal .lead-modal-header p:not(.eyebrow) {
+  color: rgba(166, 228, 219, 0.84) !important;
+}
+
+.auth-modal .lead-modal-close {
+  border-color: rgba(166, 228, 219, 0.16) !important;
+  background: rgba(245, 247, 238, 0.08) !important;
+  color: rgba(245, 247, 238, 0.86) !important;
+}
+
+.auth-modal .lead-modal-close:hover {
+  border-color: rgba(149, 255, 0, 0.55) !important;
+  background: rgba(149, 255, 0, 0.12) !important;
+  color: #95ff00 !important;
+}
+
+.auth-modal .auth-tabs {
+  background: rgba(3, 6, 7, 0.72) !important;
+}
+
+.auth-modal .auth-tabs button {
+  border: 1px solid rgba(166, 228, 219, 0.14) !important;
+  background: rgba(5, 14, 17, 0.92) !important;
+  color: rgba(245, 247, 238, 0.78) !important;
+  box-shadow: none !important;
+}
+
+.auth-modal .auth-tabs button:hover {
+  border-color: rgba(149, 255, 0, 0.34) !important;
+  color: #f5f7ee !important;
+}
+
+.auth-modal .auth-tabs button.is-active {
+  border-color: rgba(149, 255, 0, 0.82) !important;
+  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
+  color: #020407 !important;
+  box-shadow: 0 14px 38px rgba(149, 255, 0, 0.18) !important;
+}
+
+.auth-modal .social-auth-grid {
+  background: rgba(3, 6, 7, 0.72) !important;
+}
+
+.auth-modal .social-auth-button {
+  opacity: 1 !important;
+  border: 0 !important;
+  color: #111 !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22) !important;
+}
+
+.auth-modal .provider-kakao {
+  background: #fee500 !important;
+  color: #191600 !important;
+}
+
+.auth-modal .provider-naver {
+  background: #03c75a !important;
+  color: #ffffff !important;
+}
+
+.auth-modal .provider-google {
+  background: #ffffff !important;
+  color: #1f2933 !important;
+}
+
+.auth-modal .auth-divider {
+  background: rgba(3, 6, 7, 0.72) !important;
+  color: rgba(166, 228, 219, 0.76) !important;
+}
+
+.auth-modal .auth-divider::before,
+.auth-modal .auth-divider::after {
+  background: rgba(166, 228, 219, 0.14) !important;
+}
+
+.auth-modal .auth-form {
+  background: rgba(3, 6, 7, 0.72) !important;
+}
+
+.auth-modal .auth-form label {
+  color: rgba(245, 247, 238, 0.84) !important;
+}
+
+.auth-modal .auth-form input {
+  border: 1px solid rgba(166, 228, 219, 0.16) !important;
+  background: #05090c !important;
+  color: #f5f7ee !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02) inset !important;
+}
+
+.auth-modal .auth-form input::placeholder {
+  color: rgba(166, 228, 219, 0.46) !important;
+}
+
+.auth-modal .auth-form input:focus {
+  border-color: rgba(149, 255, 0, 0.72) !important;
+  background: #020407 !important;
+  box-shadow:
+    0 0 0 3px rgba(149, 255, 0, 0.12),
+    0 0 30px rgba(149, 255, 0, 0.08) !important;
+}
+
+.auth-modal .auth-check {
+  border-color: rgba(149, 255, 0, 0.24) !important;
+  background: rgba(149, 255, 0, 0.08) !important;
+  color: rgba(245, 247, 238, 0.86) !important;
+}
+
+.auth-modal .auth-check input {
+  accent-color: #95ff00;
+}
+
+.auth-modal .primary-button.form-submit {
+  border-color: rgba(149, 255, 0, 0.86) !important;
+  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
+  color: #020407 !important;
+  box-shadow: 0 16px 46px rgba(149, 255, 0, 0.2) !important;
+}
+
+.auth-modal .primary-button.form-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 58px rgba(149, 255, 0, 0.28) !important;
+}
+
+.auth-modal .primary-button.form-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.auth-modal .auth-message {
+  border-color: rgba(166, 228, 219, 0.16) !important;
+  background: rgba(5, 14, 17, 0.92) !important;
+  color: rgba(245, 247, 238, 0.86) !important;
+}
+
+.auth-modal .auth-message.is-success {
+  border-color: rgba(149, 255, 0, 0.34) !important;
+  background: rgba(149, 255, 0, 0.1) !important;
+  color: #d8ff99 !important;
+}
+
+.auth-modal .auth-message.is-error {
+  border-color: rgba(203, 47, 16, 0.48) !important;
+  background: rgba(203, 47, 16, 0.12) !important;
+  color: #ffb9a8 !important;
+}
+
+.auth-modal .auth-message.is-info {
+  border-color: rgba(24, 161, 170, 0.32) !important;
+  background: rgba(24, 161, 170, 0.12) !important;
+  color: #a6e4db !important;
+}
+
+@media (max-width: 720px) {
+  .auth-modal {
+    border-radius: 22px !important;
+  }
+
+  .auth-modal .auth-tabs button,
+  .auth-modal .social-auth-button {
+    min-height: 42px;
+  }
+}
+/* Auth modal neon dark fix end */
+
