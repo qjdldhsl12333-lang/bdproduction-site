@@ -1,26 +1,63 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ClipboardList, MessageCircle, PhoneCall, ShieldCheck, UserPlus } from 'lucide-react';
+import {
+  ArrowRight,
+  Camera,
+  ClipboardCheck,
+  MessageCircle,
+  Send,
+  Sparkles,
+  UserPlus,
+} from 'lucide-react';
+
+const flowItems = [
+  {
+    label: 'BRIEF',
+    title: '문의',
+    text: '목표와 일정 확인',
+    icon: MessageCircle,
+    action: 'contact',
+    primary: true,
+  },
+  {
+    label: 'PLAN',
+    title: '기획',
+    text: '톤앤매너 설계',
+    icon: ClipboardCheck,
+  },
+  {
+    label: 'SHOOT',
+    title: '제작',
+    text: '촬영과 편집 진행',
+    icon: Camera,
+  },
+  {
+    label: 'DELIVER',
+    title: '납품',
+    text: '최종 결과물 전달',
+    icon: Send,
+  },
+];
 
 function ContactCta({ onOpenContact, onOpenAuth }) {
   return (
     <section id="contact" className="section contact-section contact-cta-section">
-      <div className="contact-cta-panel">
+      <div className="contact-cta-panel contact-cta-panel-dynamic">
         <motion.div
-          className="contact-cta-copy"
-          initial={{ opacity: 0, y: 26 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="contact-cta-copy contact-cta-copy-dynamic"
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.62 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="eyebrow">CONTACT</p>
-          <h2>브랜드의 다음 장면을 함께 설계합니다.</h2>
+          <h2>다음 장면을 시작합니다.</h2>
           <p>
-            제작 유형과 목표를 남겨주시면 프로젝트 범위와 일정에 맞춰 상담을 이어갑니다.
+            제작 목표만 남겨주세요. 기획부터 납품까지 필요한 흐름으로 정리해드립니다.
           </p>
 
           <div className="contact-cta-actions">
             <button className="primary-button" type="button" onClick={onOpenContact}>
-              문의하기
+              프로젝트 문의
               <MessageCircle size={18} />
             </button>
             <button className="ghost-button" type="button" onClick={() => onOpenAuth?.('register')}>
@@ -31,56 +68,62 @@ function ContactCta({ onOpenContact, onOpenAuth }) {
         </motion.div>
 
         <motion.div
-          className="contact-cta-cards"
-          initial={{ opacity: 0, y: 26 }}
+          className="contact-cta-flow"
+          initial={{ opacity: 0, y: 34 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.62, delay: 0.08 }}
+          transition={{ duration: 0.72, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
         >
-          <button className="contact-cta-card is-main" type="button" onClick={onOpenContact}>
-            <div>
-              <MessageCircle size={24} />
-            </div>
-            <span>CONTACT</span>
-            <strong>프로젝트 문의</strong>
-            <p>제작 목적과 일정, 참고 자료를 남겨주세요.</p>
-            <em>
-              문의하기
-              <ArrowRight size={16} />
-            </em>
-          </button>
+          {flowItems.map((item, index) => {
+            const Icon = item.icon;
+            const content = (
+              <>
+                <div className="contact-cta-flow-icon">
+                  <Icon size={22} />
+                </div>
+                <span>{item.label}</span>
+                <strong>{item.title}</strong>
+                <p>{item.text}</p>
+                {item.action === 'contact' && (
+                  <em>
+                    열기
+                    <ArrowRight size={16} />
+                  </em>
+                )}
+              </>
+            );
 
-          <button className="contact-cta-card" type="button" onClick={() => onOpenAuth?.('register')}>
-            <div>
-              <ClipboardList size={24} />
-            </div>
-            <span>ACCOUNT</span>
-            <strong>프로젝트 관리</strong>
-            <p>진행 현황과 시사 링크, 결제 내역을 확인할 수 있습니다.</p>
-            <em>
-              가입하기
-              <ArrowRight size={16} />
-            </em>
-          </button>
+            if (item.action === 'contact') {
+              return (
+                <motion.button
+                  key={item.label}
+                  type="button"
+                  className={'contact-cta-flow-card ' + (item.primary ? 'is-main' : '')}
+                  onClick={onOpenContact}
+                  whileHover={{ y: -12, scale: 1.035 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+                >
+                  {content}
+                </motion.button>
+              );
+            }
 
-          <div className="contact-cta-card">
-            <div>
-              <PhoneCall size={24} />
-            </div>
-            <span>PHONE</span>
-            <strong>1577-5157</strong>
-            <p>빠른 상담은 전화로 문의해주세요.</p>
-          </div>
-
-          <div className="contact-cta-card">
-            <div>
-              <ShieldCheck size={24} />
-            </div>
-            <span>FLOW</span>
-            <strong>CONTACT + 회원 전환</strong>
-            <p>프로젝트 흐름을 단계별로 안내합니다.</p>
-          </div>
+            return (
+              <motion.article
+                key={item.label}
+                className="contact-cta-flow-card"
+                whileHover={{ y: -12, scale: 1.035 }}
+                transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+              >
+                {content}
+              </motion.article>
+            );
+          })}
         </motion.div>
+
+        <div className="contact-cta-orbit" aria-hidden="true">
+          <Sparkles size={18} />
+        </div>
       </div>
     </section>
   );
