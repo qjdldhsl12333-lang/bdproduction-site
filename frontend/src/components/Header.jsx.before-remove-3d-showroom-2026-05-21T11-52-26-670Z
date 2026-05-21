@@ -3,6 +3,7 @@ import {
   Clapperboard,
   FolderOpen,
   Home,
+  Layers3,
   LogIn,
   Menu,
   MessageCircle,
@@ -14,12 +15,14 @@ import {
 
 const navItems = [
   { label: '홈', href: '/#hero', icon: Home },
-  { label: 'BD기획', href: '/#hero', icon: Sparkles },  { label: '대표작', href: '/#portfolio', icon: Clapperboard },
+  { label: 'BD기획', href: '/#hero', icon: Sparkles },
+  { label: 'BDPRODUCTION', href: '/#insight', icon: Layers3 },
+  { label: '대표작', href: '/#portfolio', icon: Clapperboard },
   { label: '전체 포트폴리오', href: '/portfolio', icon: FolderOpen },
 ];
 
 const desktopNavItems = navItems.filter(
-  (item) => !['홈', 'BD기획'].includes(item.label)
+  (item) => !['홈', 'BD기획', 'BDPRODUCTION'].includes(item.label)
 );
 
 function Header({ onOpenContact, onOpenAuth }) {
