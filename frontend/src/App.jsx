@@ -17,8 +17,8 @@ function HomePage({ onOpenContact, onOpenAuth }) {
   return (
     <>
       <Hero />
-      <BDStudioShowroom />
       <Portfolio />
+      <BDStudioShowroom />
       <ContactCta onOpenContact={onOpenContact} onOpenAuth={onOpenAuth} />
     </>
   );
