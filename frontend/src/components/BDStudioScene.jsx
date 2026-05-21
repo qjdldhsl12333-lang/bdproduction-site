@@ -1,382 +1,338 @@
-import { ContactShadows, Environment, Float, Text } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { ContactShadows, Environment, Float, MeshReflectorMaterial, Sparkles, Text } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 function BDStudioScene({ isPlaying }) {
-    const studioRef = useRef(null);
+  const rigRef = useRef(null);
+  const coreRef = useRef(null);
+  const ringsRef = useRef(null);
+  const { pointer } = useThree();
 
-    useFrame((state) => {
-        if (!studioRef.current) {
-            return;
-        }
+  useFrame((state, delta) => {
+    const elapsed = state.clock.elapsedTime;
 
-        studioRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.22) * 0.025;
-    });
+    if (rigRef.current) {
+      rigRef.current.rotation.y = THREE.MathUtils.lerp(
+        rigRef.current.rotation.y,
+        pointer.x * 0.18,
+        0.045
+      );
+      rigRef.current.rotation.x = THREE.MathUtils.lerp(
+        rigRef.current.rotation.x,
+        -pointer.y * 0.075,
+        0.045
+      );
+      rigRef.current.position.x = THREE.MathUtils.lerp(rigRef.current.position.x, pointer.x * 0.16, 0.04);
+      rigRef.current.position.y = THREE.MathUtils.lerp(rigRef.current.position.y, -pointer.y * 0.045, 0.04);
+    }
 
-    return (
-        <>
-            <color attach="background" args={['#d8d8d8']} />
-            <ambientLight intensity={1.25} />
-            <directionalLight position={[3, 4, 3]} intensity={1.1} castShadow />
+    if (coreRef.current) {
+      coreRef.current.rotation.y += delta * 0.42;
+      coreRef.current.rotation.x = Math.sin(elapsed * 0.55) * 0.09;
+      coreRef.current.position.y = Math.sin(elapsed * 0.72) * 0.055;
+    }
 
+    if (ringsRef.current) {
+      ringsRef.current.rotation.y -= delta * 0.28;
+      ringsRef.current.rotation.z = Math.sin(elapsed * 0.34) * 0.08;
+    }
+  });
 
-            <group ref={studioRef} position={[0, -0.65, 0]} rotation={[0, -0.08, 0]}>
-                <StudioSet isPlaying={isPlaying} />
-            </group>
+  return (
+    <>
+      <color attach="background" args={['#010405']} />
+      <fog attach="fog" args={['#010405', 5.8, 12.5]} />
 
-            <ContactShadows
-                position={[0, -1.18, 0]}
-                opacity={0.18}
-                scale={6}
-                blur={2.4}
-                far={2.5}
+      <ambientLight intensity={0.34} />
+      <directionalLight position={[2.4, 4.6, 3.2]} intensity={1.05} color="#d9fff0" castShadow />
+      <pointLight position={[-3.2, 1.6, 2.4]} intensity={16} color="#95ff00" distance={6.8} />
+      <pointLight position={[3.4, 2.2, -0.6]} intensity={9} color="#18a1aa" distance={7.2} />
+      <spotLight position={[0, 4.6, 3.2]} angle={0.36} penumbra={0.72} intensity={3.2} color="#ffffff" castShadow />
+
+      <Environment preset="night" />
+
+      <group ref={rigRef} position={[0, -0.2, 0]}>
+        <ReflectiveStage />
+        <BackGlow />
+        <CinematicPrism coreRef={coreRef} ringsRef={ringsRef} />
+        <ShowreelGlassScreen isPlaying={isPlaying} />
+        <FloatingLightPanels />
+        <NeonRails />
+      </group>
+
+      <Sparkles
+        count={80}
+        scale={[6, 2.8, 4.8]}
+        size={1.35}
+        speed={0.24}
+        opacity={0.55}
+        color="#95ff00"
+        position={[0, 0.7, -0.5]}
+      />
+
+      <ContactShadows
+        position={[0, -1.18, 0]}
+        opacity={0.42}
+        scale={7.2}
+        blur={2.8}
+        far={3.2}
+        color="#000000"
+      />
+    </>
+  );
+}
+
+function ReflectiveStage() {
+  return (
+    <group>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.22, 0]} receiveShadow>
+        <planeGeometry args={[8.4, 6.2]} />
+        <MeshReflectorMaterial
+          color="#020606"
+          metalness={0.66}
+          roughness={0.16}
+          blur={[520, 120]}
+          mixBlur={1.15}
+          mixStrength={1.35}
+          resolution={1024}
+          mirror={0.62}
+          depthScale={0.35}
+          minDepthThreshold={0.3}
+          maxDepthThreshold={1.2}
+        />
+      </mesh>
+
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.205, 0.05]}>
+        <ringGeometry args={[1.58, 1.62, 160]} />
+        <meshBasicMaterial color="#95ff00" transparent opacity={0.38} />
+      </mesh>
+
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.202, 0.05]}>
+        <ringGeometry args={[2.42, 2.45, 180]} />
+        <meshBasicMaterial color="#18a1aa" transparent opacity={0.18} />
+      </mesh>
+    </group>
+  );
+}
+
+function BackGlow() {
+  return (
+    <group position={[0, 0.15, -1.92]}>
+      <mesh>
+        <planeGeometry args={[5.2, 2.9]} />
+        <meshBasicMaterial color="#031013" transparent opacity={0.55} />
+      </mesh>
+      <mesh position={[0, 0, 0.01]}>
+        <planeGeometry args={[3.4, 1.72]} />
+        <meshBasicMaterial color="#095b4d" transparent opacity={0.08} />
+      </mesh>
+      <mesh position={[0, 0, 0.02]}>
+        <ringGeometry args={[1.25, 1.29, 128]} />
+        <meshBasicMaterial color="#95ff00" transparent opacity={0.24} />
+      </mesh>
+      <mesh position={[0, 0, 0.025]}>
+        <ringGeometry args={[1.86, 1.88, 128]} />
+        <meshBasicMaterial color="#18a1aa" transparent opacity={0.12} />
+      </mesh>
+    </group>
+  );
+}
+
+function CinematicPrism({ coreRef, ringsRef }) {
+  return (
+    <Float speed={1.35} rotationIntensity={0.1} floatIntensity={0.16}>
+      <group ref={coreRef} position={[0, 0.38, -0.28]}>
+        <mesh castShadow>
+          <icosahedronGeometry args={[0.68, 1]} />
+          <meshPhysicalMaterial
+            color="#dfffee"
+            emissive="#0f3a29"
+            emissiveIntensity={0.35}
+            metalness={0.38}
+            roughness={0.12}
+            transmission={0.34}
+            thickness={0.72}
+            transparent
+            opacity={0.72}
+            clearcoat={1}
+            clearcoatRoughness={0.08}
+          />
+        </mesh>
+
+        <mesh scale={[1.04, 1.04, 1.04]}>
+          <icosahedronGeometry args={[0.69, 1]} />
+          <meshBasicMaterial color="#95ff00" transparent opacity={0.055} wireframe />
+        </mesh>
+
+        <group ref={ringsRef}>
+          <NeonRing rotation={[Math.PI / 2, 0, 0]} color="#95ff00" opacity={0.78} />
+          <NeonRing rotation={[0.62, 0.18, Math.PI / 2]} color="#18a1aa" opacity={0.44} scale={1.18} />
+          <NeonRing rotation={[0.2, Math.PI / 2, -0.42]} color="#a6e4db" opacity={0.26} scale={1.36} />
+        </group>
+      </group>
+    </Float>
+  );
+}
+
+function NeonRing({ rotation, color, opacity, scale = 1 }) {
+  return (
+    <mesh rotation={rotation} scale={scale}>
+      <torusGeometry args={[1.0, 0.012, 12, 160]} />
+      <meshBasicMaterial color={color} transparent opacity={opacity} />
+    </mesh>
+  );
+}
+
+function ShowreelGlassScreen({ isPlaying }) {
+  const [videoReady, setVideoReady] = useState(false);
+
+  const video = useMemo(() => {
+    const element = document.createElement('video');
+    element.src = '/videos/showreel.mp4';
+    element.crossOrigin = 'anonymous';
+    element.loop = true;
+    element.muted = true;
+    element.playsInline = true;
+    element.preload = 'auto';
+    return element;
+  }, []);
+
+  const texture = useMemo(() => {
+    const videoTexture = new THREE.VideoTexture(video);
+    videoTexture.colorSpace = THREE.SRGBColorSpace;
+    videoTexture.minFilter = THREE.LinearFilter;
+    videoTexture.magFilter = THREE.LinearFilter;
+    return videoTexture;
+  }, [video]);
+
+  useEffect(() => {
+    const handleCanPlay = () => setVideoReady(true);
+    const handleError = () => setVideoReady(false);
+
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('error', handleError);
+
+    return () => {
+      video.pause();
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('error', handleError);
+      texture.dispose();
+    };
+  }, [texture, video]);
+
+  useEffect(() => {
+    if (!videoReady) {
+      return;
+    }
+
+    if (isPlaying) {
+      video.play().catch(() => setVideoReady(false));
+    } else {
+      video.pause();
+    }
+  }, [isPlaying, video, videoReady]);
+
+  return (
+    <group position={[0, 0.28, 0.78]} rotation={[-0.06, 0, 0]}>
+      <mesh position={[0, 0, -0.035]} castShadow>
+        <boxGeometry args={[2.58, 1.18, 0.055]} />
+        <meshPhysicalMaterial
+          color="#061214"
+          metalness={0.62}
+          roughness={0.18}
+          clearcoat={1}
+          clearcoatRoughness={0.08}
+        />
+      </mesh>
+
+      <mesh position={[0, 0, 0]}>
+        <planeGeometry args={[2.28, 0.82]} />
+        {videoReady ? (
+          <meshBasicMaterial map={texture} toneMapped={false} />
+        ) : (
+          <meshStandardMaterial color="#020303" emissive="#0b2a22" emissiveIntensity={0.8} roughness={0.25} />
+        )}
+      </mesh>
+
+      {!videoReady && <ScreenFallbackText />}
+
+      {videoReady && !isPlaying && (
+        <mesh position={[0, 0, 0.014]}>
+          <planeGeometry args={[2.3, 0.84]} />
+          <meshBasicMaterial color="#000000" transparent opacity={0.34} />
+        </mesh>
+      )}
+
+      <mesh position={[0, -0.62, -0.02]}>
+        <boxGeometry args={[2.72, 0.045, 0.1]} />
+        <meshStandardMaterial color="#95ff00" emissive="#95ff00" emissiveIntensity={0.72} roughness={0.18} />
+      </mesh>
+    </group>
+  );
+}
+
+function ScreenFallbackText() {
+  return (
+    <group position={[0, 0, 0.02]}>
+      <Text fontSize={0.11} color="#f5f7ee" anchorX="center" anchorY="middle" letterSpacing={0.05}>
+        BDPRODUCTION
+      </Text>
+      <Text position={[0, -0.18, 0]} fontSize={0.045} color="#95ff00" anchorX="center" anchorY="middle" letterSpacing={0.12}>
+        SHOWREEL READY
+      </Text>
+    </group>
+  );
+}
+
+function FloatingLightPanels() {
+  const panels = [
+    { position: [-1.88, 0.42, -0.62], rotation: [0.04, 0.36, -0.03], scale: [0.42, 1.32, 0.018], color: '#95ff00', opacity: 0.22 },
+    { position: [1.82, 0.52, -0.72], rotation: [-0.03, -0.34, 0.04], scale: [0.42, 1.1, 0.018], color: '#18a1aa', opacity: 0.2 },
+    { position: [-1.22, -0.14, 0.65], rotation: [0.08, 0.18, 0.04], scale: [0.32, 0.86, 0.014], color: '#a6e4db', opacity: 0.12 },
+    { position: [1.12, -0.06, 0.66], rotation: [-0.06, -0.2, -0.05], scale: [0.32, 0.74, 0.014], color: '#95ff00', opacity: 0.13 },
+  ];
+
+  return (
+    <group>
+      {panels.map((panel, index) => (
+        <Float key={index} speed={1 + index * 0.12} rotationIntensity={0.08} floatIntensity={0.12}>
+          <mesh position={panel.position} rotation={panel.rotation} scale={panel.scale}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshPhysicalMaterial
+              color={panel.color}
+              emissive={panel.color}
+              emissiveIntensity={0.35}
+              roughness={0.06}
+              metalness={0.2}
+              transmission={0.55}
+              transparent
+              opacity={panel.opacity}
+              clearcoat={1}
             />
-
-        </>
-    );
-}
-
-function StudioSet({ isPlaying }) {
-    return (
-        <group>
-            <Platform />
-            <BackWall />
-            <SideWall />
-            <ScreenFrame />
-            <VideoScreen isPlaying={isPlaying} />
-            <StudioFurniture />
-            <WallLights />
-        </group>
-    );
-}
-
-function Platform() {
-    return (
-        <group>
-            {/* 바깥 플랫폼 */}
-            <mesh position={[0, -0.1, 0]} receiveShadow castShadow>
-                <boxGeometry args={[5.2, 0.26, 3.05]} />
-                <meshStandardMaterial color="#6a6470" roughness={0.88} />
-            </mesh>
-
-            {/* 안쪽 카펫 */}
-            <mesh position={[0.18, 0.045, 0.08]} receiveShadow>
-                <boxGeometry args={[3.9, 0.03, 2.15]} />
-                <meshStandardMaterial color="#6b2247" roughness={0.95} />
-            </mesh>
-        </group>
-    );
-}
-
-function BackWall() {
-    return (
-        <mesh position={[0, 1.3, -1.55]} receiveShadow castShadow>
-            <boxGeometry args={[4.8, 2.8, 0.18]} />
-            <meshStandardMaterial color="#625d66" roughness={0.82} />
-        </mesh>
-    );
-}
-
-function SideWall() {
-    return (
-        <mesh
-            position={[-2.0, 1.02, -0.18]}
-            rotation={[0, Math.PI / 2, 0]}
-            receiveShadow
-            castShadow
-        >
-            <boxGeometry args={[2.05, 2.15, 0.14]} />
-            <meshStandardMaterial color="#6b6570" roughness={0.92} />
-        </mesh>
-    );
-}
-
-function ScreenFrame() {
-    return (
-        <group position={[0.18, 1.18, -1.18]}>
-            {/* 본체 프레임 */}
-            <mesh position={[0, 0, 0]} castShadow>
-                <boxGeometry args={[2.92, 1.28, 0.12]} />
-                <meshStandardMaterial color="#5d5862" roughness={0.86} />
-            </mesh>
-
-            {/* 스크린 아래 받침대 */}
-            <mesh position={[0, -0.86, 0.08]} castShadow>
-                <boxGeometry args={[3.14, 0.24, 0.34]} />
-                <meshStandardMaterial color="#6b6670" roughness={0.86} />
-            </mesh>
-        </group>
-    );
-}
-
-function VideoScreen({ isPlaying }) {
-    const [videoReady, setVideoReady] = useState(false);
-
-    const video = useMemo(() => {
-        const element = document.createElement('video');
-
-        element.src = '/videos/showreel.mp4';
-        element.crossOrigin = 'anonymous';
-        element.loop = true;
-        element.muted = true;
-        element.playsInline = true;
-        element.preload = 'auto';
-
-        return element;
-    }, []);
-
-    const texture = useMemo(() => {
-        const videoTexture = new THREE.VideoTexture(video);
-
-        videoTexture.colorSpace = THREE.SRGBColorSpace;
-        videoTexture.minFilter = THREE.LinearFilter;
-        videoTexture.magFilter = THREE.LinearFilter;
-
-        return videoTexture;
-    }, [video]);
-
-    useEffect(() => {
-        const handleCanPlay = () => {
-            setVideoReady(true);
-        };
-
-        const handleError = () => {
-            setVideoReady(false);
-        };
-
-        video.addEventListener('canplay', handleCanPlay);
-        video.addEventListener('error', handleError);
-
-        return () => {
-            video.pause();
-            video.removeEventListener('canplay', handleCanPlay);
-            video.removeEventListener('error', handleError);
-            texture.dispose();
-        };
-    }, [texture, video]);
-
-    useEffect(() => {
-        if (!videoReady) {
-            return;
-        }
-
-        if (isPlaying) {
-            video.play().catch(() => {
-                setVideoReady(false);
-            });
-        } else {
-            video.pause();
-        }
-    }, [isPlaying, video, videoReady]);
-
-    return (
-        <group position={[0.18, 1.18, -1.1]}>
-            <mesh>
-                <planeGeometry args={[2.42, 0.92]} />
-                {videoReady ? (
-                    <meshBasicMaterial map={texture} toneMapped={false} />
-                ) : (
-                    <meshStandardMaterial color="#111111" emissive="#1c1c1c" emissiveIntensity={0.72} />
-                )}
-            </mesh>
-
-            {!videoReady && (
-                <>
-                    <mesh position={[0, 0, 0.004]}>
-                        <planeGeometry args={[3.35, 1.43]} />
-                        <meshBasicMaterial color="#171717" transparent opacity={0.92} />
-                    </mesh>
-
-                    <Text
-                        position={[0, 0.08, 0.018]}
-                        fontSize={0.11}
-                        color="#d8b76a"
-                        anchorX="center"
-                        anchorY="middle"
-                    >
-                        BD PRODUCTION
-                    </Text>
-
-                    <Text
-                        position={[0, -0.11, 0.018]}
-                        fontSize={0.05}
-                        color="#f5f0e6"
-                        anchorX="center"
-                        anchorY="middle"
-                    >
-                        SHOWREEL SCREEN READY
-                    </Text>
-                </>
-            )}
-
-            {videoReady && !isPlaying && (
-                <mesh position={[0, 0, 0.012]}>
-                    <planeGeometry args={[3.38, 1.46]} />
-                    <meshBasicMaterial color="#000000" transparent opacity={0.28} />
-                </mesh>
-            )}
-        </group>
-    );
-}
-
-function StudioFurniture() {
-    return (
-        <group>
-            <SimpleBench position={[0.18, 0.1, 0.48]} />
-            <SimpleSeat position={[-0.55, 0.03, 0.84]} />
-            <SimpleSeat position={[0.72, 0.03, 0.84]} />
-        </group>
-    );
-}
-
-function SimpleBench({ position }) {
-    return (
-        <group position={position}>
-            <mesh position={[0, 0.18, 0]} castShadow>
-                <boxGeometry args={[1.2, 0.08, 0.22]} />
-                <meshStandardMaterial color="#bcb8b3" roughness={0.9} />
-            </mesh>
-
-            {[
-                [-0.48, 0.06, -0.06],
-                [0.48, 0.06, -0.06],
-                [-0.48, 0.06, 0.06],
-                [0.48, 0.06, 0.06],
-            ].map((leg) => (
-                <mesh key={leg.join('-')} position={leg} castShadow>
-                    <boxGeometry args={[0.05, 0.18, 0.05]} />
-                    <meshStandardMaterial color="#8b8482" roughness={0.95} />
-                </mesh>
-            ))}
-        </group>
-    );
-}
-
-function SimpleSeat({ position }) {
-    return (
-        <group position={position}>
-            <mesh position={[0, 0.18, 0]} castShadow>
-                <boxGeometry args={[0.34, 0.34, 0.08]} />
-                <meshStandardMaterial color="#aaa6a4" roughness={0.92} />
-            </mesh>
-
-            {[
-                [-0.12, 0.06, -0.12],
-                [0.12, 0.06, -0.12],
-                [-0.12, 0.06, 0.12],
-                [0.12, 0.06, 0.12],
-            ].map((leg) => (
-                <mesh key={leg.join('-')} position={leg} castShadow>
-                    <boxGeometry args={[0.04, 0.2, 0.04]} />
-                    <meshStandardMaterial color="#8f8b88" roughness={0.95} />
-                </mesh>
-            ))}
-        </group>
-    );
-}
-
-function Table({ position }) {
-    return (
-        <group position={position}>
-            <mesh position={[0, 0.34, 0]} castShadow receiveShadow>
-                <boxGeometry args={[1.55, 0.08, 0.58]} />
-                <meshStandardMaterial color="#b8b3aa" roughness={0.72} />
-            </mesh>
-
-            {[
-                [-0.64, 0.12, -0.22],
-                [0.64, 0.12, -0.22],
-                [-0.64, 0.12, 0.22],
-                [0.64, 0.12, 0.22],
-            ].map((legPosition) => (
-                <mesh key={legPosition.join('-')} position={legPosition} castShadow>
-                    <boxGeometry args={[0.08, 0.28, 0.08]} />
-                    <meshStandardMaterial color="#77716d" roughness={0.82} />
-                </mesh>
-            ))}
-        </group>
-    );
-}
-
-function Chair({ position, rotation = [0, 0, 0] }) {
-    return (
-        <group position={position} rotation={rotation}>
-            {/* 좌석 */}
-            <mesh position={[0, 0.22, 0]} castShadow receiveShadow>
-                <boxGeometry args={[0.46, 0.08, 0.42]} />
-                <meshStandardMaterial color="#bdbab2" roughness={0.78} />
-            </mesh>
-
-            {/* 등받이: 카메라 쪽에 있고, 사람은 스크린 방향을 바라보는 구조 */}
-            <mesh position={[0, 0.52, 0.22]} castShadow>
-                <boxGeometry args={[0.5, 0.5, 0.08]} />
-                <meshStandardMaterial color="#b8b5ad" roughness={0.78} />
-            </mesh>
-
-            {/* 다리 */}
-            {[
-                [-0.17, 0.08, -0.15],
-                [0.17, 0.08, -0.15],
-                [-0.17, 0.08, 0.15],
-                [0.17, 0.08, 0.15],
-            ].map((legPosition) => (
-                <mesh key={legPosition.join('-')} position={legPosition} castShadow>
-                    <boxGeometry args={[0.055, 0.24, 0.055]} />
-                    <meshStandardMaterial color="#7a7770" roughness={0.86} />
-                </mesh>
-            ))}
-        </group>
-    );
-}
-
-function WallLights() {
-    return (
-        <group>
-            {[-0.26, 0, 0.26].map((offset, index) => (
-                <mesh
-                    key={index}
-                    position={[-1.9, 1.18 + offset, -0.9]}
-                    rotation={[0, Math.PI / 2, 0]}
-                >
-                    <boxGeometry args={[0.03, 0.18, 0.06]} />
-                    <meshStandardMaterial
-                        color="#fff8e4"
-                        emissive="#fff7d6"
-                        emissiveIntensity={1.35}
-                        roughness={0.45}
-                    />
-                </mesh>
-            ))}
-        </group>
-    );
-}
-
-function DecorativeFilmReel() {
-    return (
-        <Float speed={1.25} rotationIntensity={0.14} floatIntensity={0.12}>
-            <group position={[1.95, 2.28, -1.04]} rotation={[0.18, -0.45, 0.08]}>
-                <mesh castShadow>
-                    <torusGeometry args={[0.34, 0.035, 14, 64]} />
-                    <meshStandardMaterial color="#2f2f31" metalness={0.25} roughness={0.42} />
-                </mesh>
-
-                {[0, 1, 2, 3, 4].map((item) => {
-                    const angle = (item / 5) * Math.PI * 2;
-
-                    return (
-                        <mesh
-                            key={item}
-                            position={[Math.cos(angle) * 0.16, Math.sin(angle) * 0.16, 0.01]}
-                        >
-                            <circleGeometry args={[0.055, 24]} />
-                            <meshStandardMaterial color="#5f5f63" roughness={0.52} />
-                        </mesh>
-                    );
-                })}
-            </group>
+          </mesh>
         </Float>
-    );
+      ))}
+    </group>
+  );
+}
+
+function NeonRails() {
+  return (
+    <group>
+      {[-1, 1].map((side) => (
+        <mesh key={side} position={[side * 2.05, -0.92, 0.12]} rotation={[0, 0, 0]}>
+          <boxGeometry args={[0.018, 0.018, 3.1]} />
+          <meshStandardMaterial color="#95ff00" emissive="#95ff00" emissiveIntensity={1.1} roughness={0.22} />
+        </mesh>
+      ))}
+
+      <mesh position={[0, -0.91, -1.28]}>
+        <boxGeometry args={[3.8, 0.014, 0.014]} />
+        <meshStandardMaterial color="#18a1aa" emissive="#18a1aa" emissiveIntensity={0.75} roughness={0.22} />
+      </mesh>
+    </group>
+  );
 }
 
 export default BDStudioScene;

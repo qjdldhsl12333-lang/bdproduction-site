@@ -17,7 +17,7 @@ function BDStudioShowroom() {
                     transition={{ duration: 0.65 }}
                 >
                     <p className="eyebrow">BD STUDIO</p>
-                    <h2>SHOWREEL ROOM</h2>
+                    <h2>INTERACTIVE SHOWREEL</h2>
                 </motion.div>
             </div>
 
@@ -35,7 +35,7 @@ function BDStudioShowroom() {
                         onClick={() => setIsPlaying(true)}
                     >
                         <Play size={15} />
-                        START MOVIE
+                        PLAY REEL
                     </button>
 
                     <button
@@ -44,15 +44,15 @@ function BDStudioShowroom() {
                         onClick={() => setIsPlaying(false)}
                     >
                         <Pause size={15} />
-                        STOP MOVIE
+                        PAUSE REEL
                     </button>
                 </div>
 
                 <Canvas
                     shadows
                     camera={{
-                        position: [0, 1.45, 6.9],
-                        fov: 28,
+                        position: [0, 0.65, 6.2],
+                        fov: 34,
                     }}
                     gl={{
                         antialias: true,
@@ -65,10 +65,7 @@ function BDStudioShowroom() {
                 </Canvas>
             </motion.div>
 
-            <p className="studio-showroom-note">
-                영상 파일 연결 위치: <strong>frontend/public/videos/showreel.mp4</strong>
-            </p>
-        </section>
+            </section>
     );
 }
 
