@@ -5261,129 +5261,103 @@ body,
 }
 /* End Portfolio compact card final v2 */
 
-/* BDPRODUCTION neon cinematic theme start */
+
+/* BDPRODUCTION neon cinematic dark theme v2 start */
 :root {
   --bg: #020407;
-  --bg-soft: #030b0f;
-  --bg-card: rgba(10, 131, 146, 0.11);
-  --bg-card-strong: rgba(10, 131, 146, 0.18);
-  --bg-panel: #041a21;
-  --bg-deep: #042b2a;
-
-  --text: #f5f7ee;
+  --bg-soft: #030B0F;
+  --bg-panel: #041A21;
+  --bg-deep-teal: #042B2A;
+  --bg-card: rgba(4, 26, 33, 0.72);
+  --bg-card-strong: rgba(6, 51, 70, 0.82);
+  --text: #F5F7EE;
   --muted: rgba(166, 228, 219, 0.68);
-  --muted-strong: rgba(234, 253, 244, 0.82);
-
-  --accent: #95ff00;
-  --accent-soft: #b6db3b;
-  --accent-cyan: #18a1aa;
-  --accent-teal: #0a8392;
-  --accent-mint: #6dcdbe;
-
-  --gold: #95ff00;
+  --muted-strong: rgba(234, 253, 244, 0.84);
+  --accent: #95FF00;
+  --accent-soft: #B6DB3B;
+  --accent-cyan: #18A1AA;
+  --accent-teal: #0A8392;
+  --gold: #95FF00;
   --gold-soft: rgba(149, 255, 0, 0.14);
   --line: rgba(166, 228, 219, 0.16);
-  --line-strong: rgba(149, 255, 0, 0.42);
-  --danger: #cb2f10;
-  --shadow: 0 26px 90px rgba(0, 0, 0, 0.58);
+  --line-strong: rgba(149, 255, 0, 0.38);
+  --danger: #CB2F10;
+  --shadow: 0 26px 90px rgba(0, 0, 0, 0.62);
 }
 
 html,
 body,
 .app-shell {
-  background: #020407;
-  color: var(--text);
-}
-
-body {
   background:
-    radial-gradient(circle at 16% 0%, rgba(24, 161, 170, 0.16), transparent 32%),
-    radial-gradient(circle at 88% 12%, rgba(149, 255, 0, 0.1), transparent 28%),
-    radial-gradient(circle at 42% 48%, rgba(5, 79, 37, 0.18), transparent 36%),
-    linear-gradient(180deg, #020407 0%, #030b0f 42%, #020407 100%) !important;
+    radial-gradient(circle at 78% 6%, rgba(149, 255, 0, 0.07), transparent 26%),
+    radial-gradient(circle at 18% 18%, rgba(24, 161, 170, 0.13), transparent 32%),
+    linear-gradient(180deg, #020407 0%, #030B0F 38%, #020407 100%) !important;
+  color: var(--text) !important;
 }
 
+body::selection {
+  background: rgba(149, 255, 0, 0.32);
+  color: #020407;
+}
+
+main,
 .section,
+.portfolio-section,
+.contact-section,
+.contact-cta-section,
+.studio-showroom-section,
 .portfolio-page-section,
 .mypage-placeholder-section {
-  color: var(--text);
+  background: transparent !important;
+  color: var(--text) !important;
 }
 
 .section-heading h2,
 .portfolio-page-hero h1,
 .mypage-placeholder-hero h1,
-.contact-copy h2,
-.studio-showroom-heading h2 {
-  color: var(--text);
-  text-shadow: 0 18px 52px rgba(0, 0, 0, 0.5);
+.contact-cta-copy h2,
+.studio-showroom-heading h2,
+.portfolio-library-header h2 {
+  color: var(--text) !important;
+  text-shadow: 0 0 28px rgba(166, 228, 219, 0.08);
+}
+
+.eyebrow,
+.footer-logo,
+.footer-info dt,
+.footer-info span,
+.portfolio-youtube-body span,
+.portfolio-compact-meta span,
+.portfolio-folder-heading,
+.portfolio-folder-heading span,
+.portfolio-page-hero .eyebrow,
+.contact-cta-card span,
+.contact-cta-card em,
+.contact-cta-card div,
+.contact-cta-actions svg {
+  color: var(--accent) !important;
 }
 
 .section-heading p:not(.eyebrow),
 .portfolio-page-hero p:not(.eyebrow),
 .mypage-placeholder-hero p:not(.eyebrow),
-.contact-copy > p:not(.eyebrow),
-.studio-showroom-heading > p {
-  color: var(--muted-strong);
+.contact-cta-copy > p:not(.eyebrow),
+.studio-showroom-heading > p,
+.footer-tagline,
+.site-footer p,
+.portfolio-compact-body p,
+.contact-cta-card p {
+  color: var(--muted) !important;
 }
 
-.eyebrow {
-  color: var(--accent);
-  text-shadow: 0 0 22px rgba(149, 255, 0, 0.22);
-}
-
-/* Buttons */
-.primary-button,
-.form-submit,
-.cinematic-contact-button,
-.floating-contact-button.is-primary,
-.floating-contact-banner-single .floating-contact-button,
-.cinematic-drawer-actions .is-primary {
-  border-color: rgba(149, 255, 0, 0.72) !important;
-  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
-  color: #020407 !important;
-  box-shadow: 0 16px 40px rgba(149, 255, 0, 0.18);
-}
-
-.primary-button:hover,
-.form-submit:hover,
-.cinematic-contact-button:hover,
-.floating-contact-button.is-primary:hover,
-.floating-contact-banner-single .floating-contact-button:hover {
-  border-color: #eaffd6 !important;
-  background: linear-gradient(135deg, #b6db3b 0%, #95ff00 100%) !important;
-  color: #020407 !important;
-  transform: translateY(-2px);
-}
-
-.secondary-button,
-.ghost-button {
-  border-color: rgba(166, 228, 219, 0.18);
-  background: rgba(234, 253, 244, 0.06);
-  color: var(--text);
-}
-
-.secondary-button:hover,
-.ghost-button:hover {
-  border-color: rgba(149, 255, 0, 0.42);
-  background: rgba(149, 255, 0, 0.09);
-  color: var(--accent);
-}
-
-/* Cinematic header */
+/* Header */
 .cinematic-header {
   border-color: rgba(166, 228, 219, 0.16) !important;
-  background:
-    linear-gradient(180deg, rgba(9, 18, 21, 0.88), rgba(2, 4, 7, 0.82)) !important;
+  background: rgba(2, 4, 7, 0.78) !important;
   color: var(--text) !important;
   box-shadow:
-    0 18px 70px rgba(0, 0, 0, 0.42),
-    0 0 0 1px rgba(149, 255, 0, 0.04);
-}
-
-.cinematic-brand span {
-  border-color: rgba(149, 255, 0, 0.42) !important;
-  background: rgba(149, 255, 0, 0.14) !important;
-  color: var(--accent) !important;
+    0 18px 72px rgba(0, 0, 0, 0.52),
+    inset 0 0 0 1px rgba(149, 255, 0, 0.04) !important;
 }
 
 .cinematic-brand strong,
@@ -5393,84 +5367,103 @@ body {
   color: var(--text) !important;
 }
 
-.cinematic-desktop-nav a:hover {
+.cinematic-brand span {
+  border-color: rgba(149, 255, 0, 0.38) !important;
+  background: rgba(149, 255, 0, 0.12) !important;
   color: var(--accent) !important;
+  box-shadow: 0 0 22px rgba(149, 255, 0, 0.12);
+}
+
+.cinematic-desktop-nav a:hover,
+.cinematic-menu-button:hover,
+.cinematic-icon-button:hover {
+  color: var(--accent) !important;
+}
+
+.cinematic-contact-button,
+.primary-button,
+.floating-contact-button.is-primary,
+.floating-contact-banner-single .floating-contact-button {
+  border-color: rgba(149, 255, 0, 0.72) !important;
+  background: linear-gradient(135deg, #95FF00 0%, #B6DB3B 100%) !important;
+  color: #020407 !important;
+  box-shadow: 0 0 28px rgba(149, 255, 0, 0.22) !important;
 }
 
 .cinematic-icon-button,
-.cinematic-menu-button {
-  border-color: rgba(166, 228, 219, 0.16) !important;
-  background: rgba(234, 253, 244, 0.08) !important;
-}
-
-.cinematic-icon-button:hover,
-.cinematic-menu-button:hover {
-  border-color: rgba(149, 255, 0, 0.42) !important;
-  background: rgba(149, 255, 0, 0.12) !important;
-  color: var(--accent) !important;
+.cinematic-menu-button,
+.secondary-button,
+.ghost-button {
+  border-color: rgba(166, 228, 219, 0.18) !important;
+  background: rgba(245, 247, 238, 0.06) !important;
+  color: var(--text) !important;
 }
 
 /* Hero */
-.hero-film-section {
-  background:
-    radial-gradient(circle at 50% 48%, rgba(24, 161, 170, 0.12), transparent 38%),
-    #000 !important;
+.hero-film-section,
+.hero-film-screen,
+.hero-film-canvas {
+  background: #000 !important;
 }
 
 .hero-film-side {
   background:
-    radial-gradient(circle at 50% 40%, rgba(149, 255, 0, 0.08), transparent 42%),
-    radial-gradient(circle at 50% 70%, rgba(24, 161, 170, 0.16), transparent 46%),
-    linear-gradient(180deg, #020407 0%, #000 46%, #020407 100%) !important;
-}
-
-.hero-film-video {
-  filter: brightness(0.62) contrast(1.12) saturate(1.05) !important;
-}
-
-.hero-film-center-mark span {
-  color: #f5f7ee;
-  text-shadow:
-    0 0 28px rgba(24, 161, 170, 0.24),
-    0 18px 58px rgba(0, 0, 0, 0.72);
+    radial-gradient(circle at 50% 50%, rgba(149, 255, 0, 0.05), transparent 42%),
+    linear-gradient(180deg, #020407 0%, #000 52%, #020407 100%) !important;
 }
 
 .hero-film-center-mark strong {
-  color: rgba(182, 219, 59, 0.82);
+  color: rgba(182, 219, 59, 0.82) !important;
 }
 
-/* Portfolio main cards */
-.portfolio-section,
-.studio-showroom-section,
-.contact-section {
-  color: var(--text);
+/* Portfolio main */
+.portfolio-section {
+  position: relative;
+  overflow: hidden;
 }
 
-.portfolio-section-header {
-  color: var(--text);
+.portfolio-section::before,
+.contact-cta-section::before,
+.portfolio-page-section::before {
+  position: absolute;
+  z-index: -1;
+  inset: -80px 0 auto;
+  height: 520px;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(24, 161, 170, 0.16), transparent 34%),
+    radial-gradient(circle at 82% 18%, rgba(149, 255, 0, 0.08), transparent 30%);
+  content: '';
+  pointer-events: none;
+}
+
+.portfolio-youtube-grid {
+  gap: 18px !important;
 }
 
 .portfolio-youtube-card,
 .portfolio-card,
 .portfolio-compact-item,
-.portfolio-library-header,
 .portfolio-folder-panel,
+.portfolio-library-header,
+.portfolio-page-toolbar,
+.mypage-status-card,
 .mypage-feature-card,
-.mypage-status-card {
+.mypage-requirements-note {
   border-color: rgba(166, 228, 219, 0.14) !important;
   background:
-    radial-gradient(circle at 18% 0%, rgba(24, 161, 170, 0.12), transparent 38%),
-    rgba(234, 253, 244, 0.045) !important;
-  box-shadow: 0 22px 68px rgba(0, 0, 0, 0.28);
+    linear-gradient(180deg, rgba(245, 247, 238, 0.055), rgba(245, 247, 238, 0.025)),
+    rgba(4, 26, 33, 0.72) !important;
+  color: var(--text) !important;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28) !important;
 }
 
 .portfolio-youtube-card:hover,
 .portfolio-card:hover,
 .portfolio-compact-item:hover {
   border-color: rgba(149, 255, 0, 0.36) !important;
-  background:
-    radial-gradient(circle at 16% 0%, rgba(149, 255, 0, 0.12), transparent 34%),
-    rgba(234, 253, 244, 0.065) !important;
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(149, 255, 0, 0.08) !important;
 }
 
 .portfolio-youtube-thumb,
@@ -5478,166 +5471,146 @@ body {
 .portfolio-compact-thumb,
 .admin-portfolio-thumb {
   background:
-    radial-gradient(circle at 50% 48%, rgba(149, 255, 0, 0.16), transparent 24%),
-    radial-gradient(circle at 70% 28%, rgba(24, 161, 170, 0.26), transparent 30%),
-    linear-gradient(135deg, #041a21 0%, #020407 100%) !important;
+    radial-gradient(circle at 52% 44%, rgba(149, 255, 0, 0.13), transparent 28%),
+    radial-gradient(circle at 72% 22%, rgba(24, 161, 170, 0.28), transparent 32%),
+    linear-gradient(135deg, #041A21 0%, #020407 100%) !important;
 }
 
 .portfolio-thumb-fallback,
-.portfolio-compact-thumb-fallback,
-.admin-portfolio-thumb {
-  color: var(--text) !important;
-  text-shadow: 0 0 22px rgba(149, 255, 0, 0.18);
-}
-
-.portfolio-play-badge,
-.portfolio-play,
-.portfolio-compact-play-icon {
-  border-color: rgba(149, 255, 0, 0.46) !important;
-  background: rgba(2, 4, 7, 0.62) !important;
-  color: var(--accent) !important;
+.portfolio-compact-thumb-fallback {
+  color: rgba(245, 247, 238, 0.9) !important;
+  text-shadow: 0 0 30px rgba(166, 228, 219, 0.22);
 }
 
 .portfolio-youtube-body,
-.portfolio-card-body {
-  background: rgba(234, 253, 244, 0.055) !important;
+.portfolio-card-body,
+.portfolio-compact-body {
+  background: rgba(2, 4, 7, 0.78) !important;
   color: var(--text) !important;
-}
-
-.portfolio-youtube-body span,
-.portfolio-card-body p,
-.portfolio-compact-meta span {
-  color: var(--accent) !important;
 }
 
 .portfolio-youtube-body h3,
 .portfolio-card-body h3,
 .portfolio-compact-body h3,
-.portfolio-library-header h2 {
+.contact-cta-card strong,
+.footer-info dd,
+.footer-info p {
   color: var(--text) !important;
 }
 
-/* Studio showroom */
-.studio-showroom-frame {
-  border-color: rgba(166, 228, 219, 0.16);
-  background: #020407;
-  box-shadow:
-    0 26px 90px rgba(0, 0, 0, 0.44),
-    0 0 80px rgba(24, 161, 170, 0.08);
+.portfolio-play-badge,
+.portfolio-compact-play-icon,
+.portfolio-play {
+  border-color: rgba(149, 255, 0, 0.46) !important;
+  background: rgba(2, 4, 7, 0.72) !important;
+  color: var(--accent) !important;
+  box-shadow: 0 0 18px rgba(149, 255, 0, 0.14);
 }
 
-.studio-showroom-note strong {
-  color: var(--accent);
+/* Full portfolio page */
+.portfolio-page-hero,
+.mypage-placeholder-hero {
+  color: var(--text) !important;
 }
 
-/* Contact / forms */
-.contact-panel,
-.contact-copy,
-.contact-form,
-.auth-modal-panel,
-.contact-modal-panel,
-.modal-backdrop .portfolio-modal,
-.youtube-modal {
-  border-color: rgba(166, 228, 219, 0.16) !important;
+.portfolio-folder-button,
+.portfolio-filter-tabs button,
+.category-tabs button {
+  border-color: rgba(166, 228, 219, 0.14) !important;
+  background: rgba(245, 247, 238, 0.055) !important;
+  color: var(--muted-strong) !important;
+}
+
+.portfolio-folder-button:hover,
+.portfolio-folder-button.is-active,
+.portfolio-filter-tabs button:hover,
+.portfolio-filter-tabs button.is-active,
+.category-tabs button:hover,
+.category-tabs button.is-active {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  background: rgba(149, 255, 0, 0.14) !important;
+  color: var(--accent) !important;
+}
+
+/* Contact */
+.contact-cta-panel,
+.contact-panel {
+  border-color: rgba(166, 228, 219, 0.14) !important;
   background:
-    radial-gradient(circle at 0% 0%, rgba(24, 161, 170, 0.16), transparent 34%),
-    radial-gradient(circle at 100% 12%, rgba(149, 255, 0, 0.08), transparent 30%),
-    rgba(2, 4, 7, 0.86) !important;
-  color: var(--text) !important;
-  box-shadow: 0 28px 96px rgba(0, 0, 0, 0.48);
+    radial-gradient(circle at 10% 8%, rgba(149, 255, 0, 0.09), transparent 30%),
+    radial-gradient(circle at 78% 20%, rgba(24, 161, 170, 0.14), transparent 34%),
+    rgba(4, 26, 33, 0.64) !important;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.36) !important;
 }
 
+.contact-cta-copy,
+.contact-copy,
+.contact-cta-card,
+.contact-phone-card,
+.contact-note {
+  border-color: rgba(166, 228, 219, 0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(245, 247, 238, 0.06), rgba(245, 247, 238, 0.025)),
+    rgba(2, 4, 7, 0.52) !important;
+  color: var(--text) !important;
+}
+
+.contact-cta-card.is-main {
+  border-color: rgba(149, 255, 0, 0.28) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.12), transparent 34%),
+    rgba(2, 4, 7, 0.6) !important;
+}
+
+.contact-form,
 .contact-form input,
 .contact-form select,
 .contact-form textarea,
-.auth-form input,
-.auth-form select,
-.auth-form textarea {
-  border-color: rgba(166, 228, 219, 0.18) !important;
-  background: rgba(234, 253, 244, 0.07) !important;
+.auth-modal,
+.contact-modal,
+.modal-panel {
+  border-color: rgba(166, 228, 219, 0.16) !important;
+  background: rgba(2, 4, 7, 0.82) !important;
   color: var(--text) !important;
 }
 
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus,
-.auth-form input:focus,
-.auth-form select:focus,
-.auth-form textarea:focus {
-  border-color: rgba(149, 255, 0, 0.52) !important;
-  background: rgba(234, 253, 244, 0.1) !important;
-  box-shadow: 0 0 0 4px rgba(149, 255, 0, 0.08);
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(166, 228, 219, 0.42) !important;
 }
 
-.contact-phone-card,
-.form-receipt-card {
-  border-color: rgba(149, 255, 0, 0.36) !important;
-  background: rgba(149, 255, 0, 0.1) !important;
-  color: var(--accent) !important;
+/* Studio / footer */
+.studio-showroom-frame {
+  border-color: rgba(166, 228, 219, 0.14) !important;
+  background: #020407 !important;
+  box-shadow: 0 30px 110px rgba(0, 0, 0, 0.48) !important;
 }
 
-/* Drawer / modal dark tone */
-.cinematic-drawer {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.12), transparent 36%),
-    radial-gradient(circle at 100% 18%, rgba(24, 161, 170, 0.18), transparent 34%),
-    linear-gradient(180deg, rgba(2, 4, 7, 0.98), rgba(3, 11, 15, 0.98)) !important;
-}
-
-.cinematic-drawer-nav a,
-.cinematic-drawer-actions button,
-.cinematic-drawer-actions a {
-  border-color: rgba(166, 228, 219, 0.13) !important;
-  background: rgba(234, 253, 244, 0.06) !important;
-}
-
-.cinematic-drawer-nav a:hover,
-.cinematic-drawer-actions button:hover,
-.cinematic-drawer-actions a:hover {
-  border-color: rgba(149, 255, 0, 0.38) !important;
-  background: rgba(149, 255, 0, 0.1) !important;
-  color: var(--accent) !important;
-}
-
-/* Footer */
 .site-footer {
   border-top-color: rgba(166, 228, 219, 0.14) !important;
-  color: var(--text);
-}
-
-.footer-logo,
-.footer-info dt,
-.footer-info span {
-  color: var(--accent) !important;
-}
-
-.footer-tagline,
-.site-footer p,
-.footer-info dd,
-.footer-info p,
-.footer-notice {
-  color: var(--muted) !important;
-}
-
-.footer-bottom {
-  border-top-color: rgba(166, 228, 219, 0.1) !important;
-  color: rgba(166, 228, 219, 0.48) !important;
-}
-
-/* Keep admin readable but match the darker theme softly */
-.admin-page {
-  background:
-    radial-gradient(circle at 12% 0%, rgba(24, 161, 170, 0.16), transparent 34%),
-    linear-gradient(180deg, #020407 0%, #030b0f 100%) !important;
   color: var(--text) !important;
 }
 
-.admin-page .admin-card,
-.admin-contact-card,
-.admin-filter-panel,
-.admin-login-panel {
-  border-color: rgba(166, 228, 219, 0.16) !important;
-  background: rgba(234, 253, 244, 0.055) !important;
+.footer-notice,
+.footer-bottom {
+  border-top-color: rgba(166, 228, 219, 0.1) !important;
+  color: rgba(166, 228, 219, 0.58) !important;
 }
 
-/* BDPRODUCTION neon cinematic theme end */
+@media (max-width: 760px) {
+  .cinematic-header {
+    background: rgba(2, 4, 7, 0.84) !important;
+  }
+
+  .section,
+  .portfolio-page-section,
+  .mypage-placeholder-section {
+    width: min(100% - 28px, var(--max-width));
+  }
+
+  .portfolio-youtube-grid {
+    gap: 14px !important;
+  }
+}
+/* BDPRODUCTION neon cinematic dark theme v2 end */
+
