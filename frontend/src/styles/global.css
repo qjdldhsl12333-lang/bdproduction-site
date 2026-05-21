@@ -6009,3 +6009,158 @@ main,
   max-width: 560px;
 }
 /* End public wording cleanup visual balance */
+
+/* YouTube portfolio modal dark fix start */
+.youtube-modal-backdrop {
+  background:
+    radial-gradient(circle at 50% 28%, rgba(149, 255, 0, 0.09), transparent 34%),
+    radial-gradient(circle at 18% 72%, rgba(24, 161, 170, 0.12), transparent 34%),
+    rgba(0, 0, 0, 0.82) !important;
+  backdrop-filter: blur(18px) saturate(1.12) !important;
+}
+
+.youtube-modal {
+  overflow: hidden !important;
+  border: 1px solid rgba(166, 228, 219, 0.18) !important;
+  border-radius: 28px !important;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(149, 255, 0, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(3, 11, 15, 0.98), rgba(2, 4, 7, 0.98)) !important;
+  color: #f5f7ee !important;
+  box-shadow:
+    0 32px 96px rgba(0, 0, 0, 0.58),
+    0 0 0 1px rgba(149, 255, 0, 0.035),
+    0 0 54px rgba(149, 255, 0, 0.08) !important;
+}
+
+.youtube-modal-header {
+  padding: 20px 22px 18px !important;
+  border-bottom: 1px solid rgba(166, 228, 219, 0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(5, 23, 27, 0.96), rgba(2, 4, 7, 0.96)) !important;
+}
+
+.youtube-modal-header span {
+  display: block !important;
+  margin-bottom: 8px !important;
+  color: #95ff00 !important;
+  font-size: 0.72rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 0 18px rgba(149, 255, 0, 0.2) !important;
+}
+
+.youtube-modal-header h3 {
+  margin: 0 !important;
+  color: #f5f7ee !important;
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em !important;
+  text-shadow: 0 12px 34px rgba(0, 0, 0, 0.5) !important;
+}
+
+.youtube-modal-header button {
+  display: grid !important;
+  width: 42px !important;
+  height: 42px !important;
+  place-items: center !important;
+  border: 1px solid rgba(166, 228, 219, 0.16) !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.055) !important;
+  color: rgba(245, 247, 238, 0.86) !important;
+  box-shadow: none !important;
+}
+
+.youtube-modal-header button:hover {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  background: rgba(149, 255, 0, 0.12) !important;
+  color: #95ff00 !important;
+}
+
+.youtube-modal-player {
+  overflow: hidden !important;
+  border: 0 !important;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(24, 161, 170, 0.08), transparent 42%),
+    #020407 !important;
+}
+
+.youtube-modal-player iframe {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+  background: #020407 !important;
+}
+
+.youtube-modal-placeholder {
+  display: grid !important;
+  min-height: 360px !important;
+  place-items: center !important;
+  align-content: center !important;
+  gap: 10px !important;
+  padding: 38px 24px !important;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(149, 255, 0, 0.08), transparent 36%),
+    linear-gradient(180deg, #030b0f, #020407) !important;
+  color: #f5f7ee !important;
+  text-align: center !important;
+}
+
+.youtube-modal-placeholder p {
+  margin: 0 !important;
+  color: #f5f7ee !important;
+  font-size: 1.05rem !important;
+  font-weight: 900 !important;
+}
+
+.youtube-modal-placeholder span {
+  max-width: 420px !important;
+  color: rgba(166, 228, 219, 0.72) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.65 !important;
+}
+
+.youtube-modal-link {
+  display: inline-flex !important;
+  min-height: 54px !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  padding: 0 22px !important;
+  border-top: 1px solid rgba(166, 228, 219, 0.14) !important;
+  background: rgba(2, 4, 7, 0.98) !important;
+  color: #95ff00 !important;
+  font-size: 0.9rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.02em !important;
+  text-shadow: 0 0 16px rgba(149, 255, 0, 0.18) !important;
+}
+
+.youtube-modal-link:hover {
+  background: rgba(149, 255, 0, 0.08) !important;
+  color: #c9ff76 !important;
+}
+
+@media (max-width: 720px) {
+  .youtube-modal {
+    width: min(100%, calc(100vw - 22px)) !important;
+    border-radius: 22px !important;
+  }
+
+  .youtube-modal-header {
+    padding: 17px 18px 15px !important;
+  }
+
+  .youtube-modal-player {
+    min-height: 220px !important;
+  }
+
+  .youtube-modal-link {
+    min-height: 50px !important;
+    padding: 0 18px !important;
+  }
+}
+/* YouTube portfolio modal dark fix end */
+
