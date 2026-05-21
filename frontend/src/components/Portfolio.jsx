@@ -170,61 +170,46 @@ export function usePortfolioVideos(options = {}) {
 }
 
 export function PortfolioVideoGrid({ videos, onSelectVideo }) {
-  const reelVideos = videos.length > 0 ? [...videos, ...videos] : [];
-
   return (
-    <div className="portfolio-moving-reel" aria-label="대표 포트폴리오 무빙 갤러리">
-      <div className="portfolio-moving-reel-viewport">
-        <div className="portfolio-moving-reel-track">
-          {reelVideos.map((video, index) => {
-            const originalIndex = videos.length > 0 ? index % videos.length : 0;
+    <div className="portfolio-youtube-grid">
+      {videos.map((video, index) => (
+        <motion.article
+          className="portfolio-youtube-card"
+          key={video.id || video.video_id || video.title}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55, delay: index * 0.05 }}
+        >
+          <button
+            type="button"
+            className="portfolio-youtube-thumb"
+            onClick={() => onSelectVideo(video)}
+          >
+            {video.thumbnail_url ? (
+              <img src={video.thumbnail_url} alt={video.title} loading="lazy" />
+            ) : (
+              <div className="portfolio-thumb-fallback">BD</div>
+            )}
 
-            return (
-              <motion.article
-                className="portfolio-youtube-card portfolio-reel-card"
-                key={`${index}-${video.id || video.video_id || video.title}`}
-                initial={{ opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -10, scale: 1.045 }}
-                viewport={{ once: true, amount: 0.18 }}
-                transition={{ duration: 0.42, delay: originalIndex * 0.035 }}
-              >
-                <button
-                  type="button"
-                  className="portfolio-youtube-thumb"
-                  onClick={() => onSelectVideo(video)}
-                >
-                  {video.thumbnail_url ? (
-                    <img src={video.thumbnail_url} alt={video.title} loading="lazy" />
-                  ) : (
-                    <div className="portfolio-thumb-fallback">BD</div>
-                  )}
+            <span className="portfolio-play-badge">
+              <Play size={18} />
+            </span>
 
-                  <span className="portfolio-play-badge">
-                    <Play size={18} />
-                  </span>
+            {video.is_new && <span className="portfolio-new-badge">NEW</span>}
+          </button>
 
-                  {video.is_new && <span className="portfolio-new-badge">NEW</span>}
-                </button>
-
-                <button
-                  type="button"
-                  className="portfolio-youtube-body portfolio-reel-body"
-                  onClick={() => onSelectVideo(video)}
-                >
-                  <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
-                  <h3>{video.title}</h3>
-                </button>
-              </motion.article>
-            );
-          })}
-        </div>
-      </div>
+          <div className="portfolio-youtube-body">
+            <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
+            <h3>{video.title}</h3>
+          </div>
+        </motion.article>
+      ))}
     </div>
   );
 }
 
-export function PortfolioVideoModal({ selectedVideo, onClose }) {export function PortfolioVideoModal({ selectedVideo, onClose }) {
+export function PortfolioVideoModal({ selectedVideo, onClose }) {
   return (
     <AnimatePresence>
       {selectedVideo && (
