@@ -17,19 +17,8 @@ function BDStudioShowroom() {
                     transition={{ duration: 0.65 }}
                 >
                     <p className="eyebrow">BD STUDIO</p>
-                    <h2>HAVE IDEA FOR YOUR PROJECT?</h2>
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 26 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.28 }}
-                    transition={{ duration: 0.65, delay: 0.08 }}
-                >
-                    BDPRODUCTION의 쇼릴을 3D 스튜디오 공간 안에서 확인할 수 있도록 구성한
-                    인터랙티브 쇼룸입니다. 영상 파일을 연결하면 중앙 스크린에서 실제 영상이
-                    재생됩니다.
-                </motion.p>
+                    <h2>SHOWREEL ROOM</h2>
+                </motion.div>
             </div>
 
             <motion.div
