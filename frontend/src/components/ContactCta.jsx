@@ -13,19 +13,18 @@ function ContactCta({ onOpenContact, onOpenAuth }) {
           transition={{ duration: 0.62 }}
         >
           <p className="eyebrow">CONTACT</p>
-          <h2>프로젝트 상담은 간단하게 시작하고, 진행 관리는 회원 전용으로 확장합니다.</h2>
+          <h2>브랜드의 다음 장면을 함께 설계합니다.</h2>
           <p>
-            문의는 회원가입 없이도 남길 수 있습니다. 정식 프로젝트로 전환되면 회원가입 후
-            진행 현황, 시사 링크, 결제 상태, 영수 내역까지 한 곳에서 관리할 수 있도록 확장합니다.
+            제작 유형과 목표를 남겨주시면 프로젝트 범위와 일정에 맞춰 상담을 이어갑니다.
           </p>
 
           <div className="contact-cta-actions">
             <button className="primary-button" type="button" onClick={onOpenContact}>
-              문의 폼 열기
+              문의하기
               <MessageCircle size={18} />
             </button>
             <button className="ghost-button" type="button" onClick={() => onOpenAuth?.('register')}>
-              로그인 / 회원가입
+              회원가입
               <UserPlus size={18} />
             </button>
           </div>
@@ -42,9 +41,9 @@ function ContactCta({ onOpenContact, onOpenAuth }) {
             <div>
               <MessageCircle size={24} />
             </div>
-            <span>비회원 문의</span>
-            <strong>프로젝트 상담 요청</strong>
-            <p>제작 유형, 예산, 납기, 참고 자료를 남기면 담당자가 확인합니다.</p>
+            <span>CONTACT</span>
+            <strong>프로젝트 문의</strong>
+            <p>제작 목적과 일정, 참고 자료를 남겨주세요.</p>
             <em>
               문의하기
               <ArrowRight size={16} />
@@ -55,9 +54,9 @@ function ContactCta({ onOpenContact, onOpenAuth }) {
             <div>
               <ClipboardList size={24} />
             </div>
-            <span>회원 전용</span>
-            <strong>진행 현황 관리</strong>
-            <p>향후 내 의뢰 목록, 시사 링크, 결제 상태, 영수 내역을 제공합니다.</p>
+            <span>ACCOUNT</span>
+            <strong>프로젝트 관리</strong>
+            <p>진행 현황과 시사 링크, 결제 내역을 확인할 수 있습니다.</p>
             <em>
               가입하기
               <ArrowRight size={16} />
@@ -68,18 +67,18 @@ function ContactCta({ onOpenContact, onOpenAuth }) {
             <div>
               <PhoneCall size={24} />
             </div>
-            <span>고객센터</span>
+            <span>PHONE</span>
             <strong>1577-5157</strong>
-            <p>급한 상담은 전화 문의로 먼저 접수할 수 있습니다.</p>
+            <p>빠른 상담은 전화로 문의해주세요.</p>
           </div>
 
           <div className="contact-cta-card">
             <div>
               <ShieldCheck size={24} />
             </div>
-            <span>운영 방식</span>
-            <strong>비회원 문의 + 회원 전환</strong>
-            <p>문의 진입 장벽은 낮추고, 프로젝트 관리는 회원 기능으로 연결합니다.</p>
+            <span>FLOW</span>
+            <strong>CONTACT + 회원 전환</strong>
+            <p>프로젝트 흐름을 단계별로 안내합니다.</p>
           </div>
         </motion.div>
       </div>

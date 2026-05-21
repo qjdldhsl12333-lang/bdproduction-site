@@ -99,7 +99,7 @@ function AuthModal({ open, initialMode = 'login', onClose }) {
       setMode('login');
       setMessage({
         type: 'success',
-        text: '회원가입이 완료되었습니다. 입력한 이메일로 로그인할 수 있습니다.',
+        text: '회원가입이 완료되었습니다. 입력한 이메일로 로그인해주세요.',
       });
     } catch (error) {
       console.error('Register API error:', error);
@@ -138,7 +138,7 @@ function AuthModal({ open, initialMode = 'login', onClose }) {
       }
 
       setLoginForm(initialLoginForm);
-      setMessage({ type: 'success', text: '로그인되었습니다. 마이페이지 구조와 연결할 준비가 되었습니다.' });
+      setMessage({ type: 'success', text: '로그인되었습니다.' });
     } catch (error) {
       console.error('Login API error:', error);
       setMessage({ type: 'error', text: '로그인 API와 연결할 수 없습니다. PHP 백엔드 서버를 확인해주세요.' });
@@ -150,7 +150,7 @@ function AuthModal({ open, initialMode = 'login', onClose }) {
   const handleSocialClick = (provider) => {
     setMessage({
       type: 'info',
-      text: `${provider.label} 회원가입은 개발자 앱 정보와 Redirect URI가 확정되면 실제 OAuth로 연결됩니다. 현재는 BD 자체 회원가입을 사용할 수 있습니다.`,
+      text: `${provider.label} 로그인은 준비 중입니다. 현재는 BD 계정으로 이용해주세요.`,
     });
   };
 
@@ -168,8 +168,7 @@ function AuthModal({ open, initialMode = 'login', onClose }) {
             <p className="eyebrow">CUSTOMER ACCOUNT</p>
             <h2 id="auth-modal-title">{title}</h2>
             <p>
-              비회원 문의는 그대로 유지하고, 회원 고객에게는 진행 현황·시사 링크·결제·영수 내역을
-              제공하는 구조로 확장합니다.
+              프로젝트 진행 현황과 시사 링크, 결제 내역을 한 곳에서 확인할 수 있습니다.
             </p>
           </div>
           <button className="lead-modal-close" type="button" onClick={onClose} aria-label="닫기">
@@ -224,7 +223,7 @@ function AuthModal({ open, initialMode = 'login', onClose }) {
         </div>
 
         <div className="auth-divider">
-          <span>또는 BD 계정으로 이용</span>
+          <span>BD 계정으로 계속하기</span>
         </div>
 
         {mode === 'register' ? (
@@ -307,11 +306,11 @@ function AuthModal({ open, initialMode = 'login', onClose }) {
                 onChange={updateRegisterField}
                 required
               />
-              <span>회원정보 저장 및 상담 진행을 위한 개인정보 수집에 동의합니다.</span>
+              <span>상담 진행을 위한 개인정보 수집에 동의합니다.</span>
             </label>
 
             <button className="primary-button form-submit" type="submit" disabled={submitting}>
-              {submitting ? '가입 처리 중...' : 'BD 회원가입'}
+              {submitting ? '가입 처리 중...' : '회원가입'}
               <UserPlus size={18} />
             </button>
           </form>

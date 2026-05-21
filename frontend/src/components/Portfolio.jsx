@@ -249,8 +249,8 @@ export function PortfolioVideoModal({ selectedVideo, onClose }) {
                 />
               ) : (
                 <div className="youtube-modal-placeholder">
-                  <p>아직 실제 YouTube 영상이 연결되지 않았습니다.</p>
-                  <span>관리자 포트폴리오 CMS에서 YouTube ID를 입력하면 이 영역에서 재생됩니다.</span>
+                  <p>영상 준비 중입니다.</p>
+                  <span>곧 업데이트될 예정입니다.</span>
                 </div>
               )}
             </div>
@@ -313,7 +313,7 @@ function Portfolio() {
 
       {!loading && !errorMessage && featuredVideos.length === 0 && (
         <div className="portfolio-state">
-          대표 포트폴리오가 아직 설정되지 않았습니다.
+          표시할 포트폴리오가 없습니다.
         </div>
       )}
 

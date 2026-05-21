@@ -38,7 +38,7 @@ function Footer() {
       </div>
 
       <p className="footer-notice">
-        프로젝트 문의는 홈페이지 문의 폼으로 접수되며, 제작 범위와 일정 검토 후 담당자가 순차적으로 연락드립니다.
+        프로젝트 문의는 제작 범위와 일정 검토 후 순차적으로 안내드립니다.
       </p>
 
       <div className="footer-bottom">

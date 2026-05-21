@@ -5982,3 +5982,30 @@ main,
 }
 /* Auth modal neon dark fix end */
 
+
+
+/* Public wording cleanup visual balance */
+.contact-cta-copy h2,
+.portfolio-page-hero h1,
+.mypage-placeholder-hero h1 {
+  max-width: 820px;
+}
+
+.contact-cta-copy p:not(.eyebrow),
+.portfolio-page-hero p:not(.eyebrow),
+.mypage-placeholder-hero p:not(.eyebrow) {
+  max-width: 640px;
+}
+
+.portfolio-notice {
+  display: none !important;
+}
+
+.youtube-modal-placeholder p {
+  margin-bottom: 6px;
+}
+
+.lead-modal-header p:not(.eyebrow) {
+  max-width: 560px;
+}
+/* End public wording cleanup visual balance */

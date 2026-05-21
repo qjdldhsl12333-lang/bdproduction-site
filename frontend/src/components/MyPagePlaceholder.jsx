@@ -47,15 +47,14 @@ function MyPagePlaceholder() {
     <section className="mypage-placeholder-section">
       <div className="mypage-placeholder-hero">
         <p className="eyebrow">CUSTOMER PAGE</p>
-        <h1>고객 마이페이지 준비 화면</h1>
+        <h1>고객 마이페이지</h1>
         <p>
-          이 화면은 Phase 2 고객 플랫폼 확장을 위한 준비 화면입니다.
-          실제 이용을 위해서는 카카오·네이버·구글 소셜 로그인, 프로젝트 DB, 결제 정책, 납품 정책 확정이 필요합니다.
+          프로젝트 진행 현황, 시사 링크, 결제·영수 내역을 한 곳에서 확인하는 고객 전용 공간입니다.
         </p>
 
         <div className="mypage-placeholder-actions">
           <a className="secondary-button" href="/#contact">
-            비회원 문의로 이동
+            문의하기
           </a>
           <a className="ghost-button" href="/portfolio">
             포트폴리오 보기
@@ -64,10 +63,10 @@ function MyPagePlaceholder() {
       </div>
 
       <div className="mypage-status-card">
-        <span>현재 상태</span>
-        <strong>Phase 2 설계 대기</strong>
+        <span>STATUS</span>
+        <strong>서비스 준비 중</strong>
         <p>
-          지금은 실제 로그인 기능을 연결하지 않고, 향후 고객 전용 기능이 들어갈 화면 구조만 먼저 잡아둔 상태입니다.
+          고객 전용 기능은 순차적으로 오픈될 예정입니다.
         </p>
       </div>
 
@@ -97,14 +96,14 @@ function MyPagePlaceholder() {
       </div>
 
       <div className="mypage-requirements-note">
-        <p className="eyebrow">REQUIRED BEFORE BUILD</p>
-        <h2>실제 기능 구현 전 필요한 결정 사항</h2>
+        <p className="eyebrow">COMING SOON</p>
+        <h2>준비 중인 기능</h2>
         <ul>
-          <li>카카오·네이버·구글 소셜 로그인 개발자 앱 정보</li>
-          <li>고객 프로젝트 진행 단계와 운영 정책</li>
-          <li>후불 결제 시점과 결제 수단 범위</li>
-          <li>비공개 시사 링크 접근 권한 정책</li>
-          <li>Google Drive 또는 별도 저장소 사용 여부</li>
+          <li>소셜 로그인 연동</li>
+          <li>프로젝트 진행 현황</li>
+          <li>비공개 시사 링크</li>
+          <li>결제·영수 내역</li>
+          <li>납품 파일 확인</li>
         </ul>
       </div>
     </section>

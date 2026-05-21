@@ -22,11 +22,10 @@ function ContactModal({ open, onClose, onOpenAuth }) {
       >
         <div className="lead-modal-header">
           <div>
-            <p className="eyebrow">CONTACT MODAL</p>
+            <p className="eyebrow">CONTACT</p>
             <h2 id="contact-modal-title">프로젝트 문의하기</h2>
             <p>
-              회원가입 없이도 문의를 남길 수 있습니다. 회원가입을 하면 추후 진행 현황과
-              결제/영수 내역까지 연결할 수 있습니다.
+              제작 목적과 일정, 참고 자료를 남겨주시면 담당자가 확인 후 연락드립니다.
             </p>
           </div>
           <button className="lead-modal-close" type="button" onClick={onClose} aria-label="닫기">
@@ -37,7 +36,7 @@ function ContactModal({ open, onClose, onOpenAuth }) {
         <ContactForm compact onOpenAuth={openAuth} />
 
         <div className="lead-modal-footer">
-          <span>이미 계정이 있나요?</span>
+          <span>계정이 있으신가요?</span>
           <button type="button" onClick={() => openAuth('login')}>
             로그인하기
           </button>

@@ -78,7 +78,7 @@ function ContactForm({ compact = false, onOpenAuth }) {
       {submitted && (
         <div className="form-success">
           <CheckCircle2 size={20} />
-          문의가 정상적으로 접수되었습니다. 담당자가 확인 후 연락드릴 예정입니다.
+          문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.
         </div>
       )}
 
@@ -87,7 +87,7 @@ function ContactForm({ compact = false, onOpenAuth }) {
           <span>접수번호</span>
           <strong>#{receiptId}</strong>
           <p>
-            문의가 정상적으로 저장되었습니다. 상담 진행 시 이 번호를 기준으로 확인할 수 있습니다.
+            상담 진행 시 이 번호로 접수 내용을 확인할 수 있습니다.
           </p>
         </div>
       )}
@@ -180,7 +180,7 @@ function ContactForm({ compact = false, onOpenAuth }) {
       </label>
 
       <button className="primary-button form-submit" type="submit" disabled={submitting}>
-        {submitting ? '접수 중...' : '문의 접수하기'}
+        {submitting ? '접수 중...' : '문의하기'}
         <Send size={18} />
       </button>
 
@@ -191,7 +191,7 @@ function ContactForm({ compact = false, onOpenAuth }) {
           onClick={() => onOpenAuth('register')}
         >
           <UserPlus size={17} />
-          회원가입 후 진행 현황까지 관리하기
+          회원가입하고 진행 현황 확인하기
         </button>
       )}
     </form>

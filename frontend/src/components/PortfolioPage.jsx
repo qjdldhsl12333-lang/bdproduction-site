@@ -24,7 +24,7 @@ function resolveCategories(videos) {
 function PortfolioPage() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('전체');
-  const { videos, loading, errorMessage, source } = usePortfolioVideos();
+  const { videos, loading, errorMessage } = usePortfolioVideos();
 
   const categories = useMemo(() => resolveCategories(videos), [videos]);
 
@@ -52,26 +52,18 @@ function PortfolioPage() {
         <p className="eyebrow">FULL PORTFOLIO</p>
         <h1>전체 포트폴리오</h1>
         <p>
-          메인 페이지에는 대표작만 노출하고, 전체 작품은 별도 페이지에서 폴더형으로 관리합니다.
-          목록에서는 썸네일과 요약 정보만 표시하고, 클릭 시 모달에서만 영상을 로드합니다.
+          BDPRODUCTION의 주요 작업을 카테고리별로 확인할 수 있습니다.
         </p>
 
         <div className="portfolio-page-actions">
           <a className="secondary-button" href="/#portfolio">
-            대표작 섹션으로 돌아가기
+            대표작 보기
           </a>
           <a className="primary-button" href="/#contact">
-            제작 문의하기
+            제작 문의
           </a>
         </div>
       </div>
-
-      {source === 'fallback' && (
-        <div className="portfolio-notice">
-          현재는 기본 포트폴리오 데이터 또는 관리자 CMS 초기 데이터 기준입니다.
-          관리자 포트폴리오 CMS에서 작품을 추가하면 이 목록에 반영됩니다.
-        </div>
-      )}
 
       {loading && (
         <div className="portfolio-state">
@@ -92,8 +84,8 @@ function PortfolioPage() {
             <div className="portfolio-folder-heading">
               <FolderOpen size={22} />
               <div>
-                <span>FOLDERS</span>
-                <strong>카테고리별 보기</strong>
+                <span>CATEGORY</span>
+                <strong>카테고리</strong>
               </div>
             </div>
 
@@ -118,13 +110,13 @@ function PortfolioPage() {
           <div className="portfolio-library-content">
             <div className="portfolio-library-header">
               <div>
-                <p className="eyebrow">SELECTED FOLDER</p>
+                <p className="eyebrow">SELECTED</p>
                 <h2>{selectedCategory}</h2>
               </div>
 
               <span className="portfolio-library-search-note">
                 <Search size={16} />
-                {filteredVideos.length}개 작품 표시 중
+                {filteredVideos.length}개 작품
               </span>
             </div>
 
@@ -162,7 +154,7 @@ function PortfolioPage() {
                       <div className="portfolio-compact-footer">
                         <span>{video.client || video.channel_title || 'BDPRODUCTION'}</span>
                         <button type="button" onClick={() => setSelectedVideo(video)}>
-                          영상 보기
+                          보기
                         </button>
                       </div>
                     </div>
@@ -171,7 +163,7 @@ function PortfolioPage() {
               </ul>
             ) : (
               <div className="portfolio-state">
-                현재 조건에 맞는 포트폴리오가 없습니다.
+                표시할 포트폴리오가 없습니다.
               </div>
             )}
           </div>
