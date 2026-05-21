@@ -6284,3 +6284,159 @@ main,
 }
 /* Cinematic drawer neon color fix end */
 
+
+/* Admin login dark theme fix start */
+.admin-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(149, 255, 0, 0.1), transparent 22%),
+    radial-gradient(circle at 18% 78%, rgba(24, 161, 170, 0.08), transparent 30%),
+    linear-gradient(180deg, #020407 0%, #030b0f 48%, #020407 100%) !important;
+  color: #f5f7ee !important;
+}
+
+.admin-login-panel {
+  position: relative;
+  width: min(100% - 32px, 560px);
+  margin: clamp(72px, 14vh, 150px) auto 0;
+  padding: clamp(24px, 4vw, 38px);
+  overflow: hidden;
+  border: 1px solid rgba(149, 255, 0, 0.2) !important;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.12), transparent 34%),
+    radial-gradient(circle at 100% 100%, rgba(24, 161, 170, 0.12), transparent 38%),
+    rgba(3, 8, 10, 0.88) !important;
+  box-shadow:
+    0 34px 110px rgba(0, 0, 0, 0.62),
+    0 0 0 1px rgba(166, 228, 219, 0.04) inset,
+    0 0 46px rgba(149, 255, 0, 0.08) !important;
+  backdrop-filter: blur(20px);
+}
+
+.admin-login-panel::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.09), transparent 24%, transparent 76%, rgba(149, 255, 0, 0.05)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%);
+  content: '';
+}
+
+.admin-login-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.admin-login-panel .eyebrow {
+  color: #95ff00 !important;
+  text-shadow: 0 0 18px rgba(149, 255, 0, 0.36);
+}
+
+.admin-login-panel h1 {
+  margin: 0;
+  color: #f5f7ee !important;
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  letter-spacing: -0.075em;
+  text-shadow: 0 14px 52px rgba(0, 0, 0, 0.72);
+}
+
+.admin-login-panel p:not(.eyebrow),
+.admin-login-form label {
+  color: rgba(166, 228, 219, 0.78) !important;
+}
+
+.admin-login-form {
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.admin-login-form input {
+  height: 54px;
+  border: 1px solid rgba(166, 228, 219, 0.16) !important;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.68) !important;
+  color: #f5f7ee !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28) inset;
+}
+
+.admin-login-form input::placeholder {
+  color: rgba(166, 228, 219, 0.46) !important;
+}
+
+.admin-login-form input:focus {
+  border-color: rgba(149, 255, 0, 0.72) !important;
+  background: rgba(1, 10, 12, 0.92) !important;
+  box-shadow:
+    0 0 0 4px rgba(149, 255, 0, 0.1),
+    0 0 28px rgba(149, 255, 0, 0.09) !important;
+}
+
+.admin-login-form .primary-button,
+.admin-login-panel .primary-button {
+  min-height: 52px;
+  border: 1px solid rgba(149, 255, 0, 0.86) !important;
+  background: linear-gradient(135deg, #95ff00, #b6db3b) !important;
+  color: #020407 !important;
+  box-shadow: 0 18px 48px rgba(149, 255, 0, 0.18) !important;
+}
+
+.admin-login-form .primary-button:hover,
+.admin-login-panel .primary-button:hover {
+  border-color: #eaffc7 !important;
+  background: linear-gradient(135deg, #b9ff4a, #95ff00) !important;
+  color: #020407 !important;
+  transform: translateY(-1px);
+}
+
+.admin-login-back,
+.admin-login-back .secondary-button,
+.admin-login-back .ghost-button,
+.admin-login-back a,
+.admin-login-back button {
+  color: rgba(245, 247, 238, 0.82) !important;
+}
+
+.admin-login-back .secondary-button,
+.admin-login-back .ghost-button,
+.admin-login-back a,
+.admin-login-back button {
+  min-height: 42px;
+  border: 1px solid rgba(166, 228, 219, 0.15) !important;
+  background: rgba(255, 255, 255, 0.055) !important;
+}
+
+.admin-login-back .secondary-button:hover,
+.admin-login-back .ghost-button:hover,
+.admin-login-back a:hover,
+.admin-login-back button:hover {
+  border-color: rgba(149, 255, 0, 0.48) !important;
+  background: rgba(149, 255, 0, 0.12) !important;
+  color: #95ff00 !important;
+}
+
+.admin-lock-card,
+.admin-login-form .form-error,
+.admin-login-form .auth-message,
+.admin-login-panel .form-error,
+.admin-login-panel .auth-message {
+  border-color: rgba(255, 107, 107, 0.34) !important;
+  background: rgba(255, 107, 107, 0.1) !important;
+  color: #ffb3b3 !important;
+}
+
+@media (max-width: 720px) {
+  .admin-login-panel {
+    width: min(100% - 24px, 560px);
+    margin-top: 82px;
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+
+  .admin-login-panel h1 {
+    font-size: clamp(2.4rem, 14vw, 3.8rem);
+  }
+}
+/* Admin login dark theme fix end */
+
