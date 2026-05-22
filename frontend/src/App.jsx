@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Portfolio from './components/Portfolio.jsx';
@@ -16,13 +16,12 @@ function HomePage() {
     <>
       <Hero />
       <Portfolio />
-      <BDStudioShowroom />
     </>
   );
 }
 
 function resolvePage(pathname) {
-  const normalizedPathname = pathname.replace(/\/+$/, '') || '/';
+  const normalizedPathname = pathname.replace(//+$/, '') || '/';
 
   if (normalizedPathname === '/portfolio') {
     return <PortfolioPage />;
@@ -36,7 +35,7 @@ function resolvePage(pathname) {
 }
 
 function App() {
-  const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
+  const pathname = window.location.pathname.replace(//+$/, '') || '/';
   const isHomePage = pathname === '/';
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -98,11 +97,6 @@ function App() {
     setAuthModalOpen(false);
   };
 
-  const modalActions = {
-    onOpenContact: openContactModal,
-    onOpenAuth: openAuthModal,
-  };
-
   const appShellClassName = [
     'app-shell',
     isHomePage ? 'is-home-page' : '',
@@ -122,10 +116,7 @@ function App() {
         {resolvePage(pathname)}
       </main>
 
-      <FloatingContactBanner
-        onOpenContact={openContactModal}
-        onOpenAuth={openAuthModal}
-      />
+      <FloatingContactBanner onOpenContact={openContactModal} />
 
       <ContactModal
         open={contactModalOpen}
@@ -145,4 +136,3 @@ function App() {
 }
 
 export default App;
-
