@@ -1,5 +1,5 @@
 import { apiUrl } from '../config/api.js';
-import { Archive, ArrowLeft, Clapperboard, Download, Inbox, Mail, Phone, RefreshCw, Search, Undo2, X } from 'lucide-react';
+import { Archive, ArrowLeft, Download, Inbox, Mail, Phone, RefreshCw, Search, Undo2, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const statusFilters = [
@@ -705,11 +705,6 @@ const [adminLoggedIn, setAdminLoggedIn] = useState(false);
           </a>
 
           <div className="admin-topbar-actions">
-            <a className="admin-archive-toggle" href="/admin/portfolio">
-              <Clapperboard size={17} />
-              포트폴리오 관리
-            </a>
-
             <button
               className={`admin-archive-toggle ${archiveMode ? 'is-active' : ''}`}
               type="button"
