@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Portfolio from './components/Portfolio.jsx';
@@ -21,7 +21,7 @@ function HomePage() {
 }
 
 function resolvePage(pathname) {
-  const normalizedPathname = pathname.replace(//+$/, '') || '/';
+  const normalizedPathname = pathname.replace(/\/+$/, '') || '/';
 
   if (normalizedPathname === '/portfolio') {
     return <PortfolioPage />;
@@ -35,7 +35,7 @@ function resolvePage(pathname) {
 }
 
 function App() {
-  const pathname = window.location.pathname.replace(//+$/, '') || '/';
+  const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
   const isHomePage = pathname === '/';
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -136,3 +136,4 @@ function App() {
 }
 
 export default App;
+
