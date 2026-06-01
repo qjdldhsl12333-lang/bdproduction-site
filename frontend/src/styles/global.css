@@ -4241,6 +4241,224 @@ body,
   transform: translateX(2px) !important;
 }
 
+/* BDPRODUCTION SIGNATURE COLOR OVERRIDE
+   Brand accent: #95FF00
+   기존 gold/teal 계열 포인트를 시그니처 라임으로 통일합니다. */
+
+:root {
+  --gold: #95ff00;
+  --gold-soft: rgba(149, 255, 0, 0.15);
+  --line-strong: rgba(149, 255, 0, 0.42);
+  --accent: #95ff00;
+  --accent-soft: rgba(149, 255, 0, 0.15);
+  --accent-glow: rgba(149, 255, 0, 0.32);
+}
+
+/* Global accent cleanup */
+.eyebrow,
+.footer-info dt,
+.footer-info span,
+.footer-brand strong,
+.footer-bottom span,
+.portfolio-card span,
+.portfolio-card strong,
+.portfolio-card .play-button,
+.portfolio-compact-meta span,
+.portfolio-folder-heading,
+.portfolio-folder-button:hover,
+.portfolio-folder-button.is-active,
+.portfolio-folder-button.is-active strong,
+.youtube-modal-header span,
+.youtube-modal-link,
+.youtube-modal-placeholder p,
+.admin-heading .eyebrow,
+.admin-contact-id,
+.admin-summary-grid strong,
+.admin-message-preview span,
+.admin-detail-header span,
+.admin-detail-message span,
+.admin-detail-history-header span,
+.admin-detail-history-technical dt,
+.admin-portfolio-editor .eyebrow,
+.admin-portfolio-list-heading .eyebrow,
+.admin-portfolio-card-meta span,
+.admin-portfolio-card-meta em,
+.admin-portfolio-thumb span {
+  color: #95ff00 !important;
+}
+
+/* Buttons */
+.primary-button,
+.cinematic-contact-button,
+.floating-contact-banner,
+.admin-page .primary-button,
+.admin-portfolio-submit {
+  background: linear-gradient(135deg, #95ff00, #b9ff4a) !important;
+  color: #050505 !important;
+  border-color: rgba(149, 255, 0, 0.54) !important;
+  box-shadow:
+    0 14px 34px rgba(149, 255, 0, 0.18),
+    0 0 24px rgba(149, 255, 0, 0.12) !important;
+}
+
+.primary-button:hover,
+.cinematic-contact-button:hover,
+.floating-contact-banner:hover,
+.admin-page .primary-button:hover,
+.admin-portfolio-submit:hover {
+  box-shadow:
+    0 18px 42px rgba(149, 255, 0, 0.24),
+    0 0 34px rgba(149, 255, 0, 0.18) !important;
+}
+
+/* Header / logo accent */
+.cinematic-brand span,
+.cinematic-menu-button:hover,
+.cinematic-icon-button:hover {
+  border-color: rgba(149, 255, 0, 0.44) !important;
+  color: #95ff00 !important;
+}
+
+.cinematic-brand span {
+  background: rgba(149, 255, 0, 0.13) !important;
+}
+
+.cinematic-header {
+  border-color: rgba(149, 255, 0, 0.14) !important;
+}
+
+/* Cards / portfolio */
+.portfolio-card,
+.portfolio-compact-item,
+.portfolio-folder-panel,
+.portfolio-library-header {
+  border-color: rgba(149, 255, 0, 0.13) !important;
+}
+
+.portfolio-card:hover,
+.portfolio-compact-item:hover {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(149, 255, 0, 0.1) !important;
+}
+
+.portfolio-card .play-button,
+.portfolio-compact-play-icon {
+  border-color: rgba(149, 255, 0, 0.48) !important;
+  color: #95ff00 !important;
+  box-shadow: 0 0 22px rgba(149, 255, 0, 0.16) !important;
+}
+
+/* Admin drawer dark signature */
+.admin-page .admin-topbar {
+  border-color: rgba(149, 255, 0, 0.2) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.13), transparent 42%),
+    linear-gradient(180deg, rgba(13, 13, 15, 0.98), rgba(5, 5, 5, 0.94)),
+    #050505 !important;
+  box-shadow:
+    18px 24px 70px rgba(0, 0, 0, 0.58),
+    0 0 28px rgba(149, 255, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+.admin-page .admin-topbar:hover,
+.admin-page .admin-topbar:focus-within {
+  border-color: rgba(149, 255, 0, 0.46) !important;
+  box-shadow:
+    24px 30px 88px rgba(0, 0, 0, 0.7),
+    0 0 38px rgba(149, 255, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.admin-page .admin-topbar::before {
+  color: #95ff00 !important;
+}
+
+.admin-page .admin-topbar::after {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  background:
+    linear-gradient(180deg, rgba(149, 255, 0, 0.96), rgba(185, 255, 74, 0.88)),
+    #95ff00 !important;
+  color: #050505 !important;
+  box-shadow:
+    12px 18px 42px rgba(0, 0, 0, 0.46),
+    0 0 26px rgba(149, 255, 0, 0.24) !important;
+}
+
+.admin-page .admin-topbar > .admin-back-link:hover,
+.admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button):hover,
+.admin-page .admin-topbar .admin-topbar-actions > a:hover,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle:hover,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle.is-active,
+.admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button:hover {
+  border-color: rgba(149, 255, 0, 0.46) !important;
+  background: rgba(149, 255, 0, 0.13) !important;
+  color: #95ff00 !important;
+}
+
+/* Admin panels */
+.admin-summary-grid div,
+.admin-filter-panel,
+.admin-contact-card,
+.admin-contact-preview > div,
+.admin-message-preview,
+.admin-portfolio-editor,
+.admin-portfolio-list-section,
+.admin-portfolio-card,
+.admin-detail-modal,
+.admin-detail-item,
+.admin-detail-history,
+.admin-detail-history-list li {
+  border-color: rgba(149, 255, 0, 0.12) !important;
+}
+
+.admin-contact-card:hover,
+.admin-portfolio-card:hover {
+  border-color: rgba(149, 255, 0, 0.38) !important;
+  box-shadow:
+    0 24px 76px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(149, 255, 0, 0.1) !important;
+}
+
+.admin-filter-tabs button:hover,
+.admin-filter-tabs button.is-active,
+.admin-status-actions button:hover,
+.admin-status-actions button.is-active {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  background: rgba(149, 255, 0, 0.13) !important;
+  color: #95ff00 !important;
+}
+
+.admin-status-badge.status-new,
+.admin-status-badge.status-checked,
+.admin-status-badge.status-done {
+  background: rgba(149, 255, 0, 0.14) !important;
+  color: #95ff00 !important;
+}
+
+/* Warning은 danger가 아니라 안내니까 시그니처 톤으로 낮춤 */
+.admin-warning {
+  border-color: rgba(149, 255, 0, 0.24) !important;
+  background:
+    linear-gradient(135deg, rgba(149, 255, 0, 0.08), rgba(149, 255, 0, 0.035)) !important;
+  color: rgba(245, 240, 230, 0.9) !important;
+}
+
+.admin-warning strong,
+.admin-warning b {
+  color: #95ff00 !important;
+}
+
+/* Keep danger red */
+.admin-logout-button,
+.admin-status-actions button.is-danger,
+.admin-detail-actions button.danger,
+.admin-reset-filter-button {
+  --gold: #ff6b6b;
+}
+
 /* Logout button */
 .admin-page .admin-topbar .admin-logout-button {
   display: inline-flex !important;
@@ -8015,3 +8233,221 @@ button.contact-cta-flow-card {
 }
 
 /* ADMIN_CMS_DARK_RESKIN_END */
+
+/* BDPRODUCTION SIGNATURE COLOR OVERRIDE
+   Brand accent: #95FF00
+   기존 gold/teal 계열 포인트를 시그니처 라임으로 통일합니다. */
+
+:root {
+  --gold: #95ff00;
+  --gold-soft: rgba(149, 255, 0, 0.15);
+  --line-strong: rgba(149, 255, 0, 0.42);
+  --accent: #95ff00;
+  --accent-soft: rgba(149, 255, 0, 0.15);
+  --accent-glow: rgba(149, 255, 0, 0.32);
+}
+
+/* Global accent cleanup */
+.eyebrow,
+.footer-info dt,
+.footer-info span,
+.footer-brand strong,
+.footer-bottom span,
+.portfolio-card span,
+.portfolio-card strong,
+.portfolio-card .play-button,
+.portfolio-compact-meta span,
+.portfolio-folder-heading,
+.portfolio-folder-button:hover,
+.portfolio-folder-button.is-active,
+.portfolio-folder-button.is-active strong,
+.youtube-modal-header span,
+.youtube-modal-link,
+.youtube-modal-placeholder p,
+.admin-heading .eyebrow,
+.admin-contact-id,
+.admin-summary-grid strong,
+.admin-message-preview span,
+.admin-detail-header span,
+.admin-detail-message span,
+.admin-detail-history-header span,
+.admin-detail-history-technical dt,
+.admin-portfolio-editor .eyebrow,
+.admin-portfolio-list-heading .eyebrow,
+.admin-portfolio-card-meta span,
+.admin-portfolio-card-meta em,
+.admin-portfolio-thumb span {
+  color: #95ff00 !important;
+}
+
+/* Buttons */
+.primary-button,
+.cinematic-contact-button,
+.floating-contact-banner,
+.admin-page .primary-button,
+.admin-portfolio-submit {
+  background: linear-gradient(135deg, #95ff00, #b9ff4a) !important;
+  color: #050505 !important;
+  border-color: rgba(149, 255, 0, 0.54) !important;
+  box-shadow:
+    0 14px 34px rgba(149, 255, 0, 0.18),
+    0 0 24px rgba(149, 255, 0, 0.12) !important;
+}
+
+.primary-button:hover,
+.cinematic-contact-button:hover,
+.floating-contact-banner:hover,
+.admin-page .primary-button:hover,
+.admin-portfolio-submit:hover {
+  box-shadow:
+    0 18px 42px rgba(149, 255, 0, 0.24),
+    0 0 34px rgba(149, 255, 0, 0.18) !important;
+}
+
+/* Header / logo accent */
+.cinematic-brand span,
+.cinematic-menu-button:hover,
+.cinematic-icon-button:hover {
+  border-color: rgba(149, 255, 0, 0.44) !important;
+  color: #95ff00 !important;
+}
+
+.cinematic-brand span {
+  background: rgba(149, 255, 0, 0.13) !important;
+}
+
+.cinematic-header {
+  border-color: rgba(149, 255, 0, 0.14) !important;
+}
+
+/* Cards / portfolio */
+.portfolio-card,
+.portfolio-compact-item,
+.portfolio-folder-panel,
+.portfolio-library-header {
+  border-color: rgba(149, 255, 0, 0.13) !important;
+}
+
+.portfolio-card:hover,
+.portfolio-compact-item:hover {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(149, 255, 0, 0.1) !important;
+}
+
+.portfolio-card .play-button,
+.portfolio-compact-play-icon {
+  border-color: rgba(149, 255, 0, 0.48) !important;
+  color: #95ff00 !important;
+  box-shadow: 0 0 22px rgba(149, 255, 0, 0.16) !important;
+}
+
+/* Admin drawer dark signature */
+.admin-page .admin-topbar {
+  border-color: rgba(149, 255, 0, 0.2) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.13), transparent 42%),
+    linear-gradient(180deg, rgba(13, 13, 15, 0.98), rgba(5, 5, 5, 0.94)),
+    #050505 !important;
+  box-shadow:
+    18px 24px 70px rgba(0, 0, 0, 0.58),
+    0 0 28px rgba(149, 255, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+.admin-page .admin-topbar:hover,
+.admin-page .admin-topbar:focus-within {
+  border-color: rgba(149, 255, 0, 0.46) !important;
+  box-shadow:
+    24px 30px 88px rgba(0, 0, 0, 0.7),
+    0 0 38px rgba(149, 255, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.admin-page .admin-topbar::before {
+  color: #95ff00 !important;
+}
+
+.admin-page .admin-topbar::after {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  background:
+    linear-gradient(180deg, rgba(149, 255, 0, 0.96), rgba(185, 255, 74, 0.88)),
+    #95ff00 !important;
+  color: #050505 !important;
+  box-shadow:
+    12px 18px 42px rgba(0, 0, 0, 0.46),
+    0 0 26px rgba(149, 255, 0, 0.24) !important;
+}
+
+.admin-page .admin-topbar > .admin-back-link:hover,
+.admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button):hover,
+.admin-page .admin-topbar .admin-topbar-actions > a:hover,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle:hover,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle.is-active,
+.admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button:hover {
+  border-color: rgba(149, 255, 0, 0.46) !important;
+  background: rgba(149, 255, 0, 0.13) !important;
+  color: #95ff00 !important;
+}
+
+/* Admin panels */
+.admin-summary-grid div,
+.admin-filter-panel,
+.admin-contact-card,
+.admin-contact-preview > div,
+.admin-message-preview,
+.admin-portfolio-editor,
+.admin-portfolio-list-section,
+.admin-portfolio-card,
+.admin-detail-modal,
+.admin-detail-item,
+.admin-detail-history,
+.admin-detail-history-list li {
+  border-color: rgba(149, 255, 0, 0.12) !important;
+}
+
+.admin-contact-card:hover,
+.admin-portfolio-card:hover {
+  border-color: rgba(149, 255, 0, 0.38) !important;
+  box-shadow:
+    0 24px 76px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(149, 255, 0, 0.1) !important;
+}
+
+.admin-filter-tabs button:hover,
+.admin-filter-tabs button.is-active,
+.admin-status-actions button:hover,
+.admin-status-actions button.is-active {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  background: rgba(149, 255, 0, 0.13) !important;
+  color: #95ff00 !important;
+}
+
+.admin-status-badge.status-new,
+.admin-status-badge.status-checked,
+.admin-status-badge.status-done {
+  background: rgba(149, 255, 0, 0.14) !important;
+  color: #95ff00 !important;
+}
+
+/* Warning은 danger가 아니라 안내니까 시그니처 톤으로 낮춤 */
+.admin-warning {
+  border-color: rgba(149, 255, 0, 0.24) !important;
+  background:
+    linear-gradient(135deg, rgba(149, 255, 0, 0.08), rgba(149, 255, 0, 0.035)) !important;
+  color: rgba(245, 240, 230, 0.9) !important;
+}
+
+.admin-warning strong,
+.admin-warning b {
+  color: #95ff00 !important;
+}
+
+/* Keep danger red */
+.admin-logout-button,
+.admin-status-actions button.is-danger,
+.admin-detail-actions button.danger,
+.admin-reset-filter-button {
+  --gold: #ff6b6b;
+}
