@@ -7503,3 +7503,474 @@ button.contact-cta-flow-card {
     padding-inline: 12px;
   }
 }
+
+/* ADMIN_CMS_DARK_RESKIN_START */
+
+/* Admin CMS dark reskin override.
+   Keep this block at the end of global.css so it wins over older admin styles. */
+
+.admin-page {
+  --admin-bg: #050505;
+  --admin-panel: rgba(11, 15, 16, 0.9);
+  --admin-field: rgba(255, 255, 255, 0.055);
+  --admin-line: rgba(216, 183, 106, 0.18);
+  --admin-line-strong: rgba(216, 183, 106, 0.44);
+  --admin-accent: #d8b76a;
+  --admin-accent-soft: rgba(216, 183, 106, 0.13);
+  --admin-text: #f5f0e6;
+  --admin-muted: rgba(245, 240, 230, 0.62);
+  --admin-muted-strong: rgba(245, 240, 230, 0.82);
+  --admin-green: #9df0c8;
+  --admin-blue: #8ccaff;
+  --admin-red: #ff8f8f;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(216, 183, 106, 0.13), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(122, 178, 178, 0.1), transparent 28%),
+    linear-gradient(180deg, #050505 0%, #060808 58%, #050505 100%);
+  color: var(--admin-text);
+}
+
+.admin-page .eyebrow,
+.admin-contact-id,
+.admin-message-preview span,
+.admin-detail-message span,
+.admin-detail-history-header span,
+.admin-detail-history-technical dt,
+.admin-portfolio-card-meta span,
+.admin-portfolio-card-meta strong,
+.admin-portfolio-editor-heading .eyebrow,
+.admin-portfolio-list-heading .eyebrow {
+  color: var(--admin-accent);
+}
+
+.admin-shell {
+  width: min(100% - 40px, 1180px);
+}
+
+.admin-heading h1,
+.admin-login-panel h1,
+.admin-portfolio-editor-heading h2,
+.admin-portfolio-list-heading h2 {
+  color: var(--admin-text);
+  text-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.admin-heading p:not(.eyebrow),
+.admin-login-panel p:not(.eyebrow) {
+  color: var(--admin-muted-strong);
+}
+
+.admin-topbar,
+.admin-filter-panel,
+.admin-summary-grid div,
+.admin-contact-card,
+.admin-login-panel,
+.admin-state-card,
+.admin-empty-card,
+.admin-portfolio-editor,
+.admin-portfolio-list-section,
+.admin-portfolio-card,
+.admin-detail-modal {
+  border: 1px solid var(--admin-line);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    var(--admin-panel);
+  box-shadow:
+    0 26px 90px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  color: var(--admin-text);
+}
+
+.admin-topbar {
+  padding: 12px;
+  border-radius: 26px;
+}
+
+.admin-summary-grid div {
+  min-height: 112px;
+  padding: 24px;
+  border-radius: 24px;
+}
+
+.admin-summary-grid span,
+.admin-contact-preview span,
+.admin-contact-meta p,
+.admin-card-hint,
+.admin-detail-history-list span,
+.admin-detail-history-main time,
+.admin-portfolio-card-info span,
+.admin-portfolio-form label,
+.admin-login-form label,
+.admin-portfolio-checks label {
+  color: var(--admin-muted);
+}
+
+.admin-summary-grid strong {
+  color: var(--admin-accent);
+  text-shadow: 0 0 24px rgba(216, 183, 106, 0.24);
+}
+
+.admin-contact-card,
+.admin-portfolio-card {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.admin-contact-card:hover,
+.admin-portfolio-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--admin-line-strong);
+  box-shadow:
+    0 34px 110px rgba(0, 0, 0, 0.46),
+    0 0 34px rgba(216, 183, 106, 0.08);
+}
+
+.admin-contact-header h2,
+.admin-contact-preview strong,
+.admin-message-preview p,
+.admin-detail-message p,
+.admin-detail-history-list strong,
+.admin-portfolio-card h3,
+.admin-portfolio-card p {
+  color: var(--admin-text);
+}
+
+.admin-contact-preview > div,
+.admin-message-preview,
+.admin-detail-message,
+.admin-detail-history,
+.admin-detail-history-list li,
+.admin-portfolio-thumb,
+.admin-portfolio-card-info,
+.admin-portfolio-checks,
+.admin-search-box {
+  border: 1px solid rgba(216, 183, 106, 0.14);
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.admin-message-preview,
+.admin-detail-message {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(216, 183, 106, 0.1), transparent 42%),
+    rgba(0, 0, 0, 0.24);
+}
+
+.admin-back-link,
+.admin-refresh-button,
+.admin-archive-toggle,
+.admin-reset-filter-button,
+.admin-filter-tabs button,
+.admin-status-actions button,
+.admin-detail-actions button,
+.admin-portfolio-card-actions button,
+.admin-portfolio-editor-heading button,
+.admin-mobile-menu-toggle {
+  border: 1px solid var(--admin-line);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--admin-muted-strong);
+  box-shadow: none;
+}
+
+.admin-back-link:hover,
+.admin-refresh-button:hover,
+.admin-archive-toggle:hover,
+.admin-archive-toggle.is-active,
+.admin-filter-tabs button:hover,
+.admin-filter-tabs button.is-active,
+.admin-status-actions button:hover,
+.admin-status-actions button.is-active,
+.admin-detail-actions button:hover,
+.admin-portfolio-card-actions button:hover,
+.admin-portfolio-editor-heading button:hover,
+.admin-mobile-menu-toggle:hover {
+  border-color: var(--admin-line-strong);
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
+}
+
+.admin-filter-tabs button.is-active,
+.admin-status-actions button.is-active {
+  color: #15130d;
+  background: var(--admin-accent);
+  border-color: var(--admin-accent);
+}
+
+.admin-logout-button,
+.admin-status-actions button.is-danger,
+.admin-portfolio-card-actions button.danger,
+.admin-detail-actions button.danger {
+  border-color: rgba(255, 143, 143, 0.34);
+  background: rgba(255, 143, 143, 0.1);
+  color: var(--admin-red);
+}
+
+.admin-logout-button:hover,
+.admin-status-actions button.is-danger:hover,
+.admin-portfolio-card-actions button.danger:hover,
+.admin-detail-actions button.danger:hover {
+  border-color: rgba(255, 143, 143, 0.58);
+  background: rgba(255, 143, 143, 0.16);
+  color: #ffd0d0;
+}
+
+.admin-status-badge.status-new {
+  background: rgba(216, 183, 106, 0.14);
+  color: var(--admin-accent);
+}
+
+.admin-status-badge.status-checked {
+  background: rgba(140, 202, 255, 0.13);
+  color: var(--admin-blue);
+}
+
+.admin-status-badge.status-done {
+  background: rgba(157, 240, 200, 0.13);
+  color: var(--admin-green);
+}
+
+.admin-status-badge.status-archived {
+  background: rgba(255, 190, 90, 0.12);
+  color: #ffd79a;
+}
+
+.admin-warning {
+  border-color: rgba(216, 183, 106, 0.3);
+  background: rgba(216, 183, 106, 0.08);
+  color: rgba(245, 240, 230, 0.78);
+}
+
+.admin-error-card {
+  border-color: rgba(255, 107, 107, 0.38);
+  background: rgba(255, 107, 107, 0.12);
+  color: #ffb3b3;
+}
+
+.admin-search-box input,
+.admin-login-form input,
+.admin-portfolio-form input,
+.admin-portfolio-form textarea,
+.admin-portfolio-form select {
+  border: 1px solid rgba(216, 183, 106, 0.16);
+  background: rgba(0, 0, 0, 0.34);
+  color: var(--admin-text);
+  caret-color: var(--admin-accent);
+}
+
+.admin-search-box input::placeholder,
+.admin-login-form input::placeholder,
+.admin-portfolio-form input::placeholder,
+.admin-portfolio-form textarea::placeholder {
+  color: rgba(245, 240, 230, 0.38);
+}
+
+.admin-search-box:focus-within,
+.admin-login-form input:focus,
+.admin-portfolio-form input:focus,
+.admin-portfolio-form textarea:focus,
+.admin-portfolio-form select:focus {
+  border-color: var(--admin-line-strong);
+  background: rgba(0, 0, 0, 0.48);
+  box-shadow: 0 0 0 4px rgba(216, 183, 106, 0.08);
+  outline: none;
+}
+
+.admin-page .primary-button,
+.admin-portfolio-submit {
+  border: 1px solid var(--admin-accent);
+  background: linear-gradient(135deg, #ead089, var(--admin-accent));
+  color: #111;
+  box-shadow: 0 16px 40px rgba(216, 183, 106, 0.18);
+}
+
+/* Portfolio CMS */
+
+.admin-portfolio-editor,
+.admin-portfolio-list-section {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 30px;
+}
+
+.admin-portfolio-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.admin-portfolio-form label {
+  display: grid;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.admin-portfolio-form-wide,
+.admin-portfolio-checks,
+.admin-portfolio-submit {
+  grid-column: 1 / -1;
+}
+
+.admin-portfolio-form input,
+.admin-portfolio-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+
+.admin-portfolio-form textarea {
+  min-height: 118px;
+  resize: vertical;
+}
+
+.admin-portfolio-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 18px;
+}
+
+.admin-portfolio-checks label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.admin-portfolio-list {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-portfolio-card {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: stretch;
+  padding: 16px;
+  border-radius: 24px;
+}
+
+.admin-portfolio-card.is-hidden {
+  opacity: 0.58;
+}
+
+.admin-portfolio-thumb {
+  display: grid;
+  min-height: 126px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.admin-portfolio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-portfolio-thumb span {
+  color: var(--admin-accent);
+  font-size: 2.2rem;
+  font-weight: 950;
+  letter-spacing: -0.08em;
+}
+
+.admin-portfolio-card-body {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.admin-portfolio-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-portfolio-card-meta span,
+.admin-portfolio-card-meta strong,
+.admin-portfolio-card-meta em {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(216, 183, 106, 0.1);
+  font-size: 0.75rem;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.admin-portfolio-card h3 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.admin-portfolio-card p {
+  margin: 0;
+  color: var(--admin-muted-strong);
+  line-height: 1.6;
+}
+
+.admin-portfolio-card-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 14px;
+}
+
+.admin-portfolio-card-actions {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  min-width: 96px;
+}
+
+.admin-portfolio-card-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 13px;
+  border-radius: 999px;
+  font-weight: 850;
+}
+
+.admin-menu-scrim {
+  background: rgba(0, 0, 0, 0.44);
+  backdrop-filter: blur(6px);
+}
+
+.admin-page.is-admin-menu-open .admin-topbar {
+  border-color: var(--admin-line-strong);
+}
+
+@media (max-width: 860px) {
+  .admin-shell {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .admin-topbar,
+  .admin-summary-grid,
+  .admin-filter-panel,
+  .admin-portfolio-form,
+  .admin-portfolio-card {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-portfolio-card-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ADMIN_CMS_DARK_RESKIN_END */
