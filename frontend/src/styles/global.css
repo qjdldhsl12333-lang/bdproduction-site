@@ -8482,3 +8482,220 @@ button.contact-cta-flow-card {
     0 0 30px rgba(149, 255, 0, 0.22) !important;
   transform: translateY(-1px) !important;
 }
+
+/* Admin cards - BD signature dark readable style */
+
+.admin-page .admin-contact-card,
+.admin-page .admin-portfolio-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(149, 255, 0, 0.16) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.08), transparent 34%),
+    linear-gradient(135deg, rgba(18, 24, 24, 0.96), rgba(6, 8, 9, 0.98)) !important;
+  color: #f5f0e6 !important;
+  box-shadow:
+    0 24px 76px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045) !important;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease !important;
+}
+
+.admin-page .admin-contact-card::before,
+.admin-page .admin-portfolio-card::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(149, 255, 0, 0.055), transparent 38%),
+    radial-gradient(circle at 96% 12%, rgba(149, 255, 0, 0.08), transparent 26%);
+  content: '';
+  opacity: 0.9;
+}
+
+.admin-page .admin-contact-card > *,
+.admin-page .admin-portfolio-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.admin-page .admin-contact-card:hover,
+.admin-page .admin-portfolio-card:hover {
+  border-color: rgba(149, 255, 0, 0.42) !important;
+  box-shadow:
+    0 30px 96px rgba(0, 0, 0, 0.52),
+    0 0 34px rgba(149, 255, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* Contact card title / basic text */
+.admin-page .admin-contact-id,
+.admin-page .admin-portfolio-card-meta span,
+.admin-page .admin-message-preview span {
+  color: #95ff00 !important;
+}
+
+.admin-page .admin-contact-header h2,
+.admin-page .admin-portfolio-card h3 {
+  color: #f5f0e6 !important;
+  text-shadow: 0 0 16px rgba(245, 240, 230, 0.08) !important;
+}
+
+.admin-page .admin-contact-meta p,
+.admin-page .admin-portfolio-card p,
+.admin-page .admin-card-hint {
+  color: rgba(245, 240, 230, 0.68) !important;
+}
+
+/* Internal gray boxes */
+.admin-page .admin-contact-preview > div,
+.admin-page .admin-contact-grid div,
+.admin-page .admin-message-preview,
+.admin-page .admin-message-box,
+.admin-page .admin-portfolio-card-info,
+.admin-page .admin-detail-item,
+.admin-page .admin-detail-message,
+.admin-page .admin-detail-history,
+.admin-page .admin-detail-history-list li {
+  border: 1px solid rgba(149, 255, 0, 0.12) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    rgba(5, 5, 5, 0.42) !important;
+  color: #f5f0e6 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+}
+
+.admin-page .admin-contact-preview span,
+.admin-page .admin-contact-grid span,
+.admin-page .admin-detail-item span,
+.admin-page .admin-detail-history-list span {
+  color: rgba(149, 255, 0, 0.72) !important;
+}
+
+.admin-page .admin-contact-preview strong,
+.admin-page .admin-contact-grid strong,
+.admin-page .admin-detail-item strong,
+.admin-page .admin-message-preview p,
+.admin-page .admin-message-box p,
+.admin-page .admin-detail-message p,
+.admin-page .admin-detail-history-list strong,
+.admin-page .admin-detail-history-list p {
+  color: rgba(245, 240, 230, 0.9) !important;
+}
+
+/* Status badges */
+.admin-page .admin-status-badge {
+  border: 1px solid rgba(149, 255, 0, 0.24) !important;
+  background: rgba(149, 255, 0, 0.12) !important;
+  color: #95ff00 !important;
+}
+
+.admin-page .admin-status-badge.status-new,
+.admin-page .admin-status-badge.status-checked,
+.admin-page .admin-status-badge.status-done {
+  border-color: rgba(149, 255, 0, 0.28) !important;
+  background: rgba(149, 255, 0, 0.14) !important;
+  color: #95ff00 !important;
+}
+
+/* Action buttons inside card */
+.admin-page .admin-status-actions button,
+.admin-page .admin-portfolio-card-actions button {
+  border: 1px solid rgba(245, 240, 230, 0.12) !important;
+  background: rgba(255, 255, 255, 0.055) !important;
+  color: rgba(245, 240, 230, 0.82) !important;
+}
+
+.admin-page .admin-status-actions button:hover,
+.admin-page .admin-status-actions button.is-active,
+.admin-page .admin-portfolio-card-actions button:hover {
+  border-color: rgba(149, 255, 0, 0.44) !important;
+  background: rgba(149, 255, 0, 0.13) !important;
+  color: #95ff00 !important;
+}
+
+.admin-page .admin-status-actions button.is-danger,
+.admin-page .admin-portfolio-card-actions button.danger {
+  border-color: rgba(255, 107, 107, 0.36) !important;
+  background: rgba(255, 107, 107, 0.12) !important;
+  color: #ffb3b3 !important;
+}
+
+.admin-page .admin-status-actions button.is-danger:hover,
+.admin-page .admin-portfolio-card-actions button.danger:hover {
+  border-color: rgba(255, 107, 107, 0.58) !important;
+  background: rgba(255, 107, 107, 0.2) !important;
+  color: #ffd0d0 !important;
+}
+
+/* Portfolio thumbnail cards */
+.admin-page .admin-portfolio-thumb {
+  border: 1px solid rgba(149, 255, 0, 0.12) !important;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(149, 255, 0, 0.12), transparent 34%),
+    linear-gradient(135deg, #101616, #050505) !important;
+}
+
+.admin-page .admin-portfolio-thumb span {
+  color: #f5f0e6 !important;
+  text-shadow:
+    0 0 18px rgba(149, 255, 0, 0.16),
+    0 0 28px rgba(245, 240, 230, 0.08) !important;
+}
+
+/* Search / filter panel readability */
+.admin-page .admin-filter-panel {
+  border-color: rgba(149, 255, 0, 0.14) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.06), transparent 38%),
+    rgba(255, 255, 255, 0.035) !important;
+}
+
+.admin-page .admin-search-box {
+  border-color: rgba(245, 240, 230, 0.14) !important;
+  background: rgba(0, 0, 0, 0.36) !important;
+  color: rgba(245, 240, 230, 0.78) !important;
+}
+
+.admin-page .admin-search-box input {
+  color: #f5f0e6 !important;
+}
+
+.admin-page .admin-search-box input::placeholder {
+  color: rgba(245, 240, 230, 0.42) !important;
+}
+
+/* Summary cards */
+.admin-page .admin-summary-grid div {
+  border-color: rgba(149, 255, 0, 0.16) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.07), transparent 40%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)) !important;
+}
+
+.admin-page .admin-summary-grid span {
+  color: rgba(245, 240, 230, 0.7) !important;
+}
+
+.admin-page .admin-summary-grid strong {
+  color: #95ff00 !important;
+  text-shadow: 0 0 18px rgba(149, 255, 0, 0.18) !important;
+}
+
+/* Mobile card spacing */
+@media (max-width: 720px) {
+  .admin-page .admin-contact-card,
+  .admin-page .admin-portfolio-card {
+    border-radius: 24px !important;
+    padding: 22px !important;
+  }
+
+  .admin-page .admin-contact-preview > div,
+  .admin-page .admin-message-preview {
+    border-radius: 16px !important;
+  }
+}
