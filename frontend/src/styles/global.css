@@ -9252,3 +9252,131 @@ button.contact-cta-flow-card {
     grid-template-columns: 1fr;
   }
 }
+
+/* Customer mypage MVP dashboard */
+
+.mypage-dashboard-section {
+  color: #f5f0e6;
+}
+
+.mypage-dashboard-section button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mypage-account-card,
+.mypage-project-card {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 24px;
+  border: 1px solid rgba(149, 255, 0, 0.16);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.08), transparent 34%),
+    linear-gradient(145deg, rgba(17, 22, 22, 0.98), rgba(5, 6, 7, 0.99));
+  box-shadow:
+    0 24px 76px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.mypage-account-card {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.mypage-account-card div {
+  display: grid;
+  gap: 8px;
+  min-height: 96px;
+  padding: 18px;
+  border: 1px solid rgba(149, 255, 0, 0.12);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.mypage-account-card span,
+.mypage-project-card span {
+  color: #95ff00;
+  font-size: 0.76rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+}
+
+.mypage-account-card strong,
+.mypage-project-card h2 {
+  margin: 0;
+  color: #f5f0e6;
+  font-weight: 950;
+}
+
+.mypage-project-card > strong {
+  width: fit-content;
+  padding: 8px 12px;
+  border: 1px solid rgba(149, 255, 0, 0.28);
+  border-radius: 999px;
+  background: rgba(149, 255, 0, 0.12);
+  color: #95ff00;
+  font-size: 0.8rem;
+  font-weight: 950;
+}
+
+.mypage-project-card p {
+  margin: 0;
+  color: rgba(245, 240, 230, 0.66);
+  line-height: 1.7;
+}
+
+.mypage-dashboard-section .mypage-status-card {
+  border-color: rgba(149, 255, 0, 0.16);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.08), transparent 36%),
+    rgba(0, 0, 0, 0.32);
+}
+
+.mypage-dashboard-section .project-progress-preview div {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    rgba(0, 0, 0, 0.28);
+}
+
+.mypage-dashboard-section .project-progress-preview div.is-current {
+  border-color: rgba(149, 255, 0, 0.42);
+  background: rgba(149, 255, 0, 0.12);
+}
+
+.mypage-dashboard-section .project-progress-preview span,
+.mypage-dashboard-section .mypage-feature-card > div {
+  color: #95ff00;
+}
+
+.mypage-dashboard-section .mypage-feature-card {
+  border-color: rgba(149, 255, 0, 0.13);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.065), transparent 36%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.mypage-dashboard-section .mypage-feature-card > div {
+  border-color: rgba(149, 255, 0, 0.26);
+  background: rgba(149, 255, 0, 0.1);
+}
+
+@media (max-width: 980px) {
+  .mypage-account-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .mypage-account-card {
+    grid-template-columns: 1fr;
+  }
+
+  .mypage-account-card,
+  .mypage-project-card {
+    border-radius: 22px;
+    padding: 20px;
+  }
+}

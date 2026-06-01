@@ -20,7 +20,7 @@ function HomePage() {
   );
 }
 
-function resolvePage(pathname) {
+function resolvePage(pathname, pageProps = {}) {
   const normalizedPathname = pathname.replace(/\/+$/, '') || '/';
 
   if (normalizedPathname === '/portfolio') {
@@ -28,7 +28,7 @@ function resolvePage(pathname) {
   }
 
   if (normalizedPathname === '/mypage') {
-    return <MyPagePlaceholder />;
+    return <MyPagePlaceholder {...pageProps} />;
   }
 
   return <HomePage />;
@@ -113,7 +113,10 @@ function App() {
       <Header onOpenContact={openContactModal} onOpenAuth={openAuthModal} />
 
       <main>
-        {resolvePage(pathname)}
+        {resolvePage(pathname, {
+          onOpenAuth: openAuthModal,
+          onOpenContact: openContactModal,
+        })}
       </main>
 
       <FloatingContactBanner onOpenContact={openContactModal} />
@@ -124,12 +127,17 @@ function App() {
         onOpenAuth={openAuthModal}
       />
 
-      <AuthModal
+            <AuthModal
         open={authModalOpen}
         initialMode={authMode}
         onClose={closeAuthModal}
+        onAuthSuccess={() => {
+          if (pathname === '/mypage') {
+            window.dispatchEvent(new Event('bd:customer-auth-changed'));
+          }
+        }}
       />
-
+      
       <Footer />
     </div>
   );

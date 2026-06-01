@@ -23,7 +23,7 @@ const socialProviders = [
   { key: 'google', label: '구글', className: 'google' },
 ];
 
-function AuthModal({ open, initialMode = 'login', onClose }) {
+function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
   const [mode, setMode] = useState(initialMode);
   const [registerForm, setRegisterForm] = useState(initialRegisterForm);
   const [loginForm, setLoginForm] = useState(initialLoginForm);
@@ -91,8 +91,10 @@ function AuthModal({ open, initialMode = 'login', onClose }) {
         return;
       }
 
-      if (result.user) {
+            if (result.user) {
         localStorage.setItem('bd_customer_user', JSON.stringify(result.user));
+        onAuthSuccess?.(result.user);
+        window.dispatchEvent(new Event('bd:customer-auth-changed'));
       }
 
       setRegisterForm(initialRegisterForm);
@@ -133,8 +135,10 @@ function AuthModal({ open, initialMode = 'login', onClose }) {
         return;
       }
 
-      if (result.user) {
+            if (result.user) {
         localStorage.setItem('bd_customer_user', JSON.stringify(result.user));
+        onAuthSuccess?.(result.user);
+        window.dispatchEvent(new Event('bd:customer-auth-changed'));
       }
 
       setLoginForm(initialLoginForm);
