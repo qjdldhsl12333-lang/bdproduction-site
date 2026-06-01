@@ -1,5 +1,18 @@
 import { apiUrl } from '../config/api.js';
-import { ArrowLeft, Eye, EyeOff, Loader2, Plus, RefreshCw, Save, Star, X } from 'lucide-react';
+import {
+  ArrowLeft,
+  Eye,
+  EyeOff,
+  Image as ImageIcon,
+  Loader2,
+  Plus,
+  RefreshCw,
+  Save,
+  Star,
+  Trash2,
+  Wand2,
+  X,
+} from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const emptyPortfolioForm = {
@@ -34,6 +47,46 @@ function normalizeFormItem(item) {
   };
 }
 
+function extractYouTubeVideoId(value) {
+  const rawValue = String(value || '').trim();
+
+  if (!rawValue) {
+    return '';
+  }
+
+  if (/^[a-zA-Z0-9_-]{11}$/.test(rawValue)) {
+    return rawValue;
+  }
+
+  const patterns = [
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/watch\?.*?[?&]v=([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+    /[?&]v=([a-zA-Z0-9_-]{11})/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = rawValue.match(pattern);
+
+    if (match?.[1]) {
+      return match[1];
+    }
+  }
+
+  return rawValue;
+}
+
+function buildYouTubeThumbnailUrl(videoId) {
+  const safeVideoId = extractYouTubeVideoId(videoId);
+
+  if (!safeVideoId) {
+    return '';
+  }
+
+  return `https://img.youtube.com/vi/${safeVideoId}/hqdefault.jpg`;
+}
+
 function AdminPortfolioManager() {
   const [items, setItems] = useState([]);
   const [form, setForm] = useState(emptyPortfolioForm);
@@ -62,6 +115,14 @@ function AdminPortfolioManager() {
       featured: items.filter((item) => item.is_featured ?? item.isFeatured).length,
     };
   }, [items]);
+
+  const extractedVideoId = useMemo(() => {
+    return extractYouTubeVideoId(form.youtube_video_id);
+  }, [form.youtube_video_id]);
+
+  const generatedThumbnailUrl = useMemo(() => {
+    return buildYouTubeThumbnailUrl(extractedVideoId);
+  }, [extractedVideoId]);
 
   const loadItems = useCallback(async () => {
     setLoading(true);
@@ -187,6 +248,79 @@ function AdminPortfolioManager() {
     } catch (error) {
       console.error('Admin portfolio visibility error:', error);
       setErrorMessage('노출 상태 변경 API와 연결할 수 없습니다.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const normalizeYouTubeInput = () => {
+    if (!extractedVideoId) {
+      setErrorMessage('YouTube 영상 ID 또는 URL을 먼저 입력해주세요.');
+      setNoticeMessage('');
+      return;
+    }
+
+    updateForm('youtube_video_id', extractedVideoId);
+    setErrorMessage('');
+    setNoticeMessage('YouTube 영상 ID를 정리했습니다.');
+  };
+
+  const applyYouTubeThumbnail = () => {
+    if (!extractedVideoId) {
+      setErrorMessage('썸네일을 만들 YouTube 영상 ID 또는 URL을 먼저 입력해주세요.');
+      setNoticeMessage('');
+      return;
+    }
+
+    updateForm('youtube_video_id', extractedVideoId);
+    updateForm('thumbnail_url', generatedThumbnailUrl);
+    setErrorMessage('');
+    setNoticeMessage('YouTube 기본 썸네일 URL을 입력했습니다.');
+  };
+
+  const deleteItem = async (item) => {
+    const confirmed = window.confirm(
+      `"${item.title}" 포트폴리오를 삭제하시겠습니까?\n삭제한 항목은 되돌릴 수 없습니다.`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    setSaving(true);
+    setErrorMessage('');
+    setNoticeMessage('');
+
+    try {
+      const response = await fetch(apiUrl('/api/admin/portfolio-items.php'), {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify({
+          action: 'delete',
+          id: item.id,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        setErrorMessage(result.message || '포트폴리오 삭제에 실패했습니다.');
+        return;
+      }
+
+      if (Number(form.id) === Number(item.id)) {
+        setForm(emptyPortfolioForm);
+      }
+
+      setNoticeMessage(result.message || '포트폴리오가 삭제되었습니다.');
+      await loadItems();
+    } catch (error) {
+      console.error('Admin portfolio delete error:', error);
+      setErrorMessage('포트폴리오 삭제 API와 연결할 수 없습니다.');
     } finally {
       setSaving(false);
     }
@@ -338,6 +472,23 @@ function AdminPortfolioManager() {
               />
             </label>
 
+            <div className="admin-portfolio-youtube-tools">
+              <div>
+                <span>감지된 영상 ID</span>
+                <strong>{extractedVideoId || '-'}</strong>
+              </div>
+
+              <button type="button" onClick={normalizeYouTubeInput} disabled={!form.youtube_video_id}>
+                <Wand2 size={15} />
+                ID 정리
+              </button>
+
+              <button type="button" onClick={applyYouTubeThumbnail} disabled={!extractedVideoId}>
+                <ImageIcon size={15} />
+                썸네일 자동 입력
+              </button>
+            </div>
+
             <label>
               전체 노출 순서
               <input
@@ -443,7 +594,7 @@ function AdminPortfolioManager() {
                     </div>
 
                     <div className="admin-portfolio-card-actions">
-                      <button type="button" onClick={() => editItem(item)}>
+                      <button type="button" onClick={() => editItem(item)} disabled={saving}>
                         수정
                       </button>
 
@@ -464,6 +615,16 @@ function AdminPortfolioManager() {
                             노출
                           </>
                         )}
+                      </button>
+
+                      <button
+                        type="button"
+                        className="danger"
+                        onClick={() => deleteItem(item)}
+                        disabled={saving}
+                      >
+                        <Trash2 size={15} />
+                        삭제
                       </button>
                     </div>
                   </article>
