@@ -8451,3 +8451,34 @@ button.contact-cta-flow-card {
 .admin-reset-filter-button {
   --gold: #ff6b6b;
 }
+
+/* Admin mobile menu toggle - BD signature lime */
+.admin-mobile-menu-toggle {
+  border-color: rgba(149, 255, 0, 0.34) !important;
+  background:
+    linear-gradient(135deg, rgba(149, 255, 0, 0.1), rgba(149, 255, 0, 0.035)),
+    rgba(5, 5, 5, 0.88) !important;
+  color: #95ff00 !important;
+  box-shadow:
+    0 12px 34px rgba(0, 0, 0, 0.42),
+    0 0 18px rgba(149, 255, 0, 0.08) !important;
+}
+
+.admin-mobile-menu-toggle svg {
+  color: currentColor !important;
+}
+
+.admin-mobile-menu-toggle:hover,
+.admin-mobile-menu-toggle:focus-visible,
+.admin-mobile-menu-toggle:active,
+.admin-mobile-menu-toggle.is-open {
+  border-color: rgba(149, 255, 0, 0.66) !important;
+  background:
+    linear-gradient(135deg, #95ff00, #b9ff4a),
+    #95ff00 !important;
+  color: #050505 !important;
+  box-shadow:
+    0 16px 42px rgba(149, 255, 0, 0.22),
+    0 0 30px rgba(149, 255, 0, 0.22) !important;
+  transform: translateY(-1px) !important;
+}
