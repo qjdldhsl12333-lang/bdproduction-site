@@ -4060,10 +4060,10 @@ body,
   color: #09637E;
 }
 
-/* Admin drawer final v4
+/* Admin drawer final v5 - dark cinematic
    PC: 좌측 탭 hover로 열림
    Mobile: 좌측 상단 관리자 메뉴 버튼 클릭으로 열림
-   로그아웃 버튼은 일반 버튼 규칙에서 제외하고 별도 danger 스타일로 관리합니다. */
+   관리자 CMS 전체 톤과 맞춰 블랙 / 크림 / 골드 계열로 통일합니다. */
 
 .admin-mobile-menu-toggle,
 .admin-menu-scrim {
@@ -4097,13 +4097,16 @@ body,
   gap: 7px !important;
   margin: 0 !important;
   padding: 46px 10px 14px !important;
-  border: 1px solid rgba(9, 99, 126, 0.18) !important;
+  border: 1px solid rgba(216, 183, 106, 0.22) !important;
   border-left: 0 !important;
   border-radius: 0 22px 22px 0 !important;
   background:
-    linear-gradient(180deg, rgba(235, 244, 246, 0.98), rgba(235, 244, 246, 0.91)),
-    rgba(235, 244, 246, 0.94) !important;
-  box-shadow: 16px 20px 54px rgba(9, 99, 126, 0.14) !important;
+    radial-gradient(circle at 0% 0%, rgba(216, 183, 106, 0.16), transparent 42%),
+    linear-gradient(180deg, rgba(13, 13, 15, 0.98), rgba(5, 5, 5, 0.94)),
+    #050505 !important;
+  box-shadow:
+    18px 24px 70px rgba(0, 0, 0, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
   backdrop-filter: blur(18px) !important;
   overflow: visible !important;
   transform: translate(-100%, -50%) !important;
@@ -4115,8 +4118,11 @@ body,
 
 .admin-page .admin-topbar:hover,
 .admin-page .admin-topbar:focus-within {
-  border-color: rgba(8, 131, 149, 0.34) !important;
-  box-shadow: 22px 26px 72px rgba(9, 99, 126, 0.2) !important;
+  border-color: rgba(216, 183, 106, 0.46) !important;
+  box-shadow:
+    24px 30px 88px rgba(0, 0, 0, 0.7),
+    0 0 36px rgba(216, 183, 106, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
   transform: translate(0, -50%) !important;
 }
 
@@ -4126,13 +4132,13 @@ body,
   left: 14px;
   right: 14px;
   height: 24px;
-  color: #09637e;
+  color: #d8b76a;
   content: 'ADMIN MENU';
   font-size: 0.68rem;
   font-weight: 950;
   letter-spacing: 0.15em;
   line-height: 24px;
-  opacity: 0.82;
+  opacity: 0.92;
 }
 
 .admin-page .admin-topbar::after {
@@ -4144,12 +4150,16 @@ body,
   min-height: 124px;
   place-items: center;
   padding: 12px 0;
-  border: 1px solid rgba(8, 131, 149, 0.34);
+  border: 1px solid rgba(216, 183, 106, 0.42);
   border-left: 0;
   border-radius: 0 16px 16px 0;
-  background: #088395;
-  color: #ebf4f6;
-  box-shadow: 10px 16px 36px rgba(9, 99, 126, 0.18);
+  background:
+    linear-gradient(180deg, rgba(216, 183, 106, 0.92), rgba(164, 128, 52, 0.92)),
+    #d8b76a;
+  color: #050505;
+  box-shadow:
+    12px 18px 42px rgba(0, 0, 0, 0.46),
+    0 0 24px rgba(216, 183, 106, 0.2);
   content: '관리자 메뉴';
   font-size: 0.64rem;
   font-weight: 950;
@@ -4193,10 +4203,10 @@ body,
   justify-content: flex-start !important;
   gap: 8px !important;
   padding: 0 12px !important;
-  border: 1px solid rgba(9, 99, 126, 0.14) !important;
+  border: 1px solid rgba(245, 240, 230, 0.12) !important;
   border-radius: 14px !important;
-  background: rgba(255, 255, 255, 0.76) !important;
-  color: #09637e !important;
+  background: rgba(255, 255, 255, 0.055) !important;
+  color: rgba(245, 240, 230, 0.82) !important;
   font-size: 0.76rem !important;
   font-weight: 900 !important;
   line-height: 1 !important;
@@ -4205,12 +4215,18 @@ body,
   transform: none !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease !important;
 }
 
 .admin-page .admin-topbar svg {
   flex: 0 0 auto !important;
   width: 15px !important;
   height: 15px !important;
+  color: currentColor !important;
 }
 
 .admin-page .admin-topbar > .admin-back-link:hover,
@@ -4219,9 +4235,34 @@ body,
 .admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle:hover,
 .admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle.is-active,
 .admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button:hover {
-  border-color: rgba(8, 131, 149, 0.38) !important;
-  background: rgba(8, 131, 149, 0.1) !important;
-  color: #088395 !important;
+  border-color: rgba(216, 183, 106, 0.46) !important;
+  background: rgba(216, 183, 106, 0.13) !important;
+  color: #d8b76a !important;
+  transform: translateX(2px) !important;
+}
+
+/* Logout button */
+.admin-page .admin-topbar .admin-logout-button {
+  display: inline-flex !important;
+  width: 100% !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 12px !important;
+  border: 1px solid rgba(255, 107, 107, 0.34) !important;
+  border-radius: 14px !important;
+  background: rgba(255, 107, 107, 0.13) !important;
+  color: #ffb3b3 !important;
+  font-size: 0.76rem !important;
+  font-weight: 950 !important;
+  box-shadow: none !important;
+}
+
+.admin-page .admin-topbar .admin-logout-button:hover {
+  border-color: rgba(255, 107, 107, 0.58) !important;
+  background: rgba(255, 107, 107, 0.22) !important;
+  color: #ffd0d0 !important;
 }
 
 /* Logout is intentionally separated from utility actions. */
