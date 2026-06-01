@@ -9380,3 +9380,324 @@ button.contact-cta-flow-card {
     padding: 20px;
   }
 }
+
+/* BD Chroma Button Motion
+   참고 구조: hover background slide-in + icon movement
+   JSX 전체 변경 없이 현재 버튼 구조에 CSS-only로 적용합니다. */
+
+:root {
+  --bd-button-motion-duration: 350ms;
+  --bd-button-motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --bd-button-hover-bg: #95ff00;
+  --bd-button-hover-text: #050505;
+  --bd-button-idle-border: rgba(149, 255, 0, 0.28);
+  --bd-button-idle-bg: rgba(255, 255, 255, 0.055);
+}
+
+/* 공통 버튼 베이스 */
+:where(
+  .primary-button,
+  .secondary-button,
+  .ghost-button,
+  .cinematic-contact-button,
+  .cinematic-menu-button,
+  .floating-contact-banner,
+  .form-submit,
+  .auth-tabs button,
+  .social-auth-button,
+  .portfolio-folder-button,
+  .portfolio-filter-tabs button,
+  .portfolio-all-link,
+  .youtube-modal-link,
+  .admin-page button:not(.admin-detail-close):not(.lead-modal-close),
+  .admin-page a.admin-back-link,
+  .admin-page .admin-topbar-actions a,
+  .admin-page .admin-archive-toggle,
+  .admin-page .admin-refresh-button
+) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-color: var(--bd-button-idle-border);
+  transition:
+    color var(--bd-button-motion-duration) ease,
+    border-color var(--bd-button-motion-duration) ease,
+    background-color var(--bd-button-motion-duration) ease,
+    box-shadow var(--bd-button-motion-duration) ease,
+    transform var(--bd-button-motion-duration) var(--bd-button-motion-ease);
+}
+
+/* hover 배경 슬라이드 레이어 */
+:where(
+  .primary-button,
+  .secondary-button,
+  .ghost-button,
+  .cinematic-contact-button,
+  .cinematic-menu-button,
+  .floating-contact-banner,
+  .form-submit,
+  .auth-tabs button,
+  .social-auth-button,
+  .portfolio-folder-button,
+  .portfolio-filter-tabs button,
+  .portfolio-all-link,
+  .youtube-modal-link,
+  .admin-page button:not(.admin-detail-close):not(.lead-modal-close),
+  .admin-page a.admin-back-link,
+  .admin-page .admin-topbar-actions a,
+  .admin-page .admin-archive-toggle,
+  .admin-page .admin-refresh-button
+)::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, #95ff00, #b9ff4a);
+  content: '';
+  transform: translateX(101%);
+  transition:
+    transform var(--bd-button-motion-duration) var(--bd-button-motion-ease);
+}
+
+/* 텍스트/아이콘은 배경 위에 유지 */
+:where(
+  .primary-button,
+  .secondary-button,
+  .ghost-button,
+  .cinematic-contact-button,
+  .cinematic-menu-button,
+  .floating-contact-banner,
+  .form-submit,
+  .auth-tabs button,
+  .social-auth-button,
+  .portfolio-folder-button,
+  .portfolio-filter-tabs button,
+  .portfolio-all-link,
+  .youtube-modal-link,
+  .admin-page button:not(.admin-detail-close):not(.lead-modal-close),
+  .admin-page a.admin-back-link,
+  .admin-page .admin-topbar-actions a,
+  .admin-page .admin-archive-toggle,
+  .admin-page .admin-refresh-button
+) > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* hover 시 배경 진입 */
+@media (hover: hover) and (pointer: fine) {
+  :where(
+    .primary-button,
+    .secondary-button,
+    .ghost-button,
+    .cinematic-contact-button,
+    .cinematic-menu-button,
+    .floating-contact-banner,
+    .form-submit,
+    .auth-tabs button,
+    .social-auth-button,
+    .portfolio-folder-button,
+    .portfolio-filter-tabs button,
+    .portfolio-all-link,
+    .youtube-modal-link,
+    .admin-page button:not(:disabled):not(.admin-detail-close):not(.lead-modal-close),
+    .admin-page a.admin-back-link,
+    .admin-page .admin-topbar-actions a,
+    .admin-page .admin-archive-toggle,
+    .admin-page .admin-refresh-button
+  ):hover::before {
+    transform: translateX(0);
+  }
+
+  :where(
+    .primary-button,
+    .secondary-button,
+    .ghost-button,
+    .cinematic-contact-button,
+    .cinematic-menu-button,
+    .floating-contact-banner,
+    .form-submit,
+    .auth-tabs button,
+    .social-auth-button,
+    .portfolio-folder-button,
+    .portfolio-filter-tabs button,
+    .portfolio-all-link,
+    .youtube-modal-link,
+    .admin-page button:not(:disabled):not(.admin-detail-close):not(.lead-modal-close),
+    .admin-page a.admin-back-link,
+    .admin-page .admin-topbar-actions a,
+    .admin-page .admin-archive-toggle,
+    .admin-page .admin-refresh-button
+  ):hover {
+    border-color: rgba(149, 255, 0, 0.76) !important;
+    color: var(--bd-button-hover-text) !important;
+    box-shadow:
+      0 16px 42px rgba(149, 255, 0, 0.2),
+      0 0 28px rgba(149, 255, 0, 0.14) !important;
+    transform: translateY(-2px);
+  }
+
+  /* 아이콘 이동 */
+  :where(
+    .primary-button,
+    .secondary-button,
+    .ghost-button,
+    .cinematic-contact-button,
+    .cinematic-menu-button,
+    .floating-contact-banner,
+    .form-submit,
+    .auth-tabs button,
+    .social-auth-button,
+    .portfolio-folder-button,
+    .portfolio-filter-tabs button,
+    .portfolio-all-link,
+    .youtube-modal-link,
+    .admin-page button:not(.admin-detail-close):not(.lead-modal-close),
+    .admin-page a.admin-back-link,
+    .admin-page .admin-topbar-actions a,
+    .admin-page .admin-archive-toggle,
+    .admin-page .admin-refresh-button
+  ) svg {
+    transition:
+      transform var(--bd-button-motion-duration) var(--bd-button-motion-ease),
+      color var(--bd-button-motion-duration) ease;
+  }
+
+  :where(
+    .primary-button,
+    .secondary-button,
+    .ghost-button,
+    .cinematic-contact-button,
+    .cinematic-menu-button,
+    .floating-contact-banner,
+    .form-submit,
+    .auth-tabs button,
+    .social-auth-button,
+    .portfolio-folder-button,
+    .portfolio-filter-tabs button,
+    .portfolio-all-link,
+    .youtube-modal-link,
+    .admin-page button:not(:disabled):not(.admin-detail-close):not(.lead-modal-close),
+    .admin-page a.admin-back-link,
+    .admin-page .admin-topbar-actions a,
+    .admin-page .admin-archive-toggle,
+    .admin-page .admin-refresh-button
+  ):hover svg {
+    transform: translateX(4px);
+  }
+}
+
+/* 클릭감 */
+:where(
+  .primary-button,
+  .secondary-button,
+  .ghost-button,
+  .cinematic-contact-button,
+  .cinematic-menu-button,
+  .floating-contact-banner,
+  .form-submit,
+  .auth-tabs button,
+  .social-auth-button,
+  .portfolio-folder-button,
+  .portfolio-filter-tabs button,
+  .portfolio-all-link,
+  .youtube-modal-link,
+  .admin-page button,
+  .admin-page a.admin-back-link,
+  .admin-page .admin-topbar-actions a,
+  .admin-page .admin-archive-toggle,
+  .admin-page .admin-refresh-button
+):active {
+  transform: translateY(0) scale(0.985) !important;
+}
+
+/* 원형 아이콘 버튼은 별도 처리 */
+@media (hover: hover) and (pointer: fine) {
+  :where(
+    .cinematic-icon-button,
+    .portfolio-card .play-button,
+    .portfolio-compact-play-icon
+  ) {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform var(--bd-button-motion-duration) var(--bd-button-motion-ease),
+      border-color var(--bd-button-motion-duration) ease,
+      background var(--bd-button-motion-duration) ease,
+      color var(--bd-button-motion-duration) ease,
+      box-shadow var(--bd-button-motion-duration) ease;
+  }
+
+  :where(
+    .cinematic-icon-button,
+    .portfolio-card .play-button,
+    .portfolio-compact-play-icon
+  ):hover {
+    border-color: rgba(149, 255, 0, 0.68) !important;
+    background: #95ff00 !important;
+    color: #050505 !important;
+    box-shadow:
+      0 0 26px rgba(149, 255, 0, 0.28),
+      0 16px 42px rgba(0, 0, 0, 0.32) !important;
+    transform: translateY(-2px) scale(1.04);
+  }
+}
+
+/* Danger 버튼은 빨간 계열 유지 */
+:where(
+  .admin-logout-button,
+  .admin-page button.danger,
+  .admin-page button.is-danger,
+  .admin-detail-actions button.danger,
+  .admin-status-actions button.is-danger,
+  .admin-portfolio-card-actions button.danger
+)::before {
+  background: linear-gradient(135deg, #ff6b6b, #ff9a9a) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :where(
+    .admin-logout-button,
+    .admin-page button.danger,
+    .admin-page button.is-danger,
+    .admin-detail-actions button.danger,
+    .admin-status-actions button.is-danger,
+    .admin-portfolio-card-actions button.danger
+  ):hover {
+    border-color: rgba(255, 107, 107, 0.62) !important;
+    color: #050505 !important;
+    box-shadow:
+      0 16px 42px rgba(255, 107, 107, 0.18),
+      0 0 28px rgba(255, 107, 107, 0.12) !important;
+  }
+}
+
+/* 비활성 버튼 */
+:where(button:disabled) {
+  opacity: 0.44;
+  cursor: not-allowed;
+}
+
+:where(button:disabled)::before {
+  display: none;
+}
+
+/* 키보드 접근성 */
+:where(button, a):focus-visible {
+  outline: 2px solid rgba(149, 255, 0, 0.72);
+  outline-offset: 3px;
+}
+
+/* 모션 최소화 설정 대응 */
+@media (prefers-reduced-motion: reduce) {
+  :where(button, a, svg),
+  :where(button, a)::before {
+    transition-duration: 0.01ms !important;
+  }
+
+  :where(button, a):hover,
+  :where(button, a):active {
+    transform: none !important;
+  }
+}
