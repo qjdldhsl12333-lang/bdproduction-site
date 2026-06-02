@@ -1,4 +1,5 @@
 import { apiUrl } from '../config/api.js';
+import '../styles/mypage.css';
 import {
   CreditCard,
   FileVideo,
@@ -25,16 +26,6 @@ const progressSteps = [
 
 const plannedFeatures = [
   {
-    title: '내 의뢰 목록',
-    description: '회원 계정과 연결된 프로젝트 목록을 확인하는 영역입니다.',
-    icon: FileVideo,
-  },
-  {
-    title: '진행 현황',
-    description: '상담, 견적, 촬영, 편집, 시사, 결제, 납품 단계를 확인합니다.',
-    icon: ShieldCheck,
-  },
-  {
     title: '비공개 시사 링크',
     description: '납품 전 결과물을 고객 전용 링크로 확인하는 영역입니다.',
     icon: Lock,
@@ -56,16 +47,28 @@ const plannedFeatures = [
   },
 ];
 
-const demoProjects = [
-  {
-    id: 'demo-001',
-    title: '프로젝트 상담 요청',
-    type: '기업 홍보 영상',
-    status: '상담 접수',
+const statusMeta = {
+  new: {
+    label: '상담 접수',
+    description: '문의가 접수되었습니다. 담당자 확인을 기다리는 단계입니다.',
     stageIndex: 0,
-    updatedAt: '상담 접수 후 담당자 확인 대기',
   },
-];
+  checked: {
+    label: '견적 확인',
+    description: '담당자가 문의 내용을 확인했습니다. 견적 또는 상담 안내 단계입니다.',
+    stageIndex: 1,
+  },
+  done: {
+    label: '처리 완료',
+    description: '상담 또는 문의 처리가 완료된 상태입니다.',
+    stageIndex: 5,
+  },
+  archived: {
+    label: '보관됨',
+    description: '관리자에 의해 보관 처리된 문의입니다.',
+    stageIndex: 0,
+  },
+};
 
 function formatCustomerName(user) {
   if (!user) {
@@ -73,6 +76,45 @@ function formatCustomerName(user) {
   }
 
   return user.name || user.company || user.email || '고객';
+}
+
+function resolveStatusMeta(status) {
+  return statusMeta[status] || statusMeta.new;
+}
+
+function formatDate(value) {
+  if (!value) {
+    return '-';
+  }
+
+  const normalizedValue = String(value).replace(' ', 'T');
+  const date = new Date(normalizedValue);
+
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(date);
+}
+
+function previewMessage(message) {
+  if (!message) {
+    return '문의 내용이 비어 있습니다.';
+  }
+
+  const trimmed = String(message).trim();
+
+  if (trimmed.length <= 120) {
+    return trimmed;
+  }
+
+  return `${trimmed.slice(0, 120)}...`;
 }
 
 function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
@@ -86,9 +128,51 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
       return null;
     }
   });
+  const [contacts, setContacts] = useState([]);
+  const [contactsLoading, setContactsLoading] = useState(false);
+  const [contactsErrorMessage, setContactsErrorMessage] = useState('');
   const [message, setMessage] = useState('');
 
   const customerName = useMemo(() => formatCustomerName(user), [user]);
+  const latestContact = contacts[0] || null;
+
+  const loadCustomerContacts = useCallback(async () => {
+    setContactsLoading(true);
+    setContactsErrorMessage('');
+
+    try {
+      const response = await fetch(apiUrl('/api/customer/contacts.php'), {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+        setAuthenticated(false);
+        setUser(null);
+        setContacts([]);
+        localStorage.removeItem('bd_customer_user');
+        setMessage(result.message || '로그인이 필요합니다.');
+        return;
+      }
+
+      if (!response.ok || !result.success) {
+        setContactsErrorMessage(result.message || '문의 내역을 불러오지 못했습니다.');
+        return;
+      }
+
+      setContacts(Array.isArray(result.contacts) ? result.contacts : []);
+    } catch (error) {
+      console.error('Customer contacts error:', error);
+      setContactsErrorMessage('문의 내역 API와 연결할 수 없습니다. PHP 백엔드 서버를 확인해주세요.');
+    } finally {
+      setContactsLoading(false);
+    }
+  }, []);
 
   const loadMe = useCallback(async () => {
     setLoading(true);
@@ -108,26 +192,31 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
       if (!response.ok || !result.success) {
         setMessage(result.message || '회원 정보를 확인하지 못했습니다.');
         setAuthenticated(false);
+        setContacts([]);
         return;
       }
 
-      setAuthenticated(Boolean(result.authenticated));
+      const isAuthenticated = Boolean(result.authenticated);
+      setAuthenticated(isAuthenticated);
 
       if (result.user) {
         setUser(result.user);
         localStorage.setItem('bd_customer_user', JSON.stringify(result.user));
+        await loadCustomerContacts();
       } else {
         setUser(null);
+        setContacts([]);
         localStorage.removeItem('bd_customer_user');
       }
     } catch (error) {
       console.error('Customer mypage me error:', error);
       setMessage('회원 정보 API와 연결할 수 없습니다. PHP 백엔드 서버를 확인해주세요.');
       setAuthenticated(false);
+      setContacts([]);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [loadCustomerContacts]);
 
   useEffect(() => {
     loadMe();
@@ -136,12 +225,20 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
       loadMe();
     };
 
+    const handleContactCreated = () => {
+      if (authenticated) {
+        loadCustomerContacts();
+      }
+    };
+
     window.addEventListener('bd:customer-auth-changed', handleAuthChanged);
+    window.addEventListener('bd:customer-contact-created', handleContactCreated);
 
     return () => {
       window.removeEventListener('bd:customer-auth-changed', handleAuthChanged);
+      window.removeEventListener('bd:customer-contact-created', handleContactCreated);
     };
-  }, [loadMe]);
+  }, [authenticated, loadCustomerContacts, loadMe]);
 
   const logout = async () => {
     setLoading(true);
@@ -160,6 +257,7 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
     } finally {
       localStorage.removeItem('bd_customer_user');
       setUser(null);
+      setContacts([]);
       setAuthenticated(false);
       setLoading(false);
       setMessage('로그아웃되었습니다.');
@@ -237,7 +335,7 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
         <p className="eyebrow">CUSTOMER PAGE</p>
         <h1>{customerName}님의 마이페이지</h1>
         <p>
-          프로젝트 진행 현황, 시사 링크, 결제·영수 내역을 확인하는 고객 전용 공간입니다.
+          접수한 문의 내역과 현재 처리 상태를 확인하는 고객 전용 공간입니다.
         </p>
 
         <div className="mypage-placeholder-actions">
@@ -245,9 +343,9 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
             <MessageCircle size={18} />
             새 문의하기
           </button>
-          <button className="ghost-button" type="button" onClick={loadMe}>
+          <button className="ghost-button" type="button" onClick={loadMe} disabled={contactsLoading}>
             <RefreshCw size={18} />
-            새로고침
+            {contactsLoading ? '새로고침 중' : '새로고침'}
           </button>
           <button className="secondary-button" type="button" onClick={logout}>
             <LogOut size={18} />
@@ -277,33 +375,84 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
 
       <div className="mypage-status-card">
         <span>PROJECT STATUS</span>
-        <strong>프로젝트 기능 준비 중</strong>
+        <strong>{contacts.length > 0 ? `등록된 문의 ${contacts.length}건` : '등록된 문의가 없습니다'}</strong>
         <p>
-          현재는 로그인 계정 확인과 고객 대시보드 UI만 연결되어 있습니다.
-          다음 단계에서 문의 내역과 프로젝트 진행 상태를 실제 DB와 연결합니다.
+          {latestContact
+            ? `최근 문의 #${latestContact.id} 상태는 ${resolveStatusMeta(latestContact.status).label}입니다.`
+            : '새 문의를 접수하면 이곳에서 진행 상태를 확인할 수 있습니다.'}
         </p>
       </div>
 
-      <div className="mypage-project-list">
-        {demoProjects.map((project) => (
-          <article key={project.id} className="mypage-project-card">
-            <div>
-              <span>{project.type}</span>
-              <h2>{project.title}</h2>
-              <p>{project.updatedAt}</p>
-            </div>
-            <strong>{project.status}</strong>
+      {contactsErrorMessage && (
+        <div className="mypage-error-card">
+          <strong>문의 내역을 불러오지 못했습니다.</strong>
+          <p>{contactsErrorMessage}</p>
+        </div>
+      )}
 
-            <div className="project-progress-preview" aria-label={`${project.title} 진행 단계`}>
-              {progressSteps.map((step, index) => (
-                <div key={step} className={index <= project.stageIndex ? 'is-current' : ''}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <strong>{step}</strong>
+      <div className="mypage-project-list">
+        {contactsLoading && contacts.length === 0 && (
+          <div className="mypage-empty-card">
+            <RefreshCw size={20} />
+            <strong>문의 내역을 불러오는 중입니다.</strong>
+          </div>
+        )}
+
+        {!contactsLoading && contacts.length === 0 && (
+          <div className="mypage-empty-card">
+            <FileVideo size={22} />
+            <strong>아직 접수된 문의가 없습니다.</strong>
+            <p>새 문의를 남기면 접수번호와 처리 상태가 이곳에 표시됩니다.</p>
+          </div>
+        )}
+
+        {contacts.map((contact) => {
+          const meta = resolveStatusMeta(contact.status);
+
+          return (
+            <article key={contact.id} className="mypage-project-card mypage-contact-card">
+              <div className="mypage-contact-card-header">
+                <div>
+                  <span>접수번호 #{contact.id}</span>
+                  <h2>{contact.productionType || '영상 제작 문의'}</h2>
+                  <p>{previewMessage(contact.message)}</p>
                 </div>
-              ))}
-            </div>
-          </article>
-        ))}
+                <strong className={`mypage-contact-status status-${contact.status || 'new'}`}>
+                  {meta.label}
+                </strong>
+              </div>
+
+              <div className="mypage-contact-meta-grid">
+                <div>
+                  <span>예산 범위</span>
+                  <strong>{contact.budgetRange || '-'}</strong>
+                </div>
+                <div>
+                  <span>접수일</span>
+                  <strong>{formatDate(contact.createdAt)}</strong>
+                </div>
+                <div>
+                  <span>최종 업데이트</span>
+                  <strong>{formatDate(contact.updatedAt)}</strong>
+                </div>
+              </div>
+
+              <div className="mypage-contact-note">
+                <ShieldCheck size={18} />
+                <p>{meta.description}</p>
+              </div>
+
+              <div className="project-progress-preview" aria-label={`${contact.productionType || '문의'} 진행 단계`}>
+                {progressSteps.map((step, index) => (
+                  <div key={step} className={index <= meta.stageIndex ? 'is-current' : ''}>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <strong>{step}</strong>
+                  </div>
+                ))}
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       <div className="mypage-feature-grid">
