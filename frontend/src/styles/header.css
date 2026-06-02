@@ -1,0 +1,544 @@
+
+
+/* Cinematic top header v1 */
+.cinematic-header {
+  position: fixed;
+  z-index: 150;
+  top: 18px;
+  left: 50%;
+  display: grid;
+  width: min(calc(100% - 36px), 1320px);
+  min-height: 56px;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: 18px;
+  align-items: center;
+  padding: 8px 10px 8px 16px;
+  border: 1px solid rgba(9, 99, 126, 0.14);
+  border-radius: 999px;
+  background: rgba(235, 244, 246, 0.72);
+  color: #09637e;
+  box-shadow: 0 18px 60px rgba(9, 99, 126, 0.12);
+  backdrop-filter: blur(18px);
+  transform: translateX(-50%);
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.cinematic-brand {
+  display: inline-flex;
+  min-width: max-content;
+  align-items: center;
+  gap: 10px;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+}
+
+.cinematic-brand span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(8, 131, 149, 0.32);
+  border-radius: 999px;
+  background: rgba(122, 178, 178, 0.18);
+  color: #088395;
+  font-size: 0.78rem;
+}
+
+.cinematic-brand strong {
+  color: #09637e;
+  font-size: 0.86rem;
+  font-weight: 950;
+  letter-spacing: 0.06em;
+}
+
+.cinematic-desktop-nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.6vw, 24px);
+}
+
+.cinematic-desktop-nav a {
+  color: rgba(9, 99, 126, 0.78);
+  font-size: 0.76rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transition: color 160ms ease;
+}
+
+.cinematic-desktop-nav a:hover {
+  color: #088395;
+}
+
+.cinematic-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cinematic-contact-button,
+.cinematic-icon-button,
+.cinematic-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  border-radius: 999px;
+  font-weight: 950;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.cinematic-contact-button {
+  padding: 0 17px;
+  border: 1px solid #088395;
+  background: #088395;
+  color: #ebf4f6;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.cinematic-contact-button:hover {
+  border-color: #09637e;
+  background: #09637e;
+  color: #ebf4f6;
+  transform: translateY(-1px);
+}
+
+.cinematic-icon-button {
+  width: 40px;
+  border: 1px solid rgba(9, 99, 126, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  color: #09637e;
+}
+
+.cinematic-icon-button:hover {
+  border-color: rgba(8, 131, 149, 0.36);
+  background: rgba(8, 131, 149, 0.1);
+  color: #088395;
+}
+
+.cinematic-menu-button {
+  gap: 7px;
+  min-width: 92px;
+  padding: 0 14px;
+  border: 1px solid rgba(9, 99, 126, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  color: #09637e;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.cinematic-menu-button:hover {
+  border-color: rgba(8, 131, 149, 0.36);
+  background: rgba(8, 131, 149, 0.1);
+  color: #088395;
+}
+
+.cinematic-drawer-scrim {
+  position: fixed;
+  z-index: 240;
+  inset: 0;
+  background: rgba(4, 18, 22, 0.46);
+  backdrop-filter: blur(5px);
+}
+
+.cinematic-drawer {
+  position: fixed;
+  z-index: 250;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: min(420px, 100vw);
+  height: 100dvh;
+  grid-template-rows: auto 1fr auto;
+  padding: 24px;
+  border-left: 1px solid rgba(235, 244, 246, 0.14);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(8, 131, 149, 0.22), transparent 42%),
+    linear-gradient(180deg, rgba(3, 7, 9, 0.98), rgba(2, 4, 5, 0.98));
+  color: #ebf4f6;
+  box-shadow: -24px 0 90px rgba(0, 0, 0, 0.36);
+  transform: translateX(104%);
+  transition: transform 230ms ease;
+}
+
+.cinematic-drawer.is-open {
+  transform: translateX(0);
+}
+
+.cinematic-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(235, 244, 246, 0.12);
+}
+
+.cinematic-drawer-head span {
+  color: #ebf4f6;
+  font-size: 0.92rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+}
+
+.cinematic-drawer-head button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(235, 244, 246, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ebf4f6;
+}
+
+.cinematic-drawer-nav {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 24px 0;
+}
+
+.cinematic-drawer-nav a,
+.cinematic-drawer-actions button,
+.cinematic-drawer-actions a {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 0 14px;
+  border: 1px solid rgba(235, 244, 246, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(235, 244, 246, 0.88);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-align: left;
+}
+
+.cinematic-drawer-nav a:hover,
+.cinematic-drawer-actions button:hover,
+.cinematic-drawer-actions a:hover {
+  border-color: rgba(122, 178, 178, 0.42);
+  background: rgba(122, 178, 178, 0.14);
+  color: #ffffff;
+}
+
+.cinematic-drawer-actions {
+  display: grid;
+  gap: 9px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(235, 244, 246, 0.12);
+}
+
+.cinematic-drawer-actions .is-primary {
+  border-color: #088395;
+  background: #088395;
+  color: #ebf4f6;
+}
+
+.floating-contact-banner-single {
+  width: 92px;
+}
+
+.floating-contact-banner-single .floating-contact-button {
+  min-height: 74px;
+}
+
+.app-shell.is-home-page .cinematic-header {
+  background: rgba(2, 4, 5, calc(0.42 + (var(--hero-rail-progress) * 0.34)));
+  border-color: rgba(235, 244, 246, calc(0.08 + (var(--hero-rail-progress) * 0.14)));
+  color: #ebf4f6;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, calc(0.16 + (var(--hero-rail-progress) * 0.18)));
+}
+
+.app-shell.is-home-page .cinematic-brand strong,
+.app-shell.is-home-page .cinematic-desktop-nav a,
+.app-shell.is-home-page .cinematic-icon-button,
+.app-shell.is-home-page .cinematic-menu-button {
+  color: #ebf4f6;
+}
+
+.app-shell.is-home-page .cinematic-brand span {
+  border-color: rgba(235, 244, 246, 0.28);
+  background: rgba(235, 244, 246, 0.1);
+  color: #ebf4f6;
+}
+
+.app-shell.is-home-page .cinematic-desktop-nav,
+.app-shell.is-home-page .cinematic-header-actions {
+  opacity: var(--hero-rail-progress);
+  pointer-events: none;
+  transform: translateY(calc(-4px * (1 - var(--hero-rail-progress))));
+  transition:
+    opacity 120ms linear,
+    transform 180ms ease;
+}
+
+.app-shell.is-home-page.is-hero-rail-ready .cinematic-desktop-nav,
+.app-shell.is-home-page.is-hero-rail-ready .cinematic-header-actions {
+  pointer-events: auto;
+}
+
+@media (max-width: 1180px) {
+  .cinematic-header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .cinematic-desktop-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .cinematic-header {
+    top: 12px;
+    width: calc(100% - 24px);
+    min-height: 52px;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    padding: 7px 8px 7px 10px;
+  }
+
+  .cinematic-brand strong {
+    max-width: 150px;
+    overflow: hidden;
+    font-size: 0.78rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cinematic-brand span {
+    width: 36px;
+    height: 36px;
+  }
+
+  .cinematic-header-actions {
+    display: none;
+  }
+
+  .cinematic-menu-button {
+    min-width: 46px;
+    width: 46px;
+    height: 40px;
+    padding: 0;
+  }
+
+  .cinematic-menu-button span {
+    display: none;
+  }
+
+  .cinematic-drawer {
+    width: min(340px, 100vw);
+    padding: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .cinematic-brand strong {
+    display: none;
+  }
+}
+
+/* End cinematic top header v1 */
+
+/* Cinematic drawer neon color fix start */
+.cinematic-drawer {
+  border-left: 1px solid rgba(149, 255, 0, 0.18) !important;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(149, 255, 0, 0.11), transparent 28%),
+    radial-gradient(circle at 100% 34%, rgba(24, 161, 170, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(3, 8, 9, 0.98), rgba(0, 2, 3, 0.99)) !important;
+  color: #f5f7ee !important;
+  box-shadow:
+    -32px 0 110px rgba(0, 0, 0, 0.56),
+    inset 1px 0 0 rgba(149, 255, 0, 0.08) !important;
+}
+
+.cinematic-drawer-head {
+  border-bottom-color: rgba(166, 228, 219, 0.16) !important;
+}
+
+.cinematic-drawer-head span {
+  color: #f5f7ee !important;
+  text-shadow: 0 0 18px rgba(149, 255, 0, 0.14);
+}
+
+.cinematic-drawer-head button {
+  border-color: rgba(166, 228, 219, 0.22) !important;
+  background: rgba(245, 247, 238, 0.08) !important;
+  color: #f5f7ee !important;
+  box-shadow: none !important;
+}
+
+.cinematic-drawer-head button:hover {
+  border-color: rgba(149, 255, 0, 0.48) !important;
+  background: rgba(149, 255, 0, 0.12) !important;
+  color: #95ff00 !important;
+}
+
+.cinematic-drawer-nav a,
+.cinematic-drawer-actions button,
+.cinematic-drawer-actions a {
+  border-color: rgba(166, 228, 219, 0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(245, 247, 238, 0.055), rgba(245, 247, 238, 0.025)) !important;
+  color: rgba(245, 247, 238, 0.9) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.015) !important;
+}
+
+.cinematic-drawer-nav a svg,
+.cinematic-drawer-actions button svg,
+.cinematic-drawer-actions a svg {
+  color: rgba(166, 228, 219, 0.9) !important;
+}
+
+.cinematic-drawer-nav a:hover,
+.cinematic-drawer-actions button:hover,
+.cinematic-drawer-actions a:hover {
+  border-color: rgba(149, 255, 0, 0.48) !important;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(149, 255, 0, 0.16), transparent 46%),
+    rgba(149, 255, 0, 0.08) !important;
+  color: #f5f7ee !important;
+  transform: translateX(-3px);
+}
+
+.cinematic-drawer-nav a:hover svg,
+.cinematic-drawer-actions button:hover svg,
+.cinematic-drawer-actions a:hover svg {
+  color: #95ff00 !important;
+}
+
+.cinematic-drawer-actions {
+  border-top-color: rgba(166, 228, 219, 0.16) !important;
+}
+
+.cinematic-drawer-actions .is-primary,
+.cinematic-drawer-actions button.is-primary,
+.cinematic-drawer-actions a.is-primary {
+  border-color: rgba(149, 255, 0, 0.78) !important;
+  background:
+    linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
+  color: #020407 !important;
+  box-shadow: 0 18px 52px rgba(149, 255, 0, 0.22) !important;
+}
+
+.cinematic-drawer-actions .is-primary svg,
+.cinematic-drawer-actions button.is-primary svg,
+.cinematic-drawer-actions a.is-primary svg {
+  color: #020407 !important;
+}
+
+.cinematic-drawer-actions .is-primary:hover,
+.cinematic-drawer-actions button.is-primary:hover,
+.cinematic-drawer-actions a.is-primary:hover {
+  border-color: #d9ff8a !important;
+  background:
+    linear-gradient(135deg, #b9ff3d 0%, #95ff00 100%) !important;
+  color: #020407 !important;
+  transform: translateX(-3px) translateY(-1px);
+}
+
+.cinematic-drawer-scrim {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(149, 255, 0, 0.08), transparent 36%),
+    rgba(0, 3, 4, 0.72) !important;
+  backdrop-filter: blur(9px) !important;
+}
+
+@media (max-width: 760px) {
+  .cinematic-drawer {
+    width: min(360px, 88vw) !important;
+    padding: 20px !important;
+  }
+
+  .cinematic-drawer-nav a,
+  .cinematic-drawer-actions button,
+  .cinematic-drawer-actions a {
+    min-height: 46px !important;
+    border-radius: 14px !important;
+  }
+}
+
+/* Cinematic drawer neon color fix end */
+
+/* Header button inner color fix
+   Top bar hover background changes, but text/icon color was being kept by older rules. */
+
+/* 제작 문의: 원래 라임 CTA → hover 시 검은 배경 + 흰 글씨/아이콘 */
+.app-shell .cinematic-header .cinematic-contact-button:hover,
+.app-shell.is-home-page .cinematic-header .cinematic-contact-button:hover,
+.cinematic-header .cinematic-contact-button:hover {
+  color: #f5f0e6 !important;
+}
+
+.app-shell .cinematic-header .cinematic-contact-button:hover *,
+.app-shell.is-home-page .cinematic-header .cinematic-contact-button:hover *,
+.cinematic-header .cinematic-contact-button:hover * {
+  color: #f5f0e6 !important;
+}
+
+.app-shell .cinematic-header .cinematic-contact-button:hover svg,
+.app-shell .cinematic-header .cinematic-contact-button:hover svg *,
+.app-shell.is-home-page .cinematic-header .cinematic-contact-button:hover svg,
+.app-shell.is-home-page .cinematic-header .cinematic-contact-button:hover svg *,
+.cinematic-header .cinematic-contact-button:hover svg,
+.cinematic-header .cinematic-contact-button:hover svg * {
+  color: #f5f0e6 !important;
+  stroke: currentColor !important;
+}
+
+/* 로그인 / 회원가입 / 마이페이지 / MENU: 원래 다크 버튼 → hover 시 라임 배경 + 검은 글씨/아이콘 */
+.app-shell .cinematic-header .cinematic-icon-button:hover,
+.app-shell .cinematic-header .cinematic-menu-button:hover,
+.app-shell.is-home-page .cinematic-header .cinematic-icon-button:hover,
+.app-shell.is-home-page .cinematic-header .cinematic-menu-button:hover,
+.cinematic-header .cinematic-icon-button:hover,
+.cinematic-header .cinematic-menu-button:hover {
+  color: #050505 !important;
+}
+
+.app-shell .cinematic-header .cinematic-icon-button:hover *,
+.app-shell .cinematic-header .cinematic-menu-button:hover *,
+.app-shell.is-home-page .cinematic-header .cinematic-icon-button:hover *,
+.app-shell.is-home-page .cinematic-header .cinematic-menu-button:hover *,
+.cinematic-header .cinematic-icon-button:hover *,
+.cinematic-header .cinematic-menu-button:hover * {
+  color: #050505 !important;
+}
+
+.app-shell .cinematic-header .cinematic-icon-button:hover svg,
+.app-shell .cinematic-header .cinematic-icon-button:hover svg *,
+.app-shell .cinematic-header .cinematic-menu-button:hover svg,
+.app-shell .cinematic-header .cinematic-menu-button:hover svg *,
+.app-shell.is-home-page .cinematic-header .cinematic-icon-button:hover svg,
+.app-shell.is-home-page .cinematic-header .cinematic-icon-button:hover svg *,
+.app-shell.is-home-page .cinematic-header .cinematic-menu-button:hover svg,
+.app-shell.is-home-page .cinematic-header .cinematic-menu-button:hover svg *,
+.cinematic-header .cinematic-icon-button:hover svg,
+.cinematic-header .cinematic-icon-button:hover svg *,
+.cinematic-header .cinematic-menu-button:hover svg,
+.cinematic-header .cinematic-menu-button:hover svg * {
+  color: #050505 !important;
+  stroke: currentColor !important;
+}
+
+/* SVG 중 fill 기반 아이콘이 있을 경우 대비 */
+.cinematic-header button:hover svg [fill]:not([fill='none']),
+.cinematic-header a:hover svg [fill]:not([fill='none']) {
+  fill: currentColor !important;
+}

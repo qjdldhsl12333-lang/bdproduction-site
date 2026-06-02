@@ -1,0 +1,88 @@
+
+
+/* BD Studio Showroom */
+
+
+.studio-showroom-controls button:hover,
+.studio-showroom-controls button.is-active {
+  background: #8d8778;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* === BDPRODUCTION studio showroom cinematic cleanup start === */
+
+
+.studio-showroom-heading .eyebrow {
+  color: var(--gold);
+  text-shadow: 0 0 24px rgba(149, 255, 0, 0.34);
+}
+
+
+.studio-showroom-controls button.is-active {
+  border-color: rgba(149, 255, 0, 0.44);
+  background: rgba(149, 255, 0, 0.16);
+  color: var(--gold);
+  box-shadow: 0 0 24px rgba(149, 255, 0, 0.16);
+}
+
+
+/* === BDPRODUCTION studio showroom cinematic cleanup end === */
+
+/* === Cinematic 3D showroom override start === */
+
+
+.studio-showroom-controls button:hover,
+.studio-showroom-controls button.is-active {
+  border-color: rgba(149, 255, 0, 0.64);
+  background: rgba(149, 255, 0, 0.16);
+  color: #f8fff2;
+  box-shadow: 0 0 22px rgba(149, 255, 0, 0.16);
+}
+
+@keyframes studioLightSweep {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(-10%);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: translateX(10%);
+  }
+}
+
+
+/* === Cinematic 3D showroom override end === */
+
+/* Cinematic 3D prism showroom start */
+
+
+.studio-showroom-heading .eyebrow {
+  color: #95ff00;
+}
+
+
+.studio-showroom-frame::before,
+
+
+.studio-showroom-controls button:hover,
+.studio-showroom-controls button.is-active {
+  border-color: rgba(149, 255, 0, 0.76);
+  background: rgba(149, 255, 0, 0.14);
+  color: #95ff00;
+  box-shadow: 0 0 22px rgba(149, 255, 0, 0.18);
+}
+
+
+/* Cinematic 3D prism showroom end */
+
+/* Premium 3D showroom override */
+
+
+.studio-showroom-controls button.is-active,
+
+
+/* ADMIN_CMS_DARK_RESKIN_END */

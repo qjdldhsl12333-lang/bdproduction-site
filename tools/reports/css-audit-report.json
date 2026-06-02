@@ -51,9 +51,9 @@
   },
   {
     "file": "frontend\\src\\styles\\global.css",
-    "classCount": 229,
-    "likelyUsed": 187,
-    "likelyUnused": 42,
+    "classCount": 211,
+    "likelyUsed": 174,
+    "likelyUnused": 37,
     "unusedClasses": [
       "admin-contact-grid",
       "admin-detail-history-technical",
@@ -89,14 +89,27 @@
       "provider-google",
       "provider-kakao",
       "provider-naver",
-      "side-nav-mobile-toggle",
-      "side-nav-scrim",
-      "side-nav-shell",
       "site-header",
-      "studio-showroom-controls",
-      "studio-showroom-frame",
       "studio-showroom-heading",
       "studio-showroom-section"
+    ]
+  },
+  {
+    "file": "frontend\\src\\styles\\header.css",
+    "classCount": 19,
+    "likelyUsed": 19,
+    "likelyUnused": 0,
+    "unusedClasses": []
+  },
+  {
+    "file": "frontend\\src\\styles\\hero.css",
+    "classCount": 19,
+    "likelyUsed": 16,
+    "likelyUnused": 3,
+    "unusedClasses": [
+      "side-nav-mobile-toggle",
+      "side-nav-scrim",
+      "side-nav-shell"
     ]
   },
   {
@@ -126,6 +139,17 @@
       "category-tabs",
       "modal-content",
       "portfolio-filter-tabs"
+    ]
+  },
+  {
+    "file": "frontend\\src\\styles\\studio.css",
+    "classCount": 5,
+    "likelyUsed": 2,
+    "likelyUnused": 3,
+    "unusedClasses": [
+      "studio-showroom-controls",
+      "studio-showroom-frame",
+      "studio-showroom-heading"
     ]
   }
 ]

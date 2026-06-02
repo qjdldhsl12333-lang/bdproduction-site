@@ -32,11 +32,6 @@ portfolio-page-toolbar
 provider-google
 provider-kakao
 provider-naver
-side-nav-mobile-toggle
-side-nav-scrim
-side-nav-shell
 site-header
-studio-showroom-controls
-studio-showroom-frame
 studio-showroom-heading
 studio-showroom-section
