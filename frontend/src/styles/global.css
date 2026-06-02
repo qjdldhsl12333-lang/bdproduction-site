@@ -9883,3 +9883,70 @@ button.contact-cta-flow-card {
   margin-left: 0.015em;
   font-style: normal;
 }
+
+/* Header button inner color fix
+   Top bar hover background changes, but text/icon color was being kept by older rules. */
+
+/* 제작 문의: 원래 라임 CTA → hover 시 검은 배경 + 흰 글씨/아이콘 */
+.app-shell .cinematic-header .cinematic-contact-button:hover,
+.app-shell.is-home-page .cinematic-header .cinematic-contact-button:hover,
+.cinematic-header .cinematic-contact-button:hover {
+  color: #f5f0e6 !important;
+}
+
+.app-shell .cinematic-header .cinematic-contact-button:hover *,
+.app-shell.is-home-page .cinematic-header .cinematic-contact-button:hover *,
+.cinematic-header .cinematic-contact-button:hover * {
+  color: #f5f0e6 !important;
+}
+
+.app-shell .cinematic-header .cinematic-contact-button:hover svg,
+.app-shell .cinematic-header .cinematic-contact-button:hover svg *,
+.app-shell.is-home-page .cinematic-header .cinematic-contact-button:hover svg,
+.app-shell.is-home-page .cinematic-header .cinematic-contact-button:hover svg *,
+.cinematic-header .cinematic-contact-button:hover svg,
+.cinematic-header .cinematic-contact-button:hover svg * {
+  color: #f5f0e6 !important;
+  stroke: currentColor !important;
+}
+
+/* 로그인 / 회원가입 / 마이페이지 / MENU: 원래 다크 버튼 → hover 시 라임 배경 + 검은 글씨/아이콘 */
+.app-shell .cinematic-header .cinematic-icon-button:hover,
+.app-shell .cinematic-header .cinematic-menu-button:hover,
+.app-shell.is-home-page .cinematic-header .cinematic-icon-button:hover,
+.app-shell.is-home-page .cinematic-header .cinematic-menu-button:hover,
+.cinematic-header .cinematic-icon-button:hover,
+.cinematic-header .cinematic-menu-button:hover {
+  color: #050505 !important;
+}
+
+.app-shell .cinematic-header .cinematic-icon-button:hover *,
+.app-shell .cinematic-header .cinematic-menu-button:hover *,
+.app-shell.is-home-page .cinematic-header .cinematic-icon-button:hover *,
+.app-shell.is-home-page .cinematic-header .cinematic-menu-button:hover *,
+.cinematic-header .cinematic-icon-button:hover *,
+.cinematic-header .cinematic-menu-button:hover * {
+  color: #050505 !important;
+}
+
+.app-shell .cinematic-header .cinematic-icon-button:hover svg,
+.app-shell .cinematic-header .cinematic-icon-button:hover svg *,
+.app-shell .cinematic-header .cinematic-menu-button:hover svg,
+.app-shell .cinematic-header .cinematic-menu-button:hover svg *,
+.app-shell.is-home-page .cinematic-header .cinematic-icon-button:hover svg,
+.app-shell.is-home-page .cinematic-header .cinematic-icon-button:hover svg *,
+.app-shell.is-home-page .cinematic-header .cinematic-menu-button:hover svg,
+.app-shell.is-home-page .cinematic-header .cinematic-menu-button:hover svg *,
+.cinematic-header .cinematic-icon-button:hover svg,
+.cinematic-header .cinematic-icon-button:hover svg *,
+.cinematic-header .cinematic-menu-button:hover svg,
+.cinematic-header .cinematic-menu-button:hover svg * {
+  color: #050505 !important;
+  stroke: currentColor !important;
+}
+
+/* SVG 중 fill 기반 아이콘이 있을 경우 대비 */
+.cinematic-header button:hover svg [fill]:not([fill='none']),
+.cinematic-header a:hover svg [fill]:not([fill='none']) {
+  fill: currentColor !important;
+}
