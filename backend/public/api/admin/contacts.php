@@ -47,22 +47,30 @@ try {
 
     $statement = $pdo->query(
         'SELECT
-            id,
-            name,
-            phone,
-            email,
-            production_type,
-            budget_range,
-            message,
-            status,
-            source,
-            ip_address,
-            user_agent,
-            created_at,
-            updated_at
+            contacts.id,
+            contacts.user_id,
+            contacts.name,
+            contacts.phone,
+            contacts.email,
+            contacts.production_type,
+            contacts.budget_range,
+            contacts.message,
+            contacts.status,
+            contacts.source,
+            contacts.ip_address,
+            contacts.user_agent,
+            contacts.created_at,
+            contacts.updated_at,
+            users.name AS customer_name,
+            users.company AS customer_company,
+            users.email AS customer_email,
+            users.phone AS customer_phone,
+            users.provider AS customer_provider,
+            users.created_at AS customer_created_at
         FROM contacts
-        WHERE status != "archived"
-        ORDER BY id DESC
+        LEFT JOIN users ON users.id = contacts.user_id
+        WHERE contacts.status != "archived"
+        ORDER BY contacts.id DESC
         LIMIT 100'
     );
 
