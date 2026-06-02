@@ -12,6 +12,7 @@ import './styles/portfolio.css';
 import './styles/motion.css';
 import './styles/admin-core.css';
 import './styles/admin.css';
+import './styles/mobile-qa.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

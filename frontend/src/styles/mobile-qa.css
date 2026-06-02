@@ -1,0 +1,383 @@
+﻿/* Mobile QA pass 1
+   Purpose: stabilize small-screen layout without changing desktop design.
+*/
+
+@media (max-width: 760px) {
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .section {
+    width: min(100% - 28px, var(--max-width));
+    padding: 72px 0;
+  }
+
+  .primary-button,
+  .ghost-button,
+  .secondary-button {
+    min-height: 46px;
+  }
+
+  /* Header / drawer */
+
+  .site-header,
+  .cinematic-header {
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+  }
+
+  .mobile-nav,
+  .cinematic-drawer {
+    max-width: calc(100vw - 24px);
+    overflow-x: hidden;
+  }
+
+  /* Floating contact / modals */
+
+  .floating-contact-banner {
+    display: none !important;
+  }
+
+  .lead-modal-backdrop,
+  .admin-detail-backdrop {
+    align-items: start;
+    place-items: start center;
+    padding: max(10px, env(safe-area-inset-top)) 10px 10px;
+    overflow-y: auto;
+  }
+
+  .lead-modal,
+  .admin-detail-modal {
+    width: 100%;
+    max-height: none;
+    border-radius: 20px;
+  }
+
+  .lead-modal-header,
+  .admin-detail-header {
+    position: relative;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 18px 16px;
+  }
+
+  .lead-modal-header h2,
+  .admin-detail-header h2 {
+    padding-right: 48px;
+    font-size: clamp(1.55rem, 9vw, 2.35rem);
+    line-height: 1.08;
+  }
+
+  .lead-modal-close,
+  .admin-detail-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+  }
+
+  .contact-form,
+  .contact-form-compact,
+  .auth-form {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .auth-tabs,
+  .social-auth-grid,
+  .auth-divider,
+  .lead-modal-footer {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .auth-form,
+  .social-auth-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .lead-modal-footer,
+  .lead-modal-footer button,
+  .contact-auth-inline {
+    width: 100%;
+  }
+
+  .lead-modal-footer {
+    align-items: stretch;
+  }
+
+  /* Admin */
+
+  .admin-page {
+    padding: 76px 12px 56px;
+  }
+
+  .admin-shell {
+    width: 100%;
+  }
+
+  .admin-mobile-menu-toggle {
+    max-width: calc(100% - 24px);
+  }
+
+  .admin-topbar {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .admin-topbar-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-topbar-actions > *,
+  .admin-back-link,
+  .admin-refresh-button,
+  .admin-archive-toggle,
+  .admin-logout-button {
+    width: 100%;
+  }
+
+  .admin-heading {
+    margin-bottom: 22px;
+  }
+
+  .admin-heading h1 {
+    font-size: clamp(2.2rem, 12vw, 3.8rem);
+    letter-spacing: -0.06em;
+  }
+
+  .admin-heading p:not(.eyebrow) {
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .admin-summary-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+
+  .admin-summary-grid div {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .admin-filter-panel {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .admin-search-box {
+    min-height: 46px;
+    border-radius: 16px;
+  }
+
+  .admin-search-box input {
+    min-width: 0;
+    font-size: 0.92rem;
+  }
+
+  .admin-filter-tabs {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .admin-filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .admin-filter-tabs button {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0 12px;
+    white-space: nowrap;
+  }
+
+  .admin-account-filter-tabs button {
+    flex: 1 0 auto;
+  }
+
+  .admin-reset-filter-button {
+    width: 100%;
+  }
+
+  .admin-contact-list {
+    gap: 14px;
+  }
+
+  .admin-contact-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .admin-contact-header {
+    flex-direction: column;
+  }
+
+  .admin-contact-header h2 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .admin-status-area {
+    width: 100%;
+    justify-items: stretch;
+  }
+
+  .admin-status-badge {
+    width: fit-content;
+  }
+
+  .admin-status-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+  }
+
+  .admin-status-actions button {
+    width: 100%;
+    min-height: 38px;
+  }
+
+  .admin-contact-meta {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .admin-contact-meta p {
+    min-width: 0;
+    border-radius: 16px;
+    word-break: break-word;
+  }
+
+  .admin-contact-preview {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-message-preview p {
+    max-height: 7.2em;
+    overflow: hidden;
+  }
+
+  .admin-detail-status-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 18px 0;
+  }
+
+  .admin-detail-grid {
+    grid-template-columns: 1fr !important;
+    padding: 16px 18px 0;
+  }
+
+  .admin-detail-message,
+  .admin-detail-history,
+  .admin-detail-actions,
+  .admin-detail-customer-panel {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  .admin-detail-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-bottom: 18px;
+  }
+
+  .admin-detail-actions button {
+    width: 100%;
+  }
+
+  /* Portfolio */
+
+  .portfolio-page-toolbar,
+  .portfolio-filter-tabs {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .portfolio-page-toolbar::-webkit-scrollbar,
+  .portfolio-filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-filter-tabs button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .portfolio-card,
+  .portfolio-compact-card {
+    border-radius: 22px;
+  }
+
+  /* My page */
+
+  .mypage-account-card,
+  .mypage-project-card,
+  .mypage-contact-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .mypage-account-card,
+  .mypage-contact-meta-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .mypage-contact-card-header {
+    flex-direction: column;
+  }
+
+  .mypage-contact-status {
+    width: fit-content;
+  }
+}
+
+@media (max-width: 420px) {
+  .section {
+    width: min(100% - 22px, var(--max-width));
+    padding: 60px 0;
+  }
+
+  .admin-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .admin-contact-card,
+  .admin-summary-grid div,
+  .admin-filter-panel,
+  .mypage-account-card,
+  .mypage-project-card,
+  .mypage-contact-card {
+    border-radius: 18px;
+  }
+
+  .admin-status-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .lead-modal,
+  .admin-detail-modal {
+    border-radius: 18px;
+  }
+}
