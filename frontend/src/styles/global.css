@@ -284,28 +284,6 @@ a {
 }
 
 
-.portfolio-filter-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
-.portfolio-filter-tabs button {
-  min-height: 40px;
-  padding: 0 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.055);
-  color: var(--muted-strong);
-  font-size: 0.84rem;
-  font-weight: 850;
-  transition:
-    background 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease;
-}
-
 .portfolio-filter-tabs button:hover,
 .portfolio-filter-tabs button.is-active {
   border-color: var(--line-strong);
@@ -1429,11 +1407,6 @@ main,
 
 .portfolio-folder-button,
 .portfolio-filter-tabs button,
-.category-tabs button {
-  border-color: rgba(166, 228, 219, 0.14) !important;
-  background: rgba(245, 247, 238, 0.055) !important;
-  color: var(--muted-strong) !important;
-}
 
 .portfolio-folder-button:hover,
 .portfolio-folder-button.is-active,
