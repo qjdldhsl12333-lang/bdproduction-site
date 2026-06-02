@@ -183,59 +183,9 @@
   font-size: 0.9rem;
 }
 
-.admin-contact-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.admin-contact-grid div {
-  padding: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.2);
-}
 
 .admin-contact-grid span,
-.admin-contact-grid strong {
-  display: block;
-}
 
-.admin-contact-grid span {
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 850;
-}
-
-.admin-contact-grid strong {
-  margin-top: 6px;
-  color: var(--text);
-  font-size: 0.94rem;
-  line-height: 1.45;
-}
-
-.admin-message-box {
-  margin-top: 18px;
-  padding: 18px;
-  border: 1px solid rgba(216, 183, 106, 0.22);
-  border-radius: 18px;
-  background: rgba(216, 183, 106, 0.08);
-}
-
-.admin-message-box span {
-  color: var(--gold);
-  font-size: 0.78rem;
-  font-weight: 950;
-  letter-spacing: 0.08em;
-}
-
-.admin-message-box p {
-  margin: 8px 0 0;
-  color: var(--muted-strong);
-  line-height: 1.75;
-  white-space: pre-wrap;
-}
 
 .admin-warning {
   margin-top: 24px;
@@ -1009,52 +959,6 @@
   text-align: right;
 }
 
-.admin-detail-history-toggle {
-  justify-self: flex-start;
-  min-height: 30px;
-  padding: 0 10px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 800;
-}
-
-.admin-detail-history-toggle:hover {
-  border-color: rgba(216, 183, 106, 0.45);
-  color: var(--gold);
-}
-
-.admin-detail-history-technical {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  padding: 12px;
-  border: 1px dashed rgba(255, 255, 255, 0.14);
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.admin-detail-history-technical div {
-  display: grid;
-  gap: 4px;
-}
-
-.admin-detail-history-technical dt {
-  color: var(--gold);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-}
-
-.admin-detail-history-technical dd {
-  margin: 0;
-  color: var(--muted-strong);
-  font-size: 0.78rem;
-  line-height: 1.55;
-  word-break: break-word;
-}
 
 @media (max-width: 720px) {
   .admin-detail-history-main {

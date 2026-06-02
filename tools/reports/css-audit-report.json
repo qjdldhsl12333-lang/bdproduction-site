@@ -1,14 +1,12 @@
 [
   {
     "file": "frontend\\src\\styles\\admin-core.css",
-    "classCount": 98,
+    "classCount": 96,
     "likelyUsed": 94,
-    "likelyUnused": 4,
+    "likelyUnused": 2,
     "unusedClasses": [
       "admin-contact-grid",
-      "admin-detail-history-technical",
-      "admin-detail-history-toggle",
-      "admin-message-box"
+      "admin-detail-history-technical"
     ]
   },
   {
