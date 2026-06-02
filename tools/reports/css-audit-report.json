@@ -75,8 +75,8 @@
   },
   {
     "file": "frontend\\src\\styles\\motion.css",
-    "classCount": 34,
-    "likelyUsed": 31,
+    "classCount": 37,
+    "likelyUsed": 34,
     "likelyUnused": 3,
     "unusedClasses": [
       "play-button",
