@@ -418,19 +418,6 @@
   font-weight: 950;
 }
 
-.provider-kakao {
-  background: #fee500;
-}
-
-.provider-naver {
-  background: #03c75a;
-  color: #fff;
-}
-
-.provider-google {
-  background: #fff;
-  color: #222;
-}
 
 .auth-divider {
   display: flex;

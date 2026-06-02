@@ -29,9 +29,9 @@
   },
   {
     "file": "frontend\\src\\styles\\contact.css",
-    "classCount": 46,
+    "classCount": 43,
     "likelyUsed": 32,
-    "likelyUnused": 14,
+    "likelyUnused": 11,
     "unusedClasses": [
       "contact-copy",
       "contact-cta-card",
@@ -43,10 +43,7 @@
       "contact-cta-panel-dynamic",
       "contact-cta-section",
       "contact-phone-card",
-      "header-action-group",
-      "provider-google",
-      "provider-kakao",
-      "provider-naver"
+      "header-action-group"
     ]
   },
   {

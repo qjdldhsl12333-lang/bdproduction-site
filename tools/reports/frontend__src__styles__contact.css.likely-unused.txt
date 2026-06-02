@@ -9,6 +9,3 @@ contact-cta-panel-dynamic
 contact-cta-section
 contact-phone-card
 header-action-group
-provider-google
-provider-kakao
-provider-naver
