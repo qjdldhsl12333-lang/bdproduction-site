@@ -284,7 +284,7 @@
 
 .admin-filter-panel {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) auto auto;
+  grid-template-columns: minmax(260px, 1fr) auto auto auto;
   gap: 12px;
   align-items: center;
   margin: 0 0 22px;
@@ -351,6 +351,17 @@
   border-color: var(--line-strong);
   background: var(--gold-soft);
   color: var(--gold);
+}
+
+
+.admin-account-filter-tabs {
+  justify-content: flex-start;
+}
+
+.admin-account-filter-tabs button.is-active {
+  border-color: rgba(90, 220, 160, 0.42);
+  background: rgba(90, 220, 160, 0.12);
+  color: #9df0c8;
 }
 
 .admin-reset-filter-button {

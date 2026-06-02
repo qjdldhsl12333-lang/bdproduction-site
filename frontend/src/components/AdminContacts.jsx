@@ -9,6 +9,12 @@ const statusFilters = [
   { label: '처리 완료', value: 'done' },
 ];
 
+const accountFilters = [
+  { label: '전체 문의', value: 'all' },
+  { label: '회원 문의', value: 'member' },
+  { label: '비회원 문의', value: 'guest' },
+];
+
 function AdminContacts() {
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [adminActionMenuOpen, setAdminActionMenuOpen] = useState(false);
@@ -32,6 +38,7 @@ function AdminContacts() {
   const [errorMessage, setErrorMessage] = useState('');
   const [updatingContactId, setUpdatingContactId] = useState(null);
   const [statusFilter, setStatusFilter] = useState('all');
+  const [accountFilter, setAccountFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [archiveMode, setArchiveMode] = useState(false);
 
@@ -41,7 +48,13 @@ function AdminContacts() {
     return contacts.filter((contact) => {
       const matchesStatus = archiveMode || statusFilter === 'all' || contact.status === statusFilter;
 
-      if (!matchesStatus) {
+      const isMemberContact = Boolean(contact.user_id);
+      const matchesAccount =
+        accountFilter === 'all' ||
+        (accountFilter === 'member' && isMemberContact) ||
+        (accountFilter === 'guest' && !isMemberContact);
+
+      if (!matchesStatus || !matchesAccount) {
         return false;
       }
 
@@ -71,7 +84,7 @@ function AdminContacts() {
 
       return searchableText.includes(keyword);
     });
-  }, [archiveMode, contacts, searchTerm, statusFilter]);
+  }, [accountFilter, archiveMode, contacts, searchTerm, statusFilter]);
 
   const checkAdminAuth = useCallback(async () => {
     setCheckingAuth(true);
@@ -344,6 +357,7 @@ function AdminContacts() {
       setSelectedContact(null);
       setArchiveMode(false);
       setStatusFilter('all');
+      setAccountFilter('all');
       setSearchTerm('');
     }
   };
@@ -464,6 +478,7 @@ function AdminContacts() {
 
   const resetFilters = () => {
     setStatusFilter('all');
+    setAccountFilter('all');
     setSearchTerm('');
   };
 
@@ -482,6 +497,7 @@ function AdminContacts() {
     setArchiveMode((current) => !current);
     setSelectedContact(null);
     setStatusFilter('all');
+    setAccountFilter('all');
     setSearchTerm('');
   };
 
@@ -796,8 +812,21 @@ function AdminContacts() {
               type="search"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="이름, 연락처, 이메일, 문의 내용으로 검색"
+              placeholder="이름, 연락처, 이메일, 회원 정보, 문의 내용으로 검색"
             />
+          </div>
+
+          <div className="admin-filter-tabs admin-account-filter-tabs" aria-label="회원 문의 필터">
+            {accountFilters.map((filter) => (
+              <button
+                key={filter.value}
+                type="button"
+                className={accountFilter === filter.value ? 'is-active' : ''}
+                onClick={() => setAccountFilter(filter.value)}
+              >
+                {filter.label}
+              </button>
+            ))}
           </div>
 
           {!archiveMode && (
@@ -815,7 +844,7 @@ function AdminContacts() {
             </div>
           )}
 
-          {(searchTerm || statusFilter !== 'all') && (
+          {(searchTerm || accountFilter !== 'all' || statusFilter !== 'all') && (
             <button className="admin-reset-filter-button" type="button" onClick={resetFilters}>
               <X size={16} />
               필터 초기화
