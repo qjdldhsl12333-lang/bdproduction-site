@@ -2,6 +2,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './styles/global.css';
+import './styles/contact.css';
+import './styles/auth.css';
 import './styles/portfolio.css';
 import './styles/motion.css';
 import './styles/admin-core.css';
