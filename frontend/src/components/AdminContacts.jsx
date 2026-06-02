@@ -11,8 +11,8 @@ const statusFilters = [
 
 function AdminContacts() {
   const [checkingAuth, setCheckingAuth] = useState(true);
-    const [adminActionMenuOpen, setAdminActionMenuOpen] = useState(false);
-const [adminLoggedIn, setAdminLoggedIn] = useState(false);
+  const [adminActionMenuOpen, setAdminActionMenuOpen] = useState(false);
+  const [adminLoggedIn, setAdminLoggedIn] = useState(false);
   const [adminPassword, setAdminPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
   const [loggingIn, setLoggingIn] = useState(false);
