@@ -1,5 +1,17 @@
 [
   {
+    "file": "frontend\\src\\styles\\admin-core.css",
+    "classCount": 98,
+    "likelyUsed": 94,
+    "likelyUnused": 4,
+    "unusedClasses": [
+      "admin-contact-grid",
+      "admin-detail-history-technical",
+      "admin-detail-history-toggle",
+      "admin-message-box"
+    ]
+  },
+  {
     "file": "frontend\\src\\styles\\admin.css",
     "classCount": 8,
     "likelyUsed": 8,
@@ -8,13 +20,12 @@
   },
   {
     "file": "frontend\\src\\styles\\global.css",
-    "classCount": 270,
-    "likelyUsed": 213,
-    "likelyUnused": 57,
+    "classCount": 247,
+    "likelyUsed": 192,
+    "likelyUnused": 55,
     "unusedClasses": [
       "admin-contact-grid",
       "admin-detail-history-technical",
-      "admin-detail-history-toggle",
       "admin-message-box",
       "category-tabs",
       "contact-copy",
@@ -46,7 +57,6 @@
       "mobile-nav-button",
       "modal-content",
       "modal-media",
-      "modal-meta",
       "modal-panel",
       "mypage-requirements-note",
       "play-button",
@@ -88,5 +98,22 @@
     "likelyUsed": 18,
     "likelyUnused": 0,
     "unusedClasses": []
+  },
+  {
+    "file": "frontend\\src\\styles\\portfolio.css",
+    "classCount": 55,
+    "likelyUsed": 46,
+    "likelyUnused": 9,
+    "unusedClasses": [
+      "category-tabs",
+      "modal-content",
+      "modal-media",
+      "modal-meta",
+      "portfolio-badge",
+      "portfolio-filter-tabs",
+      "portfolio-grid",
+      "portfolio-heading",
+      "portfolio-modal"
+    ]
   }
 ]

@@ -1,6 +1,5 @@
 admin-contact-grid
 admin-detail-history-technical
-admin-detail-history-toggle
 admin-message-box
 category-tabs
 contact-copy
@@ -32,7 +31,6 @@ mobile-nav
 mobile-nav-button
 modal-content
 modal-media
-modal-meta
 modal-panel
 mypage-requirements-note
 play-button
