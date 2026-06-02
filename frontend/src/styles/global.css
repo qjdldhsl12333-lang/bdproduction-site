@@ -9409,7 +9409,7 @@ button.contact-cta-flow-card {
   .portfolio-filter-tabs button,
   .portfolio-all-link,
   .youtube-modal-link,
-  .admin-page button:not(.admin-detail-close):not(.lead-modal-close),
+  .admin-page button:not(.admin-detail-close):not(.lead-modal-close):not(.admin-menu-scrim),
   .admin-page a.admin-back-link,
   .admin-page .admin-topbar-actions a,
   .admin-page .admin-archive-toggle,
@@ -9442,7 +9442,7 @@ button.contact-cta-flow-card {
   .portfolio-filter-tabs button,
   .portfolio-all-link,
   .youtube-modal-link,
-  .admin-page button:not(.admin-detail-close):not(.lead-modal-close),
+  .admin-page button:not(.admin-detail-close):not(.lead-modal-close):not(.admin-menu-scrim),
   .admin-page a.admin-back-link,
   .admin-page .admin-topbar-actions a,
   .admin-page .admin-archive-toggle,
@@ -9475,7 +9475,7 @@ button.contact-cta-flow-card {
   .portfolio-filter-tabs button,
   .portfolio-all-link,
   .youtube-modal-link,
-  .admin-page button:not(.admin-detail-close):not(.lead-modal-close),
+  .admin-page button:not(.admin-detail-close):not(.lead-modal-close):not(.admin-menu-scrim),
   .admin-page a.admin-back-link,
   .admin-page .admin-topbar-actions a,
   .admin-page .admin-archive-toggle,
@@ -9553,7 +9553,7 @@ button.contact-cta-flow-card {
     .portfolio-filter-tabs button,
     .portfolio-all-link,
     .youtube-modal-link,
-    .admin-page button:not(.admin-detail-close):not(.lead-modal-close),
+    .admin-page button:not(.admin-detail-close):not(.lead-modal-close):not(.admin-menu-scrim),
     .admin-page a.admin-back-link,
     .admin-page .admin-topbar-actions a,
     .admin-page .admin-archive-toggle,
@@ -9603,7 +9603,7 @@ button.contact-cta-flow-card {
   .portfolio-filter-tabs button,
   .portfolio-all-link,
   .youtube-modal-link,
-  .admin-page button,
+  .admin-page button:not(.admin-menu-scrim),
   .admin-page a.admin-back-link,
   .admin-page .admin-topbar-actions a,
   .admin-page .admin-archive-toggle,
@@ -10024,4 +10024,40 @@ button.contact-cta-flow-card {
 
 .admin-detail-customer-panel .admin-detail-grid {
   margin-top: 14px;
+}
+
+/* Admin mobile drawer scrim reset */
+
+.admin-menu-scrim {
+  position: fixed;
+  z-index: 95;
+  inset: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0, 0, 0, 0.58) !important;
+  box-shadow: none !important;
+  cursor: default;
+  transform: none !important;
+  isolation: auto !important;
+  overflow: hidden;
+}
+
+.admin-menu-scrim::before,
+.admin-menu-scrim::after {
+  display: none !important;
+  content: none !important;
+}
+
+.admin-menu-scrim:hover,
+.admin-menu-scrim:focus,
+.admin-menu-scrim:active {
+  border: 0 !important;
+  background: rgba(0, 0, 0, 0.58) !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  transform: none !important;
 }
