@@ -7,8 +7,9 @@ require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../config/mailer.php';
 require_once __DIR__ . '/../../config/notion.php';
 require_once __DIR__ . '/../../config/contact_rate_limit.php';
+require_once __DIR__ . '/../../config/customer_auth.php';
 
-applyCorsHeaders(['POST', 'OPTIONS'], false);
+applyCorsHeaders(['POST', 'OPTIONS'], true);
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
@@ -21,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         'message' => 'POST 요청만 허용됩니다.',
     ]);
 }
+
+bdStartCustomerSession();
+$customerUserId = (int) ($_SESSION['customer_user_id'] ?? 0);
 
 $rawBody = file_get_contents('php://input');
 $data = json_decode($rawBody, true);
@@ -161,6 +165,7 @@ try {
 
     $statement = $pdo->prepare(
         'INSERT INTO contacts (
+            user_id,
             name,
             phone,
             email,
@@ -172,6 +177,7 @@ try {
             ip_address,
             user_agent
         ) VALUES (
+            :user_id,
             :name,
             :phone,
             :email,
@@ -186,6 +192,7 @@ try {
     );
 
     $statement->execute([
+        ':user_id' => $customerUserId > 0 ? $customerUserId : null,
         ':name' => $name,
         ':phone' => $phone,
         ':email' => $email !== '' ? $email : null,
@@ -200,24 +207,10 @@ try {
 
     $contactId = (int) $pdo->lastInsertId();
 
-    
-
     // Send contact notification email
-    $contact = [
-        'id' => $contactId,
-        'name' => $name,
-        'phone' => $phone,
-        'email' => $email,
-        'production_type' => $productionType,
-        'budget_range' => $budgetRange,
-        'message' => $message,
-        'status' => 'new',
-        'source' => 'website',
-        'created_at' => date('Y-m-d H:i:s'),
-    ];
-
     $contactPayload = [
         'id' => $contactId,
+        'user_id' => $customerUserId > 0 ? $customerUserId : null,
         'name' => $name,
         'phone' => $phone,
         'email' => $email !== '' ? $email : null,
