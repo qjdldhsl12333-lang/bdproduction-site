@@ -50,9 +50,18 @@
     ]
   },
   {
+    "file": "frontend\\src\\styles\\footer.css",
+    "classCount": 9,
+    "likelyUsed": 8,
+    "likelyUnused": 1,
+    "unusedClasses": [
+      "footer-main"
+    ]
+  },
+  {
     "file": "frontend\\src\\styles\\global.css",
-    "classCount": 203,
-    "likelyUsed": 173,
+    "classCount": 201,
+    "likelyUsed": 171,
     "likelyUnused": 30,
     "unusedClasses": [
       "admin-contact-grid",
