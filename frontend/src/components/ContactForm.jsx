@@ -48,6 +48,7 @@ function ContactForm({ compact = false, onOpenAuth }) {
     try {
       const response = await fetch(apiUrl('/api/contact.php'), {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -65,6 +66,7 @@ function ContactForm({ compact = false, onOpenAuth }) {
       setSubmitted(true);
       setReceiptId(result.contactId || null);
       setForm(initialForm);
+      window.dispatchEvent(new Event('bd:customer-contact-created'));
     } catch (error) {
       console.error('Contact API error:', error);
       setErrorMessage('서버와 연결할 수 없습니다. PHP 백엔드 서버가 실행 중인지 확인해주세요.');
