@@ -2,34 +2,6 @@
 
 /* Portfolio */
 
-.portfolio-heading {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
-  gap: 28px;
-  max-width: none;
-  align-items: end;
-}
-
-.category-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 28px;
-}
-
-.category-tabs button {
-  padding: 11px 16px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--muted-strong);
-  font-size: 0.85rem;
-  font-weight: 850;
-  transition:
-    background 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease;
-}
 
 .category-tabs button:hover,
 .category-tabs button.is-active {
@@ -38,11 +10,6 @@
   color: var(--gold);
 }
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
 
 .portfolio-card {
   overflow: hidden;
@@ -82,19 +49,6 @@
   content: '';
 }
 
-.portfolio-badge {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  z-index: 2;
-  padding: 8px 10px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: rgba(5, 5, 5, 0.56);
-  color: var(--gold);
-  font-size: 0.72rem;
-  font-weight: 950;
-}
 
 .portfolio-play {
   position: relative;
@@ -148,18 +102,6 @@
   backdrop-filter: blur(14px);
 }
 
-.portfolio-modal {
-  position: relative;
-  display: grid;
-  width: min(100%, 980px);
-  max-height: min(780px, calc(100vh - 48px));
-  overflow: auto;
-  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
-  border: 1px solid var(--line);
-  border-radius: 32px;
-  background: #09090a;
-  box-shadow: var(--shadow);
-}
 
 .modal-close {
   position: absolute;
@@ -175,18 +117,6 @@
   color: var(--text);
 }
 
-.modal-media {
-  min-height: 460px;
-  background: #000;
-}
-
-.modal-media iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 460px;
-  border: 0;
-}
 
 .modal-placeholder {
   display: grid;
@@ -202,16 +132,6 @@
   font-weight: 900;
 }
 
-.modal-content {
-  padding: 48px 34px 34px;
-}
-
-.modal-content h3 {
-  margin: 0;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  line-height: 1.08;
-  letter-spacing: -0.05em;
-}
 
 .modal-content p:not(.eyebrow) {
   margin: 18px 0 0;
@@ -219,23 +139,6 @@
   line-height: 1.8;
 }
 
-.modal-meta {
-  display: grid;
-  gap: 6px;
-  margin: 26px 0;
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.modal-meta span {
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
 
 /* YouTube Portfolio */
 
@@ -354,7 +257,6 @@
 }
 
 
-
 @media (max-width: 680px) {
 
   .youtube-modal-backdrop {
@@ -377,20 +279,6 @@
 
 /* Compact full portfolio page */
 
-.portfolio-filter-tabs button span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 24px;
-  height: 24px;
-  margin-left: 7px;
-  padding: 0 7px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 950;
-}
 
 .portfolio-filter-tabs button.is-active span {
   background: rgba(216, 183, 106, 0.18);

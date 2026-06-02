@@ -1,9 +1,3 @@
 category-tabs
 modal-content
-modal-media
-modal-meta
-portfolio-badge
 portfolio-filter-tabs
-portfolio-grid
-portfolio-heading
-portfolio-modal

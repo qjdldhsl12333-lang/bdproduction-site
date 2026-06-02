@@ -3,15 +3,11 @@ admin-detail-history-technical
 admin-message-box
 category-tabs
 contact-copy
-contact-cta-actions
 contact-cta-card
 contact-cta-cards
 contact-cta-copy
 contact-cta-copy-dynamic
-contact-cta-flow
 contact-cta-flow-card
-contact-cta-flow-icon
-contact-cta-orbit
 contact-cta-panel
 contact-cta-panel-dynamic
 contact-cta-section
@@ -24,14 +20,12 @@ header-cta
 header-cta-secondary
 hero-overlay
 hero-stats
-hero-video
 hero-video-fallback
 mobile-menu-button
 mobile-nav
 mobile-nav-button
 modal-content
 modal-media
-modal-panel
 mypage-requirements-note
 play-button
 portfolio-badge
@@ -39,7 +33,6 @@ portfolio-filter-tabs
 portfolio-grid
 portfolio-heading
 portfolio-modal
-portfolio-notice
 portfolio-page-toolbar
 provider-google
 provider-kakao
@@ -51,5 +44,4 @@ site-header
 studio-showroom-controls
 studio-showroom-frame
 studio-showroom-heading
-studio-showroom-note
 studio-showroom-section
