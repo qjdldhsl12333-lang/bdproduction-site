@@ -9950,3 +9950,25 @@ button.contact-cta-flow-card {
 .cinematic-header a:hover svg [fill]:not([fill='none']) {
   fill: currentColor !important;
 }
+
+/* Hero logo solid color fix
+   메인 쇼릴 중앙 BDPRODUCTION 텍스트의 그라데이션을 제거하고 단색으로 고정합니다. */
+
+.hero-film-center-mark .hero-logo-word,
+.hero-film-center-mark .hero-logo-word *,
+.hero-film-center-mark > span,
+.hero-film-fallback {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: #dfe5e7 !important;
+  color: #dfe5e7 !important;
+}
+
+/* 기존 굵기/질감은 유지하고, 미세한 입체감만 아주 약하게 남깁니다. */
+.hero-film-center-mark .hero-logo-word {
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 42px rgba(0, 0, 0, 0.36) !important;
+}
