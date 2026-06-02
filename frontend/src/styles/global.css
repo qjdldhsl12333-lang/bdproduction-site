@@ -9972,3 +9972,56 @@ button.contact-cta-flow-card {
     0 1px 0 rgba(255, 255, 255, 0.06),
     0 18px 42px rgba(0, 0, 0, 0.36) !important;
 }
+
+/* Admin customer account link */
+
+.admin-contact-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-customer-link-badge {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.admin-customer-link-badge.is-linked {
+  border-color: rgba(90, 220, 160, 0.34);
+  background: rgba(90, 220, 160, 0.11);
+  color: #9df0c8;
+}
+
+.admin-customer-link-badge.is-guest {
+  border-color: rgba(255, 190, 90, 0.34);
+  background: rgba(255, 190, 90, 0.1);
+  color: #ffd79a;
+}
+
+.admin-customer-account-line {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.admin-detail-customer-panel {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid rgba(90, 220, 160, 0.22);
+  border-radius: 20px;
+  background: rgba(90, 220, 160, 0.06);
+}
+
+.admin-detail-customer-panel .admin-detail-grid {
+  margin-top: 14px;
+}

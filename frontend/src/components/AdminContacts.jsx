@@ -1,5 +1,5 @@
 import { apiUrl } from '../config/api.js';
-import { Archive, ArrowLeft, Clapperboard, Download, Inbox, Mail, Phone, RefreshCw, Search, Undo2, X } from 'lucide-react';
+import { Archive, ArrowLeft, Clapperboard, Download, Inbox, Mail, Phone, RefreshCw, Search, Undo2, UserRound, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const statusFilters = [
@@ -58,6 +58,12 @@ function AdminContacts() {
         contact.message,
         contact.status,
         contact.source,
+        contact.user_id,
+        contact.customer_name,
+        contact.customer_company,
+        contact.customer_email,
+        contact.customer_phone,
+        contact.customer_provider,
       ]
         .filter(Boolean)
         .join(' ')
@@ -844,8 +850,19 @@ function AdminContacts() {
               >
                 <div className="admin-contact-header">
                   <div>
-                    <span className="admin-contact-id">#{contact.id}</span>
+                    <div className="admin-contact-title-row">
+                      <span className="admin-contact-id">#{contact.id}</span>
+                      <span className={`admin-customer-link-badge ${contact.user_id ? 'is-linked' : 'is-guest'}`}>
+                        <UserRound size={13} />
+                        {contact.user_id ? '회원 문의' : '비회원 문의'}
+                      </span>
+                    </div>
                     <h2>{contact.name}</h2>
+                    {contact.user_id && (
+                      <p className="admin-customer-account-line">
+                        {contact.customer_company || contact.customer_name || '회원'} · {contact.customer_email || '-'}
+                      </p>
+                    )}
                   </div>
 
                   <div className="admin-status-area">
@@ -1000,7 +1017,7 @@ function ContactDetailModal({
   onRestore,
   showingArchived,
 }) {
-  
+
   const safeLogs = Array.isArray(logs) ? logs : [];
 
   const isUpdating = Number(updatingContactId) === Number(contact.id);
@@ -1037,6 +1054,23 @@ function ContactDetailModal({
           <DetailItem label="제작 유형" value={contact.production_type || '-'} />
           <DetailItem label="예산 범위" value={contact.budget_range || '-'} />
           <DetailItem label="접수 경로" value={contact.source || 'website'} />
+        </div>
+
+        <div className="admin-detail-customer-panel">
+          <div className="admin-detail-history-header">
+            <span>고객 계정 정보</span>
+            <strong>{contact.user_id ? '회원 문의' : '비회원 문의'}</strong>
+          </div>
+
+          <div className="admin-detail-grid">
+            <DetailItem label="회원 ID" value={contact.user_id ? `#${contact.user_id}` : '-'} />
+            <DetailItem label="회원명" value={contact.customer_name || '-'} />
+            <DetailItem label="회원 회사명" value={contact.customer_company || '-'} />
+            <DetailItem label="회원 이메일" value={contact.customer_email || '-'} />
+            <DetailItem label="회원 연락처" value={contact.customer_phone || '-'} />
+            <DetailItem label="가입 방식" value={formatCustomerProviderLabel(contact.customer_provider)} />
+            <DetailItem label="회원 가입일" value={formatDateTime(contact.customer_created_at)} />
+          </div>
         </div>
 
         <div className="admin-detail-message">
@@ -1147,6 +1181,30 @@ function DetailItem({ label, value }) {
       <strong>{value || '-'}</strong>
     </div>
   );
+}
+
+function formatCustomerProviderLabel(provider) {
+  if (!provider) {
+    return '-';
+  }
+
+  if (provider === 'local') {
+    return '이메일 가입';
+  }
+
+  if (provider === 'kakao') {
+    return '카카오';
+  }
+
+  if (provider === 'naver') {
+    return '네이버';
+  }
+
+  if (provider === 'google') {
+    return '구글';
+  }
+
+  return provider;
 }
 
 function renderStatusLabel(status) {
