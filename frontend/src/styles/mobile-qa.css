@@ -382,19 +382,22 @@
   }
 }
 
-/* Admin mobile hamburger menu final v5 */
+/* Admin mobile menu restore final */
 
-/* 861px ~ 980px: keep desktop admin menu */
-@media (min-width: 861px) and (max-width: 980px) {
+/*
+  Admin menu policy:
+  - 861px and above: desktop admin menu.
+  - 860px and below: use the original global.css mobile drawer.
+  Do not replace the original drawer with a custom dropdown.
+*/
+
+@media (min-width: 861px) {
   .admin-page {
     padding-top: 36px !important;
   }
 
   .admin-page .admin-mobile-menu-toggle,
-  button.admin-mobile-menu-toggle {
-    display: none !important;
-  }
-
+  button.admin-mobile-menu-toggle,
   .admin-page .admin-menu-scrim {
     display: none !important;
   }
@@ -410,7 +413,7 @@
     max-width: none !important;
     max-height: none !important;
     overflow: visible !important;
-    margin-bottom: 32px !important;
+    margin-bottom: 42px !important;
     padding: 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -418,6 +421,17 @@
     box-shadow: none !important;
     backdrop-filter: none !important;
     transform: none !important;
+  }
+
+  .admin-page .admin-topbar:hover,
+  .admin-page .admin-topbar:focus-within {
+    transform: none !important;
+  }
+
+  .admin-page .admin-topbar::before,
+  .admin-page .admin-topbar::after {
+    display: none !important;
+    content: none !important;
   }
 
   .admin-page .admin-topbar-actions {
@@ -433,60 +447,76 @@
   .admin-page .admin-topbar-actions > a,
   .admin-page .admin-topbar-actions > button {
     width: auto !important;
+    min-height: 44px !important;
+    border-radius: 999px !important;
+  }
+
+  .admin-page .admin-topbar .admin-topbar-actions > button.admin-logout-button {
+    width: auto !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    margin-top: 0 !important;
+    padding: 0 16px !important;
+    border-radius: 999px !important;
   }
 }
 
-/* 860px and below: compact left hamburger menu */
 @media (max-width: 860px) {
   .admin-page {
-    position: relative !important;
     padding-top: 72px !important;
   }
 
+  /*
+    Restore the original mobile drawer trigger.
+    This intentionally follows the global.css drawer behavior.
+  */
   .admin-page .admin-mobile-menu-toggle,
   button.admin-mobile-menu-toggle {
     position: fixed !important;
-    z-index: 1400 !important;
-    top: max(14px, env(safe-area-inset-top)) !important;
-    left: 14px !important;
+    z-index: 530 !important;
+    top: 12px !important;
+    left: 12px !important;
     right: auto !important;
-    display: block !important;
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
-    max-width: 42px !important;
-    min-height: 42px !important;
-    padding: 0 !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    outline: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    color: #95ff00 !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    text-indent: -9999px !important;
+    display: inline-flex !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 38px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    padding: 0 13px !important;
+    border: 1px solid rgba(9, 99, 126, 0.2) !important;
+    border-radius: 999px !important;
+    background: rgba(235, 244, 246, 0.94) !important;
+    color: #09637e !important;
+    font-size: 0.76rem !important;
+    font-weight: 950 !important;
+    line-height: 1 !important;
+    text-indent: 0 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
+    box-shadow: 0 12px 34px rgba(9, 99, 126, 0.14) !important;
+    backdrop-filter: blur(16px) !important;
     transform: none !important;
-    overflow: visible !important;
   }
 
   .admin-page .admin-mobile-menu-toggle::before,
   button.admin-mobile-menu-toggle::before {
-    position: absolute !important;
-    top: 11px !important;
-    left: 9px !important;
-    display: block !important;
-    width: 24px !important;
-    height: 2px !important;
-    border-radius: 999px !important;
-    background: #95ff00 !important;
-    box-shadow:
-      0 9px 0 #95ff00,
-      0 18px 0 #95ff00 !important;
-    content: '' !important;
+    position: static !important;
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: inherit !important;
+    content: '?' !important;
+    font-size: 0.9rem !important;
+    line-height: 1 !important;
     transform: none !important;
   }
 
@@ -496,55 +526,61 @@
     content: none !important;
   }
 
-  .admin-page.is-admin-menu-open .admin-mobile-menu-toggle,
-  .admin-page.is-admin-menu-open button.admin-mobile-menu-toggle {
-    background: transparent !important;
-    color: #95ff00 !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-
-  .admin-page.is-admin-menu-open .admin-mobile-menu-toggle::before,
-  .admin-page.is-admin-menu-open button.admin-mobile-menu-toggle::before {
-    background: #95ff00 !important;
-    box-shadow:
-      0 9px 0 #95ff00,
-      0 18px 0 #95ff00 !important;
-    transform: none !important;
-  }
-
   .admin-page .admin-menu-scrim {
-    z-index: 1100 !important;
-    background: rgba(0, 0, 0, 0.46) !important;
+    position: fixed !important;
+    z-index: 500 !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: rgba(9, 99, 126, 0.2) !important;
+    box-shadow: none !important;
+    backdrop-filter: blur(2px) !important;
+    transform: none !important;
   }
 
   .admin-page .admin-topbar {
     position: fixed !important;
-    z-index: 1300 !important;
-    top: calc(max(14px, env(safe-area-inset-top)) + 46px) !important;
-    left: 12px !important;
+    z-index: 520 !important;
+    top: 62px !important;
+    bottom: auto !important;
+    left: 0 !important;
     right: auto !important;
-    display: none !important;
-    width: min(292px, calc(100vw - 24px)) !important;
+    display: grid !important;
+    width: min(268px, calc(100vw - 54px)) !important;
+    height: auto !important;
+    min-height: 0 !important;
     max-height: calc(100dvh - 76px) !important;
+    overflow-x: hidden !important;
     overflow-y: auto !important;
     margin: 0 !important;
-    padding: 10px !important;
-    border: 1px solid rgba(149, 255, 0, 0.16) !important;
-    border-radius: 16px !important;
-    background: rgba(5, 8, 8, 0.98) !important;
-    box-shadow: 0 20px 64px rgba(0, 0, 0, 0.56) !important;
-    backdrop-filter: blur(16px) !important;
-    transform: none !important;
+    padding: 46px 12px 14px !important;
+    gap: 8px !important;
+    border-radius: 0 22px 22px 0 !important;
+    transform: translateX(-104%) !important;
   }
 
-  .admin-page.is-admin-menu-open .admin-topbar {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
+  .admin-page .admin-topbar:hover,
+  .admin-page .admin-topbar:focus-within {
+    transform: translateX(-104%) !important;
+  }
+
+  .admin-page.is-admin-menu-open .admin-topbar,
+  .admin-page.is-admin-menu-open .admin-topbar:hover,
+  .admin-page.is-admin-menu-open .admin-topbar:focus-within {
+    transform: translateX(0) !important;
+  }
+
+  .admin-page .admin-topbar::before {
+    top: 14px !important;
+    height: 24px !important;
+    line-height: 24px !important;
+  }
+
+  .admin-page .admin-topbar::after {
+    display: none !important;
   }
 
   .admin-page .admin-topbar-actions {
@@ -554,19 +590,26 @@
     width: 100% !important;
   }
 
-  .admin-page .admin-topbar .admin-back-link,
-  .admin-page .admin-topbar-actions > a,
-  .admin-page .admin-topbar-actions > button {
+  .admin-page .admin-topbar > .admin-back-link,
+  .admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button),
+  .admin-page .admin-topbar .admin-topbar-actions > a,
+  .admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle,
+  .admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button {
     width: 100% !important;
+    height: 38px !important;
     min-height: 38px !important;
-    justify-content: flex-start !important;
-    padding: 0 12px !important;
-    border-radius: 12px !important;
-    font-size: 0.82rem !important;
+    border-radius: 14px !important;
+    font-size: 0.76rem !important;
   }
 
-  .admin-page .admin-topbar .admin-back-link svg,
-  .admin-page .admin-topbar-actions svg {
-    flex: 0 0 auto !important;
+  .admin-page .admin-topbar .admin-topbar-actions > button.admin-logout-button {
+    width: 100% !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    margin-top: clamp(86px, 18vh, 132px) !important;
+    border-radius: 14px !important;
+    background: #d94b4b !important;
+    color: #ffffff !important;
+    font-size: 0.76rem !important;
   }
 }
