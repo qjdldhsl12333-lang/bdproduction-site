@@ -1,0 +1,153 @@
+.mypage-contact-card {
+  gap: 18px;
+}
+
+.mypage-contact-card-header {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.mypage-contact-card-header>div {
+  min-width: 0;
+}
+
+.mypage-contact-card-header h2 {
+  margin: 6px 0 0;
+}
+
+.mypage-contact-card-header p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.mypage-contact-status {
+  display: inline-flex;
+  min-width: max-content;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.mypage-contact-status.status-checked {
+  background: rgba(112, 197, 255, 0.13);
+  color: #9dd8ff;
+}
+
+.mypage-contact-status.status-done {
+  background: rgba(90, 220, 160, 0.13);
+  color: #9df0c8;
+}
+
+.mypage-contact-status.status-archived {
+  background: rgba(255, 190, 90, 0.13);
+  color: #ffd79a;
+}
+
+.mypage-contact-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mypage-contact-meta-grid div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.mypage-contact-meta-grid span,
+.mypage-contact-meta-grid strong {
+  display: block;
+}
+
+.mypage-contact-meta-grid span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.mypage-contact-meta-grid strong {
+  margin-top: 7px;
+  color: var(--muted-strong);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.mypage-contact-note,
+.mypage-empty-card,
+.mypage-error-card {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 18px;
+  line-height: 1.65;
+}
+
+.mypage-contact-note {
+  border: 1px solid rgba(216, 183, 106, 0.24);
+  background: rgba(216, 183, 106, 0.09);
+  color: var(--muted-strong);
+}
+
+.mypage-contact-note p,
+.mypage-empty-card p,
+.mypage-error-card p {
+  margin: 0;
+}
+
+.mypage-contact-note svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--gold);
+}
+
+.mypage-empty-card {
+  flex-direction: column;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--muted-strong);
+}
+
+.mypage-empty-card svg {
+  color: var(--gold);
+}
+
+.mypage-empty-card strong,
+.mypage-error-card strong {
+  color: var(--text);
+}
+
+.mypage-error-card {
+  margin-top: 18px;
+  border: 1px solid rgba(255, 107, 107, 0.38);
+  background: rgba(255, 107, 107, 0.12);
+  color: #ffb3b3;
+}
+
+.mypage-placeholder-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+}
+
+@media (max-width: 860px) {
+  .mypage-contact-card-header {
+    flex-direction: column;
+  }
+
+  .mypage-contact-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
