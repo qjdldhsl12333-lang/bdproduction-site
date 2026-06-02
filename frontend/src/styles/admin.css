@@ -1,0 +1,90 @@
+
+
+/* Admin customer account link */
+
+.admin-contact-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-customer-link-badge {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.admin-customer-link-badge.is-linked {
+  border-color: rgba(90, 220, 160, 0.34);
+  background: rgba(90, 220, 160, 0.11);
+  color: #9df0c8;
+}
+
+.admin-customer-link-badge.is-guest {
+  border-color: rgba(255, 190, 90, 0.34);
+  background: rgba(255, 190, 90, 0.1);
+  color: #ffd79a;
+}
+
+.admin-customer-account-line {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.admin-detail-customer-panel {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid rgba(90, 220, 160, 0.22);
+  border-radius: 20px;
+  background: rgba(90, 220, 160, 0.06);
+}
+
+.admin-detail-customer-panel .admin-detail-grid {
+  margin-top: 14px;
+}
+
+/* Admin mobile drawer scrim reset */
+
+.admin-menu-scrim {
+  position: fixed;
+  z-index: 95;
+  inset: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0, 0, 0, 0.58) !important;
+  box-shadow: none !important;
+  cursor: default;
+  transform: none !important;
+  isolation: auto !important;
+  overflow: hidden;
+}
+
+.admin-menu-scrim::before,
+.admin-menu-scrim::after {
+  display: none !important;
+  content: none !important;
+}
+
+.admin-menu-scrim:hover,
+.admin-menu-scrim:focus,
+.admin-menu-scrim:active {
+  border: 0 !important;
+  background: rgba(0, 0, 0, 0.58) !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  transform: none !important;
+}
