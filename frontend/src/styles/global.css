@@ -9865,3 +9865,21 @@ button.contact-cta-flow-card {
     color: #050505 !important;
   }
 }
+
+/* Hero logo optical kerning fix: C/T gap */
+
+.hero-logo-word {
+  white-space: nowrap;
+}
+
+.hero-logo-kern-fix {
+  display: inline-block;
+  margin-left: 0.040em;
+  font-style: normal;
+}
+
+.hero-logo-kern-fix1 {
+  display: inline-block;
+  margin-left: 0.015em;
+  font-style: normal;
+}

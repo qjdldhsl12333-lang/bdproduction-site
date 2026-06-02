@@ -15,7 +15,9 @@ function Hero() {
       </div>
 
       <div className="hero-film-center-mark" aria-hidden="true">
-        <span>BDPRODUCTION</span>
+        <span className="hero-logo-word">
+          BDPRODUC<i className="hero-logo-kern-fix">T<i className="hero-logo-kern-fix1">I</i>ON</i>
+        </span>
         <strong>PREMIUM VIDEO PRODUCTION STUDIO</strong>
       </div>
     </section>
