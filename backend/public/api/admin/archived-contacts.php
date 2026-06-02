@@ -81,7 +81,7 @@ try {
         'contacts' => $contacts,
     ]);
 } catch (PDOException $error) {
-    error_log('[BDPRODUCTION Archived Contacts API DB Error] . ' . $error->getMessage());
+    error_log('[BDPRODUCTION Archived Contacts API DB Error] ' . $error->getMessage());
 
     sendJsonResponse(500, [
         'success' => false,
