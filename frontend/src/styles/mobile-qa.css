@@ -711,3 +711,151 @@
   background: #b93636 !important;
   color: #ffffff !important;
 }
+
+/* Button contrast correction final */
+
+/*
+  Contrast rule:
+  - Lime filled state: black text.
+  - Dark filled state: white text.
+  - Danger/logout state: keep white text.
+  Layout, drawer position, and menu behavior are not changed here.
+*/
+
+/* Lime filled buttons/states must use dark text */
+.admin-page .admin-filter-tabs button:hover,
+.admin-page .admin-filter-tabs button.is-active,
+.admin-page .admin-account-filter-tabs button.is-active,
+.admin-page .admin-status-actions button:hover:not(.is-danger),
+.admin-page .admin-status-actions button.is-active:not(.is-danger),
+.admin-page .admin-topbar > .admin-back-link:hover,
+.admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button):hover,
+.admin-page .admin-topbar .admin-topbar-actions > a:hover,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle:hover,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle.is-active,
+.admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button:hover,
+.portfolio-filter-tabs button:hover,
+.portfolio-filter-tabs button.is-active,
+.portfolio-folder-button:hover,
+.portfolio-folder-button.is-active,
+.category-tabs button:hover,
+.category-tabs button.is-active,
+.primary-button,
+.floating-contact-button.is-primary,
+.floating-contact-banner-single .floating-contact-button,
+.contact-form button[type='submit']:not(:disabled):hover,
+.contact-form-compact button[type='submit']:not(:disabled):hover,
+.lead-modal-footer .primary-button:hover,
+.auth-form .primary-button:hover {
+  color: #020407 !important;
+  text-shadow: none !important;
+}
+
+/* Icons inside lime filled buttons follow the readable dark text color */
+.admin-page .admin-filter-tabs button:hover svg,
+.admin-page .admin-filter-tabs button.is-active svg,
+.admin-page .admin-status-actions button:hover:not(.is-danger) svg,
+.admin-page .admin-status-actions button.is-active:not(.is-danger) svg,
+.admin-page .admin-topbar > .admin-back-link:hover svg,
+.admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button):hover svg,
+.admin-page .admin-topbar .admin-topbar-actions > a:hover svg,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle:hover svg,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle.is-active svg,
+.admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button:hover svg,
+.primary-button svg,
+.floating-contact-button.is-primary svg,
+.contact-form button[type='submit']:not(:disabled):hover svg,
+.contact-form-compact button[type='submit']:not(:disabled):hover svg,
+.lead-modal-footer .primary-button:hover svg,
+.auth-form .primary-button:hover svg {
+  color: #020407 !important;
+  stroke: currentColor !important;
+}
+
+/* Force actual lime fill states to use readable black text */
+.admin-page .admin-filter-tabs button:hover,
+.admin-page .admin-filter-tabs button.is-active,
+.admin-page .admin-status-actions button:hover:not(.is-danger),
+.admin-page .admin-status-actions button.is-active:not(.is-danger),
+.portfolio-filter-tabs button:hover,
+.portfolio-filter-tabs button.is-active,
+.portfolio-folder-button:hover,
+.portfolio-folder-button.is-active,
+.category-tabs button:hover,
+.category-tabs button.is-active {
+  border-color: rgba(149, 255, 0, 0.64) !important;
+  background: #95ff00 !important;
+  color: #020407 !important;
+}
+
+/* Admin drawer/action hover: lime background means black text */
+.admin-page .admin-topbar > .admin-back-link:hover,
+.admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button):hover,
+.admin-page .admin-topbar .admin-topbar-actions > a:hover,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle:hover,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle.is-active,
+.admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button:hover {
+  border-color: rgba(149, 255, 0, 0.68) !important;
+  background: #95ff00 !important;
+  color: #020407 !important;
+}
+
+/* Dark filled / dark hover states must use light text */
+.ghost-button:hover,
+.secondary-button:hover,
+.admin-page .admin-topbar > .admin-back-link,
+.admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button),
+.admin-page .admin-topbar .admin-topbar-actions > a,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle,
+.admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button,
+.contact-auth-inline button,
+.lead-modal-footer .ghost-button:hover,
+.auth-tabs button:not(.is-active):hover,
+.social-auth-button:hover {
+  color: #f5f7ee !important;
+}
+
+/* Icons inside dark buttons follow white text */
+.ghost-button:hover svg,
+.secondary-button:hover svg,
+.admin-page .admin-topbar > .admin-back-link svg,
+.admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button) svg,
+.admin-page .admin-topbar .admin-topbar-actions > a svg,
+.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle svg,
+.admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button svg,
+.contact-auth-inline button svg,
+.lead-modal-footer .ghost-button:hover svg,
+.social-auth-button:hover svg {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* Disabled buttons should not glow unreadably */
+button:disabled,
+.primary-button:disabled,
+.contact-form button[type='submit']:disabled,
+.contact-form-compact button[type='submit']:disabled {
+  color: rgba(245, 247, 238, 0.32) !important;
+  text-shadow: none !important;
+}
+
+/* Danger/logout buttons keep white text */
+.admin-page .admin-topbar .admin-topbar-actions > button.admin-logout-button,
+.admin-page .admin-topbar .admin-topbar-actions > button.admin-logout-button:hover,
+.admin-status-actions button.is-danger,
+.admin-status-actions button.is-danger:hover,
+.admin-detail-actions button.danger,
+.admin-detail-actions button.danger:hover {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+.admin-page .admin-topbar .admin-topbar-actions > button.admin-logout-button svg,
+.admin-page .admin-topbar .admin-topbar-actions > button.admin-logout-button:hover svg,
+.admin-status-actions button.is-danger svg,
+.admin-status-actions button.is-danger:hover svg,
+.admin-detail-actions button.danger svg,
+.admin-detail-actions button.danger:hover svg {
+  color: #ffffff !important;
+  stroke: currentColor !important;
+}
