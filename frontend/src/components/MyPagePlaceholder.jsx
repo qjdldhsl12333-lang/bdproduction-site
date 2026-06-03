@@ -49,31 +49,31 @@ const plannedFeatures = [
 
 const statusMeta = {
   new: {
-    label: '?? ??',
-    description: '??? ?? ???????. ???? ??? ??? ? ?? ?? ?? ??? ?????.',
-    customerGuide: '?? ??? ?? ? ?????. ?? ??? ?? ?? ? ???? ?????.',
-    nextAction: '???? ???? ??? ???. ??? ??? ??? ??? ???.',
+    label: '\uC0C1\uB2F4 \uC811\uC218',
+    description: '\uBB38\uC758\uAC00 \uC815\uC0C1 \uC811\uC218\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uB2F4\uB2F9\uC790\uAC00 \uB0B4\uC6A9\uC744 \uD655\uC778\uD55C \uB4A4 \uC0C1\uB2F4 \uB610\uB294 \uACAC\uC801 \uC548\uB0B4\uB97C \uC9C4\uD589\uD569\uB2C8\uB2E4.',
+    customerGuide: '\uD604\uC7AC \uB2F4\uB2F9\uC790 \uD655\uC778 \uC804 \uB2E8\uACC4\uC785\uB2C8\uB2E4. \uC811\uC218 \uC21C\uC11C\uC5D0 \uB530\uB77C \uD655\uC778 \uD6C4 \uC5F0\uB77D\uB4DC\uB9B4 \uC608\uC815\uC785\uB2C8\uB2E4.',
+    nextAction: '\uC5F0\uB77D\uCC98\uC640 \uC774\uBA54\uC77C\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uB2F4\uB2F9\uC790 \uC5F0\uB77D\uC744 \uAE30\uB2E4\uB824 \uC8FC\uC2DC\uBA74 \uB429\uB2C8\uB2E4.',
     stageIndex: 0,
   },
   checked: {
-    label: '?? ??',
-    description: '???? ?? ??? ??????. ?? ?? ?? ?? ?????.',
-    customerGuide: '?? ?? ??? ?? ??? ?? ????. ?? ? ???? ?? ??? ??? ? ????.',
-    nextAction: '?? ??? ?? ??? ??? ? ??? ?????.',
+    label: '\uACAC\uC801 \uD655\uC778',
+    description: '\uB2F4\uB2F9\uC790\uAC00 \uBB38\uC758 \uB0B4\uC6A9\uC744 \uD655\uC778\uD588\uC2B5\uB2C8\uB2E4. \uACAC\uC801 \uB610\uB294 \uC0C1\uB2F4 \uC548\uB0B4 \uB2E8\uACC4\uC785\uB2C8\uB2E4.',
+    customerGuide: '\uC0C1\uB2F4 \uAC00\uB2A5 \uC5EC\uBD80\uC640 \uACAC\uC801 \uC548\uB0B4\uAC00 \uC9C4\uD589 \uC911\uC785\uB2C8\uB2E4. \uD544\uC694 \uC2DC \uB2F4\uB2F9\uC790\uAC00 \uCD94\uAC00 \uC815\uBCF4\uB97C \uC694\uCCAD\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.',
+    nextAction: '\uCD94\uAC00 \uC790\uB8CC\uB098 \uCC38\uACE0 \uC601\uC0C1\uC774 \uC788\uB2E4\uBA74 \uC0C8 \uBB38\uC758\uB85C \uB0A8\uACA8\uC8FC\uC138\uC694.',
     stageIndex: 1,
   },
   done: {
-    label: '?? ??',
-    description: '?? ?? ?? ??? ??? ?????.',
-    customerGuide: '?? ??? 1? ?? ??? ???????. ?? ??? ???? ? ??? ?????.',
-    nextAction: '?? ?? ???? ?? ??? ???? ?? ??? ?? ?? ? ????.',
+    label: '\uCC98\uB9AC \uC644\uB8CC',
+    description: '\uC0C1\uB2F4 \uB610\uB294 \uBB38\uC758 \uCC98\uB9AC\uAC00 \uC644\uB8CC\uB41C \uC0C1\uD0DC\uC785\uB2C8\uB2E4.',
+    customerGuide: '\uD574\uB2F9 \uBB38\uC758\uC758 1\uCC28 \uC0C1\uB2F4 \uCC98\uB9AC\uAC00 \uC644\uB8CC\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uCD94\uAC00 \uC0C1\uB2F4\uC774 \uD544\uC694\uD558\uBA74 \uC0C8 \uBB38\uC758\uB97C \uB0A8\uACA8\uC8FC\uC138\uC694.',
+    nextAction: '\uCD94\uAC00 \uC81C\uC791 \uC694\uCCAD\uC774\uB098 \uC218\uC815 \uC0C1\uB2F4\uC774 \uD544\uC694\uD558\uBA74 \uAD00\uB828 \uBB38\uC758\uB97C \uB2E4\uC2DC \uB0A8\uAE38 \uC218 \uC788\uC2B5\uB2C8\uB2E4.',
     stageIndex: 5,
   },
   archived: {
-    label: '???',
-    description: '?? ?? ??? ?? ??? ?????.',
-    customerGuide: '? ??? ?? ???? ?? ????. ??? ??? ??? ??? ? ??? ?????.',
-    nextAction: '?? ?? ??? ???? ?? ??? ??? ? ????.',
+    label: '\uBCF4\uAD00\uB428',
+    description: '\uC0C1\uB2F4 \uAE30\uB85D \uBCF4\uAD00\uC744 \uC704\uD574 \uC815\uB9AC\uB41C \uBB38\uC758\uC785\uB2C8\uB2E4.',
+    customerGuide: '\uC774 \uBB38\uC758\uB294 \uC0C1\uB2F4 \uAE30\uB85D\uC73C\uB85C \uBCF4\uAD00 \uC911\uC785\uB2C8\uB2E4. \uC774\uC5B4\uC11C \uC9C4\uD589\uD560 \uB0B4\uC6A9\uC774 \uC788\uB2E4\uBA74 \uC0C8 \uBB38\uC758\uB97C \uB0A8\uACA8\uC8FC\uC138\uC694.',
+    nextAction: '\uC774\uC804 \uBB38\uC758 \uB0B4\uC6A9\uC744 \uCC38\uACE0\uD558\uC5EC \uCD94\uAC00 \uBB38\uC758\uB97C \uC811\uC218\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.',
     stageIndex: 0,
   },
 };
@@ -514,11 +514,11 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
 
                   <div className="mypage-contact-detail-guide">
                     <div>
-                      <span>?? ??</span>
+                      <span>{'\uD604\uC7AC \uC548\uB0B4'}</span>
                       <p>{meta.customerGuide}</p>
                     </div>
                     <div>
-                      <span>?? ??</span>
+                      <span>{'\uB2E4\uC74C \uB2E8\uACC4'}</span>
                       <p>{meta.nextAction}</p>
                     </div>
                   </div>
@@ -529,7 +529,7 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
                       type="button"
                       onClick={onOpenContact}
                     >
-                      ? ??? ??? ?? ????
+                      {'\uC774 \uBB38\uC758\uC640 \uAD00\uB828\uD574 \uCD94\uAC00 \uBB38\uC758\uD558\uAE30'}
                     </button>
                   </div>
                 </div>
