@@ -402,3 +402,88 @@
     border-radius: 18px;
   }
 }
+
+/* Customer contact status UX final */
+
+.mypage-contact-note > div {
+  display: grid;
+  gap: 6px;
+}
+
+.mypage-contact-next-action {
+  display: block;
+  color: rgba(149, 255, 0, 0.82);
+  font-size: 0.78rem;
+  font-weight: 850;
+  line-height: 1.55;
+}
+
+.mypage-contact-detail-guide {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mypage-contact-detail-guide div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(149, 255, 0, 0.13);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(149, 255, 0, 0.07), rgba(255, 255, 255, 0.02)),
+    rgba(0, 0, 0, 0.22);
+}
+
+.mypage-contact-detail-guide span {
+  display: block;
+  color: #95ff00;
+  font-size: 0.74rem;
+  font-weight: 950;
+  letter-spacing: 0.06em;
+}
+
+.mypage-contact-detail-guide p {
+  margin: 8px 0 0;
+  color: rgba(245, 240, 230, 0.84);
+  line-height: 1.7;
+}
+
+.mypage-contact-detail-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mypage-contact-related-button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid rgba(149, 255, 0, 0.34);
+  border-radius: 999px;
+  background: rgba(149, 255, 0, 0.11);
+  color: #95ff00;
+  font-size: 0.84rem;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.mypage-contact-related-button:hover {
+  border-color: rgba(149, 255, 0, 0.72);
+  background: #95ff00;
+  color: #020407;
+}
+
+@media (max-width: 680px) {
+  .mypage-contact-detail-guide {
+    grid-template-columns: 1fr;
+  }
+
+  .mypage-contact-detail-actions {
+    justify-content: stretch;
+  }
+
+  .mypage-contact-related-button {
+    width: 100%;
+  }
+}
