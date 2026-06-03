@@ -132,6 +132,7 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
   const [contactsLoading, setContactsLoading] = useState(false);
   const [contactsErrorMessage, setContactsErrorMessage] = useState('');
   const [message, setMessage] = useState('');
+  const [expandedContactId, setExpandedContactId] = useState(null);
 
   const customerName = useMemo(() => formatCustomerName(user), [user]);
   const latestContact = contacts[0] || null;
@@ -164,6 +165,9 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
         setContactsErrorMessage(result.message || '문의 내역을 불러오지 못했습니다.');
         return;
       }
+
+      setExpandedContactId(null);
+
 
       setContacts(Array.isArray(result.contacts) ? result.contacts : []);
     } catch (error) {
@@ -409,8 +413,13 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
         {contacts.map((contact) => {
           const meta = resolveStatusMeta(contact.status);
 
+          const isExpanded = expandedContactId === contact.id;
+
           return (
-            <article key={contact.id} className="mypage-project-card mypage-contact-card">
+            <article
+              key={contact.id}
+              className={`mypage-project-card mypage-contact-card ${isExpanded ? 'is-expanded' : ''}`}
+            >
               <div className="mypage-contact-card-header">
                 <div>
                   <span>접수번호 #{contact.id}</span>
@@ -420,6 +429,17 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
                 <strong className={`mypage-contact-status status-${contact.status || 'new'}`}>
                   {meta.label}
                 </strong>
+              </div>
+
+              <div className="mypage-contact-card-actions">
+                <button
+                  className="mypage-contact-detail-toggle"
+                  type="button"
+                  aria-expanded={isExpanded}
+                  onClick={() => setExpandedContactId(isExpanded ? null : contact.id)}
+                >
+                  {isExpanded ? '접기' : '상세 보기'}
+                </button>
               </div>
 
               <div className="mypage-contact-meta-grid">
@@ -436,6 +456,55 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
                   <strong>{formatDate(contact.updatedAt)}</strong>
                 </div>
               </div>
+
+              {isExpanded && (
+                <div className="mypage-contact-detail-panel">
+                  <div className="mypage-contact-detail-heading">
+                    <span>문의 상세</span>
+                    <strong>#{contact.id}</strong>
+                  </div>
+
+                  <div className="mypage-contact-detail-grid">
+                    <div>
+                      <span>이름</span>
+                      <strong>{contact.name || '-'}</strong>
+                    </div>
+                    <div>
+                      <span>연락처</span>
+                      <strong>{contact.phone || '-'}</strong>
+                    </div>
+                    <div>
+                      <span>이메일</span>
+                      <strong>{contact.email || '-'}</strong>
+                    </div>
+                    <div>
+                      <span>제작 유형</span>
+                      <strong>{contact.productionType || '-'}</strong>
+                    </div>
+                    <div>
+                      <span>예산 범위</span>
+                      <strong>{contact.budgetRange || '-'}</strong>
+                    </div>
+                    <div>
+                      <span>현재 상태</span>
+                      <strong>{meta.label}</strong>
+                    </div>
+                    <div>
+                      <span>접수일</span>
+                      <strong>{formatDate(contact.createdAt)}</strong>
+                    </div>
+                    <div>
+                      <span>최종 업데이트</span>
+                      <strong>{formatDate(contact.updatedAt)}</strong>
+                    </div>
+                  </div>
+
+                  <div className="mypage-contact-detail-message">
+                    <span>문의 내용</span>
+                    <p>{contact.message || '입력된 내용이 없습니다.'}</p>
+                  </div>
+                </div>
+              )}
 
               <div className="mypage-contact-note">
                 <ShieldCheck size={18} />
