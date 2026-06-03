@@ -456,3 +456,86 @@
     content: none !important;
   }
 }
+
+/* Admin mobile trigger hamburger icon final */
+
+/*
+  Only changes the mobile admin menu trigger shape.
+  The original left slide drawer behavior stays untouched.
+*/
+@media (max-width: 980px) {
+  .admin-page .admin-mobile-menu-toggle,
+  button.admin-mobile-menu-toggle {
+    position: fixed !important;
+    z-index: 530 !important;
+    top: 12px !important;
+    left: 12px !important;
+    right: auto !important;
+
+    display: block !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    min-height: 42px !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+
+    color: #95ff00 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    text-indent: -9999px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+
+  .admin-page .admin-mobile-menu-toggle::before,
+  button.admin-mobile-menu-toggle::before {
+    position: absolute !important;
+    top: 10px !important;
+    left: 8px !important;
+    display: block !important;
+    width: 26px !important;
+    height: 2px !important;
+    border-radius: 999px !important;
+    background: #95ff00 !important;
+    box-shadow:
+      0 10px 0 #95ff00,
+      0 20px 0 #95ff00 !important;
+    content: '' !important;
+    transform: none !important;
+  }
+
+  .admin-page .admin-mobile-menu-toggle::after,
+  button.admin-mobile-menu-toggle::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .admin-page.is-admin-menu-open .admin-mobile-menu-toggle,
+  .admin-page.is-admin-menu-open button.admin-mobile-menu-toggle {
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .admin-page.is-admin-menu-open .admin-mobile-menu-toggle::before,
+  .admin-page.is-admin-menu-open button.admin-mobile-menu-toggle::before {
+    background: #95ff00 !important;
+    box-shadow:
+      0 10px 0 #95ff00,
+      0 20px 0 #95ff00 !important;
+    transform: none !important;
+  }
+}
