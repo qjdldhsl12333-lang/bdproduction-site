@@ -2140,3 +2140,59 @@
     font-size: clamp(2.4rem, 14vw, 3.8rem);
   }
 }
+
+/* Admin customer preview panel final */
+
+.admin-detail-customer-preview {
+  display: grid;
+  gap: 14px;
+  margin: 18px 22px 0;
+  padding: 18px;
+  border: 1px solid rgba(149, 255, 0, 0.2);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.09), transparent 38%),
+    rgba(0, 0, 0, 0.28);
+}
+
+.admin-detail-customer-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.admin-detail-customer-preview-grid div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(149, 255, 0, 0.12);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.admin-detail-customer-preview-grid span {
+  display: block;
+  color: #95ff00;
+  font-size: 0.74rem;
+  font-weight: 950;
+  letter-spacing: 0.06em;
+}
+
+.admin-detail-customer-preview-grid p {
+  margin: 8px 0 0;
+  color: rgba(245, 240, 230, 0.84);
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+@media (max-width: 680px) {
+  .admin-detail-customer-preview {
+    margin-left: 18px;
+    margin-right: 18px;
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .admin-detail-customer-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}

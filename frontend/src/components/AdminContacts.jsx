@@ -15,6 +15,29 @@ const accountFilters = [
   { label: '비회원 문의', value: 'guest' },
 ];
 
+const customerStatusGuide = {
+  new: {
+    title: '\uC0C1\uB2F4 \uC811\uC218',
+    summary: '\uBB38\uC758\uAC00 \uC815\uC0C1 \uC811\uC218\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uB2F4\uB2F9\uC790\uAC00 \uB0B4\uC6A9\uC744 \uD655\uC778\uD55C \uB4A4 \uC0C1\uB2F4 \uB610\uB294 \uACAC\uC801 \uC548\uB0B4\uB97C \uC9C4\uD589\uD569\uB2C8\uB2E4.',
+    next: '\uC5F0\uB77D\uCC98\uC640 \uC774\uBA54\uC77C\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uB2F4\uB2F9\uC790 \uC5F0\uB77D\uC744 \uAE30\uB2E4\uB824 \uC8FC\uC2DC\uBA74 \uB429\uB2C8\uB2E4.',
+  },
+  checked: {
+    title: '\uACAC\uC801 \uD655\uC778',
+    summary: '\uB2F4\uB2F9\uC790\uAC00 \uBB38\uC758 \uB0B4\uC6A9\uC744 \uD655\uC778\uD588\uC2B5\uB2C8\uB2E4. \uACAC\uC801 \uB610\uB294 \uC0C1\uB2F4 \uC548\uB0B4 \uB2E8\uACC4\uC785\uB2C8\uB2E4.',
+    next: '\uCD94\uAC00 \uC790\uB8CC\uB098 \uCC38\uACE0 \uC601\uC0C1\uC774 \uC788\uB2E4\uBA74 \uC0C8 \uBB38\uC758\uB85C \uB0A8\uACA8\uC8FC\uC138\uC694.',
+  },
+  done: {
+    title: '\uCC98\uB9AC \uC644\uB8CC',
+    summary: '\uC0C1\uB2F4 \uB610\uB294 \uBB38\uC758 \uCC98\uB9AC\uAC00 \uC644\uB8CC\uB41C \uC0C1\uD0DC\uC785\uB2C8\uB2E4.',
+    next: '\uCD94\uAC00 \uC81C\uC791 \uC694\uCCAD\uC774\uB098 \uC218\uC815 \uC0C1\uB2F4\uC774 \uD544\uC694\uD558\uBA74 \uAD00\uB828 \uBB38\uC758\uB97C \uB2E4\uC2DC \uB0A8\uAE38 \uC218 \uC788\uC2B5\uB2C8\uB2E4.',
+  },
+  archived: {
+    title: '\uBCF4\uAD00\uB428',
+    summary: '\uC0C1\uB2F4 \uAE30\uB85D \uBCF4\uAD00\uC744 \uC704\uD574 \uC815\uB9AC\uB41C \uBB38\uC758\uC785\uB2C8\uB2E4.',
+    next: '\uC774\uC5B4\uC11C \uC9C4\uD589\uD560 \uB0B4\uC6A9\uC774 \uC788\uB2E4\uBA74 \uC0C8 \uBB38\uC758\uB97C \uB0A8\uACA8\uC8FC\uC138\uC694.',
+  },
+};
+
 function AdminContacts() {
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [adminActionMenuOpen, setAdminActionMenuOpen] = useState(false);
@@ -1065,7 +1088,9 @@ function ContactDetailModal({
 
   const isUpdating = Number(updatingContactId) === Number(contact.id);
 
-  return (
+  
+  const customerGuide = resolveCustomerStatusGuide(contact.status);
+return (
     <div className="admin-detail-backdrop" onClick={onClose}>
       <section className="admin-detail-modal" onClick={(event) => event.stopPropagation()}>
         <div className="admin-detail-header">
@@ -1119,6 +1144,24 @@ function ContactDetailModal({
         <div className="admin-detail-message">
           <span>문의 내용</span>
           <p>{contact.message}</p>
+        </div>
+
+        <div className="admin-detail-customer-preview">
+          <div className="admin-detail-history-header">
+            <span>{'\uACE0\uAC1D \uD654\uBA74 \uD45C\uC2DC \uBB38\uAD6C'}</span>
+            <strong>{customerGuide.title}</strong>
+          </div>
+
+          <div className="admin-detail-customer-preview-grid">
+            <div>
+              <span>{'\uD604\uC7AC \uC548\uB0B4'}</span>
+              <p>{customerGuide.summary}</p>
+            </div>
+            <div>
+              <span>{'\uB2E4\uC74C \uB2E8\uACC4'}</span>
+              <p>{customerGuide.next}</p>
+            </div>
+          </div>
         </div>
 
         <div className="admin-detail-history">
@@ -1248,6 +1291,10 @@ function formatCustomerProviderLabel(provider) {
   }
 
   return provider;
+}
+
+function resolveCustomerStatusGuide(status) {
+  return customerStatusGuide[status] || customerStatusGuide.new;
 }
 
 function renderStatusLabel(status) {
