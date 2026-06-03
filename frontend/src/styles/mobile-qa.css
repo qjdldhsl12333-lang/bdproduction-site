@@ -382,15 +382,16 @@
   }
 }
 
-/* Admin mobile menu restore final */
+/* Admin responsive menu breakpoint final */
 
 /*
-  Admin menu policy:
+  Final admin menu policy:
   - 861px and above: desktop admin menu.
-  - 860px and below: use the original global.css mobile drawer.
-  Do not replace the original drawer with a custom dropdown.
+  - 860px and below: original mobile drawer.
+  - Only the mobile trigger button is restyled as a simple 3-line hamburger.
 */
 
+/* Desktop/tablet wide admin menu */
 @media (min-width: 861px) {
   .admin-page {
     padding-top: 36px !important;
@@ -412,9 +413,12 @@
     width: 100% !important;
     max-width: none !important;
     max-height: none !important;
+    height: auto !important;
+    min-height: 0 !important;
     overflow: visible !important;
-    margin-bottom: 42px !important;
+    margin: 0 0 42px !important;
     padding: 0 !important;
+    gap: 12px !important;
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
@@ -424,7 +428,8 @@
   }
 
   .admin-page .admin-topbar:hover,
-  .admin-page .admin-topbar:focus-within {
+  .admin-page .admin-topbar:focus-within,
+  .admin-page.is-admin-menu-open .admin-topbar {
     transform: none !important;
   }
 
@@ -441,35 +446,40 @@
     align-items: center !important;
     justify-content: flex-end !important;
     width: auto !important;
+    gap: 10px !important;
   }
 
   .admin-page .admin-topbar .admin-back-link,
   .admin-page .admin-topbar-actions > a,
   .admin-page .admin-topbar-actions > button {
     width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 44px !important;
     min-height: 44px !important;
+    margin: 0 !important;
+    padding: 0 16px !important;
     border-radius: 999px !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
   }
 
   .admin-page .admin-topbar .admin-topbar-actions > button.admin-logout-button {
     width: auto !important;
     height: 44px !important;
     min-height: 44px !important;
-    margin-top: 0 !important;
-    padding: 0 16px !important;
+    margin: 0 !important;
+    padding: 0 18px !important;
     border-radius: 999px !important;
   }
 }
 
+/* Mobile drawer trigger only */
 @media (max-width: 860px) {
   .admin-page {
     padding-top: 72px !important;
   }
 
-  /*
-    Restore the original mobile drawer trigger.
-    This intentionally follows the global.css drawer behavior.
-  */
   .admin-page .admin-mobile-menu-toggle,
   button.admin-mobile-menu-toggle {
     position: fixed !important;
@@ -477,46 +487,45 @@
     top: 12px !important;
     left: 12px !important;
     right: auto !important;
-    display: inline-flex !important;
-    width: auto !important;
-    height: auto !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    min-height: 38px !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 7px !important;
-    padding: 0 13px !important;
-    border: 1px solid rgba(9, 99, 126, 0.2) !important;
-    border-radius: 999px !important;
-    background: rgba(235, 244, 246, 0.94) !important;
-    color: #09637e !important;
-    font-size: 0.76rem !important;
-    font-weight: 950 !important;
-    line-height: 1 !important;
-    text-indent: 0 !important;
+    display: block !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    min-height: 42px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    color: #95ff00 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    text-indent: -9999px !important;
     white-space: nowrap !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
-    box-shadow: 0 12px 34px rgba(9, 99, 126, 0.14) !important;
-    backdrop-filter: blur(16px) !important;
     transform: none !important;
   }
 
   .admin-page .admin-mobile-menu-toggle::before,
   button.admin-mobile-menu-toggle::before {
-    position: static !important;
-    display: inline-block !important;
-    width: auto !important;
-    height: auto !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    color: inherit !important;
-    content: '?' !important;
-    font-size: 0.9rem !important;
-    line-height: 1 !important;
+    position: absolute !important;
+    top: 10px !important;
+    left: 8px !important;
+    display: block !important;
+    width: 26px !important;
+    height: 2px !important;
+    border-radius: 999px !important;
+    background: #95ff00 !important;
+    box-shadow:
+      0 10px 0 #95ff00,
+      0 20px 0 #95ff00 !important;
+    content: '' !important;
     transform: none !important;
   }
 
@@ -526,90 +535,19 @@
     content: none !important;
   }
 
-  .admin-page .admin-menu-scrim {
-    position: fixed !important;
-    z-index: 500 !important;
-    inset: 0 !important;
-    display: block !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    background: rgba(9, 99, 126, 0.2) !important;
+  .admin-page.is-admin-menu-open .admin-mobile-menu-toggle,
+  .admin-page.is-admin-menu-open button.admin-mobile-menu-toggle {
+    background: transparent !important;
     box-shadow: none !important;
-    backdrop-filter: blur(2px) !important;
     transform: none !important;
   }
 
-  .admin-page .admin-topbar {
-    position: fixed !important;
-    z-index: 520 !important;
-    top: 62px !important;
-    bottom: auto !important;
-    left: 0 !important;
-    right: auto !important;
-    display: grid !important;
-    width: min(268px, calc(100vw - 54px)) !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: calc(100dvh - 76px) !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    margin: 0 !important;
-    padding: 46px 12px 14px !important;
-    gap: 8px !important;
-    border-radius: 0 22px 22px 0 !important;
-    transform: translateX(-104%) !important;
-  }
-
-  .admin-page .admin-topbar:hover,
-  .admin-page .admin-topbar:focus-within {
-    transform: translateX(-104%) !important;
-  }
-
-  .admin-page.is-admin-menu-open .admin-topbar,
-  .admin-page.is-admin-menu-open .admin-topbar:hover,
-  .admin-page.is-admin-menu-open .admin-topbar:focus-within {
-    transform: translateX(0) !important;
-  }
-
-  .admin-page .admin-topbar::before {
-    top: 14px !important;
-    height: 24px !important;
-    line-height: 24px !important;
-  }
-
-  .admin-page .admin-topbar::after {
-    display: none !important;
-  }
-
-  .admin-page .admin-topbar-actions {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    width: 100% !important;
-  }
-
-  .admin-page .admin-topbar > .admin-back-link,
-  .admin-page .admin-topbar .admin-topbar-actions > button:not(.admin-logout-button),
-  .admin-page .admin-topbar .admin-topbar-actions > a,
-  .admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle,
-  .admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button {
-    width: 100% !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    border-radius: 14px !important;
-    font-size: 0.76rem !important;
-  }
-
-  .admin-page .admin-topbar .admin-topbar-actions > button.admin-logout-button {
-    width: 100% !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    margin-top: clamp(86px, 18vh, 132px) !important;
-    border-radius: 14px !important;
-    background: #d94b4b !important;
-    color: #ffffff !important;
-    font-size: 0.76rem !important;
+  .admin-page.is-admin-menu-open .admin-mobile-menu-toggle::before,
+  .admin-page.is-admin-menu-open button.admin-mobile-menu-toggle::before {
+    background: #95ff00 !important;
+    box-shadow:
+      0 10px 0 #95ff00,
+      0 20px 0 #95ff00 !important;
+    transform: none !important;
   }
 }
