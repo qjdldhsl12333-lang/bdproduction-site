@@ -13,6 +13,7 @@ import './styles/motion.css';
 import './styles/admin-core.css';
 import './styles/admin.css';
 import './styles/mobile-qa.css';
+import './styles/final-overrides.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
