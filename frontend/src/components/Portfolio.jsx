@@ -286,11 +286,30 @@ function Portfolio() {
           <p className="eyebrow">PORTFOLIO</p>
           <h2>FEATURED WORKS</h2>
         </div>
-
         <div className="portfolio-section-actions">
-          <a className="secondary-button" href="/portfolio">
-            전체 포트폴리오 보기
-          </a>
+          <motion.a
+            className="portfolio-more-button"
+            href="/portfolio"
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.42 }}
+            transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+            aria-label="more portfolio"
+          >
+            <span className="portfolio-more-label">more portfolio</span>
+            <span className="portfolio-more-arrow-track" aria-hidden="true">
+              <span className="portfolio-more-arrow portfolio-more-arrow-hover">
+                <svg viewBox="0 0 24 25" width="24" height="25" fill="none">
+                  <path fill="currentColor" d="m15.335 13.332-3.661 3.74a.983.983 0 1 0 1.405 1.376l5.136-5.246c.38-.388.38-1.018 0-1.406L13.079 6.55a.983.983 0 1 0-1.405 1.376l3.66 3.74h-8.5a.833.833 0 0 0 0 1.666z" />
+                </svg>
+              </span>
+              <span className="portfolio-more-arrow portfolio-more-arrow-idle">
+                <svg viewBox="0 0 24 25" width="24" height="25" fill="none">
+                  <path fill="currentColor" d="m15.335 13.332-3.661 3.74a.983.983 0 1 0 1.405 1.376l5.136-5.246c.38-.388.38-1.018 0-1.406L13.079 6.55a.983.983 0 1 0-1.405 1.376l3.66 3.74h-8.5a.833.833 0 0 0 0 1.666z" />
+                </svg>
+              </span>
+            </span>
+          </motion.a>
         </div>
       </div>
 

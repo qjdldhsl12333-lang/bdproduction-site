@@ -968,3 +968,161 @@
     padding: 0 18px !important;
   }
 }
+
+/* Portfolio more button final */
+
+.portfolio-section-actions .secondary-button {
+  display: none;
+}
+
+.portfolio-more-button {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  width: min(100%, 260px);
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  overflow: hidden;
+  padding: 0 18px 0 20px;
+  border: 0;
+  border-radius: 18px;
+  background: #020407;
+  color: #95ff00;
+  font-size: 0.92rem;
+  font-weight: 950;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(149, 255, 0, 0.08);
+  transform: translateZ(0);
+  transition:
+    color 350ms ease,
+    background-color 350ms ease,
+    box-shadow 350ms ease,
+    transform 350ms ease;
+}
+
+.portfolio-more-button::after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #95ff00;
+  content: '';
+  transition: left 350ms ease;
+}
+
+.portfolio-more-button:hover,
+.portfolio-more-button:focus-visible {
+  color: #020407;
+  background: #020407;
+  box-shadow:
+    0 22px 54px rgba(149, 255, 0, 0.18),
+    0 0 30px rgba(149, 255, 0, 0.14);
+  transform: translateY(-2px);
+}
+
+.portfolio-more-button:hover::after,
+.portfolio-more-button:focus-visible::after {
+  left: 0;
+}
+
+.portfolio-more-button:focus-visible {
+  outline: 2px solid rgba(149, 255, 0, 0.7);
+  outline-offset: 4px;
+}
+
+.portfolio-more-label {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  overflow: hidden;
+  line-height: 1;
+  text-align: left;
+  text-overflow: ellipsis;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+.portfolio-more-arrow-track {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 0 0 24px;
+  width: 24px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  border-radius: 8px;
+}
+
+.portfolio-more-arrow {
+  display: inline-flex;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.portfolio-more-arrow svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.portfolio-more-arrow-hover {
+  margin-left: -40px;
+  color: #020407;
+  transition: margin-left 350ms ease;
+}
+
+.portfolio-more-arrow-idle {
+  color: currentColor;
+  transition:
+    transform 350ms ease,
+    opacity 350ms ease;
+}
+
+.portfolio-more-button:hover .portfolio-more-arrow-hover,
+.portfolio-more-button:focus-visible .portfolio-more-arrow-hover {
+  margin-left: 0;
+}
+
+.portfolio-more-button:hover .portfolio-more-arrow-idle,
+.portfolio-more-button:focus-visible .portfolio-more-arrow-idle {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+@media (max-width: 760px) {
+  .portfolio-section-actions {
+    width: 100%;
+  }
+
+  .portfolio-more-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-more-button,
+  .portfolio-more-button::after,
+  .portfolio-more-arrow-hover,
+  .portfolio-more-arrow-idle {
+    transition: none !important;
+  }
+
+  .portfolio-more-button:hover,
+  .portfolio-more-button:focus-visible {
+    transform: none;
+  }
+}
