@@ -1,4 +1,4 @@
-import { FolderOpen, Loader2, Play, Search, Video } from 'lucide-react';
+import { FolderOpen, Loader2, Play, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import {
   PortfolioVideoModal,
@@ -128,14 +128,9 @@ function PortfolioPage() {
                       type="button"
                       className="portfolio-compact-thumb"
                       onClick={() => setSelectedVideo(video)}
+                      aria-label={`${video.title} ?? ??`}
                     >
-                      {video.thumbnail_url ? (
-                        <img src={video.thumbnail_url} alt={video.title} loading="lazy" />
-                      ) : (
-                        <span className="portfolio-compact-thumb-fallback">
-                          <Video size={28} />
-                        </span>
-                      )}
+                      <span className="portfolio-compact-thumb-brand">BD</span>
 
                       <span className="portfolio-compact-play-icon">
                         <Play size={16} />
