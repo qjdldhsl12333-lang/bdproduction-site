@@ -1578,3 +1578,62 @@
     --portfolio-mobile-card-gap: 9px;
   }
 }
+
+/* Portfolio featured card borderless final */
+
+/*
+  Remove visible borders from featured portfolio video cards.
+  Keep depth with subtle shadow and inner dark layering instead.
+*/
+
+.portfolio-showcase-card,
+.portfolio-desktop-showcase .portfolio-youtube-card {
+  border-color: transparent !important;
+  border-width: 0 !important;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(149, 255, 0, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(5, 12, 13, 0.96), rgba(24, 24, 24, 0.96)) !important;
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035) !important;
+}
+
+.portfolio-showcase-card:hover,
+.portfolio-showcase-card:focus-within,
+.portfolio-desktop-showcase .portfolio-youtube-card:hover,
+.portfolio-desktop-showcase .portfolio-youtube-card:focus-within {
+  border-color: transparent !important;
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.38),
+    0 0 34px rgba(149, 255, 0, 0.1),
+    inset 0 0 0 1px rgba(149, 255, 0, 0.07) !important;
+}
+
+.portfolio-showcase-card .portfolio-youtube-thumb,
+.portfolio-desktop-showcase .portfolio-youtube-thumb {
+  border: 0 !important;
+}
+
+.portfolio-showcase-card .portfolio-youtube-body,
+.portfolio-desktop-showcase .portfolio-youtube-body {
+  border-top: 0 !important;
+}
+
+/* Mobile slider cards also stay borderless for visual consistency. */
+@media (max-width: 760px) {
+  .portfolio-mobile-card {
+    border-color: transparent !important;
+    border-width: 0 !important;
+    box-shadow:
+      0 24px 72px rgba(0, 0, 0, 0.42),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.035) !important;
+  }
+
+  .portfolio-mobile-card.is-active {
+    border-color: transparent !important;
+    box-shadow:
+      0 28px 88px rgba(0, 0, 0, 0.48),
+      0 0 38px rgba(149, 255, 0, 0.12),
+      inset 0 0 0 1px rgba(149, 255, 0, 0.08) !important;
+  }
+}
