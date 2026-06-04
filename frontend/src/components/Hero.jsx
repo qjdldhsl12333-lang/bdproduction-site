@@ -14,11 +14,11 @@ function Hero() {
         <div className="hero-film-side hero-film-side-right" />
       </div>
 
-      <div className="hero-film-center-mark" aria-hidden="true">
-        <span className="hero-logo-word">
+      <div className="hero-film-center-mark hero-film-center-mark-colorburst-clean" aria-hidden="true">
+        <span className="hero-logo-word hero-logo-word-colorburst-clean" data-title="BDPRODUCTION">
           BDPRODUC<i className="hero-logo-kern-fix">T<i className="hero-logo-kern-fix1">I</i>ON</i>
         </span>
-        <strong>PREMIUM VIDEO PRODUCTION STUDIO</strong>
+        <strong className="hero-logo-subtitle-colorburst-clean">PREMIUM VIDEO PRODUCTION STUDIO</strong>
       </div>
     </section>
   );
