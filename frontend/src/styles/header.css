@@ -602,3 +602,59 @@
     height: 74% !important;
   }
 }
+
+/* Header tablet right alignment final */
+
+/*
+  761px~1180px:
+  Keep the desktop header action group and MENU button on the right.
+  The desktop nav is hidden, but its middle space should remain flexible.
+*/
+
+@media (min-width: 761px) and (max-width: 1180px) {
+  .cinematic-header {
+    grid-template-columns: auto minmax(0, 1fr) auto auto !important;
+  }
+
+  .cinematic-brand {
+    grid-column: 1 !important;
+  }
+
+  .cinematic-desktop-nav {
+    display: none !important;
+  }
+
+  .cinematic-header-actions {
+    grid-column: 3 !important;
+    justify-self: end !important;
+  }
+
+  .cinematic-menu-button {
+    grid-column: 4 !important;
+    justify-self: end !important;
+  }
+}
+
+/*
+  760px and below:
+  Mobile keeps brand left and compact MENU right.
+*/
+
+@media (max-width: 760px) {
+  .cinematic-header {
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+  }
+
+  .cinematic-brand {
+    grid-column: 1 !important;
+  }
+
+  .cinematic-header-actions {
+    display: none !important;
+  }
+
+  .cinematic-menu-button {
+    grid-column: 3 !important;
+    justify-self: end !important;
+  }
+}
