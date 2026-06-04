@@ -2196,3 +2196,68 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Admin detail modal scroll fix final */
+
+/*
+  Keep the admin detail modal content scrollable.
+  This fixes clipped detail content after adding customer preview panels.
+*/
+
+.admin-detail-backdrop {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.admin-detail-modal {
+  max-height: calc(100dvh - 48px) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  scrollbar-gutter: stable;
+}
+
+.admin-detail-modal > * {
+  min-width: 0;
+}
+
+body:has(.admin-detail-backdrop) {
+  overflow: hidden;
+}
+
+@media (max-width: 760px) {
+  .admin-detail-backdrop {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    height: 100dvh !important;
+    padding: max(10px, env(safe-area-inset-top)) 10px 10px !important;
+    overflow: hidden !important;
+  }
+
+  .admin-detail-modal {
+    width: 100% !important;
+    max-height: calc(100dvh - 20px) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    border-radius: 20px !important;
+  }
+
+  .admin-detail-actions {
+    padding-bottom: max(22px, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+@media (max-height: 720px) {
+  .admin-detail-backdrop {
+    align-items: flex-start !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .admin-detail-modal {
+    max-height: calc(100dvh - 20px) !important;
+  }
+}
