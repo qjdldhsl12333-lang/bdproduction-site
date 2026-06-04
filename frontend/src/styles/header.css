@@ -658,3 +658,28 @@
     justify-self: end !important;
   }
 }
+
+/* Header desktop nav left alignment final */
+
+/*
+  Desktop header nav alignment:
+  Keep the brand on the left, actions on the right,
+  and place the main nav near the brand instead of centered.
+*/
+
+@media (min-width: 1181px) {
+  .cinematic-desktop-nav {
+    justify-content: flex-start !important;
+    padding-left: clamp(28px, 3.2vw, 64px) !important;
+  }
+
+  .cinematic-desktop-nav a {
+    text-align: left !important;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1180px) {
+  .cinematic-desktop-nav {
+    padding-left: 0 !important;
+  }
+}
