@@ -630,625 +630,40 @@ body,
 /* Accent text / badges */
 
 .eyebrow,
-.footer-logo,
-.footer-info span,
-.feature-icon,
-.portfolio-card-body p,
-.portfolio-play,
-.portfolio-badge,
-.contact-phone-card,
-.form-receipt-card strong,
-.admin-refresh-button,
-.admin-contact-id,
-.admin-detail-header span,
-.admin-detail-message span,
-.admin-detail-history-header span,
-.admin-detail-history-technical dt,
-.portfolio-folder-heading,
-.portfolio-page-toolbar strong,
-.mypage-status-card span,
-.project-progress-preview span,
-.contact-cta-card span,
-.contact-cta-card em,
-.youtube-modal-header span,
-.youtube-modal-link {
-  color: var(--accent);
-}
-
-.feature-icon,
-.contact-cta-card>div,
-.mypage-feature-card>div,
-.portfolio-play,
-
-/* Forms */
-
-.contact-form,
-.contact-form-compact {
-  background: rgba(255, 255, 255, 0.62);
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea,
-.admin-login-form input,
-.admin-search-box,
-.auth-form input,
-.admin-portfolio-form input,
-.admin-portfolio-form textarea {
-  border-color: var(--line);
-  background: rgba(255, 255, 255, 0.84);
-  color: var(--text);
-}
-
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus,
-.admin-login-form input:focus,
-.auth-form input:focus,
-.admin-portfolio-form input:focus,
-.admin-portfolio-form textarea:focus {
-  border-color: var(--line-strong);
-  background: #FFFFFF;
-}
-
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder,
-.admin-search-box input::placeholder,
-.auth-form input::placeholder,
-.admin-portfolio-form input::placeholder,
-.admin-portfolio-form textarea::placeholder {
-  color: rgba(9, 99, 126, 0.42);
-}
-
-/* State colors */
-
-.project-progress-preview div.is-current,
-.contact-cta-card.is-main,
-.admin-status-badge.status-new,
-.admin-status-badge.status-checked,
-.admin-status-badge.status-done,
-.admin-status-badge.status-archived,
-.admin-status-actions button.is-restore,
-.auth-message.is-success,
-
-.form-error,
-.admin-error-card,
-.auth-message.is-error,
-.admin-detail-history-error,
-.admin-status-actions button.is-danger,
-.admin-logout-button,
-.admin-portfolio-card-actions button.danger,
-.admin-detail-actions button.danger {
-  border-color: rgba(217, 75, 75, 0.28);
-  background: rgba(217, 75, 75, 0.1);
-  color: #D94B4B;
-}
-
-/* Modals */
-
-.modal-backdrop,
-.youtube-modal-backdrop,
-.admin-detail-backdrop,
-.lead-modal-backdrop {
-  background: rgba(9, 99, 126, 0.28);
-  backdrop-filter: blur(14px);
-}
-
-.youtube-modal-player,
-.youtube-modal-player iframe,
-
-/* Floating inquiry banner */
-
-.floating-contact-button {
-  border-color: rgba(9, 99, 126, 0.2);
-  background: rgba(235, 244, 246, 0.92);
-  color: var(--text);
-  box-shadow: 0 18px 50px rgba(9, 99, 126, 0.16);
-}
-
-.floating-contact-button:hover {
-  border-color: var(--line-strong);
-  color: var(--accent);
-}
-
-/* Social auth: keep provider labels but avoid yellow/black brand clash for now */
-
-.provider-kakao,
-.provider-naver,
-.provider-google {
-  border: 1px solid var(--line);
-  background: #FFFFFF;
-  color: var(--text);
-}
-
-.provider-kakao:hover,
-.provider-naver:hover,
-.provider-google:hover {
-  border-color: var(--line-strong);
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-::-selection {
-  background: rgba(8, 131, 149, 0.2);
-  color: #09637E;
-}
-
-/* BDPRODUCTION SIGNATURE COLOR OVERRIDE
-   Brand accent: #95FF00
-   기존 gold/teal 계열 포인트를 시그니처 라임으로 통일합니다. */
-
-:root {
-  --gold: #95ff00;
-  --gold-soft: rgba(149, 255, 0, 0.15);
-  --line-strong: rgba(149, 255, 0, 0.42);
-  --accent: #95ff00;
-  --accent-soft: rgba(149, 255, 0, 0.15);
-  --accent-glow: rgba(149, 255, 0, 0.32);
-}
-
-/* Global accent cleanup */
-.eyebrow,
-.footer-info dt,
-.footer-info span,
-.footer-brand strong,
-.footer-bottom span,
-.portfolio-card span,
-.portfolio-card strong,
-.portfolio-card .play-button,
-.portfolio-compact-meta span,
-.portfolio-folder-heading,
-.portfolio-folder-button:hover,
-.portfolio-folder-button.is-active,
-.portfolio-folder-button.is-active strong,
-.youtube-modal-header span,
-.youtube-modal-link,
-.youtube-modal-placeholder p,
-.admin-heading .eyebrow,
-.admin-contact-id,
-.admin-summary-grid strong,
-.admin-message-preview span,
-.admin-detail-header span,
-.admin-detail-message span,
-.admin-detail-history-header span,
-.admin-detail-history-technical dt,
-.admin-portfolio-editor .eyebrow,
-.admin-portfolio-list-heading .eyebrow,
-.admin-portfolio-card-meta span,
-.admin-portfolio-card-meta em,
-.admin-portfolio-thumb span {
-  color: #95ff00 !important;
-}
-
-/* Buttons */
-.primary-button,
-.cinematic-contact-button,
-.floating-contact-banner,
-.admin-page .primary-button,
-.admin-portfolio-submit {
-  background: linear-gradient(135deg, #95ff00, #b9ff4a) !important;
-  color: #050505 !important;
-  border-color: rgba(149, 255, 0, 0.54) !important;
-  box-shadow:
-    0 14px 34px rgba(149, 255, 0, 0.18),
-    0 0 24px rgba(149, 255, 0, 0.12) !important;
-}
-
-.primary-button:hover,
-.cinematic-contact-button:hover,
-.floating-contact-banner:hover,
-.admin-page .primary-button:hover,
-.admin-portfolio-submit:hover {
-  box-shadow:
-    0 18px 42px rgba(149, 255, 0, 0.24),
-    0 0 34px rgba(149, 255, 0, 0.18) !important;
-}
-
-/* Header / logo accent */
-.cinematic-brand span,
-.cinematic-menu-button:hover,
-.cinematic-icon-button:hover {
-  border-color: rgba(149, 255, 0, 0.44) !important;
-  color: #95ff00 !important;
-}
-
-.cinematic-brand span {
-  background: rgba(149, 255, 0, 0.13) !important;
-}
-
-.cinematic-header {
-  border-color: rgba(149, 255, 0, 0.14) !important;
-}
-
-/* Cards / portfolio */
-.portfolio-card,
-.portfolio-compact-item,
-.portfolio-folder-panel,
-.portfolio-library-header {
-  border-color: rgba(149, 255, 0, 0.13) !important;
-}
-
-.portfolio-card:hover,
-.portfolio-compact-item:hover {
-  border-color: rgba(149, 255, 0, 0.42) !important;
-  box-shadow:
-    0 22px 70px rgba(0, 0, 0, 0.34),
-    0 0 28px rgba(149, 255, 0, 0.1) !important;
-}
-
-.portfolio-card .play-button,
-.portfolio-compact-play-icon {
-  border-color: rgba(149, 255, 0, 0.48) !important;
-  color: #95ff00 !important;
-  box-shadow: 0 0 22px rgba(149, 255, 0, 0.16) !important;
-}
-
-/* Admin drawer dark signature */
-.admin-page .admin-topbar {
-  border-color: rgba(149, 255, 0, 0.2) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.13), transparent 42%),
-    linear-gradient(180deg, rgba(13, 13, 15, 0.98), rgba(5, 5, 5, 0.94)),
-    #050505 !important;
-  box-shadow:
-    18px 24px 70px rgba(0, 0, 0, 0.58),
-    0 0 28px rgba(149, 255, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-}
-
-.admin-page .admin-topbar:hover,
-.admin-page .admin-topbar:focus-within {
-  border-color: rgba(149, 255, 0, 0.46) !important;
-  box-shadow:
-    24px 30px 88px rgba(0, 0, 0, 0.7),
-    0 0 38px rgba(149, 255, 0, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-}
-
-.admin-page .admin-topbar::before {
-  color: #95ff00 !important;
-}
-
-.admin-page .admin-topbar::after {
-  border-color: rgba(149, 255, 0, 0.42) !important;
-  background:
-    linear-gradient(180deg, rgba(149, 255, 0, 0.96), rgba(185, 255, 74, 0.88)),
-    #95ff00 !important;
-  color: #050505 !important;
-  box-shadow:
-    12px 18px 42px rgba(0, 0, 0, 0.46),
-    0 0 26px rgba(149, 255, 0, 0.24) !important;
-}
-
-.admin-page .admin-topbar>.admin-back-link:hover,
-.admin-page .admin-topbar .admin-topbar-actions>button:not(.admin-logout-button):hover,
-.admin-page .admin-topbar .admin-topbar-actions>a:hover,
-.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle:hover,
-.admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle.is-active,
-.admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button:hover {
-  border-color: rgba(149, 255, 0, 0.46) !important;
-  background: rgba(149, 255, 0, 0.13) !important;
-  color: #95ff00 !important;
-}
-
-/* Admin panels */
-.admin-summary-grid div,
-.admin-filter-panel,
-.admin-contact-card,
-.admin-contact-preview>div,
-.admin-message-preview,
-.admin-portfolio-editor,
-.admin-portfolio-list-section,
-.admin-portfolio-card,
-.admin-detail-modal,
-.admin-detail-item,
-.admin-detail-history,
-.admin-detail-history-list li {
-  border-color: rgba(149, 255, 0, 0.12) !important;
-}
-
-.admin-contact-card:hover,
-.admin-portfolio-card:hover {
-  border-color: rgba(149, 255, 0, 0.38) !important;
-  box-shadow:
-    0 24px 76px rgba(0, 0, 0, 0.42),
-    0 0 28px rgba(149, 255, 0, 0.1) !important;
-}
-
-.admin-filter-tabs button:hover,
-.admin-filter-tabs button.is-active,
-.admin-status-actions button:hover,
-.admin-status-actions button.is-active {
-  border-color: rgba(149, 255, 0, 0.42) !important;
-  background: rgba(149, 255, 0, 0.13) !important;
-  color: #95ff00 !important;
-}
-
-.admin-status-badge.status-new,
-.admin-status-badge.status-checked,
-.admin-status-badge.status-done {
-  background: rgba(149, 255, 0, 0.14) !important;
-  color: #95ff00 !important;
-}
-
-/* Warning은 danger가 아니라 안내니까 시그니처 톤으로 낮춤 */
-.admin-warning {
-  border-color: rgba(149, 255, 0, 0.24) !important;
-  background:
-    linear-gradient(135deg, rgba(149, 255, 0, 0.08), rgba(149, 255, 0, 0.035)) !important;
-  color: rgba(245, 240, 230, 0.9) !important;
-}
-
-.admin-warning strong,
-.admin-warning b {
-  color: #95ff00 !important;
-}
-
-/* Keep danger red */
-.admin-logout-button,
-.admin-status-actions button.is-danger,
-.admin-detail-actions button.danger,
-.admin-reset-filter-button {
-  --gold: #ff6b6b;
-}
-
-/* Logout button */
-.admin-page .admin-topbar .admin-logout-button {
-  display: inline-flex !important;
-  width: 100% !important;
-  height: 38px !important;
-  min-height: 38px !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 12px !important;
-  border: 1px solid rgba(255, 107, 107, 0.34) !important;
-  border-radius: 14px !important;
-  background: rgba(255, 107, 107, 0.13) !important;
-  color: #ffb3b3 !important;
-  font-size: 0.76rem !important;
-  font-weight: 950 !important;
-  box-shadow: none !important;
-}
-
-.admin-page .admin-topbar .admin-logout-button:hover {
-  border-color: rgba(255, 107, 107, 0.58) !important;
-  background: rgba(255, 107, 107, 0.22) !important;
-  color: #ffd0d0 !important;
-}
-
-/* Logout is intentionally separated from utility actions. */
-.admin-page .admin-topbar .admin-topbar-actions>button.admin-logout-button {
-  display: inline-flex !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
-  height: 38px !important;
-  min-height: 38px !important;
-  flex: 0 0 auto !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  margin-top: clamp(78px, 16vh, 132px) !important;
-  padding: 0 12px !important;
-  border: 1px solid rgba(217, 75, 75, 0.86) !important;
-  border-radius: 14px !important;
-  background: #d94b4b !important;
-  color: #ffffff !important;
-  font-size: 0.76rem !important;
-  font-weight: 950 !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-  box-shadow: 0 10px 20px rgba(217, 75, 75, 0.18) !important;
-  transform: none !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-
-.admin-page .admin-topbar .admin-topbar-actions>button.admin-logout-button:hover,
-.admin-page .admin-topbar .admin-topbar-actions>button.admin-logout-button:focus-visible {
-  border-color: #b93636 !important;
-  background: #b93636 !important;
-  color: #ffffff !important;
-}
-
-/* Mobile click drawer */
-@media (max-width: 980px) {
-  .admin-page {
-    padding-top: 72px !important;
-    padding-bottom: 80px !important;
-  }
-
-  .admin-mobile-menu-toggle {
-    position: fixed;
-    z-index: 530;
-    top: 12px;
-    left: 12px;
-    display: inline-flex;
-    min-height: 38px;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    padding: 0 13px;
-    border: 1px solid rgba(9, 99, 126, 0.2);
-    border-radius: 999px;
-    background: rgba(235, 244, 246, 0.94);
-    color: #09637e;
-    font-size: 0.76rem;
-    font-weight: 950;
-    box-shadow: 0 12px 34px rgba(9, 99, 126, 0.14);
-    backdrop-filter: blur(16px);
-  }
-
-  .admin-mobile-menu-toggle::before {
-    content: '☰';
-    font-size: 0.9rem;
-    line-height: 1;
-  }
-
-  .admin-menu-scrim {
-    position: fixed;
-    z-index: 500;
-    inset: 0;
-    display: block;
-    border: 0;
-    background: rgba(9, 99, 126, 0.2);
-    backdrop-filter: blur(2px);
-  }
-
-  .admin-page .admin-topbar {
-    z-index: 520 !important;
-    top: 62px !important;
-    bottom: auto !important;
-    left: 0 !important;
-    right: auto !important;
-    width: min(268px, calc(100vw - 54px)) !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: calc(100dvh - 76px) !important;
-    padding: 46px 12px 14px !important;
-    gap: 8px !important;
-    border-radius: 0 22px 22px 0 !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    transform: translateX(-104%) !important;
-  }
-
-  .admin-page .admin-topbar:hover,
-  .admin-page .admin-topbar:focus-within {
-    transform: translateX(-104%) !important;
-  }
-
-  .admin-page.is-admin-menu-open .admin-topbar,
-  .admin-page.is-admin-menu-open .admin-topbar:hover,
-  .admin-page.is-admin-menu-open .admin-topbar:focus-within {
-    transform: translateX(0) !important;
-  }
-
-  .admin-page .admin-topbar::before {
-    top: 14px;
-    height: 24px;
-    line-height: 24px;
-  }
-
-  .admin-page .admin-topbar::after {
-    display: none !important;
-  }
-
-  .admin-page .admin-topbar>.admin-back-link,
-  .admin-page .admin-topbar .admin-topbar-actions>button:not(.admin-logout-button),
-  .admin-page .admin-topbar .admin-topbar-actions>a,
-  .admin-page .admin-topbar .admin-topbar-actions .admin-archive-toggle,
-  .admin-page .admin-topbar .admin-topbar-actions .admin-refresh-button {
-    height: 38px !important;
-    min-height: 38px !important;
-    border-radius: 14px !important;
-    font-size: 0.76rem !important;
-  }
-
-  .admin-page .admin-topbar .admin-topbar-actions>button.admin-logout-button {
-    height: 38px !important;
-    min-height: 38px !important;
-    margin-top: clamp(86px, 18vh, 132px) !important;
-    border-radius: 14px !important;
-    background: #d94b4b !important;
-    color: #ffffff !important;
-    font-size: 0.76rem !important;
-  }
-}
-
-@media (max-width: 520px) {
-  .admin-page .admin-topbar {
-    width: min(258px, calc(100vw - 48px)) !important;
-    max-height: calc(100dvh - 74px) !important;
-    padding: 46px 10px 14px !important;
-  }
-}
-
-/* End Portfolio compact card final v2 */
-
-
-/* BDPRODUCTION neon cinematic dark theme v2 start */
-:root {
-  --bg: #020407;
-  --bg-soft: #030B0F;
-  --bg-panel: #041A21;
-  --bg-deep-teal: #042B2A;
-  --bg-card: rgba(4, 26, 33, 0.72);
-  --bg-card-strong: rgba(6, 51, 70, 0.82);
-  --text: #F5F7EE;
-  --muted: rgba(166, 228, 219, 0.68);
-  --muted-strong: rgba(234, 253, 244, 0.84);
-  --accent: #95FF00;
-  --accent-soft: #B6DB3B;
-  --accent-cyan: #18A1AA;
-  --accent-teal: #0A8392;
-  --gold: #95FF00;
-  --gold-soft: rgba(149, 255, 0, 0.14);
-  --line: rgba(166, 228, 219, 0.16);
-  --line-strong: rgba(149, 255, 0, 0.38);
-  --danger: #CB2F10;
-  --shadow: 0 26px 90px rgba(0, 0, 0, 0.62);
-}
-
-html,
-body,
-.app-shell {
-  background:
-    radial-gradient(circle at 78% 6%, rgba(149, 255, 0, 0.07), transparent 26%),
-    radial-gradient(circle at 18% 18%, rgba(24, 161, 170, 0.13), transparent 32%),
-    linear-gradient(180deg, #020407 0%, #030B0F 38%, #020407 100%) !important;
-  color: var(--text) !important;
-}
-
-body::selection {
-  background: rgba(149, 255, 0, 0.32);
-  color: #020407;
-}
-
-main,
-.section,
-.portfolio-section,
-.contact-section,
-.contact-cta-section,
-.studio-showroom-section,
-.portfolio-page-section,
-.mypage-placeholder-section {
-  background: transparent !important;
-  color: var(--text) !important;
-}
-
-.section-heading h2,
-.portfolio-page-hero h1,
-.mypage-placeholder-hero h1,
-.contact-cta-copy h2,
-.studio-showroom-heading h2,
-.portfolio-library-header h2 {
-  color: var(--text) !important;
-  text-shadow: 0 0 28px rgba(166, 228, 219, 0.08);
-}
-
-.eyebrow,
-.footer-logo,
 .footer-info dt,
 .footer-info span,
 .portfolio-youtube-body span,
-.portfolio-compact-meta span,
 .portfolio-folder-heading,
 .portfolio-folder-heading span,
 .portfolio-page-hero .eyebrow,
 .contact-cta-card span,
-.contact-cta-card em,
-.contact-cta-card div,
+.contact-cta-card em {
+  color: var(--accent) !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.footer-logo {
+  color: var(--text) !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
 
 .section-heading p:not(.eyebrow),
 .portfolio-page-hero p:not(.eyebrow),
 .mypage-placeholder-hero p:not(.eyebrow),
-.contact-cta-copy>p:not(.eyebrow),
-.studio-showroom-heading>p,
+.contact-cta-copy > p:not(.eyebrow),
+.studio-showroom-heading > p,
 .footer-tagline,
 .site-footer p,
-.portfolio-compact-body p,
+.portfolio-compact-body p {
+  color: var(--muted) !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
 
 /* Header */
 .cinematic-header {
@@ -2526,4 +1941,131 @@ main,
   text-shadow:
     0 1px 0 rgba(255, 255, 255, 0.06),
     0 18px 42px rgba(0, 0, 0, 0.36) !important;
+}
+
+/* Typography selector leak fix final */
+
+/*
+  Final guard:
+  Keep the real dark theme, cards, panels, and buttons intact.
+  Only remove accidental text-background leaks from typography elements.
+*/
+
+.eyebrow,
+.section-heading p,
+.section-heading p:not(.eyebrow),
+.portfolio-page-hero .eyebrow,
+.portfolio-page-hero p,
+.portfolio-page-hero p:not(.eyebrow),
+.mypage-placeholder-hero p,
+.mypage-placeholder-hero p:not(.eyebrow),
+.contact-cta-copy > p,
+.contact-cta-copy > p:not(.eyebrow),
+.studio-showroom-heading > p,
+.footer-logo,
+.footer-tagline,
+.site-footer p,
+.footer-info dt,
+.footer-info dd,
+.footer-info span,
+.footer-info p,
+.footer-bottom span,
+.portfolio-folder-heading,
+.portfolio-folder-heading span,
+.portfolio-youtube-body span,
+.portfolio-card-body p,
+.portfolio-card-body h3,
+.portfolio-card-body span,
+.portfolio-compact-body h3,
+.portfolio-compact-body p,
+.portfolio-compact-footer span {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* ???? ?? ??? */
+:root {
+  --gold: #95ff00;
+  --gold-soft: rgba(149, 255, 0, 0.15);
+  --line-strong: rgba(149, 255, 0, 0.42);
+  --accent: #95ff00;
+  --accent-soft: rgba(149, 255, 0, 0.15);
+  --accent-glow: rgba(149, 255, 0, 0.32);
+}
+
+/* ?? ?? ??? */
+html,
+body,
+.app-shell {
+  background:
+    radial-gradient(circle at 78% 6%, rgba(149, 255, 0, 0.07), transparent 26%),
+    radial-gradient(circle at 18% 18%, rgba(24, 161, 170, 0.13), transparent 32%),
+    linear-gradient(180deg, #020407 0%, #030b0f 38%, #020407 100%) !important;
+  color: var(--text) !important;
+}
+
+/* ??? ?? ?? ??? ?? */
+.cinematic-header {
+  border-color: rgba(149, 255, 0, 0.14) !important;
+  background: rgba(2, 4, 7, 0.78) !important;
+  color: var(--text) !important;
+}
+
+/* ?? ??/?? ??? ???? ?? */
+.portfolio-card,
+.portfolio-youtube-card,
+.portfolio-compact-item,
+.portfolio-folder-panel,
+.portfolio-library-header,
+.portfolio-page-toolbar,
+.contact-cta-card,
+.mypage-status-card,
+.mypage-feature-card,
+.admin-summary-grid div,
+.admin-filter-panel,
+.admin-contact-card {
+  background-image: revert-layer;
+}
+
+/* ?? ??? ?? ??? ?? ?? */
+.portfolio-youtube-body,
+.portfolio-card-body,
+.portfolio-compact-body {
+  background: rgba(2, 4, 7, 0.78) !important;
+}
+
+/* ????? ???/??? ???? ?? ????? ???? ??? ??? ? ?? */
+.portfolio-page-hero h1,
+.section-heading h2,
+.mypage-placeholder-hero h1,
+.admin-heading h1 {
+  color: var(--text) !important;
+}
+
+.portfolio-page-hero p:not(.eyebrow),
+.section-heading p:not(.eyebrow),
+.mypage-placeholder-hero p:not(.eyebrow) {
+  color: var(--muted) !important;
+}
+
+.eyebrow,
+.portfolio-page-hero .eyebrow,
+.admin-heading .eyebrow,
+.footer-info dt,
+.portfolio-folder-heading,
+.portfolio-folder-heading span,
+.portfolio-youtube-body span,
+.portfolio-card-body p,
+.portfolio-compact-meta span {
+  color: #95ff00 !important;
+}
+
+/* ??/??? ?? */
+.primary-button,
+.cinematic-contact-button,
+.floating-contact-banner-single .floating-contact-button,
+.floating-contact-button.is-primary {
+  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
+  color: #020407 !important;
 }
