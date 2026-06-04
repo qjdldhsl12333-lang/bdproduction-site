@@ -2312,3 +2312,36 @@ body:has(.admin-detail-backdrop) {
   color: #ffffff !important;
   stroke: currentColor !important;
 }
+
+/* Admin detail close button alignment final */
+
+/*
+  Align the X icon and close text in the admin detail modal close button.
+  Visual/layout-only patch.
+*/
+
+.admin-detail-close {
+  display: inline-flex !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 0 14px !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+.admin-detail-close svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: 17px !important;
+  height: 17px !important;
+  margin: 0 !important;
+  transform: translateY(0.5px) !important;
+}
+
+.admin-detail-close {
+  font-size: 0.82rem !important;
+  font-weight: 850 !important;
+}
