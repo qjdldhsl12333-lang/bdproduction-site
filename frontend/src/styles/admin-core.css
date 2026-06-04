@@ -2267,3 +2267,48 @@ body:has(.admin-detail-backdrop) {
     padding-bottom: 10px !important;
   }
 }
+
+/* Admin detail action button contrast final */
+
+/*
+  Contrast fix for admin detail modal status buttons.
+  Lime-filled hover/active states must use dark text.
+  Danger/archive buttons keep their warning color behavior.
+*/
+
+.admin-detail-actions button:not(.danger):hover,
+.admin-detail-actions button:not(.danger).is-active,
+.admin-detail-actions button:not(.danger).is-active:hover,
+.admin-detail-actions button:not(.danger).is-active:disabled {
+  border-color: rgba(149, 255, 0, 0.72) !important;
+  background: #95ff00 !important;
+  color: #020407 !important;
+  text-shadow: none !important;
+}
+
+.admin-detail-actions button:not(.danger):hover svg,
+.admin-detail-actions button:not(.danger).is-active svg,
+.admin-detail-actions button:not(.danger).is-active:hover svg,
+.admin-detail-actions button:not(.danger).is-active:disabled svg {
+  color: #020407 !important;
+  stroke: currentColor !important;
+}
+
+.admin-detail-actions button:not(.danger).is-active:disabled {
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+}
+
+.admin-detail-actions button.danger,
+.admin-detail-actions button.danger:hover,
+.admin-detail-actions button.danger:focus-visible {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+.admin-detail-actions button.danger svg,
+.admin-detail-actions button.danger:hover svg,
+.admin-detail-actions button.danger:focus-visible svg {
+  color: #ffffff !important;
+  stroke: currentColor !important;
+}
