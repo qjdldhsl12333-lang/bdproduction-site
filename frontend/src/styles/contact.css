@@ -842,13 +842,12 @@
 
 /* Dynamic contact section fixed end */
 
-/* Floating contact button neon final */
+/* Floating contact button solid final */
 
 /*
-  Final floating contact CTA style.
-  Normal: dark button with #95ff00 text/icon.
-  Hover: #95ff00 fill with dark text/icon.
-  Prevent clipping caused by hover movement/glow.
+  Final floating contact CTA:
+  Keep a simple solid #95ff00 button with dark icon/text.
+  No diagonal background, no color-changing hover state.
 */
 
 .floating-contact-banner {
@@ -875,44 +874,33 @@
   min-height: 76px !important;
   place-items: center !important;
   gap: 6px !important;
-  overflow: visible !important;
+  overflow: hidden !important;
   padding: 10px 8px !important;
-  border: 1px solid rgba(149, 255, 0, 0.46) !important;
+  border: 0 !important;
   border-radius: 18px !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(149, 255, 0, 0.14), transparent 56%),
-    rgba(2, 4, 7, 0.82) !important;
-  color: #95ff00 !important;
+  background: #95ff00 !important;
+  color: #020407 !important;
   font-size: 0.72rem !important;
   font-weight: 950 !important;
-  line-height: 1.05 !important;
+  line-height: 1.08 !important;
   text-align: center !important;
   text-shadow: none !important;
   box-shadow:
-    0 20px 54px rgba(0, 0, 0, 0.38),
-    0 0 28px rgba(149, 255, 0, 0.16),
-    inset 0 0 0 1px rgba(149, 255, 0, 0.06) !important;
-  backdrop-filter: blur(16px) !important;
-  transform: translateZ(0) !important;
+    0 18px 42px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(149, 255, 0, 0.2) !important;
+  backdrop-filter: none !important;
+  transform: none !important;
   transition:
-    background 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    color 180ms ease,
-    transform 180ms ease !important;
+    box-shadow 160ms ease,
+    transform 160ms ease !important;
 }
 
 .floating-contact-button::before,
-.floating-contact-button.is-primary::before {
-  position: absolute;
-  z-index: -1;
-  inset: -10px;
-  border-radius: 24px;
-  background: radial-gradient(circle at 50% 50%, rgba(149, 255, 0, 0.22), transparent 64%);
-  content: '';
-  opacity: 0.72;
-  pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
+.floating-contact-button::after,
+.floating-contact-button.is-primary::before,
+.floating-contact-button.is-primary::after {
+  display: none !important;
+  content: none !important;
 }
 
 .floating-contact-button svg,
@@ -920,16 +908,16 @@
   display: block !important;
   width: 23px !important;
   height: 23px !important;
-  color: #95ff00 !important;
+  margin: 0 !important;
+  color: #020407 !important;
   stroke: currentColor !important;
   stroke-width: 2.15 !important;
-  margin: 0 !important;
 }
 
 .floating-contact-button span,
 .floating-contact-button.is-primary span {
   display: block !important;
-  color: currentColor !important;
+  color: #020407 !important;
   line-height: 1.15 !important;
   white-space: nowrap !important;
 }
@@ -938,21 +926,13 @@
 .floating-contact-button:focus-visible,
 .floating-contact-button.is-primary:hover,
 .floating-contact-button.is-primary:focus-visible {
-  border-color: #95ff00 !important;
+  border: 0 !important;
   background: #95ff00 !important;
   color: #020407 !important;
   box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.42),
-    0 0 38px rgba(149, 255, 0, 0.28) !important;
-  transform: translateY(-2px) translateZ(0) !important;
-}
-
-.floating-contact-button:hover::before,
-.floating-contact-button:focus-visible::before,
-.floating-contact-button.is-primary:hover::before,
-.floating-contact-button.is-primary:focus-visible::before {
-  opacity: 0.92;
-  transform: scale(1.04);
+    0 18px 42px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(149, 255, 0, 0.2) !important;
+  transform: none !important;
 }
 
 .floating-contact-button:hover svg,
