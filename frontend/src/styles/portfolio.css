@@ -1506,3 +1506,31 @@
     transition: none !important;
   }
 }
+
+/* Portfolio mobile snap center edge fix final */
+
+/*
+  Give the first and last mobile portfolio cards enough side space
+  so every card can snap to the visual center.
+*/
+
+@media (max-width: 760px) {
+  .portfolio-mobile-showcase {
+    --portfolio-mobile-card-width: min(84vw, 360px);
+    --portfolio-mobile-side-space: max(
+      18px,
+      calc((100% - var(--portfolio-mobile-card-width)) / 2)
+    );
+  }
+
+  .portfolio-mobile-slider {
+    padding-right: var(--portfolio-mobile-side-space) !important;
+    padding-left: var(--portfolio-mobile-side-space) !important;
+    scroll-padding-right: var(--portfolio-mobile-side-space) !important;
+    scroll-padding-left: var(--portfolio-mobile-side-space) !important;
+  }
+
+  .portfolio-mobile-card {
+    flex-basis: var(--portfolio-mobile-card-width) !important;
+  }
+}
