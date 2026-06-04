@@ -2069,3 +2069,178 @@ body,
   background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
   color: #020407 !important;
 }
+
+/* Public typography color repair final */
+
+/*
+  Restore public typography after background-box cleanup.
+  Keep dark backgrounds/cards/buttons intact.
+  Only force public-facing text back to BDPRODUCTION dark theme:
+  - Main text: warm white
+  - Muted text: soft off-white
+  - Accent/category/eyebrow: #95ff00
+*/
+
+:root {
+  --bg: #020407;
+  --bg-soft: #030b0f;
+  --bg-panel: #041a21;
+  --bg-deep-teal: #042b2a;
+  --bg-card: rgba(4, 26, 33, 0.72);
+  --bg-card-strong: rgba(6, 51, 70, 0.82);
+
+  --text: #f5f7ee;
+  --muted: rgba(235, 244, 246, 0.74);
+  --muted-strong: rgba(245, 247, 238, 0.88);
+
+  --accent: #95ff00;
+  --accent-soft: rgba(149, 255, 0, 0.15);
+  --accent-glow: rgba(149, 255, 0, 0.32);
+
+  --gold: #95ff00;
+  --gold-soft: rgba(149, 255, 0, 0.15);
+
+  --line: rgba(166, 228, 219, 0.16);
+  --line-strong: rgba(149, 255, 0, 0.42);
+}
+
+/* Public pages should not inherit admin-blue as body text */
+.app-shell {
+  --admin-blue: #f5f7ee;
+}
+
+/* Base public text */
+html,
+body,
+.app-shell {
+  color: #f5f7ee !important;
+}
+
+/* Header */
+.cinematic-brand strong,
+.cinematic-desktop-nav a,
+.cinematic-icon-button,
+.cinematic-menu-button {
+  color: #f5f7ee !important;
+}
+
+.cinematic-brand strong:hover,
+.cinematic-desktop-nav a:hover,
+.cinematic-icon-button:hover,
+.cinematic-menu-button:hover {
+  color: #95ff00 !important;
+}
+
+/* Big public titles */
+.section-heading h2,
+.portfolio-page-hero h1,
+.mypage-placeholder-hero h1,
+.contact-cta-copy h2,
+.studio-showroom-heading h2,
+.portfolio-library-header h2,
+.portfolio-page-toolbar h2,
+.portfolio-detail-panel h3,
+.portfolio-guide-title,
+.portfolio-feature-title {
+  color: #f5f7ee !important;
+}
+
+/* Main portfolio card titles */
+.portfolio-youtube-body h3,
+.portfolio-card-body h3,
+.portfolio-compact-body h3,
+.portfolio-compact-title,
+.portfolio-list-title,
+.portfolio-title,
+.portfolio-detail-title {
+  color: #f5f7ee !important;
+}
+
+/* Muted public body text */
+.section-heading p:not(.eyebrow),
+.portfolio-page-hero p:not(.eyebrow),
+.mypage-placeholder-hero p:not(.eyebrow),
+.contact-cta-copy > p:not(.eyebrow),
+.studio-showroom-heading > p,
+.portfolio-youtube-body p,
+.portfolio-card-body p,
+.portfolio-compact-body p,
+.portfolio-detail-panel p,
+.portfolio-guide-copy,
+.footer-tagline,
+.site-footer p,
+.footer-info dd,
+.footer-info p,
+.footer-bottom span {
+  color: rgba(235, 244, 246, 0.74) !important;
+}
+
+/* Accent labels stay lime */
+.eyebrow,
+.portfolio-page-hero .eyebrow,
+.section-heading .eyebrow,
+.admin-heading .eyebrow,
+.footer-info dt,
+.portfolio-youtube-body span,
+.portfolio-card-body span,
+.portfolio-compact-meta span,
+.portfolio-folder-heading,
+.portfolio-folder-heading span,
+.portfolio-guide-kicker,
+.portfolio-detail-panel .eyebrow,
+.portfolio-detail-panel strong,
+.category-label {
+  color: #95ff00 !important;
+}
+
+/* Footer */
+.footer-logo,
+.site-footer strong {
+  color: #f5f7ee !important;
+}
+
+.site-footer a {
+  color: inherit !important;
+}
+
+.site-footer a:hover {
+  color: #95ff00 !important;
+}
+
+/* Keep real dark card/body backgrounds */
+.portfolio-youtube-body,
+.portfolio-card-body,
+.portfolio-compact-body {
+  background: rgba(2, 4, 7, 0.78) !important;
+  color: #f5f7ee !important;
+}
+
+/* Keep chips/buttons/badges readable */
+.portfolio-compact-meta span,
+.portfolio-youtube-body span,
+.portfolio-card-body span,
+.portfolio-folder-button strong,
+.portfolio-filter-tabs button,
+.category-tabs button {
+  color: #95ff00 !important;
+}
+
+/* Active lime buttons must keep black text */
+.primary-button,
+.cinematic-contact-button,
+.floating-contact-banner-single .floating-contact-button,
+.floating-contact-button.is-primary,
+.portfolio-folder-button.is-active,
+.portfolio-filter-tabs button.is-active,
+.category-tabs button.is-active {
+  color: #020407 !important;
+}
+
+/* Dark buttons keep white text */
+.secondary-button,
+.ghost-button,
+.portfolio-more-button:not(:hover),
+.portfolio-compact-action,
+.portfolio-youtube-action {
+  color: #f5f7ee !important;
+}
