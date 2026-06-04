@@ -542,3 +542,63 @@
 .cinematic-header a:hover svg [fill]:not([fill='none']) {
   fill: currentColor !important;
 }
+
+/* BDPRODUCTION MVP logo image final */
+
+.cinematic-brand .cinematic-brand-mark {
+  display: grid !important;
+  width: 38px !important;
+  height: 38px !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(149, 255, 0, 0.36) !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(149, 255, 0, 0.13), transparent 58%),
+    rgba(2, 4, 7, 0.72) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(149, 255, 0, 0.06),
+    0 0 22px rgba(149, 255, 0, 0.08) !important;
+}
+
+.cinematic-brand .cinematic-brand-mark img {
+  display: block !important;
+  width: 72% !important;
+  height: 72% !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 0 8px rgba(149, 255, 0, 0.24)) !important;
+}
+
+.cinematic-drawer-brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.cinematic-drawer-brand img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 9px rgba(149, 255, 0, 0.28));
+}
+
+.cinematic-drawer-brand span {
+  color: #ebf4f6;
+  font-size: 0.92rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 760px) {
+  .cinematic-brand .cinematic-brand-mark {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .cinematic-brand .cinematic-brand-mark img {
+    width: 74% !important;
+    height: 74% !important;
+  }
+}
