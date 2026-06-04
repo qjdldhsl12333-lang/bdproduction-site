@@ -20,8 +20,7 @@
   .ghost-button,
   .cinematic-contact-button,
   .cinematic-menu-button,
-  .floating-contact-banner,
-  .form-submit,
+.form-submit,
   .auth-tabs button,
   .social-auth-button,
   .portfolio-folder-button,
@@ -65,8 +64,7 @@
   .ghost-button,
   .cinematic-contact-button,
   .cinematic-menu-button,
-  .floating-contact-banner,
-  .form-submit,
+.form-submit,
   .auth-tabs button,
   .social-auth-button,
   .portfolio-folder-button,
@@ -110,8 +108,7 @@
   .ghost-button,
   .cinematic-contact-button,
   .cinematic-menu-button,
-  .floating-contact-banner,
-  .form-submit,
+.form-submit,
   .auth-tabs button,
   .social-auth-button,
   .portfolio-folder-button,
@@ -148,8 +145,7 @@
     .ghost-button,
     .cinematic-contact-button,
     .cinematic-menu-button,
-    .floating-contact-banner,
-    .form-submit,
+.form-submit,
     .auth-tabs button,
     .social-auth-button,
     .portfolio-folder-button,
@@ -183,8 +179,7 @@
     .ghost-button,
     .cinematic-contact-button,
     .cinematic-menu-button,
-    .floating-contact-banner,
-    .form-submit,
+.form-submit,
     .auth-tabs button,
     .social-auth-button,
     .portfolio-folder-button,
@@ -224,8 +219,7 @@
     .ghost-button,
     .cinematic-contact-button,
     .cinematic-menu-button,
-    .floating-contact-banner,
-    .form-submit,
+.form-submit,
     .auth-tabs button,
     .social-auth-button,
     .portfolio-folder-button,
@@ -261,8 +255,7 @@
     .ghost-button,
     .cinematic-contact-button,
     .cinematic-menu-button,
-    .floating-contact-banner,
-    .form-submit,
+.form-submit,
     .auth-tabs button,
     .social-auth-button,
     .portfolio-folder-button,
@@ -298,8 +291,7 @@
   .ghost-button,
   .cinematic-contact-button,
   .cinematic-menu-button,
-  .floating-contact-banner,
-  .form-submit,
+.form-submit,
   .auth-tabs button,
   .social-auth-button,
   .portfolio-folder-button,
@@ -428,8 +420,7 @@
 :where(
   .primary-button,
   .cinematic-contact-button,
-  .floating-contact-banner,
-  .form-submit,
+.form-submit,
   .admin-page .primary-button,
   .admin-page .admin-portfolio-submit,
   .admin-login-form .primary-button,
@@ -444,8 +435,7 @@
   :where(
     .primary-button,
     .cinematic-contact-button,
-    .floating-contact-banner,
-    .form-submit,
+.form-submit,
     .admin-page .primary-button,
     .admin-page .admin-portfolio-submit,
     .admin-login-form .primary-button,
@@ -462,8 +452,7 @@
   :where(
     .primary-button,
     .cinematic-contact-button,
-    .floating-contact-banner,
-    .form-submit,
+.form-submit,
     .admin-page .primary-button,
     .admin-page .admin-portfolio-submit,
     .admin-login-form .primary-button,
@@ -607,4 +596,88 @@
     border-color: rgba(255, 107, 107, 0.62) !important;
     color: #050505 !important;
   }
+}
+
+/* Floating contact motion exclusion final */
+
+/*
+  Floating contact CTA is intentionally excluded from the global
+  slide-in button motion. It must remain a simple solid rounded button.
+*/
+
+.floating-contact-banner,
+.floating-contact-banner:hover,
+.floating-contact-banner:focus-within,
+.floating-contact-banner:active {
+  position: fixed !important;
+  isolation: auto !important;
+  overflow: visible !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.floating-contact-banner::before,
+.floating-contact-banner::after,
+.floating-contact-banner:hover::before,
+.floating-contact-banner:hover::after,
+.floating-contact-banner:focus-within::before,
+.floating-contact-banner:focus-within::after {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
+  background: transparent !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.floating-contact-banner .floating-contact-button,
+.floating-contact-banner .floating-contact-button.is-primary {
+  isolation: auto !important;
+  overflow: hidden !important;
+  background: #95ff00 !important;
+  color: #020407 !important;
+  transform: scale(1) !important;
+}
+
+.floating-contact-banner .floating-contact-button::before,
+.floating-contact-banner .floating-contact-button::after,
+.floating-contact-banner .floating-contact-button.is-primary::before,
+.floating-contact-banner .floating-contact-button.is-primary::after {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
+  background: transparent !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.floating-contact-banner .floating-contact-button:hover,
+.floating-contact-banner .floating-contact-button:focus-visible,
+.floating-contact-banner .floating-contact-button.is-primary:hover,
+.floating-contact-banner .floating-contact-button.is-primary:focus-visible {
+  background: #95ff00 !important;
+  color: #020407 !important;
+  transform: scale(1.045) !important;
+}
+
+.floating-contact-banner .floating-contact-button svg,
+.floating-contact-banner .floating-contact-button:hover svg,
+.floating-contact-banner .floating-contact-button:focus-visible svg,
+.floating-contact-banner .floating-contact-button.is-primary svg,
+.floating-contact-banner .floating-contact-button.is-primary:hover svg,
+.floating-contact-banner .floating-contact-button.is-primary:focus-visible svg {
+  color: #020407 !important;
+  stroke: currentColor !important;
+  transform: none !important;
+}
+
+.floating-contact-banner .floating-contact-button span,
+.floating-contact-banner .floating-contact-button:hover span,
+.floating-contact-banner .floating-contact-button:focus-visible span,
+.floating-contact-banner .floating-contact-button.is-primary span,
+.floating-contact-banner .floating-contact-button.is-primary:hover span,
+.floating-contact-banner .floating-contact-button.is-primary:focus-visible span {
+  color: #020407 !important;
+  transform: none !important;
 }
