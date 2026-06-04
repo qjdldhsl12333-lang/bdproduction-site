@@ -415,13 +415,16 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
     const safeIndex = Math.max(0, Math.min(videos.length - 1, nextIndex));
     const target = slider.children[safeIndex];
 
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center',
-        block: 'nearest',
-      });
+    if (!target) {
+      return;
     }
+
+    const targetLeft = target.offsetLeft - ((slider.clientWidth - target.clientWidth) / 2);
+
+    slider.scrollTo({
+      left: targetLeft,
+      behavior: 'smooth',
+    });
 
     setActiveIndex(safeIndex);
   };
@@ -433,12 +436,24 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
       return;
     }
 
-    const firstCard = slider.children[0];
-    const cardWidth = firstCard.getBoundingClientRect().width || slider.clientWidth;
-    const gap = 14;
-    const nextIndex = Math.round(slider.scrollLeft / (cardWidth + gap));
+    const sliderRect = slider.getBoundingClientRect();
+    const sliderCenter = sliderRect.left + (sliderRect.width / 2);
 
-    setActiveIndex(Math.max(0, Math.min(videos.length - 1, nextIndex)));
+    let nearestIndex = 0;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+
+    Array.from(slider.children).forEach((child, index) => {
+      const childRect = child.getBoundingClientRect();
+      const childCenter = childRect.left + (childRect.width / 2);
+      const distance = Math.abs(sliderCenter - childCenter);
+
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestIndex = index;
+      }
+    });
+
+    setActiveIndex(Math.max(0, Math.min(videos.length - 1, nearestIndex)));
   };
 
   return (

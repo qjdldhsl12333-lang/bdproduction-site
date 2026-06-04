@@ -1507,14 +1507,11 @@
   }
 }
 
-/* Portfolio mobile slider center sizing final */
+/* Portfolio mobile true center snap final */
 
 /*
-  Mobile portfolio slider rules:
-  - Every card snaps to the visual center.
-  - Card width expands with viewport size.
-  - First/last cards get enough scroll padding to center correctly.
-  - Side gaps are kept small.
+  Fix first/last mobile portfolio cards not reaching visual center.
+  Uses invisible flex spacers before/after the card list.
 */
 
 @media (max-width: 760px) {
@@ -1523,10 +1520,13 @@
     max-width: 100% !important;
     overflow: hidden !important;
 
-    /* Main control values */
-    --portfolio-mobile-edge-gap: clamp(16px, 5vw, 28px);
+    --portfolio-mobile-edge-gap: clamp(14px, 4.2vw, 24px);
+    --portfolio-mobile-card-gap: clamp(10px, 2.6vw, 14px);
     --portfolio-mobile-card-width: calc(100% - (var(--portfolio-mobile-edge-gap) * 2));
-    --portfolio-mobile-card-gap: clamp(12px, 3.2vw, 18px);
+    --portfolio-mobile-snap-spacer: max(
+      0px,
+      calc(var(--portfolio-mobile-edge-gap) - var(--portfolio-mobile-card-gap))
+    );
   }
 
   .portfolio-mobile-slider {
@@ -1534,12 +1534,21 @@
     max-width: 100% !important;
     margin-right: 0 !important;
     margin-left: 0 !important;
-    padding-right: var(--portfolio-mobile-edge-gap) !important;
-    padding-left: var(--portfolio-mobile-edge-gap) !important;
+    padding: 2px 0 18px !important;
     gap: var(--portfolio-mobile-card-gap) !important;
     scroll-padding-right: var(--portfolio-mobile-edge-gap) !important;
     scroll-padding-left: var(--portfolio-mobile-edge-gap) !important;
     scroll-snap-type: x mandatory !important;
+  }
+
+  .portfolio-mobile-slider::before,
+  .portfolio-mobile-slider::after {
+    display: block !important;
+    flex: 0 0 var(--portfolio-mobile-snap-spacer) !important;
+    width: var(--portfolio-mobile-snap-spacer) !important;
+    min-width: var(--portfolio-mobile-snap-spacer) !important;
+    height: 1px !important;
+    content: '' !important;
   }
 
   .portfolio-mobile-card {
@@ -1556,14 +1565,16 @@
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 430px) {
   .portfolio-mobile-showcase {
-    --portfolio-mobile-edge-gap: clamp(14px, 4.6vw, 22px);
+    --portfolio-mobile-edge-gap: clamp(12px, 3.8vw, 18px);
+    --portfolio-mobile-card-gap: 10px;
   }
 }
 
 @media (max-width: 380px) {
   .portfolio-mobile-showcase {
-    --portfolio-mobile-edge-gap: 12px;
+    --portfolio-mobile-edge-gap: 10px;
+    --portfolio-mobile-card-gap: 9px;
   }
 }
