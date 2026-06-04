@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ExternalLink, Loader2, Play, X } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { apiUrl } from '../config/api.js';
 import { portfolioItems } from '../data/portfolio.js';
 
@@ -273,11 +273,278 @@ export function PortfolioVideoModal({ selectedVideo, onClose }) {
   );
 }
 
+
+// Main portfolio responsive showcase final
+
+function getVideoKey(video) {
+  return video.id || video.video_id || video.youtubeVideoId || video.title;
+}
+
+function getAutoplayEmbedUrl(video) {
+  const embedUrl = video.embed_url || video.embedUrl || '';
+
+  if (!embedUrl) {
+    return '';
+  }
+
+  const separator = embedUrl.includes('?') ? '&' : '?';
+
+  return `${embedUrl}${separator}autoplay=1&playsinline=1&rel=0`;
+}
+
+function PortfolioShowcaseInfo({ video }) {
+  if (!video) {
+    return (
+      <motion.aside
+        className="portfolio-showcase-info is-guide"
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.28 }}
+        transition={{ duration: 0.52 }}
+      >
+        <span>PORTFOLIO GUIDE</span>
+        <h3>{'\uB300\uD45C\uC791\uC744 \uC120\uD0DD\uD574 \uD504\uB85C\uC81D\uD2B8\uC758 \uBD84\uC704\uAE30\uC640 \uC124\uBA85\uC744 \uD655\uC778\uD574 \uBCF4\uC138\uC694.'}</h3>
+        <p>
+          {'\uCE74\uB4DC\uC5D0 \uB9C8\uC6B0\uC2A4\uB97C \uC62C\uB9AC\uBA74 \uD574\uB2F9 \uD3EC\uD2B8\uD3F4\uB9AC\uC624\uC758 \uC81C\uC791 \uC720\uD615, \uD074\uB77C\uC774\uC5B8\uD2B8, \uD575\uC2EC \uC124\uBA85\uC774 \uC774 \uC601\uC5ED\uC5D0 \uD45C\uC2DC\uB429\uB2C8\uB2E4.'}
+        </p>
+        <strong>BDPRODUCTION SHOWCASE</strong>
+      </motion.aside>
+    );
+  }
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.aside
+        className="portfolio-showcase-info"
+        key={getVideoKey(video)}
+        initial={{ opacity: 0, y: 18, scale: 0.985 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -12, scale: 0.985 }}
+        transition={{ duration: 0.28 }}
+      >
+        <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
+        <h3>{video.title}</h3>
+        <p>{video.description || '\uD504\uB85C\uC81D\uD2B8 \uC124\uBA85\uC774 \uC900\uBE44 \uC911\uC785\uB2C8\uB2E4.'}</p>
+
+        <div className="portfolio-showcase-meta">
+          <div>
+            <small>CLIENT</small>
+            <strong>{video.client || video.channel_title || 'BDPRODUCTION'}</strong>
+          </div>
+          <div>
+            <small>TYPE</small>
+            <strong>{video.category || 'PORTFOLIO'}</strong>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className="portfolio-showcase-play"
+        >
+          PLAY FILM
+          <Play size={17} />
+        </button>
+      </motion.aside>
+    </AnimatePresence>
+  );
+}
+
+function PortfolioDesktopShowcase({ videos, onSelectVideo }) {
+  const [hoveredVideo, setHoveredVideo] = useState(null);
+
+  return (
+    <div
+      className="portfolio-desktop-showcase"
+      onMouseLeave={() => setHoveredVideo(null)}
+    >
+      <div className="portfolio-showcase-grid">
+        {videos.map((video, index) => (
+          <motion.article
+            className="portfolio-youtube-card portfolio-showcase-card"
+            key={getVideoKey(video)}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.24 }}
+            transition={{ duration: 0.52, delay: index * 0.06 }}
+            onMouseEnter={() => setHoveredVideo(video)}
+            onFocus={() => setHoveredVideo(video)}
+          >
+            <button
+              type="button"
+              className="portfolio-youtube-thumb"
+              onClick={() => onSelectVideo(video)}
+            >
+              {video.thumbnail_url ? (
+                <img src={video.thumbnail_url} alt={video.title} loading="lazy" />
+              ) : (
+                <div className="portfolio-thumb-fallback">BD</div>
+              )}
+
+              <span className="portfolio-play-badge">
+                <Play size={18} />
+              </span>
+
+              {video.is_new && <span className="portfolio-new-badge">NEW</span>}
+            </button>
+
+            <div className="portfolio-youtube-body">
+              <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
+              <h3>{video.title}</h3>
+            </div>
+          </motion.article>
+        ))}
+      </div>
+
+      <PortfolioShowcaseInfo video={hoveredVideo} />
+    </div>
+  );
+}
+
+function PortfolioMobileSlider({ videos, onSelectVideo }) {
+  const sliderRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [playingVideoKey, setPlayingVideoKey] = useState('');
+
+  const scrollToIndex = (nextIndex) => {
+    const slider = sliderRef.current;
+
+    if (!slider) {
+      return;
+    }
+
+    const safeIndex = Math.max(0, Math.min(videos.length - 1, nextIndex));
+    const target = slider.children[safeIndex];
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
+      });
+    }
+
+    setActiveIndex(safeIndex);
+  };
+
+  const handleScroll = () => {
+    const slider = sliderRef.current;
+
+    if (!slider || slider.children.length === 0) {
+      return;
+    }
+
+    const firstCard = slider.children[0];
+    const cardWidth = firstCard.getBoundingClientRect().width || slider.clientWidth;
+    const gap = 14;
+    const nextIndex = Math.round(slider.scrollLeft / (cardWidth + gap));
+
+    setActiveIndex(Math.max(0, Math.min(videos.length - 1, nextIndex)));
+  };
+
+  return (
+    <div className="portfolio-mobile-showcase">
+      <div
+        className="portfolio-mobile-slider"
+        ref={sliderRef}
+        onScroll={handleScroll}
+      >
+        {videos.map((video, index) => {
+          const videoKey = String(getVideoKey(video));
+          const isActive = activeIndex === index;
+          const isPlaying = playingVideoKey === videoKey;
+          const autoplayUrl = getAutoplayEmbedUrl(video);
+
+          return (
+            <article
+              className={`portfolio-mobile-card ${isActive ? 'is-active' : ''} ${isPlaying ? 'is-playing' : ''}`}
+              key={videoKey}
+            >
+              <button
+                type="button"
+                className="portfolio-mobile-media"
+                onClick={() => {
+                  setActiveIndex(index);
+
+                  if (autoplayUrl) {
+                    setPlayingVideoKey(videoKey);
+                    return;
+                  }
+
+                  onSelectVideo(video);
+                }}
+              >
+                {isPlaying && autoplayUrl ? (
+                  <iframe
+                    title={video.title}
+                    src={autoplayUrl}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : (
+                  <>
+                    {video.thumbnail_url ? (
+                      <img src={video.thumbnail_url} alt={video.title} loading="lazy" />
+                    ) : (
+                      <div className="portfolio-thumb-fallback">BD</div>
+                    )}
+
+                    <span className="portfolio-mobile-play">
+                      <Play size={22} />
+                    </span>
+                  </>
+                )}
+              </button>
+
+              <div className="portfolio-mobile-overlay">
+                <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
+                <h3>{video.title}</h3>
+                <p>{video.description || '\uD130\uCE58\uD558\uBA74 \uC601\uC0C1\uC774 \uC7AC\uC0DD\uB429\uB2C8\uB2E4.'}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="portfolio-mobile-controls">
+        <button
+          type="button"
+          onClick={() => scrollToIndex(activeIndex - 1)}
+          disabled={activeIndex <= 0}
+          aria-label="previous portfolio"
+        >
+          ?
+        </button>
+
+        <div className="portfolio-mobile-dots" aria-label="portfolio slider pages">
+          {videos.map((video, index) => (
+            <button
+              key={getVideoKey(video)}
+              type="button"
+              className={activeIndex === index ? 'is-active' : ''}
+              onClick={() => scrollToIndex(index)}
+              aria-label={`portfolio slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => scrollToIndex(activeIndex + 1)}
+          disabled={activeIndex >= videos.length - 1}
+          aria-label="next portfolio"
+        >
+          ?
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function Portfolio() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const { videos, loading, errorMessage } = usePortfolioVideos({ featuredOnly: true });
 
-  const featuredVideos = useMemo(() => videos.slice(0, 6), [videos]);
+  const featuredVideos = useMemo(() => videos.slice(0, 4), [videos]);
 
   return (
     <section id="portfolio" className="section portfolio-section">
@@ -325,9 +592,11 @@ function Portfolio() {
           {errorMessage}
         </div>
       )}
-
       {!loading && !errorMessage && featuredVideos.length > 0 && (
-        <PortfolioVideoGrid videos={featuredVideos} onSelectVideo={setSelectedVideo} />
+        <>
+          <PortfolioDesktopShowcase videos={featuredVideos} onSelectVideo={setSelectedVideo} />
+          <PortfolioMobileSlider videos={featuredVideos} onSelectVideo={setSelectedVideo} />
+        </>
       )}
 
       {!loading && !errorMessage && featuredVideos.length === 0 && (
