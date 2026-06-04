@@ -1638,32 +1638,48 @@
   }
 }
 
-/* Full portfolio cards dark sync final */
+/* Full portfolio compact dark sync v2 */
 
 /*
-  Sync full portfolio list cards with main portfolio card style.
-  Removes old teal/light card background and uses BDPRODUCTION dark thumbnail/body tone.
+  ?? ????? ?? v2:
+  - ???? ??? ??
+  - ???? ?? ??????? ??? BD ?? ???? ??
+  - ?? ?? ???? ?? ?? ?? ??? ??
+  - ??? ?? ?? ??
 */
 
+.portfolio-page .portfolio-compact-list,
+.portfolio-compact-list {
+  gap: 12px !important;
+}
+
+/* ?? ?? */
 .portfolio-page .portfolio-compact-item,
 .portfolio-compact-item {
+  display: grid !important;
+  grid-template-columns: 168px minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: center !important;
+  min-height: 142px !important;
+  padding: 14px !important;
   overflow: hidden !important;
-  border: 1px solid rgba(149, 255, 0, 0.13) !important;
+  border: 1px solid rgba(149, 255, 0, 0.14) !important;
   border-radius: 20px !important;
   background:
-    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.055), transparent 34%),
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.055), transparent 36%),
     linear-gradient(135deg, rgba(5, 14, 17, 0.96), rgba(2, 4, 7, 0.98)) !important;
   box-shadow:
     0 18px 52px rgba(0, 0, 0, 0.26),
     inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+  transform: none !important;
 }
 
 .portfolio-page .portfolio-compact-item:hover,
 .portfolio-compact-item:hover {
-  border-color: rgba(149, 255, 0, 0.38) !important;
+  border-color: rgba(149, 255, 0, 0.36) !important;
   background:
-    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.075), transparent 34%),
-    linear-gradient(135deg, rgba(7, 18, 21, 0.98), rgba(2, 4, 7, 0.98)) !important;
+    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.075), transparent 36%),
+    linear-gradient(135deg, rgba(6, 18, 21, 0.98), rgba(2, 4, 7, 0.98)) !important;
   box-shadow:
     0 24px 76px rgba(0, 0, 0, 0.42),
     0 0 28px rgba(149, 255, 0, 0.08),
@@ -1671,63 +1687,82 @@
   transform: translateY(-2px) !important;
 }
 
+/* ???: ?? ????? ???? ??? BD ???? ?? */
 .portfolio-page .portfolio-compact-thumb,
 .portfolio-compact-thumb {
+  position: relative !important;
+  display: grid !important;
+  width: 100% !important;
+  height: 108px !important;
+  min-height: 108px !important;
+  place-items: center !important;
   overflow: hidden !important;
-  border-radius: 15px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 14px !important;
   background:
-    radial-gradient(circle at 52% 44%, rgba(149, 255, 0, 0.13), transparent 28%),
-    radial-gradient(circle at 72% 22%, rgba(24, 161, 170, 0.26), transparent 32%),
+    radial-gradient(circle at 52% 48%, rgba(149, 255, 0, 0.14), transparent 28%),
+    radial-gradient(circle at 74% 18%, rgba(24, 161, 170, 0.24), transparent 34%),
     linear-gradient(135deg, #041a21 0%, #020407 100%) !important;
   box-shadow:
     inset 0 0 0 1px rgba(149, 255, 0, 0.035),
-    0 14px 32px rgba(0, 0, 0, 0.24) !important;
+    0 14px 32px rgba(0, 0, 0, 0.28) !important;
+  cursor: pointer !important;
 }
 
-.portfolio-page .portfolio-compact-thumb::before,
-.portfolio-compact-thumb::before {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(149, 255, 0, 0.08), transparent 42%),
-    linear-gradient(180deg, transparent 0%, rgba(2, 4, 7, 0.22) 100%);
-  content: '';
-  pointer-events: none;
-}
-
+/* ?? ???? ?? ?? ?? ?? */
 .portfolio-page .portfolio-compact-thumb img,
 .portfolio-compact-thumb img {
-  opacity: 0.92 !important;
-  filter: saturate(0.95) contrast(1.04) brightness(0.9) !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  opacity: 0 !important;
+  filter: none !important;
+  transform: none !important;
+  pointer-events: none !important;
 }
 
-.portfolio-page .portfolio-compact-item:hover .portfolio-compact-thumb img,
-.portfolio-compact-item:hover .portfolio-compact-thumb img {
-  opacity: 0.82 !important;
-  filter: saturate(1.04) contrast(1.08) brightness(0.95) !important;
-  transform: scale(1.04) !important;
-}
-
-.portfolio-page .portfolio-compact-thumb-fallback,
-.portfolio-compact-thumb-fallback {
+/* BD ??? CSS? ?? */
+.portfolio-page .portfolio-compact-thumb::after,
+.portfolio-compact-thumb::after {
   position: relative !important;
   z-index: 1 !important;
-  color: rgba(245, 247, 238, 0.92) !important;
+  content: 'BD' !important;
+  color: rgba(245, 247, 238, 0.94) !important;
+  font-size: clamp(1.65rem, 2.5vw, 2rem) !important;
   font-weight: 950 !important;
+  letter-spacing: -0.08em !important;
+  line-height: 1 !important;
   text-shadow:
-    0 0 18px rgba(245, 247, 238, 0.16),
+    0 0 18px rgba(245, 247, 238, 0.18),
     0 0 34px rgba(149, 255, 0, 0.18) !important;
 }
 
+/* ??? ?? ?? ?? */
 .portfolio-page .portfolio-compact-play-icon,
 .portfolio-compact-play-icon {
-  border-color: rgba(149, 255, 0, 0.58) !important;
+  position: absolute !important;
+  z-index: 3 !important;
+  right: 10px !important;
+  bottom: 10px !important;
+  display: grid !important;
+  width: 36px !important;
+  height: 36px !important;
+  place-items: center !important;
+  border: 1px solid rgba(149, 255, 0, 0.58) !important;
+  border-radius: 999px !important;
   background: rgba(2, 4, 7, 0.72) !important;
   color: #95ff00 !important;
   box-shadow:
     0 0 18px rgba(149, 255, 0, 0.18),
     0 12px 24px rgba(0, 0, 0, 0.34) !important;
   backdrop-filter: blur(8px) !important;
+  transform: none !important;
 }
 
 .portfolio-page .portfolio-compact-item:hover .portfolio-compact-play-icon,
@@ -1737,9 +1772,13 @@
   transform: scale(1.08) !important;
 }
 
-/* Body should not look like a separate old black/blue strip */
+/* ?? ?? */
 .portfolio-page .portfolio-compact-body,
 .portfolio-compact-body {
+  display: grid !important;
+  min-width: 0 !important;
+  gap: 8px !important;
+  align-content: center !important;
   background: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -1748,21 +1787,27 @@
 
 .portfolio-page .portfolio-compact-body h3,
 .portfolio-compact-body h3 {
+  margin: 0 !important;
   color: #f5f7ee !important;
+  font-size: 1.04rem !important;
+  line-height: 1.32 !important;
+  letter-spacing: -0.025em !important;
   text-shadow: 0 0 16px rgba(245, 247, 238, 0.08) !important;
 }
 
 .portfolio-page .portfolio-compact-body p,
 .portfolio-compact-body p {
   color: rgba(235, 244, 246, 0.74) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
 }
 
-.portfolio-page .portfolio-compact-footer span,
-.portfolio-compact-footer span {
-  color: rgba(235, 244, 246, 0.82) !important;
+/* ?? */
+.portfolio-page .portfolio-compact-meta,
+.portfolio-compact-meta {
+  gap: 8px !important;
 }
 
-/* Meta chips */
 .portfolio-page .portfolio-compact-meta span,
 .portfolio-compact-meta span {
   border: 1px solid rgba(149, 255, 0, 0.28) !important;
@@ -1776,7 +1821,18 @@
   color: #020407 !important;
 }
 
-/* View button */
+/* ?? ?????/?? */
+.portfolio-page .portfolio-compact-footer,
+.portfolio-compact-footer {
+  align-items: center !important;
+  margin-top: 2px !important;
+}
+
+.portfolio-page .portfolio-compact-footer span,
+.portfolio-compact-footer span {
+  color: rgba(235, 244, 246, 0.84) !important;
+}
+
 .portfolio-page .portfolio-compact-footer button,
 .portfolio-compact-footer button {
   border: 1px solid rgba(149, 255, 0, 0.36) !important;
@@ -1792,74 +1848,42 @@
   color: #020407 !important;
 }
 
-/* Full portfolio header/panel should stay dark, not old light/teal */
-.portfolio-page .portfolio-folder-panel,
-.portfolio-page .portfolio-library-header,
-.portfolio-folder-panel,
-.portfolio-library-header {
-  border-color: rgba(149, 255, 0, 0.13) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(149, 255, 0, 0.06), transparent 34%),
-    linear-gradient(135deg, rgba(5, 14, 17, 0.92), rgba(2, 4, 7, 0.96)) !important;
-  color: #f5f7ee !important;
-}
-
-.portfolio-page .portfolio-library-header h2,
-.portfolio-library-header h2 {
-  color: #f5f7ee !important;
-}
-
-.portfolio-page .portfolio-library-search-note,
-.portfolio-library-search-note {
-  color: rgba(235, 244, 246, 0.74) !important;
-}
-
-/* Category buttons */
-.portfolio-page .portfolio-folder-button,
-.portfolio-folder-button {
-  border-color: rgba(149, 255, 0, 0.14) !important;
-  background: rgba(2, 4, 7, 0.42) !important;
-  color: rgba(245, 247, 238, 0.86) !important;
-}
-
-.portfolio-page .portfolio-folder-button:hover,
-.portfolio-page .portfolio-folder-button.is-active,
-.portfolio-folder-button:hover,
-.portfolio-folder-button.is-active {
-  border-color: rgba(149, 255, 0, 0.48) !important;
-  background: rgba(149, 255, 0, 0.14) !important;
-  color: #95ff00 !important;
-}
-
-.portfolio-page .portfolio-folder-button strong,
-.portfolio-folder-button strong {
-  background: rgba(149, 255, 0, 0.12) !important;
-  color: rgba(235, 244, 246, 0.78) !important;
-}
-
-.portfolio-page .portfolio-folder-button.is-active strong,
-.portfolio-folder-button.is-active strong {
-  background: #95ff00 !important;
-  color: #020407 !important;
-}
-
+/* ???/?? ?? */
 @media (max-width: 760px) {
   .portfolio-page .portfolio-compact-item,
   .portfolio-compact-item {
-    grid-template-columns: 152px minmax(0, 1fr) !important;
+    grid-template-columns: 148px minmax(0, 1fr) !important;
     gap: 14px !important;
+    min-height: 128px !important;
     padding: 12px !important;
+  }
+
+  .portfolio-page .portfolio-compact-thumb,
+  .portfolio-compact-thumb {
+    height: 96px !important;
+    min-height: 96px !important;
   }
 }
 
 @media (max-width: 560px) {
   .portfolio-page .portfolio-compact-item,
   .portfolio-compact-item {
-    grid-template-columns: 132px minmax(0, 1fr) !important;
+    grid-template-columns: 126px minmax(0, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .portfolio-page .portfolio-compact-thumb,
+  .portfolio-compact-thumb {
+    height: 86px !important;
+    min-height: 86px !important;
   }
 
   .portfolio-page .portfolio-compact-body h3,
   .portfolio-compact-body h3 {
     font-size: 0.94rem !important;
+  }
+
+  .portfolio-page .portfolio-compact-body p {
+    font-size: 0.8rem !important;
   }
 }
