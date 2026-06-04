@@ -842,21 +842,26 @@
 
 /* Dynamic contact section fixed end */
 
-/* Floating contact button solid final */
+/* Floating contact button bold scale final */
 
 /*
   Final floating contact CTA:
-  Keep a simple solid #95ff00 button with dark icon/text.
-  No diagonal background, no color-changing hover state.
+  - Solid #95ff00 button.
+  - Dark icon/text.
+  - No slide movement.
+  - No pseudo background layer.
+  - Hover only scales slightly from the center.
 */
 
 .floating-contact-banner {
   right: max(18px, env(safe-area-inset-right)) !important;
   bottom: max(34px, env(safe-area-inset-bottom)) !important;
   top: auto !important;
+  display: grid !important;
   width: 92px !important;
   overflow: visible !important;
   transform: none !important;
+  pointer-events: auto !important;
 }
 
 .floating-contact-banner-single {
@@ -887,12 +892,14 @@
   text-shadow: none !important;
   box-shadow:
     0 18px 42px rgba(0, 0, 0, 0.34),
-    0 0 22px rgba(149, 255, 0, 0.2) !important;
+    0 0 20px rgba(149, 255, 0, 0.18) !important;
   backdrop-filter: none !important;
-  transform: none !important;
+  transform: scale(1) !important;
+  transform-origin: center center !important;
   transition:
-    box-shadow 160ms ease,
-    transform 160ms ease !important;
+    transform 160ms ease,
+    box-shadow 160ms ease !important;
+  will-change: transform !important;
 }
 
 .floating-contact-button::before,
@@ -901,6 +908,8 @@
 .floating-contact-button.is-primary::after {
   display: none !important;
   content: none !important;
+  opacity: 0 !important;
+  transform: none !important;
 }
 
 .floating-contact-button svg,
@@ -912,6 +921,7 @@
   color: #020407 !important;
   stroke: currentColor !important;
   stroke-width: 2.15 !important;
+  transform: none !important;
 }
 
 .floating-contact-button span,
@@ -920,6 +930,7 @@
   color: #020407 !important;
   line-height: 1.15 !important;
   white-space: nowrap !important;
+  transform: none !important;
 }
 
 .floating-contact-button:hover,
@@ -930,9 +941,9 @@
   background: #95ff00 !important;
   color: #020407 !important;
   box-shadow:
-    0 18px 42px rgba(0, 0, 0, 0.34),
-    0 0 22px rgba(149, 255, 0, 0.2) !important;
-  transform: none !important;
+    0 22px 52px rgba(0, 0, 0, 0.38),
+    0 0 26px rgba(149, 255, 0, 0.24) !important;
+  transform: scale(1.045) !important;
 }
 
 .floating-contact-button:hover svg,
@@ -944,6 +955,21 @@
 .floating-contact-button.is-primary:hover span,
 .floating-contact-button.is-primary:focus-visible span {
   color: #020407 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-contact-button,
+  .floating-contact-button.is-primary {
+    transition: none !important;
+  }
+
+  .floating-contact-button:hover,
+  .floating-contact-button:focus-visible,
+  .floating-contact-button.is-primary:hover,
+  .floating-contact-button.is-primary:focus-visible {
+    transform: scale(1) !important;
+  }
 }
 
 @media (max-width: 760px) {
