@@ -1869,34 +1869,6 @@
   color: rgba(235, 244, 246, 0.74) !important;
 }
 
-/* Category buttons */
-.portfolio-page .portfolio-folder-button,
-.portfolio-folder-button {
-  border-color: rgba(149, 255, 0, 0.14) !important;
-  background: rgba(2, 4, 7, 0.42) !important;
-  color: rgba(245, 247, 238, 0.86) !important;
-}
-
-.portfolio-page .portfolio-folder-button:hover,
-.portfolio-page .portfolio-folder-button.is-active,
-.portfolio-folder-button:hover,
-.portfolio-folder-button.is-active {
-  border-color: rgba(149, 255, 0, 0.48) !important;
-  background: rgba(149, 255, 0, 0.14) !important;
-  color: #95ff00 !important;
-}
-
-.portfolio-page .portfolio-folder-button strong,
-.portfolio-folder-button strong {
-  background: rgba(149, 255, 0, 0.12) !important;
-  color: rgba(235, 244, 246, 0.78) !important;
-}
-
-.portfolio-page .portfolio-folder-button.is-active strong,
-.portfolio-folder-button.is-active strong {
-  background: #95ff00 !important;
-  color: #020407 !important;
-}
 
 @media (max-width: 760px) {
   .portfolio-page .portfolio-compact-item,

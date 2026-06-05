@@ -55,14 +55,7 @@ function PortfolioPage() {
           BDPRODUCTION의 주요 작업을 카테고리별로 확인할 수 있습니다.
         </p>
 
-        <div className="portfolio-page-actions">
-          <a className="secondary-button" href="/#portfolio">
-            대표작 보기
-          </a>
-          <a className="primary-button" href="/#contact">
-            제작 문의
-          </a>
-        </div>
+
       </div>
 
       {loading && (
