@@ -334,6 +334,15 @@
 
 /* Hero rgb color burst clean final */
 
+.hero-fractal-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+
 .hero-film-center-mark-colorburst-clean {
   overflow: visible;
 }
@@ -343,7 +352,7 @@
   isolation: isolate;
   opacity: 0;
   color: rgba(235, 244, 246, 0.92);
-  filter: blur(9px) brightness(0.86) saturate(1);
+  filter: url("#bd-hero-fractal-glitch") brightness(0.86) saturate(1);
   transform: translateY(14px) scale(0.975);
   animation:
     hero-colorburst-clean-main 2400ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both,
@@ -400,7 +409,6 @@
 .hero-logo-subtitle-colorburst-clean {
   opacity: 0;
   color: rgba(235, 244, 246, 0.72);
-  filter: blur(8px);
   transform: translateY(12px);
   animation: hero-colorburst-clean-subtitle-in 820ms cubic-bezier(0.16, 1, 0.3, 1) 1880ms both;
   will-change: opacity, transform, filter;
@@ -410,7 +418,7 @@
   0% {
     opacity: 0;
     color: rgba(235, 244, 246, 0.16);
-    filter: blur(11px) brightness(0.7) saturate(1);
+    filter: url("#bd-hero-fractal-glitch") brightness(0.7) saturate(1);
     letter-spacing: -0.012em;
     text-shadow: none;
     transform: translateY(16px) scale(0.97);
@@ -419,7 +427,7 @@
   10% {
     opacity: 0.72;
     color: #ff2f7d;
-    filter: blur(7px) brightness(1.35) saturate(1.8);
+    filter: url("#bd-hero-fractal-glitch") brightness(1.35) saturate(1.8);
     text-shadow:
       0 0 16px rgba(255, 47, 125, 0.62),
       0 0 34px rgba(255, 47, 125, 0.28);
@@ -428,7 +436,7 @@
   22% {
     opacity: 1;
     color: #2de6ff;
-    filter: blur(4px) brightness(1.5) saturate(2);
+    filter: url("#bd-hero-fractal-glitch") brightness(1.5) saturate(2);
     letter-spacing: -0.026em;
     text-shadow:
       0 0 18px rgba(45, 230, 255, 0.66),
@@ -440,7 +448,7 @@
 
   36% {
     color: #95ff00;
-    filter: blur(2px) brightness(1.44) saturate(1.8);
+    filter: url("#bd-hero-fractal-glitch") brightness(1.44) saturate(1.8);
     text-shadow:
       0 0 20px rgba(149, 255, 0, 0.7),
       0 0 44px rgba(149, 255, 0, 0.28),
@@ -451,7 +459,7 @@
 
   50% {
     color: #ff2f7d;
-    filter: blur(1.6px) brightness(1.34) saturate(1.7);
+    filter: url("#bd-hero-fractal-glitch") brightness(1.34) saturate(1.7);
     text-shadow:
       0 0 18px rgba(255, 47, 125, 0.54),
       0 0 34px rgba(45, 230, 255, 0.18),
@@ -461,7 +469,7 @@
 
   64% {
     color: #95ff00;
-    filter: blur(0.9px) brightness(1.18) saturate(1.4);
+    filter: url("#bd-hero-fractal-glitch") brightness(1.18) saturate(1.4);
     text-shadow:
       0 0 16px rgba(149, 255, 0, 0.38),
       1px 0 0 rgba(255, 47, 125, 0.14),
@@ -470,7 +478,7 @@
 
   78% {
     color: rgba(235, 244, 246, 0.96);
-    filter: blur(0.35px) brightness(1.04) saturate(1.04);
+    filter: url("#bd-hero-fractal-glitch") brightness(1.04) saturate(1.04);
     text-shadow:
       0 0 10px rgba(149, 255, 0, 0.1),
       0 12px 42px rgba(0, 0, 0, 0.62);
@@ -479,7 +487,7 @@
   100% {
     opacity: 1;
     color: rgba(235, 244, 246, 0.86);
-    filter: blur(0) brightness(1) saturate(1);
+    filter: url("#bd-hero-fractal-glitch") brightness(1) saturate(1);
     letter-spacing: -0.075em;
     text-shadow: 0 12px 42px rgba(0, 0, 0, 0.62);
     transform: translateY(0) scale(1);
@@ -490,7 +498,6 @@
   0% {
     opacity: 0;
     clip-path: inset(0 0 0 0);
-    filter: blur(2px);
     transform: translate3d(0, 0, 0);
   }
 
@@ -519,19 +526,16 @@
 
   72% {
     opacity: 0.12;
-    filter: blur(1px);
     transform: translate3d(2px, 0, 0);
   }
 
   88% {
     opacity: 0;
-    filter: blur(0);
     transform: translate3d(0, 0, 0);
   }
 
   100% {
     opacity: 0;
-    filter: blur(0);
     clip-path: inset(0 0 0 0);
     transform: translate3d(0, 0, 0);
   }
@@ -541,7 +545,6 @@
   0% {
     opacity: 0;
     clip-path: inset(0 0 0 0);
-    filter: blur(2px);
     transform: translate3d(0, 0, 0);
   }
 
@@ -570,19 +573,16 @@
 
   74% {
     opacity: 0.12;
-    filter: blur(1px);
     transform: translate3d(-2px, 0, 0);
   }
 
   88% {
     opacity: 0;
-    filter: blur(0);
     transform: translate3d(0, 0, 0);
   }
 
   100% {
     opacity: 0;
-    filter: blur(0);
     clip-path: inset(0 0 0 0);
     transform: translate3d(0, 0, 0);
   }
@@ -625,13 +625,11 @@
 @keyframes hero-colorburst-clean-subtitle-in {
   0% {
     opacity: 0;
-    filter: blur(8px);
     transform: translateY(12px);
   }
 
   100% {
     opacity: 1;
-    filter: blur(0);
     transform: translateY(0);
   }
 }
@@ -644,7 +642,6 @@
   .hero-logo-word-colorburst-clean::before,
   .hero-logo-word-colorburst-clean::after {
     animation-duration: 2000ms;
-    filter: blur(1px);
   }
 
   .hero-logo-subtitle-colorburst-clean {
