@@ -5,6 +5,7 @@ import './styles/global.css';
 import './styles/footer.css';
 import './styles/header.css';
 import './styles/hero.css';
+import './styles/company-intro.css';
 import './styles/studio.css';
 import './styles/contact.css';
 import './styles/auth.css';

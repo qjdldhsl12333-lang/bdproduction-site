@@ -1,0 +1,183 @@
+.company-intro-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(72px, 9vw, 132px) 0 clamp(54px, 7vw, 96px);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(149, 255, 0, 0.08), transparent 28%),
+    radial-gradient(circle at 84% 18%, rgba(24, 161, 170, 0.12), transparent 30%),
+    linear-gradient(180deg, #020405 0%, #030b0f 48%, #020407 100%);
+  border-top: 1px solid rgba(149, 255, 0, 0.08);
+  border-bottom: 1px solid rgba(149, 255, 0, 0.08);
+}
+
+.company-intro-section::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(149, 255, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(149, 255, 0, 0.035) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: radial-gradient(circle at 50% 20%, black 0%, transparent 68%);
+  opacity: 0.38;
+  content: '';
+  pointer-events: none;
+}
+
+.company-intro-copy {
+  position: relative;
+  z-index: 1;
+  width: min(1080px, calc(100% - 40px));
+  margin: 0 auto clamp(42px, 5vw, 72px);
+  text-align: center;
+}
+
+.company-intro-eyebrow {
+  margin: 0 0 18px;
+  color: #95ff00;
+  font-size: clamp(0.72rem, 0.8vw, 0.86rem);
+  font-weight: 950;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.company-intro-copy h2 {
+  max-width: 940px;
+  margin: 0 auto;
+  color: #f5f7ee;
+  font-size: clamp(2.25rem, 5.6vw, 6.25rem);
+  font-weight: 950;
+  letter-spacing: -0.08em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.company-intro-copy > p:last-child {
+  max-width: 760px;
+  margin: clamp(20px, 2.4vw, 30px) auto 0;
+  color: rgba(235, 244, 246, 0.74);
+  font-size: clamp(0.98rem, 1.25vw, 1.2rem);
+  font-weight: 650;
+  line-height: 1.75;
+  text-wrap: balance;
+}
+
+.company-partner-marquee {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  border-top: 1px solid rgba(235, 244, 246, 0.08);
+  border-bottom: 1px solid rgba(235, 244, 246, 0.08);
+  background: rgba(2, 4, 7, 0.42);
+}
+
+.company-partner-track {
+  display: flex;
+  flex: 0 0 max-content;
+  gap: clamp(36px, 5vw, 86px);
+  align-items: center;
+  min-width: max-content;
+  padding-right: clamp(36px, 5vw, 86px);
+  animation: company-partner-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.company-partner-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: max-content;
+  color: rgba(245, 247, 238, 0.82);
+  font-size: clamp(1rem, 1.5vw, 1.55rem);
+  font-weight: 950;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  text-transform: uppercase;
+  opacity: 0.86;
+  filter: grayscale(1);
+  transition:
+    color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.company-partner-logo:hover {
+  color: #95ff00;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.company-partner-marquee-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: clamp(72px, 10vw, 180px);
+  pointer-events: none;
+}
+
+.company-partner-marquee-fade-left {
+  left: 0;
+  background: linear-gradient(90deg, #020407 0%, rgba(2, 4, 7, 0) 100%);
+}
+
+.company-partner-marquee-fade-right {
+  right: 0;
+  background: linear-gradient(270deg, #020407 0%, rgba(2, 4, 7, 0) 100%);
+}
+
+@keyframes company-partner-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .company-partner-track {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .company-intro-section {
+    padding: 64px 0 52px;
+  }
+
+  .company-intro-copy {
+    width: min(100% - 32px, 560px);
+    margin-bottom: 34px;
+    text-align: left;
+  }
+
+  .company-intro-copy h2 {
+    font-size: clamp(2.25rem, 13vw, 4.2rem);
+  }
+
+  .company-intro-copy > p:last-child {
+    margin-top: 18px;
+    font-size: 0.95rem;
+    line-height: 1.68;
+  }
+
+  .company-partner-marquee {
+    padding: 16px 0;
+  }
+
+  .company-partner-track {
+    gap: 34px;
+    padding-right: 34px;
+    animation-duration: 34s;
+  }
+
+  .company-partner-logo {
+    font-size: 1rem;
+  }
+}
