@@ -351,7 +351,7 @@
   position: relative;
   isolation: isolate;
   opacity: 0;
-  color: rgba(235, 244, 246, 0.92);
+  color: rgba(245, 247, 238, 0.96);
   filter: url("#bd-hero-fractal-glitch") brightness(0.86) saturate(1);
   transform: translateY(14px) scale(0.975);
   animation:
@@ -478,19 +478,23 @@
 
   78% {
     opacity: 1;
-    color: rgba(235, 244, 246, 0.9);
+    color: rgba(245, 247, 238, 0.96);
     filter: url("#bd-hero-fractal-glitch") brightness(1) saturate(1);
     letter-spacing: -0.075em;
-    text-shadow: 0 12px 42px rgba(0, 0, 0, 0.62);
+    text-shadow:
+      0 0 12px rgba(149, 255, 0, 0.12),
+      0 12px 42px rgba(0, 0, 0, 0.62);
     transform: translateY(0) scale(1);
   }
 
   100% {
     opacity: 1;
-    color: rgba(235, 244, 246, 0.9);
+    color: rgba(245, 247, 238, 0.96);
     filter: url("#bd-hero-fractal-glitch") brightness(1) saturate(1);
     letter-spacing: -0.075em;
-    text-shadow: 0 12px 42px rgba(0, 0, 0, 0.62);
+    text-shadow:
+      0 0 12px rgba(149, 255, 0, 0.12),
+      0 12px 42px rgba(0, 0, 0, 0.62);
     transform: translateY(0) scale(1);
   }
 }
