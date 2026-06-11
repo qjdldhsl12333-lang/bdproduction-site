@@ -51,10 +51,16 @@ function loadBackendEnv(): void
             $value = substr($value, 1, -1);
         }
 
-        if (getenv($key) === false) {
-            putenv("{$key}={$value}");
+        if (!array_key_exists($key, $_ENV)) {
             $_ENV[$key] = $value;
+        }
+
+        if (!array_key_exists($key, $_SERVER)) {
             $_SERVER[$key] = $value;
+        }
+
+        if (function_exists('putenv') && getenv($key) === false) {
+            @putenv("{$key}={$value}");
         }
     }
 }
@@ -63,11 +69,21 @@ function envValue(string $key, ?string $default = null): ?string
 {
     loadBackendEnv();
 
-    $value = getenv($key);
-
-    if ($value === false) {
-        return $default;
+    if (array_key_exists($key, $_ENV)) {
+        return $_ENV[$key];
     }
 
-    return $value;
+    if (array_key_exists($key, $_SERVER)) {
+        return $_SERVER[$key];
+    }
+
+    if (function_exists('getenv')) {
+        $value = getenv($key);
+
+        if ($value !== false) {
+            return $value;
+        }
+    }
+
+    return $default;
 }
