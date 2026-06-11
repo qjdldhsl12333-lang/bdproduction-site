@@ -1931,7 +1931,7 @@ body,
   -webkit-background-clip: initial !important;
   background-clip: initial !important;
   -webkit-text-fill-color: #dfe5e7 !important;
-  color: #dfe5e7 !important;
+  color: rgba(235, 244, 246, 0.86);
 }
 
 /* 기존 굵기/질감은 유지하고, 미세한 입체감만 아주 약하게 남깁니다. */
