@@ -17,11 +17,37 @@ const initialLoginForm = {
   password: '',
 };
 
+const isFeatureEnabled = (value, defaultEnabled = false) => {
+  if (value === undefined) {
+    return defaultEnabled;
+  }
+
+  return ['1', 'true', 'yes', 'on'].includes(String(value).toLowerCase());
+};
+
 const socialProviders = [
-  { key: 'kakao', label: '카카오', className: 'kakao' },
-  { key: 'naver', label: '네이버', className: 'naver' },
-  { key: 'google', label: '구글', className: 'google' },
-];
+  {
+    key: 'kakao',
+    label: '카카오',
+    className: 'kakao',
+    startPath: '/api/auth/kakao/start.php',
+    enabled: isFeatureEnabled(import.meta.env.VITE_ENABLE_KAKAO_LOGIN, false),
+  },
+  {
+    key: 'naver',
+    label: '네이버',
+    className: 'naver',
+    startPath: '/api/auth/naver/start.php',
+    enabled: isFeatureEnabled(import.meta.env.VITE_ENABLE_NAVER_LOGIN, false),
+  },
+  {
+    key: 'google',
+    label: '구글',
+    className: 'google',
+    startPath: '/api/auth/google/start.php',
+    enabled: isFeatureEnabled(import.meta.env.VITE_ENABLE_GOOGLE_LOGIN, true),
+  },
+].filter((provider) => provider.enabled);
 
 function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
   const [mode, setMode] = useState(initialMode);
@@ -152,8 +178,8 @@ function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
   };
 
   const handleSocialClick = (provider) => {
-    if (provider.key === 'google') {
-      window.location.href = apiUrl('/api/auth/google/start.php');
+    if (provider.startPath) {
+      window.location.href = apiUrl(provider.startPath);
       return;
     }
 
