@@ -10,5 +10,4 @@ function bdGoogleOAuthConfig(): array
     $clientSecret = trim((string) envValue('GOOGLE_CLIENT_SECRET', ''));
     $redirectUri = trim((string) envValue('GOOGLE_REDIRECT_URI', ''));
 
-    if ($clientId === '' || $clientSecret === '' || $redirectUri === '') {
-        throw new RuntimeException('Google OAuth environment variables are not configured.');
+    if ($clientId === '' || $clientSecret === '' || $redirectUri
