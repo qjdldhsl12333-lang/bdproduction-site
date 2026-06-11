@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/env.php';
 
-function bdGoogleOAuthConfig(): array
+function bdGoogleClientId(): string
 {
-    $clientId = trim((string) envValue('GOOGLE_CLIENT_ID', ''));
-    $clientSecret = trim((string) envValue('GOOGLE_CLIENT_SECRET', ''));
-    $redirectUri = trim((string) envValue('GOOGLE_REDIRECT_URI', ''));
+    return trim((string) envValue('GOOGLE_CLIENT_ID', ''));
+}
 
-    if ($clientId === '' || $clientSecret === '' || $redirectUri === '') {
-        throw new RuntimeException('Google OAuth environment variables are not configured.');
-    }
+function bdGoogleClientSecret(): string
+{
+    return trim((string) envValue('GOOGLE_CLIENT_SECRET', ''));
+}
 
-    return [
-        'client
+function bdGoogleRedirectUri(): string
+{
+    return trim((string) envValue('GOOGLE_REDIRECT_URI', ''));
+}
+
+function bdRequireGoogleOAuthConfig(): void
+{
