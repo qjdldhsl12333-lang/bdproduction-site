@@ -7,9 +7,10 @@ if($clientId===''||$redirectUri===''){
     echo 'Google OAuth is not configured.';
     exit;
 }
-$query=http_build_query(array(
-    'client_id'=>$clientId,
-    'redirect_uri'=>$redirectUri,
-    'response_type'=>'code',
-    'scope'=>'openid email profile',
-   
+$url='https://accounts.google.com/o/oauth2/v2/auth';
+$url.='?client_id='.rawurlencode($clientId);
+$url.='&redirect_uri='.rawurlencode($redirectUri);
+$url.='&response_type=code';
+$url.='&scope='.rawurlencode('openid email profile');
+$url.='&prompt=select_account';
+header('Location
