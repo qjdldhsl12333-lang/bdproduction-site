@@ -213,9 +213,9 @@ try {
          ON DUPLICATE KEY UPDATE
             user_id = VALUES(user_id),
             provider_email = VALUES(provider_email),
-            access_token = VALUES(access_token),
-            refresh_token = COALESCE(VALUES(refresh_token), refresh_token),
-            token_expires_at = VALUES(token_expires_at),
+            access_token = NULL,
+            refresh_token = NULL,
+            token_expires_at = NULL,
             updated_at = NOW()'
     );
 
@@ -224,9 +224,9 @@ try {
         'provider' => 'google',
         'provider_user_id' => $providerUserId,
         'provider_email' => $email,
-        'access_token' => $accessToken,
-        'refresh_token' => $token['refresh_token'] ?? null,
-        'token_expires_at' => $expiresAt,
+        'access_token' => null,
+        'refresh_token' => null,
+        'token_expires_at' => null,
     ]);
 
     $pdo->commit();

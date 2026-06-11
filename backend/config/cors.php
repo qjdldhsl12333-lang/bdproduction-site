@@ -21,6 +21,7 @@ function applyCorsHeaders(array $methods = ['GET', 'POST', 'OPTIONS'], bool $all
 
     if ($origin !== '' && in_array($origin, $allowedOrigins, true)) {
         header("Access-Control-Allow-Origin: {$origin}");
+        header('Vary: Origin');
 
         if ($allowCredentials) {
             header('Access-Control-Allow-Credentials: true');

@@ -29,19 +29,19 @@ $customerUserId = (int) ($_SESSION['customer_user_id'] ?? 0);
 $rawBody = file_get_contents('php://input');
 $data = json_decode($rawBody, true);
 
+if (!is_array($data)) {
+    sendJsonResponse(400, [
+        'success' => false,
+        'message' => '요청 데이터 형식이 올바르지 않습니다.',
+    ]);
+}
+
 $honeypot = trim((string) ($data['website'] ?? ''));
 
 if ($honeypot !== '') {
     sendJsonResponse(422, [
         'success' => false,
         'message' => '문의 접수 요청이 올바르지 않습니다.',
-    ]);
-}
-
-if (!is_array($data)) {
-    sendJsonResponse(400, [
-        'success' => false,
-        'message' => '요청 데이터 형식이 올바르지 않습니다.',
     ]);
 }
 
@@ -206,6 +206,7 @@ try {
     ]);
 
     $contactId = (int) $pdo->lastInsertId();
+    recordContactSubmission();
 
     // Send contact notification email
     $contactPayload = [

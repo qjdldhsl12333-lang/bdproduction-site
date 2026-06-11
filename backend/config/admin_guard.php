@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/cors.php';
+require_once __DIR__ . '/http.php';
 require_once __DIR__ . '/admin.php';
 
 function applyAdminCorsHeaders(): void
@@ -19,6 +20,7 @@ function startAdminSession(): void
     session_set_cookie_params([
         'lifetime' => 0,
         'path' => '/',
+        'secure' => bdIsHttpsRequest(),
         'httponly' => true,
         'samesite' => 'Lax',
     ]);

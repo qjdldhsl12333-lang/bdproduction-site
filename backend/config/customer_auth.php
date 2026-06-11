@@ -3,24 +3,12 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/env.php';
+require_once __DIR__ . '/cors.php';
+require_once __DIR__ . '/http.php';
 
 function bdHandleCustomerCors(): void
 {
-    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-    $allowedOrigins = array_map(
-        'trim',
-        explode(',', (string) envValue('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173'))
-    );
-
-    if ($origin !== '' && in_array($origin, $allowedOrigins, true)) {
-        header('Access-Control-Allow-Origin: ' . $origin);
-        header('Vary: Origin');
-        header('Access-Control-Allow-Credentials: true');
-    }
-
-    header('Access-Control-Allow-Headers: Content-Type, Accept');
-    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    header('Content-Type: application/json; charset=utf-8');
+    applyCorsHeaders(['GET', 'POST', 'OPTIONS'], true);
 
     if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
         http_response_code(204);
@@ -34,12 +22,10 @@ function bdStartCustomerSession(): void
         return;
     }
 
-    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
-
     session_set_cookie_params([
         'lifetime' => (int) envValue('CUSTOMER_SESSION_LIFETIME_SECONDS', '1209600'),
         'path' => '/',
-        'secure' => $isHttps,
+        'secure' => bdIsHttpsRequest(),
         'httponly' => true,
         'samesite' => 'Lax',
     ]);
