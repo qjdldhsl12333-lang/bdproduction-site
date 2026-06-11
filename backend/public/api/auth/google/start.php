@@ -16,5 +16,4 @@ if ($clientId === '' || $redirectUri === '') {
     exit;
 }
 
-$state = bin2hex(random_bytes(32));
-$_SESSION['google
+$state = bin2hex
