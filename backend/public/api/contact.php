@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../config/cors.php';
-require_once __DIR__ . '/../../config/db.php';
-require_once __DIR__ . '/../../config/mailer.php';
-require_once __DIR__ . '/../../config/notion.php';
-require_once __DIR__ . '/../../config/contact_rate_limit.php';
-require_once __DIR__ . '/../../config/customer_auth.php';
+require_once __DIR__ . '/_bootstrap.php';
+
+bdRequireConfig('cors.php');
+bdRequireConfig('db.php');
+bdRequireConfig('mailer.php');
+bdRequireConfig('notion.php');
+bdRequireConfig('contact_rate_limit.php');
+bdRequireConfig('customer_auth.php');
 
 applyCorsHeaders(['POST', 'OPTIONS'], true);
 

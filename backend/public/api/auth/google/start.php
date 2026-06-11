@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../../../config/customer_auth.php';
-require_once __DIR__ . '/../../../../config/google_oauth.php';
+require_once __DIR__ . '/../../_bootstrap.php';
+
+bdRequireConfig('customer_auth.php');
+bdRequireConfig('google_oauth.php');
 
 bdStartCustomerSession();
 

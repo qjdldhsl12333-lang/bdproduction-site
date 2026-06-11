@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../config/cors.php';
-require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/_bootstrap.php';
+
+bdRequireConfig('cors.php');
+bdRequireConfig('db.php');
 
 applyCorsHeaders(['GET', 'OPTIONS'], false);
 header('Content-Type: application/json; charset=utf-8');

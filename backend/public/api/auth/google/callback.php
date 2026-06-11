@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../../../config/db.php';
-require_once __DIR__ . '/../../../../config/customer_auth.php';
-require_once __DIR__ . '/../../../../config/google_oauth.php';
+require_once __DIR__ . '/../../_bootstrap.php';
+
+bdRequireConfig('db.php');
+bdRequireConfig('customer_auth.php');
+bdRequireConfig('google_oauth.php');
 
 bdStartCustomerSession();
 
@@ -80,13 +82,6 @@ try {
     if ($name === '') {
         $name = explode('@', $email)[0] ?: 'Google User';
     }
-
-    $expiresAt = null;
-
-    if (isset($token['expires_in']) && is_numeric($token['expires_in'])) {
-        $expiresAt = date('Y-m-d H:i:s', time() + (int) $token['expires_in']);
-    }
-
     $pdo = getDatabaseConnection();
     $pdo->beginTransaction();
 

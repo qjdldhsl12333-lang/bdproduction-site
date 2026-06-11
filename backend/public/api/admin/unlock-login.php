@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../../config/admin_guard.php';
-require_once __DIR__ . '/../../../config/admin_rate_limit.php';
+require_once __DIR__ . '/../_bootstrap.php';
+
+bdRequireConfig('admin_guard.php');
+bdRequireConfig('admin_rate_limit.php');
 
 applyAdminCorsHeaders();
 header('Access-Control-Allow-Methods: POST, OPTIONS');

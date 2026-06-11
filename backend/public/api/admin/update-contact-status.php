@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../../config/db.php';
-require_once __DIR__ . '/../../../config/admin_guard.php';
-require_once __DIR__ . '/../../../config/admin_activity_log.php';
+require_once __DIR__ . '/../_bootstrap.php';
+
+bdRequireConfig('db.php');
+bdRequireConfig('admin_guard.php');
+bdRequireConfig('admin_activity_log.php');
 
 applyAdminCorsHeaders();
 header('Access-Control-Allow-Methods: POST, OPTIONS');
