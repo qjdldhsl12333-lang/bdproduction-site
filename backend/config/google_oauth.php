@@ -12,6 +12,3 @@ function bdGoogleOAuthConfig(): array
 
     if ($clientId === '' || $clientSecret === '' || $redirectUri === '') {
         throw new RuntimeException('Google OAuth environment variables are not configured.');
-    }
-
-    return [
