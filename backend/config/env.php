@@ -58,10 +58,6 @@ function loadBackendEnv(): void
         if (!array_key_exists($key, $_SERVER)) {
             $_SERVER[$key] = $value;
         }
-
-        if (function_exists('putenv') && getenv($key) === false) {
-            @putenv("{$key}={$value}");
-        }
     }
 }
 
