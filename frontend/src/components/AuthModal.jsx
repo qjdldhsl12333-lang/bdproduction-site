@@ -91,7 +91,7 @@ function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
         return;
       }
 
-            if (result.user) {
+      if (result.user) {
         localStorage.setItem('bd_customer_user', JSON.stringify(result.user));
         onAuthSuccess?.(result.user);
         window.dispatchEvent(new Event('bd:customer-auth-changed'));
@@ -135,7 +135,7 @@ function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
         return;
       }
 
-            if (result.user) {
+      if (result.user) {
         localStorage.setItem('bd_customer_user', JSON.stringify(result.user));
         onAuthSuccess?.(result.user);
         window.dispatchEvent(new Event('bd:customer-auth-changed'));
@@ -152,6 +152,11 @@ function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
   };
 
   const handleSocialClick = (provider) => {
+    if (provider.key === 'google') {
+      window.location.href = apiUrl('/api/auth/google/start.php');
+      return;
+    }
+
     setMessage({
       type: 'info',
       text: `${provider.label} 로그인은 준비 중입니다. 현재는 BD 계정으로 이용해주세요.`,
