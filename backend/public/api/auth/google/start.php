@@ -9,8 +9,4 @@ if($clientId===''||$redirectUri===''){
 }
 $url='https://accounts.google.com/o/oauth2/v2/auth';
 $url.='?client_id='.rawurlencode($clientId);
-$url.='&redirect_uri='.rawurlencode($redirectUri);
-$url.='&response_type=code';
-$url.='&scope='.rawurlencode('openid email profile');
-$url.='&prompt=select_account';
-header('Location
+$url.='&redirect_uri='.rawurl
