@@ -76,20 +76,25 @@ try {
     $profile = is_array($kakaoAccount['profile'] ?? null) ? $kakaoAccount['profile'] : [];
     $properties = is_array($kakaoUser['properties'] ?? null) ? $kakaoUser['properties'] : [];
 
-    $email = bdNormalizeEmail($kakaoAccount['email'] ?? '');
+    $providerEmail = bdNormalizeEmail($kakaoAccount['email'] ?? '');
     $isEmailValid = $kakaoAccount['is_email_valid'] ?? true;
     $isEmailVerified = $kakaoAccount['is_email_verified'] ?? true;
 
-    if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        bdKakaoFail('email_not_available');
+    $isEmailUsable =
+        $providerEmail !== '' &&
+        filter_var($providerEmail, FILTER_VALIDATE_EMAIL) &&
+        ($isEmailValid === true || $isEmailValid === 'true' || $isEmailValid === 1 || $isEmailValid === '1') &&
+        ($isEmailVerified === true || $isEmailVerified === 'true' || $isEmailVerified === 1 || $isEmailVerified === '1');
+
+    $safeProviderId = preg_replace('/[^A-Za-z0-9_-]/', '', $providerUserId);
+
+    if ($safeProviderId === '') {
+        throw new RuntimeException('Kakao provider id 값을 계정 식별자로 사용할 수 없습니다.');
     }
 
-    if (
-        !($isEmailValid === true || $isEmailValid === 'true' || $isEmailValid === 1 || $isEmailValid === '1') ||
-        !($isEmailVerified === true || $isEmailVerified === 'true' || $isEmailVerified === 1 || $isEmailVerified === '1')
-    ) {
-        bdKakaoFail('email_not_verified');
-    }
+    $email = $isEmailUsable
+        ? $providerEmail
+        : 'kakao_' . $safeProviderId . '@social.bdproduction.local';
 
     $name = trim((string) ($profile['nickname'] ?? ''));
 
@@ -98,7 +103,7 @@ try {
     }
 
     if ($name === '') {
-        $name = explode('@', $email)[0] ?: 'Kakao User';
+        $name = $isEmailUsable ? explode('@', $providerEmail)[0] : 'Kakao User';
     }
 
     $pdo = getDatabaseConnection();
@@ -235,7 +240,7 @@ try {
         'user_id' => $userId,
         'provider' => 'kakao',
         'provider_user_id' => $providerUserId,
-        'provider_email' => $email,
+        'provider_email' => $isEmailUsable ? $providerEmail : null,
     ]);
 
     $pdo->commit();
