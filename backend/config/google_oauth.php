@@ -4,20 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/env.php';
 
-function bdGoogleClientId(): string
+function bdGoogleEnv(string $key): string
 {
-    return trim((string) envValue('GOOGLE_CLIENT_ID', ''));
+    return trim((string) envValue($key, ''));
 }
-
-function bdGoogleClientSecret(): string
-{
-    return trim((string) envValue('GOOGLE_CLIENT_SECRET', ''));
-}
-
-function bdGoogleRedirectUri(): string
-{
-    return trim((string) envValue('GOOGLE_REDIRECT_URI', ''));
-}
-
-function bdRequireGoogleOAuthConfig(): void
-{
