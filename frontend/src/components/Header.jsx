@@ -19,6 +19,8 @@ const navItems = [
 
 const desktopNavItems = navItems.filter((item) => item.label !== '홈');
 
+const brandSymbolSrc = '/assets/brand/bdproduction-symbol-main.png';
+
 function Header({ onOpenContact, onOpenAuth }) {
   const [opened, setOpened] = useState(false);
 
@@ -60,7 +62,7 @@ function Header({ onOpenContact, onOpenAuth }) {
       <header className="cinematic-header" aria-label="BDPRODUCTION 상단 메뉴">
         <a className="cinematic-brand" href="/#hero" onClick={closeMenu} aria-label="홈으로 이동">
           <span className="cinematic-brand-mark">
-            <img src="/assets/brand/bdproduction-symbol-mvp.png" alt="" aria-hidden="true" />
+            <img src={brandSymbolSrc} alt="" aria-hidden="true" />
           </span>
           <strong>BDPRODUCTION</strong>
         </a>
@@ -105,7 +107,7 @@ function Header({ onOpenContact, onOpenAuth }) {
       <aside className={`cinematic-drawer ${opened ? 'is-open' : ''}`} aria-label="전체 메뉴">
         <div className="cinematic-drawer-head">
           <div className="cinematic-drawer-brand">
-            <img src="/assets/brand/bdproduction-symbol-mvp.png" alt="" aria-hidden="true" />
+            <img src={brandSymbolSrc} alt="" aria-hidden="true" />
             <span>BDPRODUCTION</span>
           </div>
           <button type="button" onClick={closeMenu} aria-label="메뉴 닫기">

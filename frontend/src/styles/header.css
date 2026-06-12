@@ -683,3 +683,48 @@
     padding-left: 0 !important;
   }
 }
+
+/* BDPRODUCTION logo OG patch override */
+.cinematic-brand .cinematic-brand-mark {
+  display: grid !important;
+  width: 42px !important;
+  height: 42px !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(149, 255, 0, 0.48) !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(149, 255, 0, 0.18), transparent 62%),
+    #020407 !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(149, 255, 0, 0.06),
+    0 0 24px rgba(149, 255, 0, 0.12) !important;
+}
+
+.cinematic-brand .cinematic-brand-mark img {
+  display: block !important;
+  width: 86% !important;
+  height: 86% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  filter: drop-shadow(0 0 8px rgba(149, 255, 0, 0.24)) !important;
+}
+
+.cinematic-drawer-brand img {
+  width: 36px !important;
+  height: 36px !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 760px) {
+  .cinematic-brand .cinematic-brand-mark {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .cinematic-brand .cinematic-brand-mark img {
+    width: 86% !important;
+    height: 86% !important;
+  }
+}
+/* End BDPRODUCTION logo OG patch override */
