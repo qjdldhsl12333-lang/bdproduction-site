@@ -1,7 +1,7 @@
 # BDPRODUCTION Site MVP
 
 BDPRODUCTION 웹사이트 MVP 개발 저장소입니다.  
-현재 버전은 **브랜드 홈페이지 MVP + 제작 문의 접수 + 고객 로그인/마이페이지 문의 내역 MVP + 관리자 문의/상담 운영 관리 + 포트폴리오 확장 구조 + CSS 구조 정리**를 포함합니다.
+현재 버전은 **브랜드 홈페이지 MVP + 제작 문의 접수 + 고객 로그인/마이페이지 문의 내역 MVP + 관리자 문의/상담 운영 관리 + 관리자 포트폴리오 CMS + Cloudways 운영 배포 + Google/Kakao 소셜 로그인 + 가비아 도메인/SSL 실배포 구성 + CSS 구조 정리**를 포함합니다.
 
 > 현재 화면 디자인과 문구는 최종 확정본이 아니라 개발용 MVP 기준입니다.  
 > 최종 디자인, 브랜드 카피, OG 이미지, 대표 포트폴리오 선정, 3D/Spline 모델, 포트폴리오 썸네일은 대표님/디자인팀 협의 후 변경될 수 있습니다.
@@ -161,6 +161,24 @@ BDPRODUCTION 웹사이트 MVP 개발 저장소입니다.
 - 관리자 전체 button motion selector 축소
 - CSS audit 스크립트 추가
 
+### 2-8. 운영 배포 / 도메인 / 소셜 로그인
+
+- Cloudways 운영 서버 배포 완료
+- 가비아 도메인 DNS 연결 완료
+- 운영 도메인 SSL 발급 완료
+- 운영 도메인 접속 확인 완료
+  - `https://bdproduction.co.kr`
+  - `https://www.bdproduction.co.kr`
+- Cloudways 서버 배치 구조 정리
+  - `/public_html`: 프론트 빌드 파일, 정적 파일, API 엔드포인트
+  - `/private_html`: 운영 `.env`, 설정 파일, Composer vendor, DB 관련 private 파일
+- Google 로그인 운영 연동 완료
+- Kakao 로그인 운영 연동 완료
+  - 현재 Kakao 이메일 동의항목 심사 전 테스트 운영 가능
+  - 이메일 권한이 없는 경우 `kakao_{provider_id}@social.bdproduction.local` 형식의 내부 식별 이메일 생성
+- Naver 로그인은 네이버 계정 변경 이슈로 작업 보류
+- Kakao 공식 로그인 버튼 이미지는 추후 디자인 패치에서 교체 예정
+
 ---
 
 ## 3. 현재 주요 라우트
@@ -291,6 +309,20 @@ NOTION_ENABLED=false
 NOTION_API_TOKEN=
 NOTION_CONTACTS_PARENT_TYPE=data_source_id
 NOTION_CONTACTS_PARENT_ID=
+
+FRONTEND_APP_URL=http://localhost:5173
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_REDIRECT_URI=http://localhost:8080/api/auth/google/callback.php
+
+KAKAO_CLIENT_ID=
+KAKAO_CLIENT_SECRET=
+KAKAO_REDIRECT_URI=http://localhost:8080/api/auth/kakao/callback.php
+
+NAVER_CLIENT_ID=
+NAVER_CLIENT_SECRET=
+NAVER_REDIRECT_URI=http://localhost:8080/api/auth/naver/callback.php
 ```
 
 ### 6-2. Frontend `.env` 예시
@@ -299,6 +331,9 @@ NOTION_CONTACTS_PARENT_ID=
 
 ```env
 VITE_API_BASE_URL=http://localhost:8080
+VITE_ENABLE_GOOGLE_LOGIN=true
+VITE_ENABLE_KAKAO_LOGIN=false
+VITE_ENABLE_NAVER_LOGIN=false
 ```
 
 ---
@@ -368,6 +403,11 @@ POST /api/auth/login.php
 POST /api/auth/logout.php
 GET  /api/auth/me.php
 GET  /api/customer/contacts.php
+
+GET  /api/auth/google/start.php
+GET  /api/auth/google/callback.php
+GET  /api/auth/kakao/start.php
+GET  /api/auth/kakao/callback.php
 ```
 
 ### 8-3. 관리자 API
@@ -463,7 +503,7 @@ tools/reports/frontend__src__styles__*.likely-unused.txt
 | 3-2 | 전체 포트폴리오 페이지 | 1차 구현 |
 | 3-3 | 포트폴리오 영상 모달 | 완료급 |
 | 4 | YouTube Data API 연동 | 부분 완료 / API 정보 대기 |
-| 5 | Kakao · Naver · Google 소셜 로그인 | 미시작 |
+| 5 | Kakao · Naver · Google 소셜 로그인 | Google / Kakao 운영 연동 완료, Naver 작업 보류 |
 | 6-1 | 비회원 문의/상담 접수 폼 | 완료급 |
 | 6-2 | 회원 문의 접수 + 마이페이지 문의 내역 | MVP 완료 |
 | 6-3 | 고객 프로젝트 진행 현황 관리 | 미시작 / Phase 2 |
@@ -574,7 +614,9 @@ tools/reports/frontend__src__styles__*.likely-unused.txt
 - YouTube Playlist ID
 - Notion Integration Token
 - Notion 문의 DB 또는 Data Source ID
-- Kakao / Naver / Google OAuth 앱 정보
+- Naver OAuth 앱 정보
+- Kakao 비즈 앱 전환 / 이메일 동의항목 심사
+- Google / Kakao 운영 OAuth Redirect URI 유지 관리
 - Google Drive API 사용 여부
 - 결제 PG 및 결제 수단 정책
 
@@ -629,16 +671,29 @@ tools/reports/frontend__src__styles__*.likely-unused.txt
 - 관리자 포트폴리오 CMS MVP를 구현했습니다.
 - CSS를 영역별 파일로 분리하고 legacy CSS rule block을 정리했습니다.
 - 실제 YouTube 영상 자료는 아직 제공되지 않았으므로 영상 재생 검증은 추후 진행합니다.
+- Cloudways 운영 서버 배포를 완료했습니다.
+- 가비아 도메인 `bdproduction.co.kr` DNS 연결과 SSL 발급을 완료했습니다.
+- Google 로그인 운영 연동을 완료했습니다.
+- Kakao 로그인 운영 연동을 완료했습니다.
+- Kakao 이메일 권한 심사 전까지는 테스트용 내부 이메일 방식으로 로그인 계정을 생성합니다.
+- Naver 로그인 API 작업은 네이버 계정 변경 이슈로 보류합니다.
 
 ### 다음 작업
 
-다음 우선순위는 **관리자 회원 문의 / 비회원 문의 탭 추가**입니다.
+다음 우선순위는 **운영 안정화와 남은 소셜 로그인 정리**입니다.
 
 그다음은 아래 순서로 진행합니다.
 
-1. 모바일 QA 패치
-2. Hero 실제 쇼릴 영상 연결
-3. 대표 포트폴리오 6개 확정 및 실제 자료 입력
-4. YouTube 실제 연동
-5. Notion 실제 연동
-6. Phase 2 고객 플랫폼 설계
+1. Naver 로그인 API 연동
+   - 네이버 계정 정리 후 재진행
+   - 서비스 URL / Callback URL 운영 도메인 기준 등록
+2. Kakao 공식 로그인 버튼 이미지 교체
+   - 현재는 기능 우선 연동
+   - 추후 Kakao 제공 공식 버튼 이미지로 교체
+3. 관리자 회원 문의 / 비회원 문의 탭 추가
+4. 모바일 QA 패치
+5. Hero 실제 쇼릴 영상 연결
+6. 대표 포트폴리오 6개 확정 및 실제 자료 입력
+7. YouTube 실제 연동
+8. Notion 실제 연동
+9. Phase 2 고객 플랫폼 설계
