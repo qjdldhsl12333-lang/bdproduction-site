@@ -74,11 +74,10 @@ function Hero() {
         </filter>
       </svg>
         <div className="hero-film-center-mark hero-film-center-mark-colorburst-clean" aria-hidden="true">
-          <img
-            className="hero-brand-logo-image"
-            src="/assets/brand/bdproduction-logo-full.png?v=20260612-brand-final"
-            alt=""
-          />
+          <span className="hero-logo-word hero-logo-word-colorburst-clean" data-title="BDPRODUCTION">
+            BDPRODUC<i className="hero-logo-kern-fix">T<i className="hero-logo-kern-fix1">I</i>ON</i>
+          </span>
+          <strong className="hero-logo-subtitle-colorburst-clean">PREMIUM VIDEO PRODUCTION STUDIO</strong>
         </div>
     </section>
   );

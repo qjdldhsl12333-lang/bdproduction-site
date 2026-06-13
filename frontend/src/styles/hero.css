@@ -681,23 +681,3 @@
     display: none !important;
   }
 }
-
-/* BDPRODUCTION hero image logo final */
-.hero-film-center-mark .hero-brand-logo-image {
-  display: block !important;
-  width: min(520px, 68vw) !important;
-  max-width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  filter:
-    drop-shadow(0 18px 28px rgba(0, 0, 0, 0.68))
-    drop-shadow(0 0 18px rgba(149, 255, 0, 0.08)) !important;
-}
-
-@media (max-width: 760px) {
-  .hero-film-center-mark .hero-brand-logo-image {
-    width: min(360px, 78vw) !important;
-  }
-}
-/* End BDPRODUCTION hero image logo final */
