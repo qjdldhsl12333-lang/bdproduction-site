@@ -47,7 +47,12 @@ try {
             description,
             thumbnail_url,
             youtube_video_id,
+            video_provider,
+            source_url,
             badge,
+            production_team,
+            production_role,
+            work_year,
             is_featured,
             featured_order,
             is_active,
@@ -103,7 +108,12 @@ function ensurePortfolioItemsTable(PDO $pdo): void
 
             thumbnail_url VARCHAR(500) NULL,
             youtube_video_id VARCHAR(190) NULL,
+            video_provider VARCHAR(40) NULL DEFAULT "youtube",
+            source_url VARCHAR(700) NULL,
             badge VARCHAR(50) NULL,
+            production_team VARCHAR(120) NULL,
+            production_role VARCHAR(190) NULL,
+            work_year VARCHAR(20) NULL,
 
             is_featured TINYINT(1) NOT NULL DEFAULT 0,
             featured_order INT NOT NULL DEFAULT 0,
@@ -123,6 +133,29 @@ function ensurePortfolioItemsTable(PDO $pdo): void
             INDEX idx_portfolio_youtube_video_id (youtube_video_id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci'
     );
+
+    ensurePortfolioMetadataColumns($pdo);
+}
+
+function ensurePortfolioColumn(PDO $pdo, string $columnName, string $definition): void
+{
+    $statement = $pdo->prepare('SHOW COLUMNS FROM portfolio_items LIKE :column_name');
+    $statement->execute([':column_name' => $columnName]);
+
+    if ($statement->fetch(PDO::FETCH_ASSOC)) {
+        return;
+    }
+
+    $pdo->exec('ALTER TABLE portfolio_items ADD COLUMN ' . $definition);
+}
+
+function ensurePortfolioMetadataColumns(PDO $pdo): void
+{
+    ensurePortfolioColumn($pdo, 'video_provider', 'video_provider VARCHAR(40) NULL DEFAULT "youtube" AFTER youtube_video_id');
+    ensurePortfolioColumn($pdo, 'source_url', 'source_url VARCHAR(700) NULL AFTER video_provider');
+    ensurePortfolioColumn($pdo, 'production_team', 'production_team VARCHAR(120) NULL AFTER badge');
+    ensurePortfolioColumn($pdo, 'production_role', 'production_role VARCHAR(190) NULL AFTER production_team');
+    ensurePortfolioColumn($pdo, 'work_year', 'work_year VARCHAR(20) NULL AFTER production_role');
 }
 
 function seedPortfolioItemsIfEmpty(PDO $pdo): void
@@ -141,7 +174,12 @@ function seedPortfolioItemsIfEmpty(PDO $pdo): void
             description,
             thumbnail_url,
             youtube_video_id,
+            video_provider,
+            source_url,
             badge,
+            production_team,
+            production_role,
+            work_year,
             is_featured,
             featured_order,
             is_active,
@@ -280,6 +318,9 @@ function getFallbackPortfolioItems(): array
 function normalizePortfolioItemForResponse(array $item): array
 {
     $youtubeVideoId = extractYouTubeVideoId((string) ($item['youtube_video_id'] ?? ''));
+    $sourceUrl = trim((string) ($item['source_url'] ?? ''));
+    $videoProvider = trim((string) ($item['video_provider'] ?? 'youtube'));
+    $watchUrl = $youtubeVideoId !== '' ? 'https://www.youtube.com/watch?v=' . $youtubeVideoId : $sourceUrl;
 
     return [
         'id' => isset($item['id']) ? (int) $item['id'] : null,
@@ -291,8 +332,18 @@ function normalizePortfolioItemForResponse(array $item): array
         'thumbnailUrl' => (string) ($item['thumbnail_url'] ?? ''),
         'youtube_video_id' => $youtubeVideoId,
         'youtubeVideoId' => $youtubeVideoId,
-        'video_id' => $youtubeVideoId,
+        'video_id' => $youtubeVideoId !== '' ? $youtubeVideoId : ($sourceUrl !== '' ? md5($sourceUrl) : ''),
+        'video_provider' => $videoProvider,
+        'videoProvider' => $videoProvider,
+        'source_url' => $sourceUrl,
+        'sourceUrl' => $sourceUrl,
         'badge' => (string) ($item['badge'] ?? ''),
+        'production_team' => (string) ($item['production_team'] ?? ''),
+        'productionTeam' => (string) ($item['production_team'] ?? ''),
+        'production_role' => (string) ($item['production_role'] ?? ''),
+        'productionRole' => (string) ($item['production_role'] ?? ''),
+        'work_year' => (string) ($item['work_year'] ?? ''),
+        'workYear' => (string) ($item['work_year'] ?? ''),
         'is_featured' => (bool) ((int) ($item['is_featured'] ?? 0)),
         'isFeatured' => (bool) ((int) ($item['is_featured'] ?? 0)),
         'featured_order' => (int) ($item['featured_order'] ?? 0),
@@ -307,8 +358,8 @@ function normalizePortfolioItemForResponse(array $item): array
         'updated_at' => $item['updated_at'] ?? null,
         'embed_url' => $youtubeVideoId !== '' ? 'https://www.youtube.com/embed/' . $youtubeVideoId : '',
         'embedUrl' => $youtubeVideoId !== '' ? 'https://www.youtube.com/embed/' . $youtubeVideoId : '',
-        'watch_url' => $youtubeVideoId !== '' ? 'https://www.youtube.com/watch?v=' . $youtubeVideoId : '',
-        'watchUrl' => $youtubeVideoId !== '' ? 'https://www.youtube.com/watch?v=' . $youtubeVideoId : '',
+        'watch_url' => $watchUrl,
+        'watchUrl' => $watchUrl,
         'is_new' => false,
     ];
 }

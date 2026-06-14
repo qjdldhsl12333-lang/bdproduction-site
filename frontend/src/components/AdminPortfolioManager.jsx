@@ -23,7 +23,12 @@ const emptyPortfolioForm = {
   description: '',
   thumbnail_url: '',
   youtube_video_id: '',
+  video_provider: 'youtube',
+  source_url: '',
   badge: '',
+  production_team: '',
+  production_role: '',
+  work_year: '',
   is_featured: true,
   featured_order: 0,
   is_active: true,
@@ -39,7 +44,12 @@ function normalizeFormItem(item) {
     description: item.description || '',
     thumbnail_url: item.thumbnail_url || item.thumbnailUrl || '',
     youtube_video_id: item.youtube_video_id || item.youtubeVideoId || item.video_id || '',
+    video_provider: item.video_provider || item.videoProvider || 'youtube',
+    source_url: item.source_url || item.sourceUrl || '',
     badge: item.badge || '',
+    production_team: item.production_team || item.productionTeam || '',
+    production_role: item.production_role || item.productionRole || '',
+    work_year: item.work_year || item.workYear || '',
     is_featured: Boolean(item.is_featured ?? item.isFeatured),
     featured_order: Number(item.featured_order ?? item.featuredOrder ?? 0),
     is_active: Boolean(item.is_active ?? item.isActive ?? true),
@@ -442,6 +452,46 @@ function AdminPortfolioManager() {
               />
             </label>
 
+            <label>
+              Video Platform
+              <input
+                type="text"
+                value={form.video_provider}
+                onChange={(event) => updateForm('video_provider', event.target.value)}
+                placeholder="youtube / vimeo / bugs / external"
+              />
+            </label>
+
+            <label>
+              Production Team
+              <input
+                type="text"
+                value={form.production_team}
+                onChange={(event) => updateForm('production_team', event.target.value)}
+                placeholder="camera team / lighting team / VFX"
+              />
+            </label>
+
+            <label>
+              Production Role
+              <input
+                type="text"
+                value={form.production_role}
+                onChange={(event) => updateForm('production_role', event.target.value)}
+                placeholder="camera / lighting / VFX / directing"
+              />
+            </label>
+
+            <label>
+              Work Year
+              <input
+                type="text"
+                value={form.work_year}
+                onChange={(event) => updateForm('work_year', event.target.value)}
+                placeholder="2025"
+              />
+            </label>
+
             <label className="admin-portfolio-form-wide">
               설명
               <textarea
@@ -469,6 +519,16 @@ function AdminPortfolioManager() {
                 value={form.youtube_video_id}
                 onChange={(event) => updateForm('youtube_video_id', event.target.value)}
                 placeholder="영상 ID 또는 YouTube URL"
+              />
+            </label>
+
+            <label>
+              Source / External URL
+              <input
+                type="url"
+                value={form.source_url}
+                onChange={(event) => updateForm('source_url', event.target.value)}
+                placeholder="YouTube, Vimeo, Bugs, external portfolio URL"
               />
             </label>
 
@@ -588,6 +648,9 @@ function AdminPortfolioManager() {
 
                       <div className="admin-portfolio-card-info">
                         <span>클라이언트: {item.client || '-'}</span>
+                         <span>Production Team: {item.production_team || item.productionTeam || '-'}</span>
+                         <span>Role: {item.production_role || item.productionRole || '-'}</span>
+                         <span>Year: {item.work_year || item.workYear || '-'}</span>
                         <span>전체 순서: {item.display_order ?? item.displayOrder ?? 0}</span>
                         <span>대표 순서: {item.featured_order ?? item.featuredOrder ?? 0}</span>
                       </div>

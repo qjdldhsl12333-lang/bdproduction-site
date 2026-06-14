@@ -10,7 +10,12 @@ CREATE TABLE IF NOT EXISTS portfolio_items (
 
   thumbnail_url VARCHAR(600) NULL,
   youtube_video_id VARCHAR(80) NULL,
+  video_provider VARCHAR(40) NULL DEFAULT "youtube",
+  source_url VARCHAR(700) NULL,
   badge VARCHAR(40) NULL,
+  production_team VARCHAR(120) NULL,
+  production_role VARCHAR(190) NULL,
+  work_year VARCHAR(20) NULL,
 
   is_featured TINYINT(1) NOT NULL DEFAULT 0,
   featured_order INT NOT NULL DEFAULT 0,
