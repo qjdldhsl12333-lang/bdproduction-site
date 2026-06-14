@@ -449,7 +449,7 @@ a {
 /* =========================================================
    BDPRODUCTION Teal Renewal v1
    Palette: #09637E / #088395 / #7AB2B2 / #EBF4F6
-   湲곗〈 釉붾옓/怨⑤뱶 ?ㅼ쓣 諛앹? ??怨꾩뿴 釉뚮옖???ㅼ쑝濡??꾪솚?⑸땲??
+   ?リ옇?????곕?????λ?獄????깅굵 ?꾩룇鍮? ????ｌ뫒????곗뒧??????깅さ???熬곥굦???紐껊퉵??
    ========================================================= */
 
 :root,
@@ -477,7 +477,7 @@ a {
   --success: #088395;
   --success-soft: rgba(8, 131, 149, 0.12);
 
-  /* 湲곗〈 CSS ?명솚?? 異뷀썑 --accent濡?由ы뙥?좊쭅 ?덉젙 */
+  /* ?リ옇???CSS ?筌뤿굞??? ?怨???--accent???洹먮뿫???ル봿異????깆젧 */
   --gold: #088395;
   --gold-soft: rgba(8, 131, 149, 0.13);
 
@@ -924,7 +924,7 @@ body,
 
 /* BDPRODUCTION SIGNATURE COLOR OVERRIDE
    Brand accent: #95FF00
-   湲곗〈 gold/teal 怨꾩뿴 ?ъ씤?몃? ?쒓렇?덉쿂 ?쇱엫?쇰줈 ?듭씪?⑸땲?? */
+   ?リ옇???gold/teal ??ｌ뫒??????筌? ??蹂μ쟽???깊뱱 ??源녿엮??怨쀬Ŧ ???逾??紐껊퉵?? */
 
 :root {
   --gold: #95ff00;
@@ -1119,7 +1119,7 @@ body,
   color: #95ff00 !important;
 }
 
-/* Warning? danger媛 ?꾨땲???덈궡?덇퉴 ?쒓렇?덉쿂 ?ㅼ쑝濡???땄 */
+/* Warning?? danger?띠럾? ?熬곣뫀鍮?????뉖????숇뤀 ??蹂μ쟽???깊뱱 ???깅さ??????*/
 .admin-warning {
   border-color: rgba(149, 255, 0, 0.24) !important;
   background:
@@ -1920,7 +1920,7 @@ body,
 }
 
 /* Hero logo solid color fix
-   硫붿씤 ?쇰┫ 以묒븰 BDPRODUCTION ?띿뒪?몄쓽 洹몃씪?곗씠?섏쓣 ?쒓굅?섍퀬 ?⑥깋?쇰줈 怨좎젙?⑸땲?? */
+   嶺뚮∥?????寃몃뎅 繞벿살탳??BDPRODUCTION ???⑸츩?筌뤾쑴踰??잙갭梨???⑥щ턄??瑜곷굵 ??蹂ㅽ깴???겶???觀???怨쀬Ŧ ??μ쪠???紐껊퉵?? */
 
 .hero-film-center-mark .hero-logo-word,
 .hero-film-center-mark .hero-logo-word *,
@@ -1934,7 +1934,7 @@ body,
   color: rgba(235, 244, 246, 0.86);
 }
 
-/* 湲곗〈 援듦린/吏덇컧? ?좎??섍퀬, 誘몄꽭???낆껜媛먮쭔 ?꾩＜ ?쏀븯寃??④퉩?덈떎. */
+/* ?リ옇?????踰??嶺뚯쉶?껇?? ??????겶? 亦껋꼶梨룩땻?????얩뜢?띠룆큔壤??熬곣뫜???????移???節띾룯???덈펲. */
 .hero-film-center-mark .hero-logo-word {
   text-shadow:
     0 1px 0 rgba(255, 255, 255, 0.06),
@@ -2556,3 +2556,218 @@ html {
 }
 
 /* BDPRODUCTION phase 2-1 structure stabilization end */
+
+/* BDPRODUCTION phase 2-2 pc safe zone and intro alignment start */
+
+/*
+  Phase 2-2:
+  - Desktop hero video layer must start below the fixed top bar.
+  - Keep mobile hero behavior from phase 2-1.
+  - Center About copy and service badges on PC and mobile.
+*/
+
+:root {
+  --bd-pc-hero-top-safe: clamp(118px, 10.5vh, 156px);
+}
+
+/* Desktop: separate the fixed header zone from the showreel video zone. */
+@media (min-width: 761px) {
+  .app-shell.is-home-page .hero-film-section {
+    min-height: 100svh !important;
+    padding-top: var(--bd-pc-hero-top-safe) !important;
+    box-sizing: border-box !important;
+  }
+
+  .app-shell.is-home-page .hero-film-canvas {
+    top: var(--bd-pc-hero-top-safe) !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    min-height: calc(100svh - var(--bd-pc-hero-top-safe)) !important;
+  }
+
+  .app-shell.is-home-page .hero-film-screen {
+    min-height: calc(100svh - var(--bd-pc-hero-top-safe)) !important;
+  }
+
+  .app-shell.is-home-page .hero-film-center-mark {
+    min-height: calc(100svh - var(--bd-pc-hero-top-safe)) !important;
+  }
+}
+
+/* About section alignment: both PC and mobile. */
+.company-intro-section {
+  text-align: center !important;
+}
+
+.company-intro-copy {
+  width: min(100%, 980px) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center !important;
+}
+
+.company-intro-copy h2,
+.company-intro-copy p,
+.company-intro-eyebrow {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center !important;
+}
+
+.company-intro-copy p:not(.company-intro-eyebrow) {
+  max-width: 760px !important;
+}
+
+.company-service-tags {
+  justify-content: center !important;
+  align-items: center !important;
+  width: min(100%, 780px) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center !important;
+}
+
+/* Mobile: keep the corrected compact hero, only center the intro content. */
+@media (max-width: 760px) and (orientation: portrait) {
+  .company-intro-section {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .company-intro-copy {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding-right: 22px !important;
+    padding-left: 22px !important;
+  }
+
+  .company-intro-copy h2 {
+    max-width: 9em !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+  }
+
+  .company-intro-copy p:not(.company-intro-eyebrow) {
+    max-width: 22em !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+  }
+
+  .company-service-tags {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+}
+
+/* BDPRODUCTION phase 2-2 pc safe zone and intro alignment end */
+
+/* BDPRODUCTION phase 2-3 mobile intro typography start */
+
+/*
+  Phase 2-3:
+  - Keep the PC layout from phase 2-2.
+  - Refine mobile About typography.
+  - Prevent awkward Korean line breaks.
+  - Make service badges feel cleaner on mobile.
+*/
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .company-intro-section {
+    min-height: auto !important;
+    padding-top: 66px !important;
+    padding-bottom: 58px !important;
+  }
+
+  .company-intro-copy {
+    gap: 0 !important;
+    padding-right: 22px !important;
+    padding-left: 22px !important;
+  }
+
+  .company-intro-eyebrow {
+    margin-bottom: 26px !important;
+    font-size: 0.68rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.34em !important;
+    word-spacing: 0.2em !important;
+  }
+
+  .company-intro-copy h2 {
+    max-width: 8.5em !important;
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+    font-size: clamp(2.15rem, 9.2vw, 2.95rem) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.06em !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+  .company-intro-copy p:not(.company-intro-eyebrow) {
+    max-width: 22em !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    color: rgba(245, 247, 238, 0.88) !important;
+    font-size: clamp(1.02rem, 4vw, 1.18rem) !important;
+    line-height: 1.72 !important;
+    letter-spacing: -0.035em !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+  .company-service-tags {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(122px, 1fr)) !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: min(100%, 340px) !important;
+    margin-top: 32px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .company-service-tags span,
+  .company-service-tags li {
+    width: 100% !important;
+    min-height: 46px !important;
+    padding: 0 12px !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.16em !important;
+    white-space: nowrap !important;
+  }
+
+  .company-partner-marquee {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 380px) and (orientation: portrait) {
+  .company-intro-copy h2 {
+    max-width: 8.2em !important;
+    font-size: clamp(2rem, 8.8vw, 2.55rem) !important;
+  }
+
+  .company-intro-copy p:not(.company-intro-eyebrow) {
+    max-width: 20em !important;
+    font-size: 1rem !important;
+  }
+
+  .company-service-tags {
+    grid-template-columns: repeat(2, minmax(112px, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .company-service-tags span,
+  .company-service-tags li {
+    min-height: 43px !important;
+    font-size: 0.64rem !important;
+    letter-spacing: 0.14em !important;
+  }
+}
+
+/* BDPRODUCTION phase 2-3 mobile intro typography end */
