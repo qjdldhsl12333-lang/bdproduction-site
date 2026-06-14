@@ -2242,3 +2242,162 @@ body,
 .portfolio-youtube-action {
   color: #f5f7ee !important;
 }
+
+/* BDPRODUCTION phase 1 landing cleanup start */
+:root {
+  --bd-header-safe-top: 104px;
+  --bd-mobile-header-safe-top: 86px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--bd-header-safe-top);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+
+  .app-shell.is-home-page #hero,
+  .app-shell.is-home-page .company-intro-section,
+  .app-shell.is-home-page .portfolio-section,
+  .app-shell.is-home-page .site-footer {
+    scroll-snap-align: start;
+    scroll-margin-top: var(--bd-header-safe-top);
+  }
+}
+
+.app-shell.is-home-page .hero-film-section {
+  min-height: 100svh;
+  padding-top: clamp(116px, 13vh, 176px) !important;
+}
+
+.company-intro-copy h2,
+.portfolio-section-header h2 {
+  letter-spacing: -0.035em;
+}
+
+.company-intro-copy p:not(.company-intro-eyebrow),
+.portfolio-youtube-body p,
+.portfolio-mobile-overlay p,
+.footer-tagline,
+.site-footer p {
+  line-height: 1.82;
+  letter-spacing: 0.005em;
+}
+
+.company-intro-eyebrow,
+.eyebrow,
+.company-service-tags li,
+.portfolio-youtube-body span,
+.portfolio-mobile-overlay span,
+.footer-info dt {
+  letter-spacing: 0.16em;
+}
+
+.company-service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 28px 0 0;
+  list-style: none;
+}
+
+.company-service-tags li {
+  border: 1px solid rgba(149, 255, 0, 0.22);
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: rgba(149, 255, 0, 0.055);
+  color: rgba(245, 247, 238, 0.86);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --bd-header-safe-top: var(--bd-mobile-header-safe-top);
+  }
+
+  html {
+    scroll-padding-top: var(--bd-mobile-header-safe-top);
+  }
+
+  .app-shell.is-home-page .hero-film-section {
+    min-height: 100svh;
+    padding-top: 94px !important;
+  }
+
+  .app-shell.is-home-page .company-intro-section,
+  .app-shell.is-home-page .portfolio-section,
+  .app-shell.is-home-page .site-footer {
+    min-height: 100svh;
+    scroll-margin-top: var(--bd-mobile-header-safe-top);
+  }
+
+  .company-intro-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 108px !important;
+    padding-bottom: 58px !important;
+  }
+
+  .company-intro-copy h2 {
+    max-width: 8em;
+    font-size: clamp(3.15rem, 13.8vw, 5.2rem);
+    line-height: 0.92;
+    letter-spacing: -0.07em;
+  }
+
+  .company-intro-copy p:not(.company-intro-eyebrow) {
+    max-width: 21em;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .company-service-tags {
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .company-service-tags li {
+    padding: 8px 11px;
+    font-size: 0.66rem;
+  }
+
+  .portfolio-section {
+    padding-top: 108px !important;
+    padding-bottom: 72px !important;
+  }
+
+  .portfolio-section-header {
+    margin-bottom: 20px !important;
+  }
+
+  .portfolio-section-header h2 {
+    font-size: clamp(3.15rem, 14vw, 5.3rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.07em !important;
+  }
+
+  .portfolio-mobile-card {
+    min-height: min(72svh, 640px);
+  }
+
+  .portfolio-mobile-overlay h3 {
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .floating-contact-banner {
+    right: 18px !important;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .site-footer {
+    padding-top: 108px !important;
+  }
+}
+/* BDPRODUCTION phase 1 landing cleanup end */
