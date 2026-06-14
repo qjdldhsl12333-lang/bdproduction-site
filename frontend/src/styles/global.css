@@ -449,7 +449,7 @@ a {
 /* =========================================================
    BDPRODUCTION Teal Renewal v1
    Palette: #09637E / #088395 / #7AB2B2 / #EBF4F6
-   기존 블랙/골드 톤을 밝은 틸 계열 브랜드 톤으로 전환합니다.
+   湲곗〈 釉붾옓/怨⑤뱶 ?ㅼ쓣 諛앹? ??怨꾩뿴 釉뚮옖???ㅼ쑝濡??꾪솚?⑸땲??
    ========================================================= */
 
 :root,
@@ -477,7 +477,7 @@ a {
   --success: #088395;
   --success-soft: rgba(8, 131, 149, 0.12);
 
-  /* 기존 CSS 호환용: 추후 --accent로 리팩토링 예정 */
+  /* 湲곗〈 CSS ?명솚?? 異뷀썑 --accent濡?由ы뙥?좊쭅 ?덉젙 */
   --gold: #088395;
   --gold-soft: rgba(8, 131, 149, 0.13);
 
@@ -924,7 +924,7 @@ body,
 
 /* BDPRODUCTION SIGNATURE COLOR OVERRIDE
    Brand accent: #95FF00
-   기존 gold/teal 계열 포인트를 시그니처 라임으로 통일합니다. */
+   湲곗〈 gold/teal 怨꾩뿴 ?ъ씤?몃? ?쒓렇?덉쿂 ?쇱엫?쇰줈 ?듭씪?⑸땲?? */
 
 :root {
   --gold: #95ff00;
@@ -1119,7 +1119,7 @@ body,
   color: #95ff00 !important;
 }
 
-/* Warning은 danger가 아니라 안내니까 시그니처 톤으로 낮춤 */
+/* Warning? danger媛 ?꾨땲???덈궡?덇퉴 ?쒓렇?덉쿂 ?ㅼ쑝濡???땄 */
 .admin-warning {
   border-color: rgba(149, 255, 0, 0.24) !important;
   background:
@@ -1920,7 +1920,7 @@ body,
 }
 
 /* Hero logo solid color fix
-   메인 쇼릴 중앙 BDPRODUCTION 텍스트의 그라데이션을 제거하고 단색으로 고정합니다. */
+   硫붿씤 ?쇰┫ 以묒븰 BDPRODUCTION ?띿뒪?몄쓽 洹몃씪?곗씠?섏쓣 ?쒓굅?섍퀬 ?⑥깋?쇰줈 怨좎젙?⑸땲?? */
 
 .hero-film-center-mark .hero-logo-word,
 .hero-film-center-mark .hero-logo-word *,
@@ -1934,7 +1934,7 @@ body,
   color: rgba(235, 244, 246, 0.86);
 }
 
-/* 기존 굵기/질감은 유지하고, 미세한 입체감만 아주 약하게 남깁니다. */
+/* 湲곗〈 援듦린/吏덇컧? ?좎??섍퀬, 誘몄꽭???낆껜媛먮쭔 ?꾩＜ ?쏀븯寃??④퉩?덈떎. */
 .hero-film-center-mark .hero-logo-word {
   text-shadow:
     0 1px 0 rgba(255, 255, 255, 0.06),
@@ -2401,3 +2401,158 @@ html {
   }
 }
 /* BDPRODUCTION phase 1 landing cleanup end */
+
+/* BDPRODUCTION phase 2-1 structure stabilization start */
+
+/*
+  Phase 2-1:
+  - Keep PC hero cinematic/fullscreen.
+  - Restore mobile hero to compact 16:9 showreel block.
+  - Prevent the fixed header from visually eating the first section.
+  - Fix service tag styling for the current JSX span markup.
+*/
+
+:root {
+  --bd-header-safe-top: 104px;
+  --bd-mobile-header-safe-top: 82px;
+}
+
+/* Current CompanyIntro uses span, not li. Keep li support for safety. */
+.company-service-tags span,
+.company-service-tags li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(149, 255, 0, 0.22);
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: rgba(149, 255, 0, 0.055);
+  color: rgba(245, 247, 238, 0.86);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+
+/* PC / tablet landscape: keep cinematic full hero with enough header breathing room. */
+@media (min-width: 761px) {
+  .app-shell.is-home-page .hero-film-section {
+    min-height: 100svh;
+    padding-top: clamp(108px, 12vh, 164px) !important;
+  }
+
+  .app-shell.is-home-page .hero-film-canvas {
+    min-height: 100%;
+  }
+}
+
+/* Mobile portrait: avoid huge black empty area below the showreel. */
+@media (max-width: 760px) and (orientation: portrait) {
+  :root {
+    --bd-header-safe-top: var(--bd-mobile-header-safe-top);
+  }
+
+  html {
+    scroll-padding-top: var(--bd-mobile-header-safe-top);
+  }
+
+  .cinematic-header {
+    top: calc(10px + env(safe-area-inset-top, 0px)) !important;
+    width: calc(100% - 24px) !important;
+  }
+
+  .app-shell.is-home-page .hero-film-section {
+    display: block !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: calc(82px + env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: 34px !important;
+    background: #000 !important;
+    scroll-margin-top: 0 !important;
+  }
+
+  .app-shell.is-home-page .hero-film-canvas {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    background: #000 !important;
+  }
+
+  .app-shell.is-home-page .hero-film-screen {
+    width: 100% !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .app-shell.is-home-page .hero-film-video {
+    object-fit: cover !important;
+    object-position: center center !important;
+    transform: none !important;
+  }
+
+  .app-shell.is-home-page .hero-film-center-mark {
+    position: absolute !important;
+    inset: 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    padding: 0 18px !important;
+  }
+
+  .app-shell.is-home-page .hero-film-center-mark span {
+    font-size: clamp(1.9rem, 9vw, 3.15rem) !important;
+    line-height: 0.95 !important;
+  }
+
+  .app-shell.is-home-page .hero-film-center-mark strong {
+    margin-top: 7px !important;
+    max-width: 290px !important;
+    font-size: clamp(0.5rem, 2.25vw, 0.72rem) !important;
+    line-height: 1.35 !important;
+  }
+
+  .app-shell.is-home-page .company-intro-section,
+  .app-shell.is-home-page .portfolio-section {
+    min-height: auto !important;
+    scroll-margin-top: var(--bd-mobile-header-safe-top) !important;
+  }
+
+  .company-intro-section {
+    padding-top: 88px !important;
+    padding-bottom: 64px !important;
+  }
+
+  .portfolio-section {
+    padding-top: 88px !important;
+    padding-bottom: 76px !important;
+  }
+
+  .company-service-tags {
+    gap: 8px !important;
+    margin-top: 24px !important;
+  }
+
+  .company-service-tags span,
+  .company-service-tags li {
+    padding: 8px 11px !important;
+    font-size: 0.66rem !important;
+  }
+}
+
+/* Very small phones: keep the first view tighter. */
+@media (max-width: 420px) and (orientation: portrait) {
+  .app-shell.is-home-page .hero-film-section {
+    padding-top: calc(76px + env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: 28px !important;
+  }
+
+  .app-shell.is-home-page .hero-film-center-mark span {
+    font-size: clamp(1.72rem, 8.5vw, 2.7rem) !important;
+  }
+}
+
+/* BDPRODUCTION phase 2-1 structure stabilization end */
