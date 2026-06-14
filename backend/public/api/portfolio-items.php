@@ -156,6 +156,10 @@ function ensurePortfolioMetadataColumns(PDO $pdo): void
     ensurePortfolioColumn($pdo, 'production_team', 'production_team VARCHAR(120) NULL AFTER badge');
     ensurePortfolioColumn($pdo, 'production_role', 'production_role VARCHAR(190) NULL AFTER production_team');
     ensurePortfolioColumn($pdo, 'work_year', 'work_year VARCHAR(20) NULL AFTER production_role');
+    ensurePortfolioColumn($pdo, 'source', 'source VARCHAR(50) NOT NULL DEFAULT "manual" AFTER display_order');
+    ensurePortfolioColumn($pdo, 'published_at', 'published_at DATETIME NULL AFTER source');
+    ensurePortfolioColumn($pdo, 'created_at', 'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER published_at');
+    ensurePortfolioColumn($pdo, 'updated_at', 'updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER created_at');
 }
 
 function seedPortfolioItemsIfEmpty(PDO $pdo): void
