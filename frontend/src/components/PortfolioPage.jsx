@@ -13,6 +13,38 @@ function resolveVideoKey(video) {
   return video.id || video.video_id || video.title;
 }
 
+function getCrewLabel(video) {
+  const team = video.production_team || video.productionTeam || '';
+  const crew = video.crew_names || video.crewNames || '';
+  const description = (video.description || '').trim();
+
+  if (team && crew) {
+    return `${team} · ${crew}`;
+  }
+
+  if (team && description) {
+    const match = description.match(/^(촬영팀|조명팀|VFX팀?|연출팀)\s+(.+?)\s*제작\.?$/);
+
+    if (match) {
+      return `${team} · ${match[2]}`;
+    }
+  }
+
+  if (crew) {
+    return crew;
+  }
+
+  if (team) {
+    return team;
+  }
+
+  return '';
+}
+
+function resolveVideoThumbnail(video) {
+  return video.thumbnail_url || video.thumbnailUrl || video.thumbnail || '';
+}
+
 function resolveCategories(videos) {
   const categories = videos
     .map((video) => resolveVideoCategory(video))
@@ -119,10 +151,26 @@ function PortfolioPage() {
                   <li className="portfolio-compact-item" key={resolveVideoKey(video)}>
                     <button
                       type="button"
-                      className="portfolio-compact-thumb"
+                      className={`portfolio-compact-thumb ${resolveVideoThumbnail(video) ? 'has-image' : ''}`}
                       onClick={() => setSelectedVideo(video)}
-                      aria-label={`${video.title} ?? ??`}
+                      aria-label={`${video.title || 'BDPRODUCTION portfolio'} 보기`}
+                      style={resolveVideoThumbnail(video) ? {
+                        '--portfolio-thumb-image': `url("${resolveVideoThumbnail(video)}")`,
+                      } : undefined}
                     >
+                      {resolveVideoThumbnail(video) ? (
+                        <img
+                          className="portfolio-compact-thumb-image"
+                          src={resolveVideoThumbnail(video)}
+                          alt={`${video.title || 'BDPRODUCTION'} thumbnail`}
+                          loading="lazy"
+                          onError={(event) => {
+                            event.currentTarget.style.display = 'none';
+                            event.currentTarget.closest('.portfolio-compact-thumb')?.classList.remove('has-image');
+                          }}
+                        />
+                      ) : null}
+
                       <span className="portfolio-compact-thumb-brand">BD</span>
 
                       <span className="portfolio-compact-play-icon">
@@ -137,6 +185,7 @@ function PortfolioPage() {
                       </div>
 
                       <h3>{video.title}</h3>
+                      {getCrewLabel(video) && <p className="portfolio-compact-crew">{getCrewLabel(video)}</p>}
                       <p>{video.description || 'BDPRODUCTION 포트폴리오 영상입니다.'}</p>
 
                       <div className="portfolio-compact-footer">

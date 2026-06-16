@@ -48,6 +48,8 @@ function normalizeFallbackItem(item) {
     productionTeam: item.productionTeam || item.production_team || '',
     production_role: item.productionRole || item.production_role || '',
     productionRole: item.productionRole || item.production_role || '',
+    crew_names: item.crewNames || item.crew_names || '',
+    crewNames: item.crewNames || item.crew_names || '',
     work_year: item.workYear || item.work_year || '',
     workYear: item.workYear || item.work_year || '',
     embed_url: youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : '',
@@ -92,6 +94,8 @@ export function normalizePortfolioVideo(video) {
     productionTeam: video.production_team || video.productionTeam || '',
     production_role: video.production_role || video.productionRole || '',
     productionRole: video.production_role || video.productionRole || '',
+    crew_names: video.crew_names || video.crewNames || '',
+    crewNames: video.crew_names || video.crewNames || '',
     work_year: video.work_year || video.workYear || '',
     workYear: video.work_year || video.workYear || '',
     embed_url: video.embed_url || video.embedUrl || (youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : ''),
@@ -110,7 +114,7 @@ const fallbackVideos = portfolioItems
 
 export function usePortfolioVideos(options = {}) {
   const { featuredOnly = false } = options;
-  const [videos, setVideos] = useState(featuredOnly ? fallbackVideos.filter((video) => video.is_featured) : fallbackVideos);
+  const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const [source, setSource] = useState('fallback');
@@ -123,15 +127,17 @@ export function usePortfolioVideos(options = {}) {
       setErrorMessage('');
 
       try {
+        const cacheBust = Date.now();
         const endpoint = featuredOnly
-          ? apiUrl('/api/portfolio-items.php?featured=1')
-          : apiUrl('/api/portfolio-items.php');
+          ? apiUrl(`/api/portfolio-items.php?featured=1&_=${cacheBust}`)
+          : apiUrl(`/api/portfolio-items.php?_=${cacheBust}`);
 
         const response = await fetch(endpoint, {
           method: 'GET',
           headers: {
             Accept: 'application/json',
           },
+          cache: 'no-store',
         });
 
         const result = await response.json();
@@ -312,6 +318,34 @@ function getAutoplayEmbedUrl(video) {
   return `${embedUrl}${separator}autoplay=1&playsinline=1&rel=0`;
 }
 
+function getCrewLabel(video) {
+  const team = video.production_team || video.productionTeam || '';
+  const crew = video.crew_names || video.crewNames || '';
+  const description = (video.description || '').trim();
+
+  if (team && crew) {
+    return `${team} · ${crew}`;
+  }
+
+  if (team && description) {
+    const match = description.match(/^(촬영팀|조명팀|VFX팀?|연출팀)\s+(.+?)\s*제작\.?$/);
+
+    if (match) {
+      return `${team} · ${match[2]}`;
+    }
+  }
+
+  if (crew) {
+    return crew;
+  }
+
+  if (team) {
+    return team;
+  }
+
+  return '';
+}
+
 function PortfolioShowcaseInfo({ video }) {
   if (!video) {
     return (
@@ -409,6 +443,7 @@ function PortfolioDesktopShowcase({ videos, onSelectVideo }) {
 
             <div className="portfolio-youtube-body">
               <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
+              {getCrewLabel(video) && <em className="portfolio-card-crew">{getCrewLabel(video)}</em>}
               <h3>{video.title}</h3>
             </div>
           </motion.article>
@@ -532,6 +567,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
 
               <div className="portfolio-mobile-overlay">
                 <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
+                {getCrewLabel(video) && <em className="portfolio-card-crew">{getCrewLabel(video)}</em>}
                 <h3>{video.title}</h3>
                 <p>{video.description || '\uD130\uCE58\uD558\uBA74 \uC601\uC0C1\uC774 \uC7AC\uC0DD\uB429\uB2C8\uB2E4.'}</p>
               </div>

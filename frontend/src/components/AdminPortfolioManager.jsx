@@ -28,6 +28,7 @@ const emptyPortfolioForm = {
   badge: '',
   production_team: '',
   production_role: '',
+  crew_names: '',
   work_year: '',
   is_featured: true,
   featured_order: 0,
@@ -49,6 +50,7 @@ function normalizeFormItem(item) {
     badge: item.badge || '',
     production_team: item.production_team || item.productionTeam || '',
     production_role: item.production_role || item.productionRole || '',
+    crew_names: item.crew_names || item.crewNames || '',
     work_year: item.work_year || item.workYear || '',
     is_featured: Boolean(item.is_featured ?? item.isFeatured),
     featured_order: Number(item.featured_order ?? item.featuredOrder ?? 0),
@@ -479,6 +481,16 @@ function AdminPortfolioManager() {
                 value={form.production_role}
                 onChange={(event) => updateForm('production_role', event.target.value)}
                 placeholder="camera / lighting / VFX / directing"
+              />
+            </label>
+
+            <label>
+              Crew Names
+              <input
+                type="text"
+                value={form.crew_names}
+                onChange={(event) => updateForm('crew_names', event.target.value)}
+                placeholder="예: 김준태, 백승욱, 전한준, 정태환"
               />
             </label>
 

@@ -2771,3 +2771,174 @@ html {
 }
 
 /* BDPRODUCTION phase 2-3 mobile intro typography end */
+
+
+/* BDPRODUCTION portfolio compact thumbnail image start */
+
+.portfolio-page button.portfolio-compact-thumb.has-image,
+button.portfolio-compact-thumb.has-image,
+.portfolio-page .portfolio-compact-thumb.has-image,
+.portfolio-compact-thumb.has-image {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.34)),
+    radial-gradient(circle at 82% 16%, rgba(149, 255, 0, 0.12), transparent 28%),
+    var(--portfolio-thumb-image) center / cover no-repeat !important;
+}
+
+.portfolio-page .portfolio-compact-thumb.has-image .portfolio-compact-thumb-brand,
+.portfolio-compact-thumb.has-image .portfolio-compact-thumb-brand {
+  display: none !important;
+}
+
+.portfolio-page .portfolio-compact-thumb-image,
+.portfolio-compact-thumb-image {
+  display: none !important;
+}
+
+.portfolio-page .portfolio-compact-play-icon,
+.portfolio-compact-play-icon {
+  position: absolute !important;
+  right: 12px !important;
+  bottom: 12px !important;
+  z-index: 3 !important;
+}
+
+/* BDPRODUCTION portfolio compact thumbnail image end */
+
+/* BDPRODUCTION portfolio crew label start */
+
+.portfolio-card-crew {
+  display: block;
+  margin-top: 4px;
+  color: rgba(245, 247, 238, 0.78);
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+  word-break: keep-all;
+}
+
+.portfolio-compact-crew {
+  margin: 6px 0 0 !important;
+  color: rgba(245, 247, 238, 0.72) !important;
+  font-size: 0.84rem !important;
+  font-weight: 850 !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.035em !important;
+  word-break: keep-all !important;
+}
+
+.portfolio-mobile-overlay .portfolio-card-crew {
+  color: rgba(245, 247, 238, 0.82);
+  font-size: 0.82rem;
+}
+
+/* BDPRODUCTION portfolio crew label end */
+
+/* BDPRODUCTION korean font safety start */
+
+:root {
+  --font-korean-safe:
+    'Pretendard',
+    'Noto Sans KR',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    '맑은 고딕',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+html,
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-korean-safe);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.nav-link,
+.menu-panel,
+.contact-panel,
+.company-intro,
+.company-team-section,
+.portfolio-page,
+.portfolio-card,
+.portfolio-card-crew,
+.portfolio-compact-crew,
+.portfolio-guide-card,
+.admin-shell,
+.admin-panel,
+.admin-portfolio-manager,
+.footer,
+.floating-contact {
+  font-family: var(--font-korean-safe) !important;
+}
+
+.logo-wordmark,
+.hero-title,
+.hero-kicker,
+.section-title,
+.portfolio-section h2,
+.portfolio-page h1,
+.company-team-header h2 {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+span,
+strong,
+em,
+a,
+label {
+  word-break: keep-all;
+}
+
+/* BDPRODUCTION korean font safety end */
+
+
+/* BDPRODUCTION portfolio detail korean font fix start */
+
+.portfolio-feature-copy,
+.portfolio-feature-copy p,
+.portfolio-feature-description,
+.portfolio-selected-description,
+.portfolio-detail-description,
+.portfolio-work-description,
+.portfolio-showcase-detail p,
+.portfolio-showcase-panel p,
+.portfolio-detail-panel p,
+.portfolio-detail-card p,
+.portfolio-spotlight p,
+.portfolio-spotlight-description,
+.portfolio-guide-card p,
+.portfolio-guide-copy,
+.portfolio-video-summary,
+.portfolio-card-description,
+.portfolio-mobile-overlay p {
+  font-family:
+    'Pretendard',
+    'Noto Sans KR',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    '맑은 고딕',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif !important;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  font-synthesis: none;
+}
+
+/* BDPRODUCTION portfolio detail korean font fix end */

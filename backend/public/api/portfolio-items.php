@@ -52,6 +52,7 @@ try {
             badge,
             production_team,
             production_role,
+            crew_names,
             work_year,
             is_featured,
             featured_order,
@@ -113,6 +114,7 @@ function ensurePortfolioItemsTable(PDO $pdo): void
             badge VARCHAR(50) NULL,
             production_team VARCHAR(120) NULL,
             production_role VARCHAR(190) NULL,
+            crew_names TEXT NULL,
             work_year VARCHAR(20) NULL,
 
             is_featured TINYINT(1) NOT NULL DEFAULT 0,
@@ -139,10 +141,20 @@ function ensurePortfolioItemsTable(PDO $pdo): void
 
 function ensurePortfolioColumn(PDO $pdo, string $columnName, string $definition): void
 {
-    $statement = $pdo->prepare('SHOW COLUMNS FROM portfolio_items LIKE :column_name');
-    $statement->execute([':column_name' => $columnName]);
+    $statement = $pdo->prepare('
+        SELECT COUNT(*)
+        FROM INFORMATION_SCHEMA.COLUMNS
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = :table_name
+          AND COLUMN_NAME = :column_name
+    ');
 
-    if ($statement->fetch(PDO::FETCH_ASSOC)) {
+    $statement->execute([
+        ':table_name' => 'portfolio_items',
+        ':column_name' => $columnName,
+    ]);
+
+    if ((int) $statement->fetchColumn() > 0) {
         return;
     }
 
@@ -155,7 +167,8 @@ function ensurePortfolioMetadataColumns(PDO $pdo): void
     ensurePortfolioColumn($pdo, 'source_url', 'source_url VARCHAR(700) NULL AFTER video_provider');
     ensurePortfolioColumn($pdo, 'production_team', 'production_team VARCHAR(120) NULL AFTER badge');
     ensurePortfolioColumn($pdo, 'production_role', 'production_role VARCHAR(190) NULL AFTER production_team');
-    ensurePortfolioColumn($pdo, 'work_year', 'work_year VARCHAR(20) NULL AFTER production_role');
+    ensurePortfolioColumn($pdo, 'crew_names', 'crew_names TEXT NULL AFTER production_role');
+    ensurePortfolioColumn($pdo, 'work_year', 'work_year VARCHAR(20) NULL AFTER crew_names');
     ensurePortfolioColumn($pdo, 'source', 'source VARCHAR(50) NOT NULL DEFAULT "manual" AFTER display_order');
     ensurePortfolioColumn($pdo, 'published_at', 'published_at DATETIME NULL AFTER source');
     ensurePortfolioColumn($pdo, 'created_at', 'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER published_at');
@@ -183,6 +196,7 @@ function seedPortfolioItemsIfEmpty(PDO $pdo): void
             badge,
             production_team,
             production_role,
+            crew_names,
             work_year,
             is_featured,
             featured_order,
@@ -322,6 +336,11 @@ function getFallbackPortfolioItems(): array
 function normalizePortfolioItemForResponse(array $item): array
 {
     $youtubeVideoId = extractYouTubeVideoId((string) ($item['youtube_video_id'] ?? ''));
+    $thumbnailUrl = trim((string) ($item['thumbnail_url'] ?? ''));
+
+    if ($thumbnailUrl === '' && $youtubeVideoId !== '') {
+        $thumbnailUrl = 'https://img.youtube.com/vi/' . $youtubeVideoId . '/hqdefault.jpg';
+    }
     $sourceUrl = trim((string) ($item['source_url'] ?? ''));
     $videoProvider = trim((string) ($item['video_provider'] ?? 'youtube'));
     $watchUrl = $youtubeVideoId !== '' ? 'https://www.youtube.com/watch?v=' . $youtubeVideoId : $sourceUrl;
@@ -332,8 +351,8 @@ function normalizePortfolioItemForResponse(array $item): array
         'client' => (string) ($item['client'] ?? ''),
         'category' => (string) ($item['category'] ?? ''),
         'description' => (string) ($item['description'] ?? ''),
-        'thumbnail_url' => (string) ($item['thumbnail_url'] ?? ''),
-        'thumbnailUrl' => (string) ($item['thumbnail_url'] ?? ''),
+        'thumbnail_url' => $thumbnailUrl,
+        'thumbnailUrl' => $thumbnailUrl,
         'youtube_video_id' => $youtubeVideoId,
         'youtubeVideoId' => $youtubeVideoId,
         'video_id' => $youtubeVideoId !== '' ? $youtubeVideoId : ($sourceUrl !== '' ? md5($sourceUrl) : ''),
@@ -346,6 +365,8 @@ function normalizePortfolioItemForResponse(array $item): array
         'productionTeam' => (string) ($item['production_team'] ?? ''),
         'production_role' => (string) ($item['production_role'] ?? ''),
         'productionRole' => (string) ($item['production_role'] ?? ''),
+        'crew_names' => (string) ($item['crew_names'] ?? ''),
+        'crewNames' => (string) ($item['crew_names'] ?? ''),
         'work_year' => (string) ($item['work_year'] ?? ''),
         'workYear' => (string) ($item['work_year'] ?? ''),
         'is_featured' => (bool) ((int) ($item['is_featured'] ?? 0)),
