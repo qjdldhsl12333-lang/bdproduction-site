@@ -12,7 +12,15 @@ function ArrowIcon() {
   );
 }
 
-function renderIcon(icon) {
+function renderIcon(icon, iconNode) {
+  if (iconNode) {
+    return (
+      <span className="bd-button__icon" aria-hidden="true">
+        {iconNode}
+      </span>
+    );
+  }
+
   if (icon === 'arrow') {
     return (
       <span className="bd-button__arrow-track" aria-hidden="true">
@@ -61,18 +69,23 @@ const BdButton = forwardRef(function BdButton(
     variant = 'ghost',
     size = 'md',
     icon = 'none',
+    iconNode = null,
     iconOnly = false,
+    iconPosition = 'end',
     type,
     ...rest
   },
   ref
 ) {
+  const renderedIcon = renderIcon(icon, iconNode);
+
   const classes = [
     'bd-button',
     `bd-button--${variant}`,
     `bd-button--${size}`,
-    icon !== 'none' ? `bd-button--${icon}` : '',
+    icon !== 'none' || iconNode ? `bd-button--${iconNode ? 'custom-icon' : icon}` : '',
     iconOnly ? 'bd-button--icon-only' : '',
+    iconPosition === 'start' ? 'bd-button--icon-start' : '',
     className,
   ]
     .filter(Boolean)
@@ -95,12 +108,13 @@ const BdButton = forwardRef(function BdButton(
       {iconOnly ? (
         <>
           <span className="bd-button__sr-label">{children}</span>
-          {renderIcon(icon)}
+          {renderedIcon}
         </>
       ) : (
         <>
+          {iconPosition === 'start' && renderedIcon}
           <span className="bd-button__label">{children}</span>
-          {renderIcon(icon)}
+          {iconPosition !== 'start' && renderedIcon}
         </>
       )}
     </Component>

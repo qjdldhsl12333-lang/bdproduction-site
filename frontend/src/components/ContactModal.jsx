@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import BdButton from './ui/BdButton.jsx';
 import ContactForm from './ContactForm.jsx';
 
 function ContactModal({ open, onClose, onOpenAuth }) {
@@ -28,21 +28,28 @@ function ContactModal({ open, onClose, onOpenAuth }) {
               제작 목적과 일정, 참고 자료를 남겨주시면 담당자가 확인 후 연락드립니다.
             </p>
           </div>
-          <button className="lead-modal-close" type="button" onClick={onClose} aria-label="닫기">
-            <X size={22} />
-          </button>
+          <BdButton
+            variant="modal-icon"
+            type="button"
+            icon="close"
+            iconOnly
+            onClick={onClose}
+            aria-label="닫기"
+          >
+            닫기
+          </BdButton>
         </div>
 
         <ContactForm compact onOpenAuth={openAuth} />
 
         <div className="lead-modal-footer">
           <span>계정이 있으신가요?</span>
-          <button type="button" onClick={() => openAuth('login')}>
+          <BdButton variant="modal-footer" size="sm" type="button" onClick={() => openAuth('login')}>
             로그인하기
-          </button>
-          <button type="button" onClick={() => openAuth('register')}>
+          </BdButton>
+          <BdButton variant="modal-footer" size="sm" type="button" onClick={() => openAuth('register')}>
             회원가입하기
-          </button>
+          </BdButton>
         </div>
       </section>
     </div>

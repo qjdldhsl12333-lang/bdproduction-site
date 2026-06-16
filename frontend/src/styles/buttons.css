@@ -282,3 +282,216 @@
     transform: none;
   }
 }
+
+/* BDPRODUCTION button-system phase 2 variants start */
+.bd-button--header-cta {
+  min-height: 40px;
+  padding: 0 17px;
+  border-color: rgba(149, 255, 0, 0.72);
+  background: #95ff00;
+  color: #020407;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  box-shadow:
+    0 12px 34px rgba(149, 255, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+.bd-button--header-cta:hover,
+.bd-button--header-cta:focus-visible {
+  border-color: rgba(149, 255, 0, 0.94);
+  background: #a8ff2b;
+  color: #020407;
+  transform: translateY(-1px);
+}
+
+.bd-button--header-icon {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+  border-color: rgba(9, 99, 126, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  color: #09637e;
+}
+
+.bd-button--header-icon:hover,
+.bd-button--header-icon:focus-visible {
+  border-color: rgba(149, 255, 0, 0.52);
+  background: rgba(149, 255, 0, 0.14);
+  color: #020407;
+}
+
+.bd-button--header-menu {
+  gap: 7px;
+  min-width: 92px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-color: rgba(9, 99, 126, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  color: #09637e;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.bd-button--header-menu:hover,
+.bd-button--header-menu:focus-visible {
+  border-color: rgba(149, 255, 0, 0.52);
+  background: rgba(149, 255, 0, 0.14);
+  color: #020407;
+}
+
+.app-shell.is-home-page .bd-button--header-icon,
+.app-shell.is-home-page .bd-button--header-menu {
+  border-color: rgba(235, 244, 246, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ebf4f6;
+}
+
+.app-shell.is-home-page .bd-button--header-icon:hover,
+.app-shell.is-home-page .bd-button--header-icon:focus-visible,
+.app-shell.is-home-page .bd-button--header-menu:hover,
+.app-shell.is-home-page .bd-button--header-menu:focus-visible {
+  border-color: rgba(149, 255, 0, 0.48);
+  background: rgba(149, 255, 0, 0.16);
+  color: #95ff00;
+}
+
+.bd-button--drawer,
+.bd-button--drawer-primary {
+  width: 100%;
+  min-height: 48px;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 0 14px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-align: left;
+}
+
+.bd-button--drawer {
+  border-color: rgba(235, 244, 246, 0.1);
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(235, 244, 246, 0.88);
+}
+
+.bd-button--drawer:hover,
+.bd-button--drawer:focus-visible {
+  border-color: rgba(149, 255, 0, 0.42);
+  background: rgba(149, 255, 0, 0.12);
+  color: #ffffff;
+}
+
+.bd-button--drawer-primary {
+  border-color: rgba(149, 255, 0, 0.68);
+  background: #95ff00;
+  color: #020407;
+}
+
+.bd-button--drawer-primary:hover,
+.bd-button--drawer-primary:focus-visible {
+  border-color: rgba(149, 255, 0, 0.94);
+  background: #a8ff2b;
+  color: #020407;
+}
+
+.bd-button--floating-contact {
+  width: 100%;
+  min-height: 76px;
+  flex-direction: column;
+  gap: 7px;
+  padding: 11px 8px;
+  border-color: rgba(149, 255, 0, 0.72);
+  border-radius: 18px;
+  background: #95ff00;
+  color: #020407;
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-align: center;
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.28),
+    0 18px 44px rgba(149, 255, 0, 0.18);
+}
+
+.bd-button--floating-contact:hover,
+.bd-button--floating-contact:focus-visible {
+  border-color: rgba(149, 255, 0, 0.95);
+  background: #a8ff2b;
+  color: #020407;
+  transform: translateX(-3px);
+}
+
+.bd-button--modal-icon {
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  min-height: 42px;
+  padding: 0;
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+}
+
+.bd-button--modal-icon:hover,
+.bd-button--modal-icon:focus-visible {
+  border-color: var(--line-strong);
+  background: rgba(149, 255, 0, 0.12);
+  color: #95ff00;
+}
+
+.bd-button--contact-inline {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--muted-strong);
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.bd-button--contact-inline:hover,
+.bd-button--contact-inline:focus-visible {
+  border-color: var(--line-strong);
+  background: rgba(149, 255, 0, 0.1);
+  color: #95ff00;
+}
+
+.bd-button--modal-footer {
+  min-height: 36px;
+  padding: 0 12px;
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.bd-button--modal-footer:hover,
+.bd-button--modal-footer:focus-visible {
+  border-color: var(--line-strong);
+  background: rgba(149, 255, 0, 0.1);
+  color: #95ff00;
+}
+
+@media (max-width: 1180px) {
+  .bd-button--floating-contact {
+    min-height: 68px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .bd-button--header-menu {
+    width: 46px;
+    min-width: 46px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+  }
+
+  .bd-button--header-menu .bd-button__label {
+    display: none;
+  }
+}
+/* BDPRODUCTION button-system phase 2 variants end */

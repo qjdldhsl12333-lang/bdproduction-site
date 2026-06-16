@@ -10,6 +10,7 @@ import {
   UserPlus,
   X,
 } from 'lucide-react';
+import BdButton from './ui/BdButton.jsx';
 
 const navItems = [
   { label: '홈', href: '/#hero', icon: Home },
@@ -76,30 +77,56 @@ function Header({ onOpenContact, onOpenAuth }) {
         </nav>
 
         <div className="cinematic-header-actions">
-          <button className="cinematic-contact-button" type="button" onClick={openContact}>
+          <BdButton variant="header-cta" size="sm" type="button" onClick={openContact}>
             제작 문의
-          </button>
-          <button className="cinematic-icon-button" type="button" onClick={openLogin} aria-label="로그인">
-            <LogIn size={18} />
-          </button>
-          <button className="cinematic-icon-button" type="button" onClick={openRegister} aria-label="회원가입">
-            <UserPlus size={18} />
-          </button>
-          <a className="cinematic-icon-button" href="/mypage" aria-label="마이페이지">
-            <UserCircle size={18} />
-          </a>
+          </BdButton>
+          <BdButton
+            variant="header-icon"
+            size="sm"
+            type="button"
+            iconOnly
+            iconNode={<LogIn size={18} />}
+            onClick={openLogin}
+            aria-label="로그인"
+          >
+            로그인
+          </BdButton>
+          <BdButton
+            variant="header-icon"
+            size="sm"
+            type="button"
+            iconOnly
+            iconNode={<UserPlus size={18} />}
+            onClick={openRegister}
+            aria-label="회원가입"
+          >
+            회원가입
+          </BdButton>
+          <BdButton
+            as="a"
+            variant="header-icon"
+            size="sm"
+            iconOnly
+            iconNode={<UserCircle size={18} />}
+            href="/mypage"
+            aria-label="마이페이지"
+          >
+            마이페이지
+          </BdButton>
         </div>
 
-        <button
-          className="cinematic-menu-button"
+        <BdButton
+          variant="header-menu"
+          size="sm"
           type="button"
+          iconPosition="start"
+          iconNode={opened ? <X size={22} /> : <Menu size={22} />}
           aria-label={opened ? '메뉴 닫기' : '메뉴 열기'}
           aria-expanded={opened}
           onClick={() => setOpened((value) => !value)}
         >
-          {opened ? <X size={22} /> : <Menu size={22} />}
-          <span>MENU</span>
-        </button>
+          MENU
+        </BdButton>
       </header>
 
       {opened && <button className="cinematic-drawer-scrim" type="button" aria-label="메뉴 닫기" onClick={closeMenu} />}
@@ -110,9 +137,16 @@ function Header({ onOpenContact, onOpenAuth }) {
             <img src={brandSymbolSrc} alt="" aria-hidden="true" />
             <span>BDPRODUCTION</span>
           </div>
-          <button type="button" onClick={closeMenu} aria-label="메뉴 닫기">
-            <X size={20} />
-          </button>
+          <BdButton
+            variant="modal-icon"
+            type="button"
+            iconOnly
+            iconNode={<X size={20} />}
+            onClick={closeMenu}
+            aria-label="메뉴 닫기"
+          >
+            메뉴 닫기
+          </BdButton>
         </div>
 
         <nav className="cinematic-drawer-nav" aria-label="전체 메뉴 목록">
@@ -129,22 +163,43 @@ function Header({ onOpenContact, onOpenAuth }) {
         </nav>
 
         <div className="cinematic-drawer-actions">
-          <button className="is-primary" type="button" onClick={openContact}>
-            <MessageCircle size={19} />
+          <BdButton
+            variant="drawer-primary"
+            type="button"
+            iconPosition="start"
+            iconNode={<MessageCircle size={19} />}
+            onClick={openContact}
+          >
             제작 문의
-          </button>
-          <button type="button" onClick={openLogin}>
-            <LogIn size={19} />
+          </BdButton>
+          <BdButton
+            variant="drawer"
+            type="button"
+            iconPosition="start"
+            iconNode={<LogIn size={19} />}
+            onClick={openLogin}
+          >
             로그인
-          </button>
-          <button type="button" onClick={openRegister}>
-            <UserPlus size={19} />
+          </BdButton>
+          <BdButton
+            variant="drawer"
+            type="button"
+            iconPosition="start"
+            iconNode={<UserPlus size={19} />}
+            onClick={openRegister}
+          >
             회원가입
-          </button>
-          <a href="/mypage" onClick={closeMenu}>
-            <UserCircle size={19} />
+          </BdButton>
+          <BdButton
+            as="a"
+            variant="drawer"
+            iconPosition="start"
+            iconNode={<UserCircle size={19} />}
+            href="/mypage"
+            onClick={closeMenu}
+          >
             마이페이지
-          </a>
+          </BdButton>
         </div>
       </aside>
     </>

@@ -1,4 +1,5 @@
 import { apiUrl } from '../config/api.js';
+import BdButton from './ui/BdButton.jsx';
 import { CheckCircle2, Send, UserPlus } from 'lucide-react';
 import { useState } from 'react';
 
@@ -181,20 +182,28 @@ function ContactForm({ compact = false, onOpenAuth }) {
         />
       </label>
 
-      <button className="primary-button form-submit" type="submit" disabled={submitting}>
+      <BdButton
+        className="contact-form-submit"
+        variant="primary"
+        size="lg"
+        type="submit"
+        iconNode={<Send size={18} />}
+        disabled={submitting}
+      >
         {submitting ? '접수 중...' : '문의하기'}
-        <Send size={18} />
-      </button>
+      </BdButton>
 
       {onOpenAuth && (
-        <button
-          className="contact-auth-inline"
+        <BdButton
+          variant="contact-inline"
+          size="md"
           type="button"
+          iconPosition="start"
+          iconNode={<UserPlus size={17} />}
           onClick={() => onOpenAuth('register')}
         >
-          <UserPlus size={17} />
           회원가입하고 진행 현황 확인하기
-        </button>
+        </BdButton>
       )}
     </form>
   );
