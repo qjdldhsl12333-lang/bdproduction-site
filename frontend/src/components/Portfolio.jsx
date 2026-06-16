@@ -187,6 +187,93 @@ export function usePortfolioVideos(options = {}) {
     };
   }, [featuredOnly]);
 
+  // BDPRODUCTION portfolio 30-minute polling start
+  useEffect(() => {
+    let ignore = false;
+    let pollTimerId = null;
+    let lastLoadedAt = Date.now();
+    const pollIntervalMs = 30 * 60 * 1000;
+
+    const refreshPortfolioVideos = async () => {
+      if (typeof document !== 'undefined' && document.visibilityState === 'hidden') {
+        return;
+      }
+
+      try {
+        const cacheBuster = Date.now();
+        const endpoint = featuredOnly
+          ? apiUrl(`/api/portfolio-items.php?featured=1&ts=${cacheBuster}`)
+          : apiUrl(`/api/portfolio-items.php?ts=${cacheBuster}`);
+
+        const response = await fetch(endpoint, {
+          method: 'GET',
+          cache: 'no-store',
+          headers: {
+            Accept: 'application/json',
+            'Cache-Control': 'no-cache',
+            Pragma: 'no-cache',
+          },
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || '포트폴리오를 불러오지 못했습니다.');
+        }
+
+        const normalizedVideos = (result.videos || result.items || [])
+          .map(normalizePortfolioVideo)
+          .filter((video) => video.is_active !== false)
+          .sort((a, b) => {
+            if (featuredOnly) {
+              return a.featured_order - b.featured_order;
+            }
+
+            return a.display_order - b.display_order;
+          });
+
+        if (!ignore) {
+          setVideos(normalizedVideos);
+          setSource(result.source || 'database');
+          lastLoadedAt = Date.now();
+        }
+      } catch (error) {
+        console.error('Portfolio polling error:', error);
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (typeof document === 'undefined' || document.visibilityState !== 'visible') {
+        return;
+      }
+
+      if (Date.now() - lastLoadedAt >= pollIntervalMs) {
+        refreshPortfolioVideos();
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      pollTimerId = window.setInterval(refreshPortfolioVideos, pollIntervalMs);
+    }
+
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+    }
+
+    return () => {
+      ignore = true;
+
+      if (pollTimerId !== null && typeof window !== 'undefined') {
+        window.clearInterval(pollTimerId);
+      }
+
+      if (typeof document !== 'undefined') {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      }
+    };
+  }, [featuredOnly]);
+  // BDPRODUCTION portfolio 30-minute polling end
+
   return {
     videos,
     loading,
