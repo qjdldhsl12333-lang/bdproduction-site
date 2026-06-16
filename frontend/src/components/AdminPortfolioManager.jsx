@@ -13,6 +13,7 @@ import {
   Wand2,
   X,
 } from 'lucide-react';
+import BdButton from './ui/BdButton.jsx';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const emptyPortfolioForm = {
@@ -353,10 +354,10 @@ function AdminPortfolioManager() {
               전체 포트폴리오 보기
             </a>
 
-            <button className="admin-refresh-button" type="button" onClick={loadItems}>
+            <BdButton className="admin-refresh-button" type="button" onClick={loadItems}>
               <RefreshCw size={17} />
               새로고침
-            </button>
+            </BdButton>
           </div>
         </div>
 
@@ -405,10 +406,10 @@ function AdminPortfolioManager() {
             </div>
 
             {form.id && (
-              <button type="button" onClick={resetForm}>
+              <BdButton type="button" onClick={resetForm}>
                 <X size={16} />
                 수정 취소
-              </button>
+              </BdButton>
             )}
           </div>
 
@@ -550,15 +551,15 @@ function AdminPortfolioManager() {
                 <strong>{extractedVideoId || '-'}</strong>
               </div>
 
-              <button type="button" onClick={normalizeYouTubeInput} disabled={!form.youtube_video_id}>
+              <BdButton type="button" onClick={normalizeYouTubeInput} disabled={!form.youtube_video_id}>
                 <Wand2 size={15} />
                 ID 정리
-              </button>
+              </BdButton>
 
-              <button type="button" onClick={applyYouTubeThumbnail} disabled={!extractedVideoId}>
+              <BdButton type="button" onClick={applyYouTubeThumbnail} disabled={!extractedVideoId}>
                 <ImageIcon size={15} />
                 썸네일 자동 입력
-              </button>
+              </BdButton>
             </div>
 
             <label>
@@ -599,10 +600,10 @@ function AdminPortfolioManager() {
               </label>
             </div>
 
-            <button className="primary-button admin-portfolio-submit" type="submit" disabled={saving}>
+            <BdButton variant="admin-primary" className="admin-portfolio-submit" type="submit" disabled={saving}>
               {saving ? <Loader2 size={17} /> : <Plus size={17} />}
               {form.id ? '수정 저장' : '포트폴리오 추가'}
-            </button>
+            </BdButton>
           </form>
         </section>
 
@@ -669,11 +670,11 @@ function AdminPortfolioManager() {
                     </div>
 
                     <div className="admin-portfolio-card-actions">
-                      <button type="button" onClick={() => editItem(item)} disabled={saving}>
+                      <BdButton type="button" onClick={() => editItem(item)} disabled={saving}>
                         수정
-                      </button>
+                      </BdButton>
 
-                      <button
+                      <BdButton
                         type="button"
                         className={isActive ? 'danger' : ''}
                         onClick={() => updateVisibility(item, !isActive)}
@@ -690,9 +691,9 @@ function AdminPortfolioManager() {
                             노출
                           </>
                         )}
-                      </button>
+                      </BdButton>
 
-                      <button
+                      <BdButton
                         type="button"
                         className="danger"
                         onClick={() => deleteItem(item)}
@@ -700,7 +701,7 @@ function AdminPortfolioManager() {
                       >
                         <Trash2 size={15} />
                         삭제
-                      </button>
+                      </BdButton>
                     </div>
                   </article>
                 );

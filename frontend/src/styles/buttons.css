@@ -805,3 +805,60 @@
   color: #020407 !important;
 }
 /* BDPRODUCTION button-system collision guard end */
+
+/* BDPRODUCTION button-system phase 4 admin variants start */
+.bd-button--admin-primary,
+.bd-button--admin-secondary,
+.bd-button--admin-ghost,
+.bd-button--admin-danger {
+  min-height: 40px;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.bd-button--admin-primary {
+  border-color: rgba(149, 255, 0, 0.82);
+  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%);
+  color: #020407;
+}
+
+.bd-button--admin-primary:hover,
+.bd-button--admin-primary:focus-visible {
+  border-color: rgba(149, 255, 0, 0.98);
+  background: linear-gradient(135deg, #a8ff2b 0%, #c7e851 100%);
+  color: #020407;
+}
+
+.bd-button--admin-secondary,
+.bd-button--admin-ghost {
+  border-color: rgba(166, 228, 219, 0.2);
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(245, 247, 238, 0.88);
+}
+
+.bd-button--admin-secondary:hover,
+.bd-button--admin-secondary:focus-visible,
+.bd-button--admin-ghost:hover,
+.bd-button--admin-ghost:focus-visible {
+  border-color: rgba(149, 255, 0, 0.46);
+  background: rgba(149, 255, 0, 0.1);
+  color: #95ff00;
+}
+
+.bd-button--admin-danger {
+  border-color: rgba(255, 91, 91, 0.42);
+  background: rgba(255, 91, 91, 0.1);
+  color: #ffb3b3;
+}
+
+.bd-button--admin-danger:hover,
+.bd-button--admin-danger:focus-visible {
+  border-color: rgba(255, 91, 91, 0.72);
+  background: rgba(255, 91, 91, 0.18);
+  color: #fff0f0;
+}
+/* BDPRODUCTION button-system phase 4 admin variants end */

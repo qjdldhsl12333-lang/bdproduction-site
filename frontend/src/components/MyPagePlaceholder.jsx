@@ -13,6 +13,7 @@ import {
   Truck,
   UserPlus,
 } from 'lucide-react';
+import BdButton from './ui/BdButton.jsx';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const progressSteps = [
@@ -306,18 +307,18 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
           </p>
 
           <div className="mypage-placeholder-actions">
-            <button className="primary-button" type="button" onClick={() => onOpenAuth?.('login')}>
+            <BdButton variant="admin-primary" type="button" onClick={() => onOpenAuth?.('login')}>
               <LogIn size={18} />
               로그인
-            </button>
-            <button className="secondary-button" type="button" onClick={() => onOpenAuth?.('register')}>
+            </BdButton>
+            <BdButton variant="admin-secondary" type="button" onClick={() => onOpenAuth?.('register')}>
               <UserPlus size={18} />
               회원가입
-            </button>
-            <button className="ghost-button" type="button" onClick={onOpenContact}>
+            </BdButton>
+            <BdButton variant="admin-ghost" type="button" onClick={onOpenContact}>
               <MessageCircle size={18} />
               비회원 문의하기
-            </button>
+            </BdButton>
           </div>
         </div>
 
@@ -351,18 +352,18 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
         </p>
 
         <div className="mypage-placeholder-actions">
-          <button className="primary-button" type="button" onClick={onOpenContact}>
+          <BdButton variant="admin-primary" type="button" onClick={onOpenContact}>
             <MessageCircle size={18} />
             새 문의하기
-          </button>
-          <button className="ghost-button" type="button" onClick={loadMe} disabled={contactsLoading}>
+          </BdButton>
+          <BdButton variant="admin-ghost" type="button" onClick={loadMe} disabled={contactsLoading}>
             <RefreshCw size={18} />
             {contactsLoading ? '새로고침 중' : '새로고침'}
-          </button>
-          <button className="secondary-button" type="button" onClick={logout}>
+          </BdButton>
+          <BdButton variant="admin-secondary" type="button" onClick={logout}>
             <LogOut size={18} />
             로그아웃
-          </button>
+          </BdButton>
         </div>
       </div>
 
@@ -440,14 +441,14 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
               </div>
 
               <div className="mypage-contact-card-actions">
-                <button
+                <BdButton
                   className="mypage-contact-detail-toggle"
                   type="button"
                   aria-expanded={isExpanded}
                   onClick={() => setExpandedContactId(isExpanded ? null : contact.id)}
                 >
                   {isExpanded ? '접기' : '상세 보기'}
-                </button>
+                </BdButton>
               </div>
 
               <div className="mypage-contact-meta-grid">
@@ -524,13 +525,13 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
                   </div>
 
                   <div className="mypage-contact-detail-actions">
-                    <button
+                    <BdButton
                       className="mypage-contact-related-button"
                       type="button"
                       onClick={onOpenContact}
                     >
                       {'\uC774 \uBB38\uC758\uC640 \uAD00\uB828\uD574 \uCD94\uAC00 \uBB38\uC758\uD558\uAE30'}
-                    </button>
+                    </BdButton>
                   </div>
                 </div>
               )}
