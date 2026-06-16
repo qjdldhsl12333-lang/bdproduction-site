@@ -241,7 +241,7 @@ function savePortfolioItem(PDO $pdo, array $data, string $action): void
             )'
         );
 
-        $statement->execute([
+        executePortfolioStatement($statement, [
             ':title' => $title,
             ':client' => $client !== '' ? $client : null,
             ':category' => $category !== '' ? $category : null,
@@ -301,7 +301,7 @@ function savePortfolioItem(PDO $pdo, array $data, string $action): void
         WHERE id = :id'
     );
 
-    $statement->execute([
+    executePortfolioStatement($statement, [
         ':id' => $id,
         ':title' => $title,
         ':client' => $client !== '' ? $client : null,
@@ -352,7 +352,7 @@ function updatePortfolioVisibility(PDO $pdo, array $data, bool $nextActive): voi
         WHERE id = :id'
     );
 
-    $statement->execute([
+    executePortfolioStatement($statement, [
         ':id' => $id,
         ':is_active' => $nextActive ? 1 : 0,
     ]);
@@ -376,7 +376,7 @@ function deletePortfolioItem(PDO $pdo, array $data): void
     }
 
     $statement = $pdo->prepare('DELETE FROM portfolio_items WHERE id = :id');
-    $statement->execute([':id' => $id]);
+    executePortfolioStatement($statement, [':id' => $id]);
 
     sendJsonResponse(200, [
         'success' => true,
@@ -414,7 +414,7 @@ function getPortfolioItemById(PDO $pdo, int $id): ?array
         WHERE id = :id'
     );
 
-    $statement->execute([':id' => $id]);
+    executePortfolioStatement($statement, [':id' => $id]);
     $item = $statement->fetch();
 
     if (!$item) {
@@ -477,7 +477,7 @@ function ensurePortfolioColumn(PDO $pdo, string $columnName, string $definition)
           AND COLUMN_NAME = :column_name
     ');
 
-    $statement->execute([
+    executePortfolioStatement($statement, [
         ':table_name' => 'portfolio_items',
         ':column_name' => $columnName,
     ]);
@@ -623,7 +623,7 @@ function seedPortfolioItemsIfEmpty(PDO $pdo): void
     );
 
     foreach ($items as $item) {
-        $statement->execute([
+        executePortfolioStatement($statement, [
             ':title' => $item['title'],
             ':client' => $item['client'],
             ':category' => $item['category'],
