@@ -835,3 +835,74 @@
 }
 
 /* BDPRODUCTION home true fullscreen hero end */
+
+/* BDPRODUCTION hero center logo restore start */
+
+/*
+  Hero center logo restore
+  - 풀스크린 히어로 패치 후 영상 캔버스가 레이아웃 공간을 차지하면서
+    중앙 BDPRODUCTION 마크가 화면 아래로 밀리는 문제를 보정한다.
+  - 영상 캔버스는 absolute background layer로 복구한다.
+  - 중앙 마크는 영상 위 absolute overlay로 고정한다.
+*/
+.app-shell.is-home-page .hero-film-section {
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+.app-shell.is-home-page .hero-film-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-height: 100svh !important;
+  height: 100svh !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+}
+
+.app-shell.is-home-page .hero-film-screen {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.app-shell.is-home-page .hero-film-screen::after {
+  z-index: 3 !important;
+}
+
+.app-shell.is-home-page .hero-film-center-mark {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 20 !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  min-height: 100svh !important;
+  height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 24px !important;
+  pointer-events: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.app-shell.is-home-page .hero-film-center-mark .hero-logo-word,
+.app-shell.is-home-page .hero-film-center-mark .hero-logo-word *,
+.app-shell.is-home-page .hero-film-center-mark .hero-logo-subtitle-colorburst-clean,
+.app-shell.is-home-page .hero-film-center-mark .hero-logo-subtitle {
+  visibility: visible !important;
+}
+
+.app-shell.is-home-page .hero-logo-word-colorburst-clean {
+  position: relative !important;
+  z-index: 21 !important;
+}
+
+.app-shell.is-home-page .hero-logo-subtitle-colorburst-clean {
+  position: relative !important;
+  z-index: 21 !important;
+}
+
+/* BDPRODUCTION hero center logo restore end */
