@@ -17,7 +17,13 @@
 </IfModule>
 
 <IfModule mod_rewrite.c>
-  RewriteEngine On
+  # BDPRODUCTION canonical host redirect start
+RewriteEngine On
+
+# Force www.bdproduction.co.kr to bdproduction.co.kr
+RewriteCond %{HTTP_HOST} ^www\.bdproduction\.co\.kr$ [NC]
+RewriteRule ^(.*)$ https://bdproduction.co.kr/$1 [R=301,L]
+# BDPRODUCTION canonical host redirect end
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [L]
