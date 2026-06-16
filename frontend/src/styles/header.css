@@ -768,3 +768,49 @@
   }
 }
 /* End BDPRODUCTION brand logo final override */
+
+/* BDPRODUCTION home header scroll reveal start */
+
+/*
+  Home topbar reveal
+  - 홈 최상단에서는 탑바 전체 숨김
+  - 스크롤이 시작되면 기존 --hero-rail-progress 값을 따라 천천히 나타남
+  - is-hero-rail-ready 이후 클릭 가능
+*/
+.app-shell.is-home-page .cinematic-header {
+  opacity: var(--hero-rail-progress, 0) !important;
+  transform: translateX(-50%) translateY(-22px) !important;
+  pointer-events: none !important;
+  transition:
+    opacity 0.65s ease,
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s ease,
+    background-color 0.45s ease,
+    box-shadow 0.45s ease !important;
+}
+
+.app-shell.is-home-page.is-hero-rail-ready .cinematic-header {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+/* 메뉴가 열렸을 때는 조작 가능해야 하므로 강제 표시 */
+body.nav-open .app-shell.is-home-page .cinematic-header,
+body.menu-open .app-shell.is-home-page .cinematic-header,
+.app-shell.is-home-page.menu-open .cinematic-header,
+.app-shell.is-home-page.nav-open .cinematic-header {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+/* 홈 최상단에서는 내부 버튼/메뉴 개별 노출 보정도 함께 초기화 */
+.app-shell.is-home-page .cinematic-header .header-nav,
+.app-shell.is-home-page .cinematic-header .header-utility,
+.app-shell.is-home-page .cinematic-header .header-cta,
+.app-shell.is-home-page .cinematic-header .desktop-menu {
+  opacity: inherit !important;
+}
+
+/* BDPRODUCTION home header scroll reveal end */

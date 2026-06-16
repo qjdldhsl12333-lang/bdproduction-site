@@ -742,3 +742,96 @@
 }
 
 /* BDPRODUCTION hero remove side gap end */
+
+/* BDPRODUCTION home true fullscreen hero start */
+
+/*
+  Home Hero true fullscreen
+  - 헤더와 영상이 겹치지 않게 만들었던 상단 안전 여백 제거
+  - 좌우 사이드 레일 제거
+  - 영상은 화면 전체를 cover 방식으로 채움
+*/
+.app-shell.is-home-page .hero-film-section {
+  position: relative !important;
+  min-height: 100svh !important;
+  height: 100svh !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden !important;
+}
+
+.app-shell.is-home-page .hero-film-canvas {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 0 minmax(0, 1fr) 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-height: 100svh !important;
+  height: 100svh !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  padding: 0 !important;
+  background: #000 !important;
+  overflow: hidden !important;
+}
+
+.app-shell.is-home-page .hero-film-side,
+.app-shell.is-home-page .hero-film-side-left,
+.app-shell.is-home-page .hero-film-side-right {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+}
+
+.app-shell.is-home-page .hero-film-screen {
+  grid-column: 1 / -1 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-height: 100svh !important;
+  height: 100svh !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+
+.app-shell.is-home-page .hero-film-video {
+  display: block !important;
+  width: 100vw !important;
+  max-width: none !important;
+  min-width: 100vw !important;
+  height: 100svh !important;
+  min-height: 100svh !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  transform: scale(1.045) !important;
+  transform-origin: center center !important;
+}
+
+/* 중앙 로고/문구는 영상 위 중앙 유지 */
+.app-shell.is-home-page .hero-film-center-mark {
+  z-index: 8 !important;
+}
+
+/* 모바일은 세로 화면에서 과한 확대 방지 */
+@media (max-width: 980px) {
+  .app-shell.is-home-page .hero-film-section,
+  .app-shell.is-home-page .hero-film-canvas,
+  .app-shell.is-home-page .hero-film-screen {
+    min-height: 100svh !important;
+    height: 100svh !important;
+  }
+
+  .app-shell.is-home-page .hero-film-video {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    transform: none !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+}
+
+/* BDPRODUCTION home true fullscreen hero end */
