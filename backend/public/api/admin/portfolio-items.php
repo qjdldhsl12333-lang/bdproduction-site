@@ -28,25 +28,26 @@ function executePortfolioStatement(\PDOStatement $statement, array $params): boo
     $placeholderNames = array_values(array_unique($matches[0] ?? []));
 
     if ($placeholderNames === []) {
-        return $statement->execute($params);
+        return $statement->execute();
     }
 
-    $filteredParams = [];
-
     foreach ($placeholderNames as $placeholderName) {
+        $bareName = substr($placeholderName, 1);
+
         if (array_key_exists($placeholderName, $params)) {
-            $filteredParams[$placeholderName] = $params[$placeholderName];
+            $statement->bindValue($placeholderName, $params[$placeholderName]);
             continue;
         }
 
-        $bareName = substr($placeholderName, 1);
-
         if (array_key_exists($bareName, $params)) {
-            $filteredParams[$bareName] = $params[$bareName];
+            $statement->bindValue($placeholderName, $params[$bareName]);
+            continue;
         }
+
+        throw new RuntimeException('Missing SQL parameter: ' . $placeholderName);
     }
 
-    return $statement->execute($filteredParams);
+    return $statement->execute();
 }
 
 function isPortfolioDebugRequest(): bool
