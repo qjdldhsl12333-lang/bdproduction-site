@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="ko">
   <head>
+  <!-- BDPRODUCTION canonical host redirect start -->
+  <script>
+    (function () {
+      if (window.location.hostname === 'bdproduction.co.kr') {
+        window.location.replace(
+          'https://www.bdproduction.co.kr' +
+          window.location.pathname +
+          window.location.search +
+          window.location.hash
+        );
+      }
+    })();
+  </script>
+  <!-- BDPRODUCTION canonical host redirect end -->
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=20260612-brand-final" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png?v=20260612-brand-final" />
