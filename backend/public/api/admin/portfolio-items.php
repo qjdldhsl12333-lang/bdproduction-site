@@ -314,6 +314,7 @@ function savePortfolioItem(PDO $pdo, array $data, string $action): void
         ':source_url' => $sourceUrl !== '' ? $sourceUrl : null,
         ':production_team' => $productionTeam !== '' ? $productionTeam : null,
         ':production_role' => $productionRole !== '' ? $productionRole : null,
+        ':crew_names' => $crewNames !== '' ? $crewNames : null,
         ':work_year' => $workYear !== '' ? $workYear : null,
         ':badge' => $badge !== '' ? $badge : null,
         ':is_featured' => $isFeatured,
