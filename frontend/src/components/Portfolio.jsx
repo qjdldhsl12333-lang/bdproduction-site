@@ -192,7 +192,27 @@ export function usePortfolioVideos(options = {}) {
     let ignore = false;
     let pollTimerId = null;
     let lastLoadedAt = Date.now();
-    const pollIntervalMs = 30 * 60 * 1000;
+    const defaultPollIntervalMs = 30 * 60 * 1000;
+    const testPollSeconds = (() => {
+      if (typeof window === 'undefined') {
+        return 0;
+      }
+
+      const searchParams = new URLSearchParams(window.location.search);
+      const queryValue = searchParams.get('portfolioPollSeconds');
+      const storageValue = window.localStorage?.getItem('portfolioPollSeconds');
+      const parsedValue = Number(queryValue || storageValue || 0);
+
+      if (!Number.isFinite(parsedValue) || parsedValue <= 0) {
+        return 0;
+      }
+
+      return Math.min(Math.max(parsedValue, 5), 3600);
+    })();
+
+    const pollIntervalMs = testPollSeconds > 0
+      ? testPollSeconds * 1000
+      : defaultPollIntervalMs;
 
     const refreshPortfolioVideos = async () => {
       if (typeof document !== 'undefined' && document.visibilityState === 'hidden') {
