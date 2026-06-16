@@ -28,7 +28,7 @@ function executePortfolioStatement(\PDOStatement $statement, array $params): boo
     $placeholderNames = array_values(array_unique($matches[0] ?? []));
 
     if ($placeholderNames === []) {
-        return executePortfolioStatement($statement, $params);
+        return $statement->execute($params);
     }
 
     $filteredParams = [];
@@ -46,7 +46,7 @@ function executePortfolioStatement(\PDOStatement $statement, array $params): boo
         }
     }
 
-    return executePortfolioStatement($statement, $filteredParams);
+    return $statement->execute($filteredParams);
 }
 
 function isPortfolioDebugRequest(): bool
