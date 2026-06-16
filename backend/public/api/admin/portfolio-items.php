@@ -19,6 +19,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 requireAdminLogin();
 
+
+function executePortfolioStatement(\PDOStatement $statement, array $params): bool
+{
+    $query = $statement->queryString ?? '';
+
+    preg_match_all('/:[a-zA-Z_][a-zA-Z0-9_]*/', $query, $matches);
+    $placeholderNames = array_values(array_unique($matches[0] ?? []));
+
+    if ($placeholderNames === []) {
+        return executePortfolioStatement($statement, $params);
+    }
+
+    $filteredParams = [];
+
+    foreach ($placeholderNames as $placeholderName) {
+        if (array_key_exists($placeholderName, $params)) {
+            $filteredParams[$placeholderName] = $params[$placeholderName];
+            continue;
+        }
+
+        $bareName = substr($placeholderName, 1);
+
+        if (array_key_exists($bareName, $params)) {
+            $filteredParams[$bareName] = $params[$bareName];
+        }
+    }
+
+    return executePortfolioStatement($statement, $filteredParams);
+}
+
 function isPortfolioDebugRequest(): bool
 {
     return isset($_GET['debug']) && $_GET['debug'] === '1';
