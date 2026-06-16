@@ -573,3 +573,235 @@
   transform: none;
 }
 /* BDPRODUCTION button-system phase 3 auth variants end */
+
+/* BDPRODUCTION button-system collision guard start */
+/*
+  This block protects shared BdButton instances from legacy global button rules.
+  Keep this near the end of buttons.css until all old button selectors are removed.
+*/
+
+.bd-button[data-bd-button='true'] {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  text-decoration: none !important;
+}
+
+.bd-button[data-bd-button='true'],
+.bd-button[data-bd-button='true'] *,
+.bd-button[data-bd-button='true']::before,
+.bd-button[data-bd-button='true']::after {
+  box-sizing: border-box;
+}
+
+.bd-button[data-bd-button='true'] .bd-button__label,
+.bd-button[data-bd-button='true'] .bd-button__icon,
+.bd-button[data-bd-button='true'] .bd-button__arrow,
+.bd-button[data-bd-button='true'] svg {
+  color: currentColor !important;
+}
+
+.bd-button[data-bd-button='true'] svg {
+  stroke: currentColor;
+}
+
+/* Header / topbar */
+.cinematic-header .bd-button--header-cta {
+  border-color: rgba(149, 255, 0, 0.72) !important;
+  background: #95ff00 !important;
+  color: #020407 !important;
+}
+
+.cinematic-header .bd-button--header-cta:hover,
+.cinematic-header .bd-button--header-cta:focus-visible {
+  background: #a8ff2b !important;
+  color: #020407 !important;
+}
+
+.cinematic-header .bd-button--header-icon,
+.cinematic-header .bd-button--header-menu {
+  color: #09637e !important;
+}
+
+.cinematic-header .bd-button--header-icon:hover,
+.cinematic-header .bd-button--header-icon:focus-visible,
+.cinematic-header .bd-button--header-menu:hover,
+.cinematic-header .bd-button--header-menu:focus-visible {
+  color: #020407 !important;
+}
+
+.app-shell.is-home-page .cinematic-header .bd-button--header-icon,
+.app-shell.is-home-page .cinematic-header .bd-button--header-menu {
+  color: #ebf4f6 !important;
+}
+
+.app-shell.is-home-page .cinematic-header .bd-button--header-icon:hover,
+.app-shell.is-home-page .cinematic-header .bd-button--header-icon:focus-visible,
+.app-shell.is-home-page .cinematic-header .bd-button--header-menu:hover,
+.app-shell.is-home-page .cinematic-header .bd-button--header-menu:focus-visible {
+  color: #95ff00 !important;
+}
+
+/* Drawer buttons */
+.cinematic-drawer-actions .bd-button--drawer {
+  background: rgba(255, 255, 255, 0.055) !important;
+  color: rgba(235, 244, 246, 0.88) !important;
+}
+
+.cinematic-drawer-actions .bd-button--drawer:hover,
+.cinematic-drawer-actions .bd-button--drawer:focus-visible {
+  background: rgba(149, 255, 0, 0.12) !important;
+  color: #ffffff !important;
+}
+
+.cinematic-drawer-actions .bd-button--drawer-primary {
+  background: #95ff00 !important;
+  color: #020407 !important;
+}
+
+.cinematic-drawer-actions .bd-button--drawer-primary:hover,
+.cinematic-drawer-actions .bd-button--drawer-primary:focus-visible {
+  background: #a8ff2b !important;
+  color: #020407 !important;
+}
+
+/* Floating contact */
+.floating-contact-banner .bd-button--floating-contact {
+  background: #95ff00 !important;
+  color: #020407 !important;
+}
+
+.floating-contact-banner .bd-button--floating-contact:hover,
+.floating-contact-banner .bd-button--floating-contact:focus-visible {
+  background: #a8ff2b !important;
+  color: #020407 !important;
+}
+
+/* Contact modal / form */
+.contact-form .contact-form-submit,
+.contact-form button.contact-form-submit[type='submit'] {
+  width: 100% !important;
+  border-color: rgba(149, 255, 0, 0.86) !important;
+  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
+  color: #020407 !important;
+}
+
+.contact-form .contact-form-submit:hover,
+.contact-form .contact-form-submit:focus-visible,
+.contact-form button.contact-form-submit[type='submit']:not(:disabled):hover {
+  background: linear-gradient(135deg, #a8ff2b 0%, #c7e851 100%) !important;
+  color: #020407 !important;
+}
+
+.contact-form .contact-form-submit:disabled {
+  color: #020407 !important;
+}
+
+.contact-form .bd-button--contact-inline {
+  color: var(--muted-strong) !important;
+}
+
+.contact-form .bd-button--contact-inline:hover,
+.contact-form .bd-button--contact-inline:focus-visible {
+  color: #95ff00 !important;
+}
+
+.lead-modal-footer .bd-button--modal-footer {
+  color: var(--text) !important;
+}
+
+.lead-modal-footer .bd-button--modal-footer:hover,
+.lead-modal-footer .bd-button--modal-footer:focus-visible {
+  color: #95ff00 !important;
+}
+
+/* Modal icon buttons */
+.lead-modal .bd-button--modal-icon,
+.auth-modal .bd-button--modal-icon,
+.cinematic-drawer-head .bd-button--modal-icon {
+  color: var(--text, #f5f7ee) !important;
+}
+
+.lead-modal .bd-button--modal-icon:hover,
+.lead-modal .bd-button--modal-icon:focus-visible,
+.auth-modal .bd-button--modal-icon:hover,
+.auth-modal .bd-button--modal-icon:focus-visible,
+.cinematic-drawer-head .bd-button--modal-icon:hover,
+.cinematic-drawer-head .bd-button--modal-icon:focus-visible {
+  color: #95ff00 !important;
+}
+
+/* Auth tabs */
+.auth-modal .auth-tabs .bd-button--auth-tab {
+  border-color: rgba(166, 228, 219, 0.14) !important;
+  background: rgba(5, 14, 17, 0.92) !important;
+  color: rgba(245, 247, 238, 0.78) !important;
+}
+
+.auth-modal .auth-tabs .bd-button--auth-tab:hover:not(.is-active),
+.auth-modal .auth-tabs .bd-button--auth-tab:focus-visible:not(.is-active) {
+  border-color: rgba(149, 255, 0, 0.34) !important;
+  background: rgba(5, 14, 17, 0.96) !important;
+  color: #f5f7ee !important;
+}
+
+.auth-modal .auth-tabs .bd-button--auth-tab.is-active {
+  border-color: rgba(149, 255, 0, 0.82) !important;
+  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
+  color: #020407 !important;
+}
+
+.auth-modal .auth-tabs .bd-button--auth-tab.is-active .bd-button__label,
+.auth-modal .auth-tabs .bd-button--auth-tab.is-active .bd-button__icon,
+.auth-modal .auth-tabs .bd-button--auth-tab.is-active svg {
+  color: #020407 !important;
+}
+
+/* Social auth providers */
+.auth-modal .bd-button--social-auth {
+  color: #111111 !important;
+}
+
+.auth-modal .bd-button--social-auth.provider-kakao {
+  background: #fee500 !important;
+  color: #191600 !important;
+}
+
+.auth-modal .bd-button--social-auth.provider-google {
+  border: 1px solid rgba(255, 255, 255, 0.72) !important;
+  background: #ffffff !important;
+  color: #202124 !important;
+}
+
+.auth-modal .bd-button--social-auth.provider-naver {
+  background: #03c75a !important;
+  color: #ffffff !important;
+}
+
+.auth-modal .bd-button--social-auth.provider-kakao .bd-button__label,
+.auth-modal .bd-button--social-auth.provider-google .bd-button__label,
+.auth-modal .bd-button--social-auth.provider-naver .bd-button__label {
+  color: currentColor !important;
+}
+
+/* Auth submit */
+.auth-modal .auth-submit-button,
+.auth-modal .bd-button--auth-submit {
+  border-color: rgba(149, 255, 0, 0.86) !important;
+  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
+  color: #020407 !important;
+}
+
+.auth-modal .auth-submit-button:hover,
+.auth-modal .auth-submit-button:focus-visible,
+.auth-modal .bd-button--auth-submit:hover,
+.auth-modal .bd-button--auth-submit:focus-visible {
+  border-color: rgba(149, 255, 0, 0.96) !important;
+  background: linear-gradient(135deg, #a8ff2b 0%, #c7e851 100%) !important;
+  color: #020407 !important;
+}
+
+.auth-modal .auth-submit-button:disabled,
+.auth-modal .bd-button--auth-submit:disabled {
+  color: #020407 !important;
+}
+/* BDPRODUCTION button-system collision guard end */

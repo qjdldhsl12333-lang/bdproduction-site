@@ -95,6 +95,8 @@ const BdButton = forwardRef(function BdButton(
     ...rest,
     ref,
     className: classes,
+    'data-bd-button': 'true',
+    'data-bd-button-variant': variant,
   };
 
   if (Component === 'button') {
