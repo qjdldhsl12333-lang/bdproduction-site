@@ -681,3 +681,64 @@
     display: none !important;
   }
 }
+
+/* BDPRODUCTION hero remove side gap start */
+
+/* PC Hero: 좌우 사이드 공백 제거 + 영상 영역 전체 확장 */
+@media (min-width: 981px) {
+  .hero-film-canvas {
+    grid-template-columns: 0 minmax(0, 1fr) 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    background: #000 !important;
+  }
+
+  .hero-film-side,
+  .hero-film-side-left,
+  .hero-film-side-right {
+    display: none !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+  }
+
+  .hero-film-screen {
+    grid-column: 1 / -1 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-height: 100svh !important;
+    height: 100svh !important;
+  }
+
+  .hero-film-video {
+    width: 100vw !important;
+    max-width: none !important;
+    min-width: 100vw !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    transform: scale(1.045) !important;
+    transform-origin: center center !important;
+  }
+
+  .hero-film-screen::after {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.12),
+      transparent 9%,
+      transparent 91%,
+      rgba(0, 0, 0, 0.12)
+    ) !important;
+  }
+}
+
+/* 모바일은 기존 16:9/세로 구도 유지 */
+@media (max-width: 980px) {
+  .hero-film-side,
+  .hero-film-side-left,
+  .hero-film-side-right {
+    display: none !important;
+  }
+}
+
+/* BDPRODUCTION hero remove side gap end */

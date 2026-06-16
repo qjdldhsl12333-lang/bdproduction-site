@@ -6,7 +6,7 @@ function Hero() {
 
         <div className="hero-film-screen">
           <video className="hero-film-video" autoPlay muted loop playsInline poster="/BDPRODUCTION.webp">
-            <source src="/videos/bd-showreel.mp4" type="video/mp4" />
+            <source src="/videos/bd-showreel-v2.mp4?v=20260616" type="video/mp4" />
           </video>
           <div className="hero-film-fallback">BDPRODUCTION</div>
         </div>
