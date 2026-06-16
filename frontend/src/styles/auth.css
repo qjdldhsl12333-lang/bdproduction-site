@@ -35,50 +35,12 @@
   color: rgba(166, 228, 219, 0.84) !important;
 }
 
-.auth-modal .lead-modal-close {
-  border-color: rgba(166, 228, 219, 0.16) !important;
-  background: rgba(245, 247, 238, 0.08) !important;
-  color: rgba(245, 247, 238, 0.86) !important;
-}
-
-.auth-modal .lead-modal-close:hover {
-  border-color: rgba(149, 255, 0, 0.55) !important;
-  background: rgba(149, 255, 0, 0.12) !important;
-  color: #95ff00 !important;
-}
-
 .auth-modal .auth-tabs {
   background: rgba(3, 6, 7, 0.72) !important;
 }
 
-.auth-modal .auth-tabs button {
-  border: 1px solid rgba(166, 228, 219, 0.14) !important;
-  background: rgba(5, 14, 17, 0.92) !important;
-  color: rgba(245, 247, 238, 0.78) !important;
-  box-shadow: none !important;
-}
-
-.auth-modal .auth-tabs button:hover {
-  border-color: rgba(149, 255, 0, 0.34) !important;
-  color: #f5f7ee !important;
-}
-
-.auth-modal .auth-tabs button.is-active {
-  border-color: rgba(149, 255, 0, 0.82) !important;
-  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
-  color: #020407 !important;
-  box-shadow: 0 14px 38px rgba(149, 255, 0, 0.18) !important;
-}
-
 .auth-modal .social-auth-grid {
   background: rgba(3, 6, 7, 0.72) !important;
-}
-
-.auth-modal .social-auth-button {
-  opacity: 1 !important;
-  border: 0 !important;
-  color: #111 !important;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22) !important;
 }
 
 .auth-modal .provider-kakao {
@@ -143,23 +105,6 @@
   accent-color: #95ff00;
 }
 
-.auth-modal .primary-button.form-submit {
-  border-color: rgba(149, 255, 0, 0.86) !important;
-  background: linear-gradient(135deg, #95ff00 0%, #b6db3b 100%) !important;
-  color: #020407 !important;
-  box-shadow: 0 16px 46px rgba(149, 255, 0, 0.2) !important;
-}
-
-.auth-modal .primary-button.form-submit:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 22px 58px rgba(149, 255, 0, 0.28) !important;
-}
-
-.auth-modal .primary-button.form-submit:disabled {
-  cursor: not-allowed;
-  opacity: 0.62;
-}
-
 .auth-modal .auth-message {
   border-color: rgba(166, 228, 219, 0.16) !important;
   background: rgba(5, 14, 17, 0.92) !important;
@@ -189,10 +134,6 @@
     border-radius: 22px !important;
   }
 
-  .auth-modal .auth-tabs button,
-  .auth-modal .social-auth-button {
-    min-height: 42px;
-  }
 }
 
 /* Auth modal neon dark fix end */

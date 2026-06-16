@@ -1,6 +1,7 @@
 import { apiUrl } from '../config/api.js';
-import { CheckCircle2, LogIn, ShieldCheck, UserPlus, X } from 'lucide-react';
+import { CheckCircle2, LogIn, ShieldCheck, UserPlus } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
+import BdButton from './ui/BdButton.jsx';
 
 const initialRegisterForm = {
   name: '',
@@ -206,34 +207,45 @@ function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
               프로젝트 진행 현황과 시사 링크, 결제 내역을 한 곳에서 확인할 수 있습니다.
             </p>
           </div>
-          <button className="lead-modal-close" type="button" onClick={onClose} aria-label="닫기">
-            <X size={22} />
-          </button>
+          <BdButton
+            variant="modal-icon"
+            type="button"
+            icon="close"
+            iconOnly
+            onClick={onClose}
+            aria-label="닫기"
+          >
+            닫기
+          </BdButton>
         </div>
 
         <div className="auth-tabs">
-          <button
+          <BdButton
+            variant="auth-tab"
             type="button"
             className={mode === 'login' ? 'is-active' : ''}
+            iconPosition="start"
+            iconNode={<LogIn size={17} />}
             onClick={() => {
               setMode('login');
               setMessage({ type: '', text: '' });
             }}
           >
-            <LogIn size={17} />
             로그인
-          </button>
-          <button
+          </BdButton>
+          <BdButton
+            variant="auth-tab"
             type="button"
             className={mode === 'register' ? 'is-active' : ''}
+            iconPosition="start"
+            iconNode={<UserPlus size={17} />}
             onClick={() => {
               setMode('register');
               setMessage({ type: '', text: '' });
             }}
           >
-            <UserPlus size={17} />
             회원가입
-          </button>
+          </BdButton>
         </div>
 
         {message.text && (
@@ -246,14 +258,15 @@ function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
 
         <div className="social-auth-grid">
           {socialProviders.map((provider) => (
-            <button
+            <BdButton
               key={provider.key}
-              className={`social-auth-button provider-${provider.className}`}
+              className={`provider-${provider.className}`}
+              variant="social-auth"
               type="button"
               onClick={() => handleSocialClick(provider)}
             >
               {provider.label}로 계속하기
-            </button>
+            </BdButton>
           ))}
         </div>
 
@@ -344,10 +357,16 @@ function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
               <span>상담 진행을 위한 개인정보 수집에 동의합니다.</span>
             </label>
 
-            <button className="primary-button form-submit" type="submit" disabled={submitting}>
+            <BdButton
+              className="auth-submit-button"
+              variant="auth-submit"
+              size="lg"
+              type="submit"
+              iconNode={<UserPlus size={18} />}
+              disabled={submitting}
+            >
               {submitting ? '가입 처리 중...' : '회원가입'}
-              <UserPlus size={18} />
-            </button>
+            </BdButton>
           </form>
         ) : (
           <form className="auth-form" onSubmit={submitLogin}>
@@ -375,10 +394,16 @@ function AuthModal({ open, initialMode = 'login', onClose, onAuthSuccess }) {
               />
             </label>
 
-            <button className="primary-button form-submit" type="submit" disabled={submitting}>
+            <BdButton
+              className="auth-submit-button"
+              variant="auth-submit"
+              size="lg"
+              type="submit"
+              iconNode={<LogIn size={18} />}
+              disabled={submitting}
+            >
               {submitting ? '로그인 중...' : '로그인'}
-              <LogIn size={18} />
-            </button>
+            </BdButton>
           </form>
         )}
       </section>
