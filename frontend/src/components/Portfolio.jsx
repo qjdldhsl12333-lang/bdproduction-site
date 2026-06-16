@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ExternalLink, Loader2, Play, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import BdButton from './ui/BdButton.jsx';
 import { apiUrl } from '../config/api.js';
 import { portfolioItems } from '../data/portfolio.js';
 
@@ -367,9 +368,17 @@ export function PortfolioVideoModal({ selectedVideo, onClose }) {
                 <h3>{selectedVideo.title}</h3>
               </div>
 
-              <button type="button" onClick={onClose}>
-                <X size={20} />
-              </button>
+              <BdButton
+                type="button"
+                className="youtube-modal-close"
+                variant="dark"
+                icon="close"
+                iconOnly
+                onClick={onClose}
+                aria-label="영상 모달 닫기"
+              >
+                닫기
+              </BdButton>
             </div>
 
             <div className="youtube-modal-player">
@@ -389,15 +398,18 @@ export function PortfolioVideoModal({ selectedVideo, onClose }) {
             </div>
 
             {selectedVideo.watch_url && (
-              <a
+              <BdButton
+                as="a"
                 className="youtube-modal-link"
                 href={selectedVideo.watch_url}
                 target="_blank"
                 rel="noreferrer"
+                variant="ghost"
+                size="lg"
+                icon="external"
               >
                 YouTube에서 보기
-                <ExternalLink size={16} />
-              </a>
+              </BdButton>
             )}
           </motion.div>
         </motion.div>
@@ -732,29 +744,21 @@ function Portfolio() {
           <h2>FEATURED WORKS</h2>
         </div>
         <div className="portfolio-section-actions">
-          <motion.a
+          <BdButton
+            as={motion.a}
             className="portfolio-more-button"
             href="/portfolio"
+            variant="ghost"
+            size="lg"
+            icon="arrow"
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.42 }}
             transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
             aria-label="more portfolio"
           >
-            <span className="portfolio-more-label">more portfolio</span>
-            <span className="portfolio-more-arrow-track" aria-hidden="true">
-              <span className="portfolio-more-arrow portfolio-more-arrow-hover">
-                <svg viewBox="0 0 24 25" width="24" height="25" fill="none">
-                  <path fill="currentColor" d="m15.335 13.332-3.661 3.74a.983.983 0 1 0 1.405 1.376l5.136-5.246c.38-.388.38-1.018 0-1.406L13.079 6.55a.983.983 0 1 0-1.405 1.376l3.66 3.74h-8.5a.833.833 0 0 0 0 1.666z" />
-                </svg>
-              </span>
-              <span className="portfolio-more-arrow portfolio-more-arrow-idle">
-                <svg viewBox="0 0 24 25" width="24" height="25" fill="none">
-                  <path fill="currentColor" d="m15.335 13.332-3.661 3.74a.983.983 0 1 0 1.405 1.376l5.136-5.246c.38-.388.38-1.018 0-1.406L13.079 6.55a.983.983 0 1 0-1.405 1.376l3.66 3.74h-8.5a.833.833 0 0 0 0 1.666z" />
-                </svg>
-              </span>
-            </span>
-          </motion.a>
+            more portfolio
+          </BdButton>
         </div>
       </div>
 

@@ -10,6 +10,7 @@ import './styles/studio.css';
 import './styles/contact.css';
 import './styles/auth.css';
 import './styles/portfolio.css';
+import './styles/buttons.css';
 import './styles/motion.css';
 import './styles/admin-core.css';
 import './styles/admin.css';
