@@ -794,7 +794,7 @@ function AdminContacts() {
               새로고침
             </BdButton>
 
-            <BdButton variant="admin-secondary" className="admin-logout-button" type="button" onClick={logoutAdmin}>
+            <BdButton variant="admin-danger" type="button" onClick={logoutAdmin}>
               로그아웃
             </BdButton>
           </div>
