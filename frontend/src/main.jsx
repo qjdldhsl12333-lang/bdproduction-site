@@ -1,7 +1,7 @@
 // BDPRODUCTION canonical host redirect start
-if (typeof window !== 'undefined' && window.location.hostname === 'www.bdproduction.co.kr') {
+if (typeof window !== 'undefined' && window.location.hostname === 'bdproduction.co.kr') {
   const { pathname, search, hash } = window.location;
-  window.location.replace(`https://bdproduction.co.kr${pathname}${search}${hash}`);
+  window.location.replace(`https://www.bdproduction.co.kr${pathname}${search}${hash}`);
 }
 // BDPRODUCTION canonical host redirect end
 

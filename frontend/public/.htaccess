@@ -2,8 +2,8 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  RewriteCond %{HTTP_HOST} ^www\.bdproduction\.co\.kr$ [NC]
-  RewriteRule ^(.*)$ https://bdproduction.co.kr/$1 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^bdproduction\.co\.kr$ [NC]
+  RewriteRule ^(.*)$ https://www.bdproduction.co.kr/$1 [R=301,L]
 </IfModule>
 
 <IfModule mod_headers.c>
