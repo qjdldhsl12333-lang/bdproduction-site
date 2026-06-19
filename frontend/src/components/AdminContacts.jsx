@@ -750,7 +750,7 @@ function AdminContacts() {
         </BdButton>
 
         {adminActionMenuOpen && (
-          <button
+          <BdButton variant="admin-secondary"
             className="admin-menu-scrim"
             type="button"
             aria-label="관리자 메뉴 닫기"
@@ -770,14 +770,14 @@ function AdminContacts() {
               포트폴리오 관리
             </a>
 
-            <button
+            <BdButton variant="admin-secondary"
               className={`admin-archive-toggle ${archiveMode ? 'is-active' : ''}`}
               type="button"
               onClick={toggleArchiveMode}
             >
               <Archive size={17} />
               {archiveMode ? '기본 목록 보기' : '보관함 보기'}
-            </button>
+            </BdButton>
 
             <BdButton variant="admin-secondary"
               className="admin-refresh-button"

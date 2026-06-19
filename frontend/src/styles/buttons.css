@@ -895,3 +895,22 @@
   color: inherit;
 }
 /* BDPRODUCTION button-system phase 4C portfolio variants end */
+
+/* BDPRODUCTION button-system drawer scrim variant start */
+.bd-button--drawer-scrim {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+.bd-button--drawer-scrim:hover,
+.bd-button--drawer-scrim:focus-visible {
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+/* BDPRODUCTION button-system drawer scrim variant end */

@@ -129,7 +129,7 @@ function Header({ onOpenContact, onOpenAuth }) {
         </BdButton>
       </header>
 
-      {opened && <button className="cinematic-drawer-scrim" type="button" aria-label="메뉴 닫기" onClick={closeMenu} />}
+      {opened && <BdButton variant="drawer-scrim" className="cinematic-drawer-scrim" type="button" aria-label="메뉴 닫기" onClick={closeMenu}  />}
 
       <aside className={`cinematic-drawer ${opened ? 'is-open' : ''}`} aria-label="전체 메뉴">
         <div className="cinematic-drawer-head">
