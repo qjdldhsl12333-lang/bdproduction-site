@@ -120,7 +120,7 @@ function PortfolioPage() {
                 <BdButton
                   key={category}
                   type="button"
-                  variant="portfolio-filter" className={`portfolio-folder-button ${selectedCategory === category ? 'is-active' : ''}`}
+                  variant="portfolio-filter" className={selectedCategory === category ? 'is-active' : undefined}
                   onClick={() => setSelectedCategory(category)}
                 >
                   <span>
