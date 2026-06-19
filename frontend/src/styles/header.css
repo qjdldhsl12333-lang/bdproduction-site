@@ -726,3 +726,45 @@ body.menu-open .app-shell.is-home-page .cinematic-header,
   }
 }
 /* BDPRODUCTION cinematic precise brand balance end */
+
+/* BDPRODUCTION header logo size refine start */
+.header-brand,
+.site-brand,
+.header-logo-link {
+  align-items: center;
+}
+
+.header-brand img,
+.site-brand img,
+.header-logo-link img,
+.header-brand .brand-logo-image,
+.site-brand .brand-logo-image,
+.header-logo-link .brand-logo-image,
+.header-brand .brand-symbol,
+.site-brand .brand-symbol,
+.header-logo-link .brand-symbol {
+  width: clamp(28px, 1.8vw, 32px) !important;
+  height: clamp(28px, 1.8vw, 32px) !important;
+  min-width: clamp(28px, 1.8vw, 32px) !important;
+  min-height: clamp(28px, 1.8vw, 32px) !important;
+  object-fit: contain !important;
+  flex: 0 0 auto !important;
+}
+
+@media (max-width: 768px) {
+  .header-brand img,
+  .site-brand img,
+  .header-logo-link img,
+  .header-brand .brand-logo-image,
+  .site-brand .brand-logo-image,
+  .header-logo-link .brand-logo-image,
+  .header-brand .brand-symbol,
+  .site-brand .brand-symbol,
+  .header-logo-link .brand-symbol {
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+  }
+}
+/* BDPRODUCTION header logo size refine end */
