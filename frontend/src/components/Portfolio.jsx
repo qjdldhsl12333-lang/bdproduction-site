@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ExternalLink, Loader2, Play, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import BdButton from './ui/BdButton.jsx';
 import { apiUrl } from '../config/api.js';
 import { portfolioItems } from '../data/portfolio.js';
+import BdButton from './ui/BdButton.jsx';
 
 function normalizeBoolean(value, fallback = false) {
   if (value === true || value === 1 || value === '1' || value === 'true') {
@@ -315,7 +315,7 @@ export function PortfolioVideoGrid({ videos, onSelectVideo }) {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.55, delay: index * 0.05 }}
         >
-          <button
+          <BdButton variant="portfolio-card"
             type="button"
             className="portfolio-youtube-thumb"
             onClick={() => onSelectVideo(video)}
@@ -331,7 +331,7 @@ export function PortfolioVideoGrid({ videos, onSelectVideo }) {
             </span>
 
             {video.is_new && <span className="portfolio-new-badge">NEW</span>}
-          </button>
+          </BdButton>
 
           <div className="portfolio-youtube-body">
             <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
@@ -510,13 +510,13 @@ function PortfolioShowcaseInfo({ video }) {
           </div>
         </div>
 
-        <button
+        <BdButton variant="portfolio-card"
           type="button"
           className="portfolio-showcase-play"
         >
           PLAY FILM
           <Play size={17} />
-        </button>
+        </BdButton>
       </motion.aside>
     </AnimatePresence>
   );
@@ -542,7 +542,7 @@ function PortfolioDesktopShowcase({ videos, onSelectVideo }) {
             onMouseEnter={() => setHoveredVideo(video)}
             onFocus={() => setHoveredVideo(video)}
           >
-            <button
+            <BdButton variant="portfolio-card"
               type="button"
               className="portfolio-youtube-thumb"
               onClick={() => onSelectVideo(video)}
@@ -558,7 +558,7 @@ function PortfolioDesktopShowcase({ videos, onSelectVideo }) {
               </span>
 
               {video.is_new && <span className="portfolio-new-badge">NEW</span>}
-            </button>
+            </BdButton>
 
             <div className="portfolio-youtube-body">
               <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
@@ -648,7 +648,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
               className={`portfolio-mobile-card ${isActive ? 'is-active' : ''} ${isPlaying ? 'is-playing' : ''}`}
               key={videoKey}
             >
-              <button
+              <BdButton variant="portfolio-filter"
                 type="button"
                 className="portfolio-mobile-media"
                 onClick={() => {
@@ -682,7 +682,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
                     </span>
                   </>
                 )}
-              </button>
+              </BdButton>
 
               <div className="portfolio-mobile-overlay">
                 <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
@@ -696,14 +696,14 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
       </div>
 
       <div className="portfolio-mobile-controls">
-        <button
+        <BdButton variant="portfolio-filter"
           type="button"
           onClick={() => scrollToIndex(activeIndex - 1)}
           disabled={activeIndex <= 0}
           aria-label="previous portfolio"
         >
           ?
-        </button>
+        </BdButton>
 
         <div className="portfolio-mobile-dots" aria-label="portfolio slider pages">
           {videos.map((video, index) => (

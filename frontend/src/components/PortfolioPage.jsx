@@ -150,7 +150,7 @@ function PortfolioPage() {
               <ul className="portfolio-compact-list">
                 {filteredVideos.map((video) => (
                   <li className="portfolio-compact-item" key={resolveVideoKey(video)}>
-                    <button
+                    <BdButton variant="modal-icon"
                       type="button"
                       className={`portfolio-compact-thumb ${resolveVideoThumbnail(video) ? 'has-image' : ''}`}
                       onClick={() => setSelectedVideo(video)}
@@ -177,7 +177,7 @@ function PortfolioPage() {
                       <span className="portfolio-compact-play-icon">
                         <Play size={16} />
                       </span>
-                    </button>
+                    </BdButton>
 
                     <div className="portfolio-compact-body">
                       <div className="portfolio-compact-meta">
@@ -191,9 +191,9 @@ function PortfolioPage() {
 
                       <div className="portfolio-compact-footer">
                         <span>{video.client || video.channel_title || 'BDPRODUCTION'}</span>
-                        <button type="button" onClick={() => setSelectedVideo(video)}>
+                        <BdButton variant="portfolio-card" type="button" onClick={() => setSelectedVideo(video)}>
                           보기
-                        </button>
+                        </BdButton>
                       </div>
                     </div>
                   </li>
