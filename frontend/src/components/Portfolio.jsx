@@ -707,7 +707,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
 
         <div className="portfolio-mobile-dots" aria-label="portfolio slider pages">
           {videos.map((video, index) => (
-            <button
+            <BdButton variant="portfolio-filter"
               key={getVideoKey(video)}
               type="button"
               className={activeIndex === index ? 'is-active' : ''}
@@ -717,14 +717,14 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
           ))}
         </div>
 
-        <button
+        <BdButton variant="portfolio-filter"
           type="button"
           onClick={() => scrollToIndex(activeIndex + 1)}
           disabled={activeIndex >= videos.length - 1}
           aria-label="next portfolio"
         >
           ?
-        </button>
+        </BdButton>
       </div>
     </div>
   );
