@@ -695,7 +695,7 @@ function AdminContacts() {
                 />
               </label>
 
-              <BdButton variant="admin-primary" className="primary-button" type="submit" disabled={unlocking || unlockCode.length < 6}>
+              <BdButton variant="admin-primary" type="submit" disabled={unlocking || unlockCode.length < 6}>
                 {unlocking ? '확인 중...' : '잠금 해제'}
               </BdButton>
 
@@ -722,7 +722,7 @@ function AdminContacts() {
                 />
               </label>
 
-              <BdButton variant="admin-primary" className="primary-button" type="submit" disabled={loggingIn}>
+              <BdButton variant="admin-primary" type="submit" disabled={loggingIn}>
                 {loggingIn ? '로그인 중...' : '관리자 로그인'}
               </BdButton>
             </form>
