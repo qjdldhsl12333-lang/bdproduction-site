@@ -43,10 +43,6 @@
   # BDPRODUCTION canonical host redirect start
   RewriteEngine On
 
-  # Force bdproduction.co.kr to www.bdproduction.co.kr
-  RewriteCond %{HTTP_HOST} ^bdproduction\.co\.kr$ [NC]
-  RewriteRule ^(.*)$ https://www.bdproduction.co.kr/$1 [R=301,L]
-# BDPRODUCTION canonical host redirect end
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [L]

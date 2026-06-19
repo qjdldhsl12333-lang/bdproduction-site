@@ -582,3 +582,22 @@ body.menu-open .app-shell.is-home-page .cinematic-header,
   color: #ffffff;
 }
 /* BDPRODUCTION button-system header bridge end */
+
+/* BDPRODUCTION final brand image header patch start */
+.cinematic-brand .cinematic-brand-mark {
+  overflow: hidden;
+}
+
+.cinematic-brand .cinematic-brand-mark::before,
+.cinematic-brand .cinematic-brand-mark::after {
+  content: none !important;
+  display: none !important;
+}
+
+.cinematic-brand .cinematic-brand-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* BDPRODUCTION final brand image header patch end */

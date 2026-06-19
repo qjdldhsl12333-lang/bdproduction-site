@@ -63,7 +63,7 @@ function Header({ onOpenContact, onOpenAuth }) {
       <header className="cinematic-header" aria-label="BDPRODUCTION 상단 메뉴">
         <a className="cinematic-brand" href="/#hero" onClick={closeMenu} aria-label="홈으로 이동">
           <span className="cinematic-brand-mark">
-            <img src={brandSymbolSrc} alt="" aria-hidden="true" />
+            <img src="/brand/bdproduction-logo-symbol-v20260619.png" alt="" aria-hidden="true" />
           </span>
           <strong>BDPRODUCTION</strong>
         </a>
