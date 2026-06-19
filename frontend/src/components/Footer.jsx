@@ -1,9 +1,9 @@
 function Footer() {
   return (
-    <footer className="site-footer" aria-label="BDPRODUCTION footer">
+    <footer className="site-footer" aria-label="BD Production footer">
       <div className="footer-inner">
         <div className="footer-brand-block">
-          <strong className="footer-logo">BDPRODUCTION</strong>
+          <strong className="footer-logo">BD Production</strong>
           <p className="footer-tagline">
             기술과 예술의 경계에서 브랜드의 장면을 설계합니다.
           </p>
@@ -12,7 +12,7 @@ function Footer() {
         <dl className="footer-info" aria-label="회사 정보">
           <div>
             <dt>Company</dt>
-            <dd>BDPRODUCTION / BD기획</dd>
+            <dd>BD Production / BD기획</dd>
           </div>
           <div>
             <dt>CEO</dt>
@@ -42,7 +42,7 @@ function Footer() {
       </p>
 
       <div className="footer-bottom">
-        <span>Copyright © 2026 BDPRODUCTION. All rights reserved.</span>
+        <span>Copyright © 2026 BD Production. All rights reserved.</span>
         <span>Broadcast & Digital Media Studio</span>
       </div>
     </footer>

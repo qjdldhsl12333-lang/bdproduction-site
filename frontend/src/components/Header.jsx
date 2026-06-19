@@ -20,7 +20,7 @@ const navItems = [
 
 const desktopNavItems = navItems.filter((item) => item.label !== '홈');
 
-const brandSymbolSrc = '/favicon.png?v=20260612-brand-final';
+const brandSymbolSrc = '/brand/bdproduction-logo-symbol-v20260619.png';
 
 function Header({ onOpenContact, onOpenAuth }) {
   const [opened, setOpened] = useState(false);
@@ -60,12 +60,12 @@ function Header({ onOpenContact, onOpenAuth }) {
 
   return (
     <>
-      <header className="cinematic-header" aria-label="BDPRODUCTION 상단 메뉴">
+      <header className="cinematic-header" aria-label="BD Production 상단 메뉴">
         <a className="cinematic-brand" href="/#hero" onClick={closeMenu} aria-label="홈으로 이동">
           <span className="cinematic-brand-mark">
             <img src="/brand/bdproduction-logo-symbol-v20260619.png" alt="" aria-hidden="true" />
           </span>
-          <strong>BDPRODUCTION</strong>
+          <strong>BD Production</strong>
         </a>
 
         <nav className="cinematic-desktop-nav" aria-label="주요 메뉴">
@@ -135,7 +135,7 @@ function Header({ onOpenContact, onOpenAuth }) {
         <div className="cinematic-drawer-head">
           <div className="cinematic-drawer-brand">
             <img src={brandSymbolSrc} alt="" aria-hidden="true" />
-            <span>BDPRODUCTION</span>
+            <span>BD Production</span>
           </div>
           <BdButton
             variant="modal-icon"

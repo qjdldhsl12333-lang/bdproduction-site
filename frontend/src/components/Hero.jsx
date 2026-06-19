@@ -1,6 +1,6 @@
 function Hero() {
   return (
-    <section id="hero" className="hero-section hero-film-section" aria-label="BDPRODUCTION 시네마틱 메인 영상">
+    <section id="hero" className="hero-section hero-film-section" aria-label="BD Production 시네마틱 메인 영상">
       <div className="hero-film-canvas" aria-hidden="true">
         <div className="hero-film-side hero-film-side-left" />
 
@@ -8,7 +8,7 @@ function Hero() {
           <video className="hero-film-video" autoPlay muted loop playsInline poster="/BDPRODUCTION.webp">
             <source src="/videos/bd-showreel-v2.mp4?v=20260616" type="video/mp4" />
           </video>
-          <div className="hero-film-fallback">BDPRODUCTION</div>
+          <div className="hero-film-fallback">BD Production</div>
         </div>
 
         <div className="hero-film-side hero-film-side-right" />
@@ -74,8 +74,8 @@ function Hero() {
         </filter>
       </svg>
         <div className="hero-film-center-mark hero-film-center-mark-colorburst-clean" aria-hidden="true">
-          <span className="hero-logo-word hero-logo-word-colorburst-clean" data-title="BDPRODUCTION">
-            BDPRODUC<i className="hero-logo-kern-fix">T<i className="hero-logo-kern-fix1">I</i>ON</i>
+          <span className="hero-logo-word hero-logo-word-colorburst-clean" data-title="BD Production">
+            BD Production
           </span>
           <strong className="hero-logo-subtitle-colorburst-clean">Broadcast & Digital Media Studio</strong>
         </div>

@@ -601,3 +601,45 @@ body.menu-open .app-shell.is-home-page .cinematic-header,
   object-fit: contain;
 }
 /* BDPRODUCTION final brand image header patch end */
+
+/* BDPRODUCTION final no-ring brand logo patch start */
+.cinematic-brand .cinematic-brand-mark {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.cinematic-brand .cinematic-brand-mark::before,
+.cinematic-brand .cinematic-brand-mark::after {
+  content: none !important;
+  display: none !important;
+}
+
+.cinematic-brand .cinematic-brand-mark img {
+  display: block !important;
+  width: 42px !important;
+  height: 42px !important;
+  object-fit: contain !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 8px rgba(149, 255, 0, 0.35));
+}
+
+.cinematic-brand strong {
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+}
+/* BDPRODUCTION final no-ring brand logo patch end */

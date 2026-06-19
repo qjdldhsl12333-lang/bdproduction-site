@@ -45,10 +45,10 @@ function Insight() {
   return (
     <section id="insight" className="section insight-section">
       <div className="section-heading">
-        <p className="eyebrow">BDPRODUCTION INSIGHT</p>
+        <p className="eyebrow">BD Production Insight</p>
         <h2>프리미엄 영상 제작을 위한 기술 기반</h2>
         <p>
-          BDPRODUCTION은 촬영, 색보정, 납품까지 이어지는 제작 파이프라인을
+          BD Production은 촬영, 색보정, 납품까지 이어지는 제작 파이프라인을
           하나의 완성도 높은 결과물로 연결합니다.
         </p>
       </div>
