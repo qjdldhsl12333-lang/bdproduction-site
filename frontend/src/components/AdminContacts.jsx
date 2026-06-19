@@ -700,7 +700,7 @@ function AdminContacts() {
               </BdButton>
 
               <BdButton variant="admin-secondary"
-                className="admin-archive-toggle"
+
                 type="button"
                 onClick={resendUnlockCode}
                 disabled={unlocking}
@@ -765,13 +765,13 @@ function AdminContacts() {
           </a>
 
           <div className="admin-topbar-actions">
-            <BdButton as="a" variant="admin-secondary" className="admin-archive-toggle" href="/admin/portfolio">
+            <BdButton as="a" variant="admin-secondary" href="/admin/portfolio">
               <Clapperboard size={17} />
               포트폴리오 관리
             </BdButton>
 
             <BdButton variant="admin-secondary"
-              className={`admin-archive-toggle ${archiveMode ? 'is-active' : ''}`}
+              className={archiveMode ? 'is-active' : undefined}
               type="button"
               onClick={toggleArchiveMode}
             >
