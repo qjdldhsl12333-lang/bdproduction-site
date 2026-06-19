@@ -644,17 +644,17 @@ body.menu-open .app-shell.is-home-page .cinematic-header,
 }
 /* BDPRODUCTION final no-ring brand logo patch end */
 
-/* BDPRODUCTION cinematic precise brand balance start */
+/* BDPRODUCTION final compact header brand start */
 .cinematic-header .cinematic-brand {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 11px !important;
+  gap: 8px !important;
 }
 
 .cinematic-header .cinematic-brand .cinematic-brand-mark {
-  width: 36px !important;
-  height: 36px !important;
-  min-width: 36px !important;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
   border: 0 !important;
   outline: 0 !important;
   border-radius: 0 !important;
@@ -665,7 +665,6 @@ body.menu-open .app-shell.is-home-page .cinematic-header,
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transform: translateY(0) !important;
 }
 
 .cinematic-header .cinematic-brand .cinematic-brand-mark::before,
@@ -676,23 +675,22 @@ body.menu-open .app-shell.is-home-page .cinematic-header,
 
 .cinematic-header .cinematic-brand .cinematic-brand-mark img {
   display: block !important;
-  width: 34px !important;
-  height: 34px !important;
-  min-width: 34px !important;
+  width: 27px !important;
+  height: 27px !important;
+  min-width: 27px !important;
   object-fit: contain !important;
   border: 0 !important;
   outline: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-  transform: translateY(0) !important;
-  filter: drop-shadow(0 0 7px rgba(149, 255, 0, 0.32));
+  filter: drop-shadow(0 0 6px rgba(149, 255, 0, 0.28));
 }
 
 .cinematic-header .cinematic-brand strong {
   display: inline-flex !important;
   align-items: center !important;
-  font-size: clamp(16px, 1.02vw, 18px) !important;
+  font-size: clamp(14px, 0.86vw, 15.5px) !important;
   font-weight: 800 !important;
   line-height: 1 !important;
   letter-spacing: 0.005em !important;
@@ -705,66 +703,24 @@ body.menu-open .app-shell.is-home-page .cinematic-header,
 
 @media (max-width: 768px) {
   .cinematic-header .cinematic-brand {
-    gap: 9px !important;
+    gap: 7px !important;
   }
 
   .cinematic-header .cinematic-brand .cinematic-brand-mark {
-    width: 31px !important;
-    height: 31px !important;
-    min-width: 31px !important;
+    width: 27px !important;
+    height: 27px !important;
+    min-width: 27px !important;
   }
 
   .cinematic-header .cinematic-brand .cinematic-brand-mark img {
-    width: 29px !important;
-    height: 29px !important;
-    min-width: 29px !important;
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
   }
 
   .cinematic-header .cinematic-brand strong {
-    font-size: 15px !important;
+    font-size: 13.5px !important;
     transform: translateY(-1px) !important;
   }
 }
-/* BDPRODUCTION cinematic precise brand balance end */
-
-/* BDPRODUCTION header logo size refine start */
-.header-brand,
-.site-brand,
-.header-logo-link {
-  align-items: center;
-}
-
-.header-brand img,
-.site-brand img,
-.header-logo-link img,
-.header-brand .brand-logo-image,
-.site-brand .brand-logo-image,
-.header-logo-link .brand-logo-image,
-.header-brand .brand-symbol,
-.site-brand .brand-symbol,
-.header-logo-link .brand-symbol {
-  width: clamp(28px, 1.8vw, 32px) !important;
-  height: clamp(28px, 1.8vw, 32px) !important;
-  min-width: clamp(28px, 1.8vw, 32px) !important;
-  min-height: clamp(28px, 1.8vw, 32px) !important;
-  object-fit: contain !important;
-  flex: 0 0 auto !important;
-}
-
-@media (max-width: 768px) {
-  .header-brand img,
-  .site-brand img,
-  .header-logo-link img,
-  .header-brand .brand-logo-image,
-  .site-brand .brand-logo-image,
-  .header-logo-link .brand-logo-image,
-  .header-brand .brand-symbol,
-  .site-brand .brand-symbol,
-  .header-logo-link .brand-symbol {
-    width: 26px !important;
-    height: 26px !important;
-    min-width: 26px !important;
-    min-height: 26px !important;
-  }
-}
-/* BDPRODUCTION header logo size refine end */
+/* BDPRODUCTION final compact header brand end */
