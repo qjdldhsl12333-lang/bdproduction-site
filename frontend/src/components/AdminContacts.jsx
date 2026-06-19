@@ -1,6 +1,7 @@
 import { apiUrl } from '../config/api.js';
 import { Archive, ArrowLeft, Clapperboard, Download, Inbox, Mail, Phone, RefreshCw, Search, Undo2, UserRound, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import BdButton from './ui/BdButton.jsx';
 
 const statusFilters = [
   { label: '전체', value: 'all' },
@@ -694,18 +695,18 @@ function AdminContacts() {
                 />
               </label>
 
-              <button className="primary-button" type="submit" disabled={unlocking || unlockCode.length < 6}>
+              <BdButton variant="admin-primary" className="primary-button" type="submit" disabled={unlocking || unlockCode.length < 6}>
                 {unlocking ? '확인 중...' : '잠금 해제'}
-              </button>
+              </BdButton>
 
-              <button
+              <BdButton variant="admin-secondary"
                 className="admin-archive-toggle"
                 type="button"
                 onClick={resendUnlockCode}
                 disabled={unlocking}
               >
                 코드 다시 받기
-              </button>
+              </BdButton>
             </form>
           ) : (
             <form className="admin-login-form" onSubmit={loginAdmin}>
@@ -721,9 +722,9 @@ function AdminContacts() {
                 />
               </label>
 
-              <button className="primary-button" type="submit" disabled={loggingIn}>
+              <BdButton variant="admin-primary" className="primary-button" type="submit" disabled={loggingIn}>
                 {loggingIn ? '로그인 중...' : '관리자 로그인'}
-              </button>
+              </BdButton>
             </form>
           )}
 
@@ -738,7 +739,7 @@ function AdminContacts() {
   return (
     <main className={`admin-page ${adminActionMenuOpen ? 'is-admin-menu-open' : ''}`}>
       <section className="admin-shell">
-        <button
+        <BdButton variant="admin-secondary"
           className="admin-mobile-menu-toggle"
           type="button"
           aria-expanded={adminActionMenuOpen}
@@ -746,7 +747,7 @@ function AdminContacts() {
           onClick={() => setAdminActionMenuOpen((current) => !current)}
         >
           관리자 메뉴
-        </button>
+        </BdButton>
 
         {adminActionMenuOpen && (
           <button
@@ -778,7 +779,7 @@ function AdminContacts() {
               {archiveMode ? '기본 목록 보기' : '보관함 보기'}
             </button>
 
-            <button
+            <BdButton variant="admin-secondary"
               className="admin-refresh-button"
               type="button"
               onClick={downloadFilteredContactsCsv}
@@ -786,16 +787,16 @@ function AdminContacts() {
             >
               <Download size={17} />
               CSV 다운로드
-            </button>
+            </BdButton>
 
-            <button className="admin-refresh-button" type="button" onClick={loadContacts}>
+            <BdButton variant="admin-secondary" className="admin-refresh-button" type="button" onClick={loadContacts}>
               <RefreshCw size={17} />
               새로고침
-            </button>
+            </BdButton>
 
-            <button className="admin-logout-button" type="button" onClick={logoutAdmin}>
+            <BdButton variant="admin-secondary" className="admin-logout-button" type="button" onClick={logoutAdmin}>
               로그아웃
-            </button>
+            </BdButton>
           </div>
         </div>
 
@@ -841,37 +842,37 @@ function AdminContacts() {
 
           <div className="admin-filter-tabs admin-account-filter-tabs" aria-label="회원 문의 필터">
             {accountFilters.map((filter) => (
-              <button
+              <BdButton variant="admin-secondary"
                 key={filter.value}
                 type="button"
                 className={accountFilter === filter.value ? 'is-active' : ''}
                 onClick={() => setAccountFilter(filter.value)}
               >
                 {filter.label}
-              </button>
+              </BdButton>
             ))}
           </div>
 
           {!archiveMode && (
             <div className="admin-filter-tabs">
               {statusFilters.map((filter) => (
-                <button
+                <BdButton variant="admin-secondary"
                   key={filter.value}
                   type="button"
                   className={statusFilter === filter.value ? 'is-active' : ''}
                   onClick={() => setStatusFilter(filter.value)}
                 >
                   {filter.label}
-                </button>
+                </BdButton>
               ))}
             </div>
           )}
 
           {(searchTerm || accountFilter !== 'all' || statusFilter !== 'all') && (
-            <button className="admin-reset-filter-button" type="button" onClick={resetFilters}>
+            <BdButton variant="admin-secondary" className="admin-reset-filter-button" type="button" onClick={resetFilters}>
               <X size={16} />
               필터 초기화
-            </button>
+            </BdButton>
           )}
         </div>
 
@@ -938,7 +939,7 @@ function AdminContacts() {
 
                     {!archiveMode ? (
                       <div className="admin-status-actions">
-                        <button
+                        <BdButton variant="admin-secondary"
                           type="button"
                           className={contact.status === 'new' ? 'is-active' : ''}
                           disabled={updatingContactId === contact.id}
@@ -948,9 +949,9 @@ function AdminContacts() {
                           }}
                         >
                           신규
-                        </button>
+                        </BdButton>
 
-                        <button
+                        <BdButton variant="admin-secondary"
                           type="button"
                           className={contact.status === 'checked' ? 'is-active' : ''}
                           disabled={updatingContactId === contact.id}
@@ -960,9 +961,9 @@ function AdminContacts() {
                           }}
                         >
                           확인
-                        </button>
+                        </BdButton>
 
-                        <button
+                        <BdButton variant="admin-secondary"
                           type="button"
                           className={contact.status === 'done' ? 'is-active' : ''}
                           disabled={updatingContactId === contact.id}
@@ -972,9 +973,9 @@ function AdminContacts() {
                           }}
                         >
                           완료
-                        </button>
+                        </BdButton>
 
-                        <button
+                        <BdButton variant="admin-danger"
                           type="button"
                           className="is-danger"
                           disabled={updatingContactId === contact.id}
@@ -985,11 +986,11 @@ function AdminContacts() {
                         >
                           <Archive size={13} />
                           보관
-                        </button>
+                        </BdButton>
                       </div>
                     ) : (
                       <div className="admin-status-actions">
-                        <button
+                        <BdButton variant="admin-secondary"
                           type="button"
                           className="is-restore"
                           disabled={updatingContactId === contact.id}
@@ -1000,7 +1001,7 @@ function AdminContacts() {
                         >
                           <Undo2 size={13} />
                           복구
-                        </button>
+                        </BdButton>
                       </div>
                     )}
                   </div>
@@ -1099,10 +1100,10 @@ return (
             <h2>{contact.name}</h2>
           </div>
 
-          <button type="button" className="admin-detail-close" onClick={onClose} aria-label="상세 모달 닫기">
+          <BdButton variant="modal-icon" type="button" className="admin-detail-close" onClick={onClose} aria-label="상세 모달 닫기">
             <X size={18} />
             닫기
-          </button>
+          </BdButton>
         </div>
 
         <div className="admin-detail-status-row">
@@ -1211,34 +1212,34 @@ return (
         <div className="admin-detail-actions">
           {!showingArchived ? (
             <>
-              <button
+              <BdButton variant="admin-secondary"
                 type="button"
                 className={contact.status === 'new' ? 'is-active' : ''}
                 disabled={isUpdating || contact.status === 'new'}
                 onClick={() => onUpdateStatus(contact.id, 'new')}
               >
                 신규
-              </button>
+              </BdButton>
 
-              <button
+              <BdButton variant="admin-secondary"
                 type="button"
                 className={contact.status === 'checked' ? 'is-active' : ''}
                 disabled={isUpdating || contact.status === 'checked'}
                 onClick={() => onUpdateStatus(contact.id, 'checked')}
               >
                 확인 완료
-              </button>
+              </BdButton>
 
-              <button
+              <BdButton variant="admin-secondary"
                 type="button"
                 className={contact.status === 'done' ? 'is-active' : ''}
                 disabled={isUpdating || contact.status === 'done'}
                 onClick={() => onUpdateStatus(contact.id, 'done')}
               >
                 처리 완료
-              </button>
+              </BdButton>
 
-              <button
+              <BdButton variant="admin-danger"
                 type="button"
                 className="danger"
                 disabled={isUpdating}
@@ -1246,13 +1247,13 @@ return (
               >
                 <Archive size={14} />
                 보관
-              </button>
+              </BdButton>
             </>
           ) : (
-            <button type="button" disabled={isUpdating} onClick={() => onRestore(contact.id, contact.name)}>
+            <BdButton variant="admin-secondary" type="button" disabled={isUpdating} onClick={() => onRestore(contact.id, contact.name)}>
               <Undo2 size={14} />
               신규로 복구
-            </button>
+            </BdButton>
           )}
         </div>
       </section>
