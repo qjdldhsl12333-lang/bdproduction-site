@@ -643,3 +643,98 @@ body.menu-open .app-shell.is-home-page .cinematic-header,
   letter-spacing: 0.02em !important;
 }
 /* BDPRODUCTION final no-ring brand logo patch end */
+
+/* BDPRODUCTION header logo balance patch start */
+:where(.site-header, .cinematic-header, .app-header, header) :is(
+  .header-brand,
+  .header-brand-link,
+  .header-logo-link,
+  .brand-link
+) {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+:where(.site-header, .cinematic-header, .app-header, header) :is(
+  .header-brand-mark,
+  .header-brand-logo,
+  .header-logo,
+  .brand-logo,
+  .header-logo-link > img,
+  .header-brand > img,
+  .brand-link > img
+) {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+:where(.site-header, .cinematic-header, .app-header, header) :is(
+  .header-brand-text,
+  .header-logo-text,
+  .brand-wordmark,
+  .brand-text,
+  .header-brand-name
+),
+:where(.site-header, .cinematic-header, .app-header, header) :is(
+  .header-brand,
+  .header-brand-link,
+  .header-logo-link,
+  .brand-link
+) > span:last-child {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.16rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  :where(.site-header, .cinematic-header, .app-header, header) :is(
+    .header-brand,
+    .header-brand-link,
+    .header-logo-link,
+    .brand-link
+  ) {
+    gap: 8px;
+  }
+
+  :where(.site-header, .cinematic-header, .app-header, header) :is(
+    .header-brand-mark,
+    .header-brand-logo,
+    .header-logo,
+    .brand-logo,
+    .header-logo-link > img,
+    .header-brand > img,
+    .brand-link > img
+  ) {
+    width: 27px;
+    height: 27px;
+    min-width: 27px;
+  }
+
+  :where(.site-header, .cinematic-header, .app-header, header) :is(
+    .header-brand-text,
+    .header-logo-text,
+    .brand-wordmark,
+    .brand-text,
+    .header-brand-name
+  ),
+  :where(.site-header, .cinematic-header, .app-header, header) :is(
+    .header-brand,
+    .header-brand-link,
+    .header-logo-link,
+    .brand-link
+  ) > span:last-child {
+    font-size: 1.02rem;
+  }
+}
+/* BDPRODUCTION header logo balance patch end */
