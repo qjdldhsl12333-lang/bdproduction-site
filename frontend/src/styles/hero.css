@@ -907,26 +907,26 @@
 
 /* BDPRODUCTION hero center logo restore end */
 
-/* BDPRODUCTION hero wordmark letter spacing patch start */
+/* BDPRODUCTION hero wordmark tighter spacing patch start */
 .hero-logo-word.hero-logo-word-colorburst-clean {
-  letter-spacing: clamp(0.018em, 0.32vw, 0.07em) !important;
-  word-spacing: 0.08em !important;
+  letter-spacing: clamp(0.002em, 0.08vw, 0.022em) !important;
+  word-spacing: 0.025em !important;
   text-align: center !important;
   white-space: nowrap !important;
 }
 
 .hero-logo-word.hero-logo-word-colorburst-clean::before,
 .hero-logo-word.hero-logo-word-colorburst-clean::after {
-  letter-spacing: clamp(0.018em, 0.32vw, 0.07em) !important;
-  word-spacing: 0.08em !important;
+  letter-spacing: clamp(0.002em, 0.08vw, 0.022em) !important;
+  word-spacing: 0.025em !important;
 }
 
 @media (max-width: 768px) {
   .hero-logo-word.hero-logo-word-colorburst-clean,
   .hero-logo-word.hero-logo-word-colorburst-clean::before,
   .hero-logo-word.hero-logo-word-colorburst-clean::after {
-    letter-spacing: 0.025em !important;
-    word-spacing: 0.04em !important;
+    letter-spacing: 0.004em !important;
+    word-spacing: 0.012em !important;
   }
 }
-/* BDPRODUCTION hero wordmark letter spacing patch end */
+/* BDPRODUCTION hero wordmark tighter spacing patch end */
