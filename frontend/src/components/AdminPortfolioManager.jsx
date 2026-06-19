@@ -349,10 +349,10 @@ function AdminPortfolioManager() {
           </a>
 
           <div className="admin-topbar-actions">
-            <a className="admin-archive-toggle" href="/portfolio" target="_blank" rel="noreferrer">
+            <BdButton as="a" variant="admin-secondary" className="admin-archive-toggle" href="/portfolio" target="_blank" rel="noreferrer">
               <Eye size={17} />
               전체 포트폴리오 보기
-            </a>
+            </BdButton>
 
             <BdButton variant="admin-secondary" className="admin-refresh-button" type="button" onClick={loadItems}>
               <RefreshCw size={17} />

@@ -765,10 +765,10 @@ function AdminContacts() {
           </a>
 
           <div className="admin-topbar-actions">
-            <a className="admin-archive-toggle" href="/admin/portfolio">
+            <BdButton as="a" variant="admin-secondary" className="admin-archive-toggle" href="/admin/portfolio">
               <Clapperboard size={17} />
               포트폴리오 관리
-            </a>
+            </BdButton>
 
             <BdButton variant="admin-secondary"
               className={`admin-archive-toggle ${archiveMode ? 'is-active' : ''}`}
