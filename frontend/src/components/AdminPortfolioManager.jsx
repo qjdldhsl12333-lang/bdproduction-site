@@ -354,7 +354,7 @@ function AdminPortfolioManager() {
               전체 포트폴리오 보기
             </BdButton>
 
-            <BdButton variant="admin-secondary" className="admin-refresh-button" type="button" onClick={loadItems}>
+            <BdButton variant="admin-secondary" type="button" onClick={loadItems}>
               <RefreshCw size={17} />
               새로고침
             </BdButton>

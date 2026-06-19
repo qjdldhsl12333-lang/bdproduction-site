@@ -780,7 +780,7 @@ function AdminContacts() {
             </BdButton>
 
             <BdButton variant="admin-secondary"
-              className="admin-refresh-button"
+
               type="button"
               onClick={downloadFilteredContactsCsv}
               disabled={filteredContacts.length === 0}
@@ -789,7 +789,7 @@ function AdminContacts() {
               CSV 다운로드
             </BdButton>
 
-            <BdButton variant="admin-secondary" className="admin-refresh-button" type="button" onClick={loadContacts}>
+            <BdButton variant="admin-secondary" type="button" onClick={loadContacts}>
               <RefreshCw size={17} />
               새로고침
             </BdButton>
@@ -1089,7 +1089,7 @@ function ContactDetailModal({
 
   const isUpdating = Number(updatingContactId) === Number(contact.id);
 
-  
+
   const customerGuide = resolveCustomerStatusGuide(contact.status);
 return (
     <div className="admin-detail-backdrop" onClick={onClose}>
