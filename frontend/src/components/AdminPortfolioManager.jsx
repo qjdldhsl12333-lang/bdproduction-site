@@ -354,7 +354,7 @@ function AdminPortfolioManager() {
               전체 포트폴리오 보기
             </a>
 
-            <BdButton className="admin-refresh-button" type="button" onClick={loadItems}>
+            <BdButton variant="admin-secondary" className="admin-refresh-button" type="button" onClick={loadItems}>
               <RefreshCw size={17} />
               새로고침
             </BdButton>
@@ -406,7 +406,7 @@ function AdminPortfolioManager() {
             </div>
 
             {form.id && (
-              <BdButton type="button" onClick={resetForm}>
+              <BdButton variant="admin-secondary" type="button" onClick={resetForm}>
                 <X size={16} />
                 수정 취소
               </BdButton>
@@ -551,12 +551,12 @@ function AdminPortfolioManager() {
                 <strong>{extractedVideoId || '-'}</strong>
               </div>
 
-              <BdButton type="button" onClick={normalizeYouTubeInput} disabled={!form.youtube_video_id}>
+              <BdButton variant="admin-secondary" type="button" onClick={normalizeYouTubeInput} disabled={!form.youtube_video_id}>
                 <Wand2 size={15} />
                 ID 정리
               </BdButton>
 
-              <BdButton type="button" onClick={applyYouTubeThumbnail} disabled={!extractedVideoId}>
+              <BdButton variant="admin-secondary" type="button" onClick={applyYouTubeThumbnail} disabled={!extractedVideoId}>
                 <ImageIcon size={15} />
                 썸네일 자동 입력
               </BdButton>
@@ -670,11 +670,11 @@ function AdminPortfolioManager() {
                     </div>
 
                     <div className="admin-portfolio-card-actions">
-                      <BdButton type="button" onClick={() => editItem(item)} disabled={saving}>
+                      <BdButton variant="admin-secondary" type="button" onClick={() => editItem(item)} disabled={saving}>
                         수정
                       </BdButton>
 
-                      <BdButton
+                      <BdButton variant="admin-secondary"
                         type="button"
                         className={isActive ? 'danger' : ''}
                         onClick={() => updateVisibility(item, !isActive)}
@@ -693,7 +693,7 @@ function AdminPortfolioManager() {
                         )}
                       </BdButton>
 
-                      <BdButton
+                      <BdButton variant="admin-secondary"
                         type="button"
                         className="danger"
                         onClick={() => deleteItem(item)}

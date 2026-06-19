@@ -441,7 +441,7 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
               </div>
 
               <div className="mypage-contact-card-actions">
-                <BdButton
+                <BdButton variant="admin-secondary"
                   className="mypage-contact-detail-toggle"
                   type="button"
                   aria-expanded={isExpanded}
@@ -525,7 +525,7 @@ function MyPagePlaceholder({ onOpenAuth, onOpenContact }) {
                   </div>
 
                   <div className="mypage-contact-detail-actions">
-                    <BdButton
+                    <BdButton variant="admin-secondary"
                       className="mypage-contact-related-button"
                       type="button"
                       onClick={onOpenContact}
