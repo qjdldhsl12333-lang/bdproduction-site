@@ -862,3 +862,36 @@
   color: #fff0f0;
 }
 /* BDPRODUCTION button-system phase 4 admin variants end */
+
+/* BDPRODUCTION button-system phase 4C portfolio variants start */
+.bd-button--portfolio-filter {
+  min-height: 38px;
+  border-radius: 999px;
+  padding: 0 15px;
+  border-color: rgba(166, 228, 219, 0.18);
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(245, 247, 238, 0.82);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.bd-button--portfolio-filter:hover,
+.bd-button--portfolio-filter:focus-visible,
+.bd-button--portfolio-filter.is-active {
+  border-color: rgba(149, 255, 0, 0.62);
+  background: rgba(149, 255, 0, 0.14);
+  color: #95ff00;
+}
+
+.bd-button--portfolio-card {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+.bd-button--portfolio-card:hover,
+.bd-button--portfolio-card:focus-visible {
+  color: inherit;
+}
+/* BDPRODUCTION button-system phase 4C portfolio variants end */

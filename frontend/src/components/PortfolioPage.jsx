@@ -4,6 +4,7 @@ import {
   PortfolioVideoModal,
   usePortfolioVideos,
 } from './Portfolio.jsx';
+import BdButton from './ui/BdButton.jsx';
 
 function resolveVideoCategory(video) {
   return video.category || video.channel_title || 'BDPRODUCTION';
@@ -116,10 +117,10 @@ function PortfolioPage() {
 
             <div className="portfolio-folder-list">
               {categories.map((category) => (
-                <button
+                <BdButton
                   key={category}
                   type="button"
-                  className={`portfolio-folder-button ${selectedCategory === category ? 'is-active' : ''}`}
+                  variant="portfolio-filter" className={`portfolio-folder-button ${selectedCategory === category ? 'is-active' : ''}`}
                   onClick={() => setSelectedCategory(category)}
                 >
                   <span>
@@ -127,7 +128,7 @@ function PortfolioPage() {
                     {category}
                   </span>
                   <strong>{categoryCounts[category] || 0}</strong>
-                </button>
+                </BdButton>
               ))}
             </div>
           </aside>
