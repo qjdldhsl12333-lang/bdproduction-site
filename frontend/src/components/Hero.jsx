@@ -77,7 +77,7 @@ function Hero() {
           <span className="hero-logo-word hero-logo-word-colorburst-clean" data-title="BDPRODUCTION">
             BDPRODUC<i className="hero-logo-kern-fix">T<i className="hero-logo-kern-fix1">I</i>ON</i>
           </span>
-          <strong className="hero-logo-subtitle-colorburst-clean">PREMIUM VIDEO PRODUCTION STUDIO</strong>
+          <strong className="hero-logo-subtitle-colorburst-clean">Broadcast & Digital Media Studio</strong>
         </div>
     </section>
   );

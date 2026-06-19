@@ -1,3 +1,26 @@
+# BDPRODUCTION canonical and cache policy start
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteCond %{HTTP_HOST} ^www\.bdproduction\.co\.kr$ [NC]
+  RewriteRule ^(.*)$ https://bdproduction.co.kr/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "^(index\.html)?$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+# BDPRODUCTION canonical and cache policy end
+
 <IfModule mod_headers.c>
   <FilesMatch "^index\.html$">
     Header set Cache-Control "no-cache, no-store, must-revalidate"

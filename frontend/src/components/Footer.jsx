@@ -43,7 +43,7 @@ function Footer() {
 
       <div className="footer-bottom">
         <span>Copyright © 2026 BDPRODUCTION. All rights reserved.</span>
-        <span>Premium Video Production Studio</span>
+        <span>Broadcast & Digital Media Studio</span>
       </div>
     </footer>
   );

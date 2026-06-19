@@ -1,3 +1,10 @@
+// BDPRODUCTION canonical host redirect start
+if (typeof window !== 'undefined' && window.location.hostname === 'www.bdproduction.co.kr') {
+  const { pathname, search, hash } = window.location;
+  window.location.replace(`https://bdproduction.co.kr${pathname}${search}${hash}`);
+}
+// BDPRODUCTION canonical host redirect end
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
