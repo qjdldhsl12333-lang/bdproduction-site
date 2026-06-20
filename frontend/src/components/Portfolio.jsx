@@ -475,12 +475,12 @@ function PortfolioShowcaseInfo({ video }) {
         viewport={{ once: true, amount: 0.28 }}
         transition={{ duration: 0.52 }}
       >
-        <span>PORTFOLIO GUIDE</span>
+        <span data-guide-compact="kicker">WORK GUIDE</span>
         <h3>{'\uB300\uD45C\uC791\uC744 \uC120\uD0DD\uD574 \uD504\uB85C\uC81D\uD2B8\uC758 \uBD84\uC704\uAE30\uC640 \uC124\uBA85\uC744 \uD655\uC778\uD574 \uBCF4\uC138\uC694.'}</h3>
         <p>
           {'\uCE74\uB4DC\uC5D0 \uB9C8\uC6B0\uC2A4\uB97C \uC62C\uB9AC\uBA74 \uD574\uB2F9 \uD3EC\uD2B8\uD3F4\uB9AC\uC624\uC758 \uC81C\uC791 \uC720\uD615, \uD074\uB77C\uC774\uC5B8\uD2B8, \uD575\uC2EC \uC124\uBA85\uC774 \uC774 \uC601\uC5ED\uC5D0 \uD45C\uC2DC\uB429\uB2C8\uB2E4.'}
         </p>
-        <strong>BDPRODUCTION SHOWCASE</strong>
+        <strong data-guide-compact="tag">SELECTED WORK</strong>
       </motion.aside>
     );
   }
