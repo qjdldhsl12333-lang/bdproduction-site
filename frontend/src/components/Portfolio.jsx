@@ -648,7 +648,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
               className={`portfolio-mobile-card ${isActive ? 'is-active' : ''} ${isPlaying ? 'is-playing' : ''}`}
               key={videoKey}
             >
-              <BdButton variant="portfolio-filter"
+              <button data-keep-native-button
                 type="button"
                 className="portfolio-mobile-media"
                 onClick={() => {
@@ -682,7 +682,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
                     </span>
                   </>
                 )}
-              </BdButton>
+              </button>
 
               <div className="portfolio-mobile-overlay">
                 <span>{video.category || video.channel_title || 'BDPRODUCTION'}</span>
