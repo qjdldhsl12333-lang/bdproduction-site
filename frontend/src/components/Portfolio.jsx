@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ExternalLink, Loader2, Play, X } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ExternalLink, Loader2, Play, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { apiUrl } from '../config/api.js';
 import { portfolioItems } from '../data/portfolio.js';
