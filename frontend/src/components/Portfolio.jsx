@@ -723,7 +723,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
           disabled={activeIndex >= videos.length - 1}
           aria-label="next portfolio"
         >
-          ?
+          <ChevronRight size={20} strokeWidth={2.35} aria-hidden="true" />
         </BdButton>
       </div>
     </div>
