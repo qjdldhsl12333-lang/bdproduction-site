@@ -1751,3 +1751,152 @@
   }
 }
 /* BDPRODUCTION button-system layout bridge end */
+
+/* BDPRODUCTION portfolio card layout recovery start */
+/* 카드 이미지 영역 비율 복구 */
+.portfolio-card,
+.portfolio-work-card,
+.featured-work-card,
+.portfolio-featured-card,
+.portfolio-main-card {
+  overflow: hidden !important;
+}
+
+.portfolio-card-media,
+.portfolio-card-thumb,
+.portfolio-card-thumbnail,
+.portfolio-card-image-wrap,
+.portfolio-work-thumb,
+.featured-work-thumb,
+.featured-card-media,
+.portfolio-main-card-media {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 22px 22px 0 0 !important;
+  aspect-ratio: 16 / 9 !important;
+}
+
+.portfolio-card-media img,
+.portfolio-card-thumb img,
+.portfolio-card-thumbnail img,
+.portfolio-card-image-wrap img,
+.portfolio-work-thumb img,
+.featured-work-thumb img,
+.featured-card-media img,
+.portfolio-main-card-media img,
+.portfolio-card-media video,
+.portfolio-card-thumb video,
+.portfolio-card-thumbnail video,
+.portfolio-card-image-wrap video,
+.portfolio-work-thumb video,
+.featured-work-thumb video,
+.featured-card-media video,
+.portfolio-main-card-media video {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: inherit !important;
+}
+
+/* 재생 버튼이 카드 전체 크기로 커지는 문제 방지 */
+.portfolio-card [class*="play"],
+.portfolio-work-card [class*="play"],
+.featured-work-card [class*="play"],
+.portfolio-featured-card [class*="play"],
+.portfolio-main-card [class*="play"] {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  border-radius: 999px !important;
+  flex: 0 0 auto !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
+/* 문제의 큰 초록 타원/원형 라인 제거 */
+.portfolio-card [class*="play"]::before,
+.portfolio-card [class*="play"]::after,
+.portfolio-work-card [class*="play"]::before,
+.portfolio-work-card [class*="play"]::after,
+.featured-work-card [class*="play"]::before,
+.featured-work-card [class*="play"]::after,
+.portfolio-featured-card [class*="play"]::before,
+.portfolio-featured-card [class*="play"]::after,
+.portfolio-main-card [class*="play"]::before,
+.portfolio-main-card [class*="play"]::after {
+  width: auto !important;
+  height: auto !important;
+  inset: auto !important;
+  transform: none !important;
+  border-radius: inherit !important;
+  box-shadow: none !important;
+}
+
+/* 카드 안 버튼 위치 고정 */
+.portfolio-card-media [class*="play"],
+.portfolio-card-thumb [class*="play"],
+.portfolio-card-thumbnail [class*="play"],
+.portfolio-card-image-wrap [class*="play"],
+.portfolio-work-thumb [class*="play"],
+.featured-work-thumb [class*="play"],
+.featured-card-media [class*="play"],
+.portfolio-main-card-media [class*="play"] {
+  position: absolute !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 5 !important;
+}
+
+/* 모바일 메인 포트폴리오 카드 복구 */
+@media (max-width: 768px) {
+  .portfolio-card,
+  .portfolio-work-card,
+  .featured-work-card,
+  .portfolio-featured-card,
+  .portfolio-main-card {
+    border-radius: 22px !important;
+  }
+
+  .portfolio-card-media,
+  .portfolio-card-thumb,
+  .portfolio-card-thumbnail,
+  .portfolio-card-image-wrap,
+  .portfolio-work-thumb,
+  .featured-work-thumb,
+  .featured-card-media,
+  .portfolio-main-card-media {
+    border-radius: 22px 22px 0 0 !important;
+    aspect-ratio: 16 / 10 !important;
+  }
+
+  .portfolio-card [class*="play"],
+  .portfolio-work-card [class*="play"],
+  .featured-work-card [class*="play"],
+  .portfolio-featured-card [class*="play"],
+  .portfolio-main-card [class*="play"] {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+  }
+
+  .portfolio-card-media [class*="play"],
+  .portfolio-card-thumb [class*="play"],
+  .portfolio-card-thumbnail [class*="play"],
+  .portfolio-card-image-wrap [class*="play"],
+  .portfolio-work-thumb [class*="play"],
+  .featured-work-thumb [class*="play"],
+  .featured-card-media [class*="play"],
+  .portfolio-main-card-media [class*="play"] {
+    right: 14px !important;
+    bottom: 14px !important;
+  }
+}
+/* BDPRODUCTION portfolio card layout recovery end */
