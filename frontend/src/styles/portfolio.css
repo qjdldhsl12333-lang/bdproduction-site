@@ -1946,102 +1946,140 @@ button.portfolio-mobile-dot[aria-current='true'],
 }
 /* BDPRODUCTION mobile portfolio controls refine end */
 
-/* BDPRODUCTION portfolio guide compact style start */
+/* BDPRODUCTION portfolio guide visual style start */
 [data-guide-compact='kicker'] {
   display: inline-flex !important;
   align-items: center !important;
   width: fit-content !important;
-  padding: 6px 10px !important;
-  border: 1px solid rgba(149, 255, 0, 0.22) !important;
+  padding: 7px 12px !important;
+  border: 1px solid rgba(149, 255, 0, 0.28) !important;
   border-radius: 999px !important;
-  background: rgba(149, 255, 0, 0.055) !important;
+  background:
+    linear-gradient(90deg, rgba(149, 255, 0, 0.11), rgba(149, 255, 0, 0.035)) !important;
   color: #95ff00 !important;
   font-size: clamp(11px, 0.82vw, 13px) !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.18em !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.2em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
-  box-shadow: 0 0 18px rgba(149, 255, 0, 0.045) !important;
+  box-shadow:
+    0 0 0 1px rgba(149, 255, 0, 0.04),
+    0 0 24px rgba(149, 255, 0, 0.08) !important;
 }
 
 [data-guide-compact='title'] {
+  position: relative !important;
   max-width: 560px !important;
-  margin: 22px 0 0 !important;
-  color: rgba(255, 255, 255, 0.96) !important;
-  font-size: clamp(32px, 3.05vw, 52px) !important;
+  margin: 24px 0 0 !important;
+  color: rgba(255, 255, 255, 0.98) !important;
+  font-size: clamp(34px, 3.12vw, 54px) !important;
   font-weight: 950 !important;
   line-height: 0.98 !important;
-  letter-spacing: -0.065em !important;
+  letter-spacing: -0.07em !important;
   text-wrap: balance !important;
 }
 
 [data-guide-compact='title']::after {
   content: '' !important;
   display: block !important;
-  width: 76px !important;
+  width: 92px !important;
   height: 2px !important;
-  margin-top: 22px !important;
+  margin-top: 24px !important;
   border-radius: 999px !important;
-  background: linear-gradient(90deg, rgba(149, 255, 0, 0.86), rgba(149, 255, 0, 0)) !important;
-  box-shadow: 0 0 16px rgba(149, 255, 0, 0.18) !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(149, 255, 0, 0.95),
+      rgba(149, 255, 0, 0.22) 46%,
+      rgba(149, 255, 0, 0)
+    ) !important;
+  box-shadow: 0 0 18px rgba(149, 255, 0, 0.22) !important;
 }
 
-[data-guide-compact='copy'] {
-  max-width: 470px !important;
-  margin: 20px 0 0 !important;
-  color: rgba(255, 255, 255, 0.68) !important;
-  font-size: clamp(14px, 1vw, 16px) !important;
-  font-weight: 650 !important;
-  line-height: 1.68 !important;
-  letter-spacing: -0.025em !important;
-  word-break: keep-all !important;
+[data-guide-compact='visual'] {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 9px !important;
+  margin-top: 28px !important;
+}
+
+[data-guide-compact='visual'] span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 30px !important;
+  padding: 0 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  color: rgba(255, 255, 255, 0.62) !important;
+  font-size: clamp(10px, 0.74vw, 12px) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.16em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+}
+
+[data-guide-compact='visual'] span:first-child {
+  border-color: rgba(149, 255, 0, 0.25) !important;
+  background: rgba(149, 255, 0, 0.07) !important;
+  color: rgba(149, 255, 0, 0.88) !important;
 }
 
 [data-guide-compact='tag'] {
   display: inline-flex !important;
   align-items: center !important;
   width: fit-content !important;
-  margin-top: 24px !important;
-  padding: 7px 11px !important;
+  margin-top: 34px !important;
+  padding: 8px 13px !important;
   border-radius: 999px !important;
-  border: 1px solid rgba(149, 255, 0, 0.18) !important;
-  background: rgba(149, 255, 0, 0.045) !important;
-  color: rgba(149, 255, 0, 0.9) !important;
+  border: 1px solid rgba(149, 255, 0, 0.24) !important;
+  background:
+    linear-gradient(90deg, rgba(149, 255, 0, 0.1), rgba(149, 255, 0, 0.035)) !important;
+  color: rgba(149, 255, 0, 0.92) !important;
   font-size: clamp(11px, 0.82vw, 13px) !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.18em !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.2em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
+  box-shadow: 0 0 22px rgba(149, 255, 0, 0.06) !important;
 }
 
 @media (max-width: 768px) {
   [data-guide-compact='kicker'],
   [data-guide-compact='tag'] {
-    padding: 6px 9px !important;
+    padding: 6px 10px !important;
     font-size: 10.5px !important;
-    letter-spacing: 0.15em !important;
+    letter-spacing: 0.16em !important;
   }
 
   [data-guide-compact='title'] {
-    margin-top: 18px !important;
-    font-size: clamp(30px, 9vw, 42px) !important;
+    margin-top: 20px !important;
+    font-size: clamp(31px, 9vw, 43px) !important;
     line-height: 1.02 !important;
-    letter-spacing: -0.06em !important;
+    letter-spacing: -0.062em !important;
   }
 
   [data-guide-compact='title']::after {
-    width: 58px !important;
-    margin-top: 18px !important;
+    width: 68px !important;
+    margin-top: 20px !important;
   }
 
-  [data-guide-compact='copy'] {
-    margin-top: 16px !important;
-    font-size: 14px !important;
-    line-height: 1.58 !important;
+  [data-guide-compact='visual'] {
+    gap: 7px !important;
+    margin-top: 24px !important;
+  }
+
+  [data-guide-compact='visual'] span {
+    min-height: 28px !important;
+    padding-inline: 10px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.13em !important;
   }
 
   [data-guide-compact='tag'] {
-    margin-top: 18px !important;
+    margin-top: 28px !important;
   }
 }
-/* BDPRODUCTION portfolio guide compact style end */
+/* BDPRODUCTION portfolio guide visual style end */

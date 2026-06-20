@@ -476,8 +476,12 @@ function PortfolioShowcaseInfo({ video }) {
         transition={{ duration: 0.52 }}
       >
         <span data-guide-compact="kicker">WORK GUIDE</span>
-        <h3 data-guide-compact="title">작품을 선택하면<br />핵심만 보여드립니다.</h3>
-        <p data-guide-compact="copy">마우스를 올리거나 선택하면 제작 유형과 설명이 표시됩니다.</p>
+        <h3 data-guide-compact="title">선택한 작품의<br />무드를 확인하세요.</h3>
+        <div data-guide-compact="visual" aria-hidden="true">
+          <span>TYPE</span>
+          <span>MOOD</span>
+          <span>CREDIT</span>
+        </div>
         <strong data-guide-compact="tag">SELECTED WORK</strong>
       </motion.aside>
     );
