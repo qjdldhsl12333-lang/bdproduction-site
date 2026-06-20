@@ -475,14 +475,25 @@ function PortfolioShowcaseInfo({ video }) {
         viewport={{ once: true, amount: 0.28 }}
         transition={{ duration: 0.52 }}
       >
-        <span data-guide-compact="kicker">WORK GUIDE</span>
-        <h3 data-guide-compact="title">선택한 작품의<br />무드를 확인하세요.</h3>
-        <div data-guide-compact="visual" aria-hidden="true">
-          <span>TYPE</span>
-          <span>MOOD</span>
-          <span>CREDIT</span>
+        <span data-guide-compact="kicker">WORK PREVIEW</span>
+        <span data-guide-compact="number">01</span>
+        <h3 data-guide-compact="title">SELECTED<br />WORK</h3>
+        <div data-guide-compact="line" aria-hidden="true"></div>
+        <div data-guide-compact="spec" aria-hidden="true">
+          <span>
+            <em>TYPE</em>
+            <b></b>
+          </span>
+          <span>
+            <em>MOOD</em>
+            <b></b>
+          </span>
+          <span>
+            <em>CREDIT</em>
+            <b></b>
+          </span>
         </div>
-        <strong data-guide-compact="tag">SELECTED WORK</strong>
+        <strong data-guide-compact="tag">BDP SHOWCASE</strong>
       </motion.aside>
     );
   }

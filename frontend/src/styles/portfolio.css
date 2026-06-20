@@ -1946,140 +1946,155 @@ button.portfolio-mobile-dot[aria-current='true'],
 }
 /* BDPRODUCTION mobile portfolio controls refine end */
 
-/* BDPRODUCTION portfolio guide visual style start */
+/* BDPRODUCTION portfolio preview panel style start */
 [data-guide-compact='kicker'] {
+  position: relative !important;
+  z-index: 2 !important;
   display: inline-flex !important;
   align-items: center !important;
   width: fit-content !important;
   padding: 7px 12px !important;
-  border: 1px solid rgba(149, 255, 0, 0.28) !important;
+  border: 1px solid rgba(149, 255, 0, 0.26) !important;
   border-radius: 999px !important;
-  background:
-    linear-gradient(90deg, rgba(149, 255, 0, 0.11), rgba(149, 255, 0, 0.035)) !important;
+  background: rgba(149, 255, 0, 0.06) !important;
   color: #95ff00 !important;
-  font-size: clamp(11px, 0.82vw, 13px) !important;
+  font-size: clamp(11px, 0.76vw, 13px) !important;
   font-weight: 950 !important;
   letter-spacing: 0.2em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
-  box-shadow:
-    0 0 0 1px rgba(149, 255, 0, 0.04),
-    0 0 24px rgba(149, 255, 0, 0.08) !important;
+}
+
+[data-guide-compact='number'] {
+  position: absolute !important;
+  right: clamp(28px, 3vw, 52px) !important;
+  top: clamp(28px, 3vw, 52px) !important;
+  z-index: 1 !important;
+  color: rgba(149, 255, 0, 0.12) !important;
+  font-size: clamp(58px, 7vw, 112px) !important;
+  font-weight: 950 !important;
+  line-height: 0.8 !important;
+  letter-spacing: -0.08em !important;
+  pointer-events: none !important;
 }
 
 [data-guide-compact='title'] {
   position: relative !important;
+  z-index: 2 !important;
   max-width: 560px !important;
-  margin: 24px 0 0 !important;
+  margin: clamp(28px, 3.2vw, 48px) 0 0 !important;
   color: rgba(255, 255, 255, 0.98) !important;
-  font-size: clamp(34px, 3.12vw, 54px) !important;
+  font-size: clamp(44px, 5.1vw, 82px) !important;
   font-weight: 950 !important;
-  line-height: 0.98 !important;
-  letter-spacing: -0.07em !important;
-  text-wrap: balance !important;
+  line-height: 0.82 !important;
+  letter-spacing: -0.085em !important;
+  text-transform: uppercase !important;
 }
 
-[data-guide-compact='title']::after {
-  content: '' !important;
-  display: block !important;
-  width: 92px !important;
+[data-guide-compact='line'] {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(190px, 44%) !important;
   height: 2px !important;
-  margin-top: 24px !important;
+  margin-top: clamp(28px, 3vw, 44px) !important;
   border-radius: 999px !important;
   background:
     linear-gradient(
       90deg,
       rgba(149, 255, 0, 0.95),
-      rgba(149, 255, 0, 0.22) 46%,
+      rgba(149, 255, 0, 0.26) 42%,
       rgba(149, 255, 0, 0)
     ) !important;
   box-shadow: 0 0 18px rgba(149, 255, 0, 0.22) !important;
 }
 
-[data-guide-compact='visual'] {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 9px !important;
-  margin-top: 28px !important;
+[data-guide-compact='spec'] {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(12px, 1.4vw, 20px) !important;
+  width: min(100%, 420px) !important;
+  margin-top: clamp(30px, 3.2vw, 48px) !important;
 }
 
-[data-guide-compact='visual'] span {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 30px !important;
-  padding: 0 12px !important;
-  border-radius: 999px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: rgba(255, 255, 255, 0.035) !important;
-  color: rgba(255, 255, 255, 0.62) !important;
-  font-size: clamp(10px, 0.74vw, 12px) !important;
+[data-guide-compact='spec'] span {
+  display: grid !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+}
+
+[data-guide-compact='spec'] em {
+  color: rgba(255, 255, 255, 0.44) !important;
+  font-style: normal !important;
+  font-size: clamp(10px, 0.72vw, 12px) !important;
   font-weight: 900 !important;
   letter-spacing: 0.16em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
 }
 
-[data-guide-compact='visual'] span:first-child {
-  border-color: rgba(149, 255, 0, 0.25) !important;
-  background: rgba(149, 255, 0, 0.07) !important;
-  color: rgba(149, 255, 0, 0.88) !important;
+[data-guide-compact='spec'] b {
+  display: block !important;
+  width: 100% !important;
+  height: 2px !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(149, 255, 0, 0.72),
+      rgba(149, 255, 0, 0.18) 46%,
+      rgba(255, 255, 255, 0.08)
+    ) !important;
+  box-shadow: 0 0 12px rgba(149, 255, 0, 0.1) !important;
 }
 
 [data-guide-compact='tag'] {
+  position: relative !important;
+  z-index: 2 !important;
   display: inline-flex !important;
   align-items: center !important;
   width: fit-content !important;
-  margin-top: 34px !important;
+  margin-top: clamp(34px, 3.8vw, 58px) !important;
   padding: 8px 13px !important;
   border-radius: 999px !important;
-  border: 1px solid rgba(149, 255, 0, 0.24) !important;
-  background:
-    linear-gradient(90deg, rgba(149, 255, 0, 0.1), rgba(149, 255, 0, 0.035)) !important;
+  border: 1px solid rgba(149, 255, 0, 0.22) !important;
+  background: rgba(149, 255, 0, 0.055) !important;
   color: rgba(149, 255, 0, 0.92) !important;
-  font-size: clamp(11px, 0.82vw, 13px) !important;
+  font-size: clamp(11px, 0.78vw, 13px) !important;
   font-weight: 950 !important;
   letter-spacing: 0.2em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
-  box-shadow: 0 0 22px rgba(149, 255, 0, 0.06) !important;
 }
 
 @media (max-width: 768px) {
-  [data-guide-compact='kicker'],
-  [data-guide-compact='tag'] {
-    padding: 6px 10px !important;
-    font-size: 10.5px !important;
-    letter-spacing: 0.16em !important;
+  [data-guide-compact='number'] {
+    right: 24px !important;
+    top: 26px !important;
+    font-size: 60px !important;
   }
 
   [data-guide-compact='title'] {
-    margin-top: 20px !important;
-    font-size: clamp(31px, 9vw, 43px) !important;
-    line-height: 1.02 !important;
-    letter-spacing: -0.062em !important;
+    margin-top: 30px !important;
+    font-size: clamp(42px, 13vw, 60px) !important;
+    line-height: 0.84 !important;
   }
 
-  [data-guide-compact='title']::after {
-    width: 68px !important;
-    margin-top: 20px !important;
+  [data-guide-compact='line'] {
+    width: 120px !important;
+    margin-top: 30px !important;
   }
 
-  [data-guide-compact='visual'] {
-    gap: 7px !important;
-    margin-top: 24px !important;
-  }
-
-  [data-guide-compact='visual'] span {
-    min-height: 28px !important;
-    padding-inline: 10px !important;
-    font-size: 10px !important;
-    letter-spacing: 0.13em !important;
+  [data-guide-compact='spec'] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    max-width: 220px !important;
+    margin-top: 34px !important;
   }
 
   [data-guide-compact='tag'] {
-    margin-top: 28px !important;
+    margin-top: 36px !important;
   }
 }
-/* BDPRODUCTION portfolio guide visual style end */
+/* BDPRODUCTION portfolio preview panel style end */
