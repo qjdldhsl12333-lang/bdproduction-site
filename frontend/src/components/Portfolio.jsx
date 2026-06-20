@@ -702,7 +702,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
           disabled={activeIndex <= 0}
           aria-label="previous portfolio"
         >
-          ?
+          <ChevronLeft size={20} strokeWidth={2.35} aria-hidden="true" />
         </BdButton>
 
         <div className="portfolio-mobile-dots" aria-label="portfolio slider pages">
@@ -710,7 +710,7 @@ function PortfolioMobileSlider({ videos, onSelectVideo }) {
             <BdButton variant="portfolio-filter"
               key={getVideoKey(video)}
               type="button"
-              className={activeIndex === index ? 'is-active' : ''}
+              className={`portfolio-mobile-dot ${activeIndex === index ? 'is-active' : ''}`}
               onClick={() => scrollToIndex(index)}
               aria-label={`portfolio slide ${index + 1}`}
             />
