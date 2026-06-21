@@ -1,15 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  Clapperboard,
-  FolderOpen,
-  Home,
-  LogIn,
-  Menu,
-  MessageCircle,
-  UserCircle,
-  UserPlus,
-  X,
-} from 'lucide-react';
+import { Clapperboard, FolderOpen, Home, LogIn, Menu, MessageCircle, UserCircle, UserPlus, X, UserRound } from 'lucide-react';
 import BdButton from './ui/BdButton.jsx';
 
 const navItems = [
@@ -107,7 +97,7 @@ function Header({ onOpenContact, onOpenAuth }) {
             variant="header-icon"
             size="sm"
             iconOnly
-            iconNode={<UserCircle size={18} />}
+            iconNode={<UserRound size={18} />}
             href="/mypage"
             aria-label="마이페이지"
           >
@@ -194,7 +184,7 @@ function Header({ onOpenContact, onOpenAuth }) {
             as="a"
             variant="drawer"
             iconPosition="start"
-            iconNode={<UserCircle size={19} />}
+            iconNode={<UserRound size={19} />}
             href="/mypage"
             onClick={closeMenu}
           >
