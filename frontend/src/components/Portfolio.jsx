@@ -465,7 +465,7 @@ function getCrewLabel(video) {
   return '';
 }
 
-function PortfolioShowcaseInfo({ video }) {
+function PortfolioShowcaseInfo({ video, onSelectVideo }) {
   if (!video) {
     return (
       <motion.aside
@@ -526,9 +526,11 @@ function PortfolioShowcaseInfo({ video }) {
         <BdButton variant="portfolio-card"
           type="button"
           className="portfolio-showcase-play"
+          onClick={() => onSelectVideo?.(video)}
+          aria-label={`${video.title} 영상 재생`}
         >
-          PLAY FILM
-          <Play size={17} />
+          <span>PLAY FILM</span>
+          <Play size={17} aria-hidden="true" />
         </BdButton>
       </motion.aside>
     </AnimatePresence>
@@ -582,7 +584,7 @@ function PortfolioDesktopShowcase({ videos, onSelectVideo }) {
         ))}
       </div>
 
-      <PortfolioShowcaseInfo video={hoveredVideo} />
+      <PortfolioShowcaseInfo video={hoveredVideo} onSelectVideo={onSelectVideo} />
     </div>
   );
 }
