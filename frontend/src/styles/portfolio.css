@@ -2197,3 +2197,78 @@ button.portfolio-mobile-dot[aria-current='true'],
   }
 }
 /* BDPRODUCTION showcase play action style end */
+
+/* BDPRODUCTION full portfolio filter button polish start */
+.portfolio-page [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.full-portfolio [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.full-portfolio-page [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.portfolio-category-panel [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.portfolio-filter-panel [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.portfolio-category-list button:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.portfolio-filter-list button:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) {
+  min-height: 42px !important;
+  height: 42px !important;
+  padding: 0 16px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
+  white-space: nowrap !important;
+}
+
+.portfolio-page [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) svg,
+.full-portfolio [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) svg,
+.full-portfolio-page [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) svg,
+.portfolio-category-panel [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) svg,
+.portfolio-filter-panel [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) svg,
+.portfolio-category-list button:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) svg,
+.portfolio-filter-list button:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) svg {
+  width: 17px !important;
+  height: 17px !important;
+  min-width: 17px !important;
+  margin-right: 2px !important;
+  transform: translateY(0) !important;
+}
+
+.portfolio-page [data-bd-button-variant='portfolio-filter'].is-active:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.full-portfolio [data-bd-button-variant='portfolio-filter'].is-active:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.full-portfolio-page [data-bd-button-variant='portfolio-filter'].is-active:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.portfolio-category-panel [data-bd-button-variant='portfolio-filter'].is-active:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.portfolio-filter-panel [data-bd-button-variant='portfolio-filter'].is-active:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) {
+  background: rgba(149, 255, 0, 0.14) !important;
+  border-color: rgba(149, 255, 0, 0.72) !important;
+  color: #95ff00 !important;
+  box-shadow:
+    0 0 0 1px rgba(149, 255, 0, 0.06),
+    0 0 18px rgba(149, 255, 0, 0.1) !important;
+}
+
+.portfolio-page [data-bd-button-variant='portfolio-filter']:not(.is-active):not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.full-portfolio [data-bd-button-variant='portfolio-filter']:not(.is-active):not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.full-portfolio-page [data-bd-button-variant='portfolio-filter']:not(.is-active):not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.portfolio-category-panel [data-bd-button-variant='portfolio-filter']:not(.is-active):not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+.portfolio-filter-panel [data-bd-button-variant='portfolio-filter']:not(.is-active):not(.portfolio-mobile-control):not(.portfolio-mobile-dot) {
+  background: rgba(255, 255, 255, 0.055) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+@media (max-width: 768px) {
+  .portfolio-page [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+  .full-portfolio [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+  .full-portfolio-page [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+  .portfolio-category-panel [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot),
+  .portfolio-filter-panel [data-bd-button-variant='portfolio-filter']:not(.portfolio-mobile-control):not(.portfolio-mobile-dot) {
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 0 14px !important;
+    gap: 6px !important;
+    font-size: 12.5px !important;
+  }
+}
+/* BDPRODUCTION full portfolio filter button polish end */
