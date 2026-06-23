@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Clapperboard, FolderOpen, Home, LogIn, Menu, MessageCircle, UserCircle, UserPlus, X, UserRound } from 'lucide-react';
+import { Clapperboard, FolderOpen, Home, LogIn, Menu, MessageCircle, UserPlus, X, UserRound } from 'lucide-react';
 import BdButton from './ui/BdButton.jsx';
 
 const navItems = [
